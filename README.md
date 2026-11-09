@@ -2,7 +2,7 @@
 
 Steam as one LCARS console. A theme for [Millennium](https://steambrew.app).
 
-![Boot sequence](docs/boot.gif)
+![Boot sequence](docs/boot.webp)
 
 ## Ops
 
