@@ -22,16 +22,22 @@ The library as a spreadsheet. **OPS / SHELVES** in the top bar swaps between it 
 | Record | Art, stats and Play / Install, Open record, Store page |
 | Keys | Arrows and PgUp/PgDn move, Enter opens, Esc clears search |
 
+## Shelves
+
+Steam's home, rebuilt as console sections.
+
+![Shelves](docs/screens/shelves.png)
+
 ## Everything else
 
-| | |
+| | | |
 |:-:|:-:|
-| ![Shelves](docs/screens/shelves.png) | ![Game record](docs/screens/record.png) |
-| ![Achievements](docs/screens/achievements.png) | ![Install](docs/screens/install.png) |
-| ![Store](docs/screens/store.png) | ![Store page](docs/screens/store-app.png) |
-| ![Review graph](docs/screens/store-reviews.png) | ![SteamPeek](docs/screens/store-addons.png) |
-| ![Community hub](docs/screens/community.png) | ![Millennium sidebar](docs/screens/millennium-sidebar.png) |
-| ![Settings](docs/screens/settings.png) | ![Game properties](docs/screens/properties.png) |
+| ![Game record](docs/screens/record.png) | ![Achievements](docs/screens/achievements.png) |
+| ![Install](docs/screens/install.png) | ![Store](docs/screens/store.png) |
+| ![Store page](docs/screens/store-app.png) | ![Review graph](docs/screens/store-reviews.png) |
+| ![SteamPeek](docs/screens/store-addons.png) | ![Community hub](docs/screens/community.png) |
+| ![Millennium sidebar](docs/screens/millennium-sidebar.png) | ![Settings](docs/screens/settings.png) |
+| ![Game properties](docs/screens/properties.png) |  |
 
 ## Install
 

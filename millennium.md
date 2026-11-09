@@ -12,6 +12,9 @@ The library as a spreadsheet: sortable columns, saved tabs, deep filters. **OPS 
 
 ![Ops](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/ops.png)
 
+### Shelves
+![Shelves](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/shelves.png)
+
 ### Game record
 ![Game record](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/record.png)
 
