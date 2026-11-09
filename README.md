@@ -4,7 +4,25 @@ Steam as one LCARS console. A theme for [Millennium](https://steambrew.app).
 
 ![Boot sequence](docs/boot.gif)
 
-![Library: Ops, with filters open](docs/screens/ops-filter.png)
+## Ops
+
+The library as a spreadsheet. **OPS / SHELVES** in the top bar swaps between it and Steam's home.
+
+![Ops](docs/screens/ops.png)
+
+![Ops with filters open](docs/screens/ops-filter.png)
+
+| | |
+|---|---|
+| Register | Every game, live Steam data. Click a header to sort |
+| Columns | Drag to reorder, drag edges to resize, add more from the chooser |
+| Tabs | All, Installed, Recent, Unplayed, Not installed, plus your saved views. Right-click to remove |
+| Filter | Play state, tags, players, Deck, reviews and more. AND across groups. Ctrl-click a tag for OR |
+| Save | **Save as tab** stays in Ops. **Save as collection** writes a Steam collection |
+| Record | Art, stats and Play / Install, Open record, Store page |
+| Keys | Arrows and PgUp/PgDn move, Enter opens, Esc clears search |
+
+## Everything else
 
 | | |
 |:-:|:-:|
