@@ -1,41 +1,60 @@
 # LCARSv2
 
-[![Thanks for all the fish!](https://img.shields.io/badge/Donate-ko--fi-pink?style=flat-square&logo=kofi&logoColor=%23ffad00&color=%23ffad00)](https://ko-fi.com/plaer1)    [![My Discord](https://img.shields.io/discord/493527438928642059?style=flat&logo=discord&logoColor=%23ffad00&color=%23ffad00
-)](https://discord.gg/EHMjbeEf82)
+A theme for [Millennium](https://steambrew.app).
 
-Steam as one LCARS console.
+![Boot sequence](docs/boot.webp)
 
-![Boot sequence](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/boot.webp)
+## Ops
 
-### Ops
-The library as a spreadsheet: sortable columns, saved tabs, deep filters. **OPS / SHELVES** in the top bar swaps it with Steam's home.
+Presenting your library as a spreadsheet! The new operations menu:
 
-![Ops](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/ops.png)
+![Ops](docs/screens/ops.png)
 
-### Shelves
-![Shelves](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/shelves.png)
+![Ops with filters open](docs/screens/ops-filter.png)
 
-### Game record
-![Game record](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/record.png)
+## Shelves
 
-### Store
-![Store](https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/store.png)
+Steam's home, rebuilt as console sections.
+
+![Shelves](docs/screens/shelves.png)
+
+## Everything else
+
+
+| ![Game record](docs/screens/record.png) | ![Achievements](docs/screens/achievements.png) |
+| ![Install](docs/screens/install.png) | ![Store](docs/screens/store.png) |
+| ![Store page](docs/screens/store-app.png) | ![Review graph](docs/screens/store-reviews.png) |
+| ![SteamPeek](docs/screens/store-addons.png) | ![Community hub](docs/screens/community.png) |
+| ![Millennium sidebar](docs/screens/millennium-sidebar.png) | ![Settings](docs/screens/settings.png) |
+| ![Game properties](docs/screens/properties.png) |  |
 
 ## Install
 
-1. Install [Millennium](https://github.com/SteamClientHomebrew/Millennium).
-2. Put the `LCARSv2` folder in `Steam/millennium/themes/`.
+1. Install [Millennium](https://steambrew.app).
+2. Put this folder in `Steam/millennium/themes/LCARSv2`.
 3. Pick **LCARSv2** in Millennium's theme settings.
-4. When Millennium asks, **enable JavaScript**. The theme won't work without it.
 
 ## Options
 
-Palette (12 eras), Stardate, Military time, UI sounds, Boot jingle, Debug menu: all in the theme's settings in Millennium.
+| Option | Does |
+|---|---|
+| Palette | LCARS colour era |
+| Stardate | Stardate or calendar date |
+| Military time | 24-hour clock |
+| UI sounds | Synthesized console chirps |
+| Boot jingle | Boot tune. Named themes need your own files in `jingles/local/` |
+| Debug menu | Alt-click anything to leave a note on it |
 
 ## Addons
 
-Change Window Params (transparent corners), Extendium, SteamDB, Augmented Steam, SteamPeek, Easy SteamGrid.
+| Addon | Status |
+|---|---|
+| [Change Window Params](https://steambrew.app) | Transparent window corners |
+| Extendium | Themed; runs the extensions below |
+| SteamDB | Themed |
+| Augmented Steam | Themed |
+| Easy SteamGrid | Themed |
 
 ## Credits
 
-[Millennium](https://github.com/SteamClientHomebrew/Millennium) by ShadowMonster99. Antonio font under the SIL Open Font License. Unofficial fan project, not affiliated with CBS or Paramount.
+[Antonio](fonts/OFL.txt) font: SIL Open Font License. Unofficial fan project, not affiliated with CBS or Paramount. Star Trek and LCARS belong to their owners.
