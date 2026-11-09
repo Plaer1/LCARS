@@ -13,7 +13,7 @@ import {
 	gameMenu, host, hours, navigate, pad, record, rowHeight, statusOf, year,
 } from './data.js';
 import {
-	registry, prefs, emit, on, visibleColumns, columnTemplate, nameWidth, visibleTabs,
+	registry, prefs, emit, on, visibleColumns, columnTemplate, visibleTabs,
 } from './ops-api.js';
 
 const KEY = '__lcarsV2OpsV1';
@@ -365,8 +365,8 @@ function build() {
 
 	// The card comes first (user, round 6): as wide as its art can be at this window
 	// height, so the art is always as big as it can be, with no dead space beside it.
-	// Columns keep their set widths and spare room stays as a gap between the register
-	// and the card. When room runs out NAME gives way, down to its minimum, then the card
+	// NAME takes whatever the other columns and the card leave, so the register always
+	// fills the window. When room runs out NAME stops at its minimum, then the card goes
 	// down to its floor (the readout scales to fit, css/ops.css), and then the register
 	// scrolls sideways rather than the card leaving the window.
 	let lastName = 0;
@@ -395,9 +395,7 @@ function build() {
 		let name = 0;
 		if (at >= 0) {
 			const c = registry.columns.get('name');
-			// --c-name-w is the width a NAME drag asks for (js/ops-columns.js).
-			const want = parseFloat(root.style.getPropertyValue('--c-name-w')) || nameWidth(c);
-			name = Math.round(Math.max(c.min || 160, Math.min(want, room - fixed - portrait)));
+			name = Math.round(Math.max(c.min || 160, room - fixed - portrait));
 			// The readout's height follows the card's width and the art follows that, so let it settle.
 			if (Math.abs(name - lastName) < 2) name = lastName;
 			lastName = name;

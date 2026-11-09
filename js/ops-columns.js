@@ -290,7 +290,7 @@ function addGrips(head) {
 
 // The live template: the dragged column reads its --c-<id>-w var, so a move
 // updates the root's variables and not each row. NAME's track is already a
-// variable; ops.js fit() reads --c-name-w as the width being asked for.
+// variable: ops.js fit() gives it the room the other columns leave.
 function liveTemplate(id) {
 	const widths = prefs.get('colw', {});
 	return visibleColumns().map(c => {
