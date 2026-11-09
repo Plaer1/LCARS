@@ -1,26 +1,16 @@
 # LCARSv2
 
-Steam as one LCARS console. A theme for [Millennium](https://steambrew.app).
+A theme for [Millennium](https://steambrew.app).
 
 ![Boot sequence](docs/boot.webp)
 
 ## Ops
 
-The library as a spreadsheet. **OPS / SHELVES** in the top bar swaps between it and Steam's home.
+Presenting your library as a spreadsheet! The new operations menu:
 
 ![Ops](docs/screens/ops.png)
 
 ![Ops with filters open](docs/screens/ops-filter.png)
-
-| | |
-|---|---|
-| Register | Every game, live Steam data. Click a header to sort |
-| Columns | Drag to reorder, drag edges to resize, add more from the chooser |
-| Tabs | All, Installed, Recent, Unplayed, Not installed, plus your saved views. Right-click to remove |
-| Filter | Play state, tags, players, Deck, reviews and more. AND across groups. Ctrl-click a tag for OR |
-| Save | **Save as tab** stays in Ops. **Save as collection** writes a Steam collection |
-| Record | Art, stats and Play / Install, Open record, Store page |
-| Keys | Arrows and PgUp/PgDn move, Enter opens, Esc clears search |
 
 ## Shelves
 
@@ -30,8 +20,7 @@ Steam's home, rebuilt as console sections.
 
 ## Everything else
 
-| | | |
-|:-:|:-:|
+
 | ![Game record](docs/screens/record.png) | ![Achievements](docs/screens/achievements.png) |
 | ![Install](docs/screens/install.png) | ![Store](docs/screens/store.png) |
 | ![Store page](docs/screens/store-app.png) | ![Review graph](docs/screens/store-reviews.png) |
@@ -64,7 +53,6 @@ Steam's home, rebuilt as console sections.
 | Extendium | Themed; runs the extensions below |
 | SteamDB | Themed |
 | Augmented Steam | Themed |
-| SteamPeek | Themed |
 | Easy SteamGrid | Themed |
 
 ## Credits
