@@ -1,0 +1,415 @@
+@import url('tokens.css');
+@import url('menus.css');
+@import url('hover.css');
+@import url('window-corners.css');
+@import url('scrollbars.css');
+
+/* LCARSv2 Steam Settings: the popup is a second console panel. The page
+ * list is the department bank under an elbow labelled STEAM SETTINGS; a
+ * top rail runs across, interrupted by the current page's title; a bottom
+ * elbow closes the bank into a base rail. Settings rows are a register. */
+
+body, body * {
+	font-family: var(--lc-font) !important;
+	font-synthesis: none !important;
+	letter-spacing: .02em;
+}
+
+* { transition-duration: 0s !important; animation-duration: 0s !important; }
+
+html, body, ._2sssIwe0duyIrFvat2oXzH, .DialogContent, .DialogContentTransition {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+}
+
+
+/* Description prose stays proportional and readable. */
+._1W1to_azoBRG95oNAFpf9Q, ._1W1to_azoBRG95oNAFpf9Q * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+/* ------------------------------------------------------------ frame */
+
+/* Top rail, from the elbow's arm to the window-control endcap. Drawn at
+ * window level so Steam's clipped content wrapper can't hide it. */
+html.lc-settings body::before {
+	content: '';
+	position: fixed;
+	top: 8px;
+	left: 198px;
+	right: 112px; /* meets the window controls' cap */
+	height: 20px;
+	background: var(--lc-lavender);
+	z-index: 50;
+	pointer-events: none;
+}
+
+/* Base rail. */
+html.lc-settings body::after {
+	content: '';
+	position: fixed;
+	bottom: 8px;
+	left: 198px;
+	right: 8px;
+	height: 12px;
+	background: var(--lc-peach);
+	border-radius: 0 6px 6px 0;
+	z-index: 50;
+	pointer-events: none;
+}
+
+/* The elbow's inner black cutout, also at window level. */
+html.lc-settings::before {
+	content: '';
+	position: fixed;
+	top: 28px;
+	left: 203px;
+	width: 22px;
+	height: 22px;
+	background: radial-gradient(circle at 100% 100%, transparent 21.5px, var(--lc-lavender) 22px);
+	z-index: 50;
+	pointer-events: none;
+}
+
+/* The page title, interrupting the top rail (mirrored by js/settings.js). */
+.lc-settings-title {
+	position: fixed;
+	top: 2px;
+	left: 244px;
+	z-index: 51;
+	padding: 0 12px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 32px;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+.lc-settings-title:empty { display: none; }
+
+/* Content clears the rail; Steam's own header stays for assistive tech. */
+html.lc-settings .DialogContent_InnerWidth { padding-top: 24px !important; padding-bottom: 28px; }
+
+html.lc-settings .DialogContent_InnerWidth > .DialogHeader {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	clip: rect(0 0 0 0) !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.DialogButton * { color: inherit !important; }
+
+.title-bar-actions { /* window controls: the rail's outward cap */
+	position: fixed !important; /* Steam's bar is static: top/right did nothing */
+	top: 8px !important;
+	height: 20px !important;
+	background: var(--lc-coral) !important;
+	border-radius: 0 10px 10px 0;
+	right: 8px !important;
+	padding-right: 8px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.title-area-highlight { background: transparent !important; }
+.title-bar-actions .title-area-icon { height: 20px !important; border-radius: 0 !important; display: flex; align-items: center; }
+.title-bar-actions .title-area-icon:hover { background: var(--lc-gold) !important; }
+.SVGIcon_Minimize line, .SVGIcon_Restore rect, .SVGIcon_Restore line, .SVGIcon_Restore polyline,
+.SVGIcon_Maximize rect, .SVGIcon_Maximize line, .SVGIcon_X_Line line { stroke: var(--lc-black) !important; stroke-width: 2px; }
+
+/* -------------------------------------------------------------- bank */
+
+._2kwFFHckg8jvnwJfg9-la8 { /* PageListColumn */
+	background: var(--lc-black) !important;
+	padding: 8px 0 8px 8px !important;
+	box-sizing: border-box;
+	position: relative;
+	display: flex !important;
+	flex-direction: column;
+	gap: var(--lc-slice);
+}
+
+/* Bottom elbow closing the bank into the base rail. */
+._2kwFFHckg8jvnwJfg9-la8::after {
+	content: '';
+	flex: 0 0 auto;
+	height: 44px;
+	background: var(--lc-peach);
+	border-radius: 0 0 0 34px;
+	margin-bottom: 0;
+}
+
+/* STEAM SETTINGS: the top elbow itself, label low and right. */
+._2rjVTGz8aLvqOdz5v2gq5C {
+	position: relative;
+	flex: 0 0 auto;
+	height: 74px !important;
+	margin: 0 !important;
+	padding: 0 10px 6px !important;
+	box-sizing: border-box;
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 48px 0 0 0;
+	display: flex !important;
+	align-items: flex-end;
+	justify-content: flex-end;
+	font-size: 18px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	line-height: 1 !important;
+}
+
+._2rjVTGz8aLvqOdz5v2gq5C::after { /* inner black cutout under the rail */
+	content: '';
+	position: absolute;
+	left: 100%;
+	top: 20px;
+	width: 22px;
+	height: 22px;
+	background: radial-gradient(circle at 100% 100%, transparent 21.5px, var(--lc-lavender) 22px);
+}
+
+._18QCu-7MTzd51UpVbYysDy { /* PageList */
+	flex: 1 1 auto;
+	min-height: 0;
+	background: var(--lc-black) !important;
+	padding: 0 !important;
+	display: flex;
+	flex-direction: column;
+	gap: var(--lc-slice);
+	overflow-y: auto;
+}
+
+._1-vlriAtKYDViAEunue4VO { /* PageListItem: a bank segment */
+	--lc-seg: var(--lc-peach);
+	flex: 0 0 auto;
+	min-height: 32px;
+	margin: 0 !important;
+	padding: 0 10px 3px !important;
+	border-radius: 0 !important;
+	background: var(--lc-seg) !important;
+	color: var(--lc-black) !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+	box-sizing: border-box;
+}
+
+._1-vlriAtKYDViAEunue4VO:nth-child(5n+2) { --lc-seg: var(--lc-lavender); }
+._1-vlriAtKYDViAEunue4VO:nth-child(5n+3) { --lc-seg: var(--lc-lilac); }
+._1-vlriAtKYDViAEunue4VO:nth-child(5n+4) { --lc-seg: var(--lc-steel); }
+._1-vlriAtKYDViAEunue4VO:nth-child(5n+5) { --lc-seg: var(--lc-coral); }
+
+._1rD8X96FdnksZLvRRlEiCR { display: none !important; } /* icons: LCARS labels are words */
+
+._2PPbMrzl8PKBwpkjYs9b0i { /* item title */
+	color: var(--lc-black) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	line-height: 1 !important;
+	padding: 0 !important;
+}
+
+._1-vlriAtKYDViAEunue4VO:hover { --lc-seg: var(--lc-ink); }
+
+._1-vlriAtKYDViAEunue4VO._2DpXjzK3WWsOtUWUrcuOG7 { /* Active */
+	--lc-seg: var(--lc-gold);
+	box-shadow: inset 10px 0 0 var(--lc-ink);
+}
+
+._1Hye7o1wYIfc9TE9QKRW4T { /* separator: a wider black slice */
+	background: var(--lc-black) !important;
+	height: 10px !important;
+	margin: 0 !important;
+	border: 0 !important;
+}
+
+/* ------------------------------------------------------------ pages */
+
+.SettingsDialogSubHeader { /* sub-section: short rail + peach title */
+	position: relative;
+	color: var(--lc-peach) !important;
+	font-size: 20px !important;
+	font-weight: 500 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	padding-left: 46px !important;
+	margin-top: 18px !important;
+}
+
+.SettingsDialogSubHeader::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 36px;
+	height: 14px;
+	transform: translateY(-50%);
+	background: var(--lc-peach);
+	border-radius: 7px 0 0 7px;
+}
+
+/* Rows: a register on black, separated by surface rules; hover gets a
+ * lavender marker, keyboard focus a light outline. */
+.eKmEXJCm_lgme24Fp_HWt { /* Field */
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface) !important;
+	margin: 0 !important;
+}
+
+.eKmEXJCm_lgme24Fp_HWt::before, .eKmEXJCm_lgme24Fp_HWt::after { display: none !important; }
+
+.eKmEXJCm_lgme24Fp_HWt { position: relative; }
+.eKmEXJCm_lgme24Fp_HWt:hover { box-shadow: inset 0 -2px 0 var(--lc-gold) !important; } /* the OPS register's selected row: gold rule, arrow, gold label */
+.eKmEXJCm_lgme24Fp_HWt:hover ._3jMlJm4PQCA8SfNlUR99Fo { color: var(--lc-gold) !important; }
+.eKmEXJCm_lgme24Fp_HWt:hover ._3jMlJm4PQCA8SfNlUR99Fo::before {
+	content: '';
+	position: absolute;
+	left: 1px;
+	width: 7px;
+	height: 12px;
+	margin-top: 3px;
+	background: var(--lc-gold);
+	clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.eKmEXJCm_lgme24Fp_HWt.gpfocuswithin, .eKmEXJCm_lgme24Fp_HWt:focus-within { outline: 2px solid var(--lc-ink); outline-offset: -2px; }
+
+._3jMlJm4PQCA8SfNlUR99Fo { /* label */
+	color: var(--lc-ink) !important;
+	font-size: 17px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+._1W1to_azoBRG95oNAFpf9Q { color: #c9bfae !important; font-size: 13px !important; }
+.SettingsLink { color: var(--lc-lavender) !important; text-transform: uppercase; letter-spacing: .06em; }
+
+/* Toggles: flat capsules; on = gold, black knob. */
+._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl {
+	background: var(--lc-surface) !important;
+	border-radius: 11px !important;
+	box-shadow: none !important;
+}
+
+._2bl0iQ9xigbq4Zd1NI6NZl::before { background: var(--lc-gold) !important; border-radius: 11px !important; }
+
+._9Ql-oVe_j8E-vsDdyVdWo ._1PQppcgkuXQAiFPar9AGi- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+}
+
+._9Ql-oVe_j8E-vsDdyVdWo.yLrDAetGoWx0GYqA6ShfS ._1PQppcgkuXQAiFPar9AGi- { box-shadow: inset 0 0 0 2px var(--lc-black) !important; }
+
+/* Field wells and commands. */
+.DialogDropDown, .DialogInput, .DialogInput_Wrapper input, .DialogTextInputBase {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+.DialogDropDown:hover { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+.DialogDropDown_Arrow svg, .DialogDropDown_Arrow svg * { fill: var(--lc-peach) !important; }
+
+.DialogButton {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+}
+
+.DialogButton:hover:not(:disabled) { background: var(--lc-gold) !important; }
+.DialogButton.Primary { background: var(--lc-gold) !important; }
+.DialogButton:disabled { background: var(--lc-disabled) !important; }
+
+/* Slider (volumes etc.). */
+.SliderControlPanelGroup .SliderTrack, .DialogSlider_Track { background: var(--lc-surface) !important; border-radius: 0 !important; }
+.SliderHandle, .DialogSlider_Grabber { background: var(--lc-gold) !important; border-radius: 4px !important; }
+
+
+/* Sections: the library's lilac grouping bracket down the left of each group of rows. */
+.DialogBody > .DialogControlsSection { position: relative; padding-left: 16px; }
+.DialogBody > .DialogControlsSection::before {
+	content: '';
+	position: absolute;
+	left: 0; top: 4px; bottom: 4px;
+	width: 10px;
+	box-sizing: border-box;
+	border: 5px solid var(--lc-lilac);
+	border-right: 0;
+	border-radius: 12px 0 0 12px;
+}
+
+/* Radio groups (display size etc.): joined command segments, the chosen one gold. */
+.Shared_Radio_Group {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	padding: 0 !important;
+	gap: 4px;
+}
+.Shared_Radio_Group .RadioButton {
+	background: var(--lc-steel) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	height: 32px;
+	font-weight: 600 !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+.Shared_Radio_Group .RadioButton::before, .Shared_Radio_Group .RadioButton::after { display: none !important; }
+.Shared_Radio_Group .RadioButton:first-child { border-radius: 16px 0 0 16px !important; }
+.Shared_Radio_Group .RadioButton:last-child { border-radius: 0 16px 16px 0 !important; }
+.Shared_Radio_Group .RadioButton:hover { background: var(--lc-ink) !important; }
+.Shared_Radio_Group .RadioButton._3-_jME_xsuvgT3Dvq4bw_q { background: var(--lc-gold) !important; background-image: none !important; }
+
+/* Sliders: gold fill and handle, nothing from Steam's blue. */
+.SliderControl .SliderTrack { box-shadow: none !important; }
+.SliderControl .SliderTrack::before { background: var(--lc-gold) !important; }
+.SliderHandle { box-shadow: none !important; border-radius: 0 12px 12px 0 !important; }
+
+/* Storage page: the "..." menu is a command cap; the list rule is a rail. */
+._1WKUOT3FdB9-48MMP0Tz9l { background: var(--lc-peach) !important; border-radius: 0 12px 12px 0 !important; }
+._1WKUOT3FdB9-48MMP0Tz9l:hover { background: var(--lc-gold) !important; }
+._1WKUOT3FdB9-48MMP0Tz9l svg, ._1WKUOT3FdB9-48MMP0Tz9l svg * { color: var(--lc-black) !important; fill: var(--lc-black) !important; }
+._2iZ4o1LliFQ93guDcyj81Q { background: var(--lc-lilac) !important; height: 6px !important; }
+
+/* Window corners: outside the console's outline the desktop shows (the window has
+ * TransparentParentWindow). The resize cap moves inside the outline. */
+html.lc-settings { background: transparent !important; }
+html.lc-settings body { clip-path: inset(8px round 48px 10px 24px 34px); }
+html.lc-settings .window_resize_grip { right: 8px !important; bottom: 8px !important; }
+
+/* A plugin's paged dialog (EasyGrid, note 98) nests the Settings layout inside a padded
+ * dialog: the padding goes, so its bank and rails land where the skin draws them. */
+html.lc-settings .GenericDialogBase { padding: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; }
+html.lc-settings .GenericDialogBase > .DialogContent_InnerWidth { padding: 0 !important; max-width: none !important; height: 100% !important; }
+html.lc-settings .GenericDialogBase > .DialogContent_InnerWidth > div,
+html.lc-settings .GenericDialogBase > .DialogContent_InnerWidth > div > div { height: 100% !important; }
+html.lc-settings .GenericDialogBase ._2sssIwe0duyIrFvat2oXzH { width: 100% !important; height: 100% !important; }

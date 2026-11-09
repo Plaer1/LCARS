@@ -1,0 +1,2 @@
+/* LCARSv2: loaded with the "UI sounds" setting, so js/boot.js can read it before js/sound.js has run. */
+:root:root { --lc-ui-sounds: 1; }

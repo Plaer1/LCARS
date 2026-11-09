@@ -1,0 +1,210 @@
+/* LCARSv2 menus: every dropdown, context menu, root menu and nav hover
+ * menu. Used in-page (imported by library.css / settings.css) and in the
+ * separate popup windows Steam opens for root and SuperNav menus (patched
+ * by skin.json on "...Menu" / "...Supernav" window titles).
+ *
+ * Construction (spec "single menu" + "dialog rail"): one frame owns the
+ * curved lavender rail down the left and a base rail; rows are a black
+ * register; the row under the pointer or keyboard takes the gold fill
+ * with black ink; actions (Play/Install) are gold command segments. */
+
+html.MillenniumWindow_ContextMenu, html.MillenniumWindow_ContextMenu body,
+.ContextMenuPopupBody {
+	background: var(--lc-black) !important;
+	font-family: var(--lc-font) !important;
+}
+
+html.MillenniumWindow_ContextMenu body * { font-family: var(--lc-font) !important; }
+
+/* Frame. Popup windows are sized by Steam to the menu, so the rail is drawn
+ * with inset shadows rather than borders: no size change, nothing clipped. */
+.PP7LM0Ow1K5qkR8WElLpt { /* contextMenu */
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -5px 0 var(--lc-lavender) !important;
+	padding: 0 !important;
+	color: var(--lc-ink) !important;
+}
+
+/* In-page menus can afford a real outer elbow and a drop separation. */
+html:not(.MillenniumWindow_ContextMenu) .PP7LM0Ow1K5qkR8WElLpt {
+	border-radius: 18px 0 0 12px !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -5px 0 var(--lc-lavender), inset 0 5px 0 var(--lc-lavender), 0 0 0 3px var(--lc-black) !important; /* a full bracket; no drop shadows */
+	padding-top: 5px !important;
+}
+
+/* Dropdowns put rows straight in the frame (no contents wrapper), so the
+ * frame itself needs the inset that keeps rows off the rail. */
+.PP7LM0Ow1K5qkR8WElLpt.EDl_mzaY3WxkgmYVD8W4d { padding: 6px 4px 9px 12px !important; }
+
+._2EstNjFIIZm_WUSKm5Wt7n, ._3pofGqV0buiKAfMPEs3_82 { /* contents, MenuPopup */
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	padding: 0 0 5px 8px !important;
+	border-radius: 0 !important;
+}
+
+/* Rows: a register. */
+._1n7Wloe5jZ6fSuvV18NNWI, .contextMenuItem { /* contextMenuItem */
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -1px 0 var(--lc-surface) !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	padding-left: 14px !important;
+}
+
+._1n7Wloe5jZ6fSuvV18NNWI:hover, ._1n7Wloe5jZ6fSuvV18NNWI.gpfocus, ._1n7Wloe5jZ6fSuvV18NNWI:focus-visible,
+._1n7Wloe5jZ6fSuvV18NNWI._18z-3vkWndCBO5WJgFldRK, .contextMenuItem:hover {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	box-shadow: inset 6px 0 0 var(--lc-ink) !important;
+}
+
+._1n7Wloe5jZ6fSuvV18NNWI:hover *, ._1n7Wloe5jZ6fSuvV18NNWI.gpfocus * { color: var(--lc-black) !important; fill: var(--lc-black) !important; }
+
+._1n7Wloe5jZ6fSuvV18NNWI.disabled, ._1n7Wloe5jZ6fSuvV18NNWI[aria-disabled="true"] { color: var(--lc-disabled) !important; }
+
+._2qdHlYPUfe_wwwtyPIu7m3 { color: inherit !important; } /* submenu label */
+
+/* Submenu marker: a small peach end-cap instead of a chevron. */
+._2RlEO6dx1vo3OB7EFJnzDi { position: relative; }
+._2RlEO6dx1vo3OB7EFJnzDi svg { display: none !important; }
+
+._2RlEO6dx1vo3OB7EFJnzDi::after {
+	content: '';
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	width: 14px;
+	height: 12px;
+	transform: translateY(-50%);
+	background: var(--lc-peach);
+	border-radius: 0 6px 6px 0;
+}
+
+._2RlEO6dx1vo3OB7EFJnzDi:hover::after, ._2RlEO6dx1vo3OB7EFJnzDi.gpfocus::after { background: var(--lc-black); }
+
+/* Play / Install / Update at the top of game menus: gold command. */
+.DesktopUI .Z5iAXBkRFGnwpXsO8ANTl, .Z5iAXBkRFGnwpXsO8ANTl {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	box-shadow: none !important;
+	border-radius: 0 16px 16px 0 !important;
+	margin: 4px 8px 6px 0 !important;
+}
+
+.Z5iAXBkRFGnwpXsO8ANTl:hover { background: var(--lc-ink) !important; }
+.Z5iAXBkRFGnwpXsO8ANTl svg, .Z5iAXBkRFGnwpXsO8ANTl svg * { fill: var(--lc-black) !important; }
+
+/* Separators: a black slice with a short lavender tick. */
+._2kvdTEDgtIT7T9wZIzanom, .contextMenuSeparator, ._1n7Wloe5jZ6fSuvV18NNWI + hr {
+	height: 6px !important;
+	background: linear-gradient(90deg, var(--lc-lavender) 0 26px, transparent 26px) 0 50% / 100% 2px no-repeat var(--lc-black) !important;
+	border: 0 !important;
+	margin: 2px 0 !important;
+}
+
+/* Checkbox rows (collection filters). */
+._1BAKXmqQdWRWmWX9_CbhuY.DialogCheckbox_Container {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border-radius: 0 !important;
+	padding-left: 12px !important;
+}
+
+._1BAKXmqQdWRWmWX9_CbhuY.DialogCheckbox_Container:hover,
+._1BAKXmqQdWRWmWX9_CbhuY.DialogCheckbox_Container.gpfocus { background: var(--lc-surface) !important; box-shadow: inset 6px 0 0 var(--lc-gold); }
+
+._1BAKXmqQdWRWmWX9_CbhuY .DialogToggle_Label, ._3kSh7qVSTDcPDePx9kya8C {
+	color: var(--lc-ink) !important;
+	font-size: 15px !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+/* The checkbox itself: a flat square; checked = gold with a black tick. */
+.PP7LM0Ow1K5qkR8WElLpt .DialogCheckbox, .DialogCheckbox {
+	background: var(--lc-black) !important;
+	border: 2px solid var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+.DialogCheckbox.Active, .DialogCheckbox_Container[aria-checked="true"] .DialogCheckbox {
+	background: var(--lc-gold) !important;
+	border-color: var(--lc-gold) !important;
+}
+
+.DialogCheckbox svg.SVGIcon_DialogCheck * { fill: var(--lc-black) !important; stroke: none !important; filter: none !important; }
+.DialogCheckbox svg.SVGIcon_DialogCheck { filter: none !important; }
+
+/* Count suffixes like "(1743)". */
+.PP7LM0Ow1K5qkR8WElLpt [class*="Count"], ._3kSh7qVSTDcPDePx9kya8C + * { color: var(--lc-peach) !important; }
+
+/* Dropdown lists (DialogDropDownMenu): the same bracket and register as the context menus. */
+.DialogMenuPosition ._30wJO3MC4x-I1OWpy1TAeE._DialogInputContainer {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 18px 0 0 12px !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 5px 0 var(--lc-lavender), inset 0 -5px 0 var(--lc-lavender) !important;
+	padding: 9px 4px 9px 14px !important;
+}
+._30wJO3MC4x-I1OWpy1TAeE > button {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -1px 0 var(--lc-surface) !important;
+	font: 500 15px var(--lc-font) !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	text-align: left !important;
+	padding: 5px 12px !important;
+}
+._30wJO3MC4x-I1OWpy1TAeE > button[aria-selected=true] { color: var(--lc-gold) !important; }
+._30wJO3MC4x-I1OWpy1TAeE > button:hover,
+._30wJO3MC4x-I1OWpy1TAeE > button.gpfocus { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+/* Modal dialogs in the main window (confirmations, install requests): a lavender bracket
+ * on black with command segments, in place of Steam's blue-grey plate. */
+dialog .DialogContent._DialogLayout {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 24px 0 0 20px !important;
+	box-shadow: inset 12px 0 0 var(--lc-lavender), inset 0 8px 0 var(--lc-lavender), inset 0 -8px 0 var(--lc-lavender), 0 0 0 3px var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+}
+dialog .DialogContent._DialogLayout::before, dialog .DialogContent._DialogLayout::after { display: none !important; }
+dialog .DialogContent._DialogLayout .DialogBody, dialog .DialogContent._DialogLayout .DialogFooter { background: transparent !important; }
+dialog .DialogContent._DialogLayout .DialogHeader { color: var(--lc-gold) !important; font-size: 26px !important; text-transform: uppercase; letter-spacing: .06em; }
+dialog .DialogContent._DialogLayout .DialogButton {
+	background: var(--lc-peach) !important;
+	background-image: none !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+}
+dialog .DialogContent._DialogLayout .DialogButton.Primary { background: var(--lc-gold) !important; }
+dialog .DialogContent._DialogLayout .DialogButton:hover:not(:disabled) { background: var(--lc-ink) !important; }
+._2mwbdnqm9Lk1-Bzs8FIdCU { background: var(--lc-lilac) !important; height: 2px !important; } /* the install request's rule */
+
+/* Install dialog's drive list (note 93): rows are black plates with a rail; the chosen
+ * drive is the gold command instead of Steam's blue, its icons in black like its text. */
+._3wtPUBfilFITcl1s4u6A7T .Oo5JPcEk_erKEYAzYp2nY { background: var(--lc-black) !important; color: var(--lc-ink) !important; box-shadow: inset 8px 0 0 var(--lc-lavender); border-radius: 0 !important; }
+._3wtPUBfilFITcl1s4u6A7T .Oo5JPcEk_erKEYAzYp2nY:hover { background: var(--lc-surface) !important; }
+._3wtPUBfilFITcl1s4u6A7T .Oo5JPcEk_erKEYAzYp2nY.gkgG-dWgjpwS_aqlcMNTM { background: var(--lc-gold) !important; color: var(--lc-black) !important; box-shadow: none; border-radius: 0 21px 21px 0 !important; }
+._3wtPUBfilFITcl1s4u6A7T .gkgG-dWgjpwS_aqlcMNTM *, ._3wtPUBfilFITcl1s4u6A7T .gkgG-dWgjpwS_aqlcMNTM svg { color: var(--lc-black) !important; fill: var(--lc-black) !important; }

@@ -1,0 +1,94 @@
+/* LCARSv2 Steam console (round 6): a diagnostic display, after the lcars.org.uk
+ * archive panels: a bracketed well with a gold title in its rail, the log as small
+ * tabular readout text, and the command line as a framed prompt along the foot. */
+
+._1fuML-ekRbTEzgzC597yGP { /* Console */
+	position: relative;
+	background: var(--lc-black) !important;
+	border: solid var(--lc-steel);
+	border-width: 26px 0 8px 14px;
+	border-radius: 34px 0 0 34px;
+	box-sizing: border-box;
+}
+
+/* Right edge: a small numbered bank down the well, in the panel's mixed segments. */
+._1fuML-ekRbTEzgzC597yGP::after {
+	content: '';
+	position: absolute;
+	top: 8px;
+	right: 0;
+	bottom: 64px;
+	width: 34px;
+	background: linear-gradient(to bottom,
+		var(--lc-lavender) 0 18%, var(--lc-black) 0 calc(18% + 5px),
+		var(--lc-peach) 0 40%, var(--lc-black) 0 calc(40% + 5px),
+		var(--lc-steel) 0 46%, var(--lc-black) 0 calc(46% + 5px),
+		var(--lc-lilac) 0 78%, var(--lc-black) 0 calc(78% + 5px),
+		var(--lc-coral) 0 100%);
+	border-radius: 0 0 0 0;
+}
+
+._1fuML-ekRbTEzgzC597yGP::before {
+	content: 'Diagnostic log \00B7 7212';
+	position: absolute;
+	right: 26px;
+	top: -26px;
+	height: 26px;
+	padding: 0 12px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font: 500 20px/26px var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.GTdO0X-5EOwChz3fc2iLU { /* ConsoleInner */
+	background: var(--lc-black) !important;
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px !important;
+	letter-spacing: .05em;
+	font-variant-numeric: tabular-nums;
+}
+
+.GTdO0X-5EOwChz3fc2iLU * { color: inherit; font: inherit; }
+.GTdO0X-5EOwChz3fc2iLU { margin-right: 44px !important; }
+.GTdO0X-5EOwChz3fc2iLU ::selection { background: var(--lc-gold); color: var(--lc-black); }
+._1fl59ZPppQJ-RufpnbFYpn:hover { background: var(--lc-surface); color: var(--lc-gold); }
+
+._1fuML-ekRbTEzgzC597yGP input, ._1fuML-ekRbTEzgzC597yGP textarea {
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	border: 2px solid var(--lc-peach) !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	font: 500 16px var(--lc-font) !important;
+	letter-spacing: .06em;
+}
+
+._1fuML-ekRbTEzgzC597yGP input:focus, ._1fuML-ekRbTEzgzC597yGP textarea:focus { border-color: var(--lc-gold) !important; }
+._1fuML-ekRbTEzgzC597yGP input::placeholder { color: var(--lc-disabled); }
+
+/* The prompt: a command block joined to the input. */
+._2SdqX9SccD_TtDat-bNo5- { position: relative; padding-left: 96px !important; }
+._2SdqX9SccD_TtDat-bNo5-::before {
+	content: 'Command';
+	position: absolute;
+	left: 10px;
+	top: 0;
+	bottom: 0;
+	width: 86px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-end;
+	padding: 0 8px 4px 0;
+	justify-content: flex-end;
+	background: var(--lc-peach);
+	border-radius: 15px 0 0 15px;
+	color: var(--lc-black);
+	font: 600 15px var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+._1J21tLst5SEhBPkVRT53UV { background: transparent !important; } /* ScrollToTopButton: a full-width strip; only its pill is styled (library-home.css) */

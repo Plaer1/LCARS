@@ -1,0 +1,241 @@
+/* LCARSv2 S03 register columns (js/ops-columns.js): extra cell types, the
+ * favicon, header resize and reorder handles, and the column chooser. */
+
+/* Entrance fix. ops.css slides each row in from 14px left, and the register's
+ * scroll box clips that first column's text while it is moving. A left-to-right
+ * wipe keeps every row inside its box. */
+@keyframes lc-col-wipe {
+	from { opacity: 0; clip-path: inset(0 100% 0 0); }
+	to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+.lc-reg-rows.boot .lc-row { animation: lc-col-wipe .32s ease-out both; animation-delay: calc(var(--i) * 14ms); }
+
+/* Headers: text sits at the end of each segment (safe keeps an overflowing
+ * label on screen instead of pushing it out past the left edge). */
+.lc-reg-cols button { justify-content: safe flex-end; }
+.lc-reg-cols button[data-col="name"], .lc-reg-cols button.al { justify-content: safe flex-start; }
+
+/* The sort glyph is a triangle, not a block. Padding keeps it clear of the label. */
+.lc-reg-cols button.on { padding-left: 20px; }
+.lc-reg-cols button.on::before {
+	content: '\25B2';
+	left: 6px;
+	width: auto;
+	height: auto;
+	background: none;
+	font-size: 11px;
+	line-height: 1;
+}
+.lc-reg-cols button.on[data-dir="down"]::before { content: '\25BC'; }
+
+/* Resize grab zone on each header's right edge. */
+.lc-reg-cols button > .lc-grip {
+	position: absolute;
+	top: 0; bottom: 0; right: 0;
+	width: 6px;
+	background: transparent;
+	cursor: col-resize;
+}
+.lc-reg-cols button > .lc-grip:hover { background: var(--lc-gold); }
+.lc-ops.lc-sizing .lc-reg-cols button > .lc-grip { background: var(--lc-gold); }
+.lc-ops.lc-sizing, .lc-ops.lc-sizing * { cursor: col-resize !important; }
+.lc-ops.lc-moving, .lc-ops.lc-moving * { cursor: grabbing !important; }
+
+/* The root's implicit grid column is sized by its widest child, so a long tab
+ * strip would stretch the whole body over the detail well. One column of
+ * minmax(0, 1fr) pins the body to the frame; the registers scroll inside it.
+ * Grid items default to min-width:auto, so the body and register get zero too. */
+html.lc-ops-on .lc-ops { grid-template-columns: minmax(0, 1fr); }
+.lc-ops-body, .lc-reg { min-width: 0; }
+
+/* The header scrolls sideways with the rows (js/ops-columns.js keeps the two in step).
+ * The 3px top padding is where a lifted header rises into, so the clip does not cut it. */
+.lc-reg-cols {
+	box-sizing: border-box;
+	height: 43px;
+	margin-top: -3px;
+	padding-top: 3px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: none;
+}
+
+/* Header lifted by a drag: gold underside, drawn inside the segment so the clip keeps it. */
+.lc-reg-cols button.lift { box-shadow: inset 0 -5px 0 var(--lc-gold); z-index: 4; }
+
+/* The gold bar: the resize edge, or the drop mark during a reorder. */
+.lc-rz-bar {
+	position: absolute;
+	top: 0; bottom: 0;
+	width: 2px;
+	background: var(--lc-gold);
+	display: none;
+	pointer-events: none;
+	z-index: 3;
+}
+.lc-rz-bar.on { display: block; }
+.lc-rz-bar.mark { width: 4px; }
+
+/* Cells: text columns align left; the name cell carries its favicon. */
+.lc-row .c-txt { text-align: left; color: var(--lc-lavender); }
+
+.lc-row .c-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.lc-row .c-name .lc-nm {
+	flex: 0 1 auto;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.lc-ico {
+	position: relative;
+	flex: 0 0 20px;
+	width: 20px; height: 20px;
+	background: var(--lc-surface);
+	overflow: hidden;
+}
+.lc-ico img { display: block; width: 20px; height: 20px; object-fit: cover; }
+.lc-ico.miss img { display: none; }
+.lc-ico.miss::before {
+	content: attr(data-l);
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font: 600 13px/1 var(--lc-font);
+	color: var(--lc-lavender);
+}
+
+/* Rating band: gold 80+, peach 70+, coral 40+, disabled below. */
+.lc-band {
+	display: inline-block;
+	min-width: 46px;
+	padding: 0 6px;
+	text-align: center;
+	line-height: 18px;
+	font-weight: 600;
+	letter-spacing: .04em;
+	color: var(--lc-black);
+	background: var(--lc-disabled);
+}
+.lc-band.b-gold { background: var(--lc-gold); }
+.lc-band.b-peach { background: var(--lc-peach); }
+.lc-band.b-coral { background: var(--lc-coral); }
+
+/* Deck compatibility pill. */
+.lc-pill {
+	display: inline-block;
+	padding: 0 9px 0 7px;
+	border-radius: 0 9px 9px 0;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 17px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--lc-black);
+	background: var(--lc-disabled);
+	vertical-align: middle;
+}
+.lc-pill.k-v { background: var(--lc-gold); }
+.lc-pill.k-p { background: var(--lc-peach); }
+.lc-pill.k-u { background: var(--lc-coral); }
+
+.lc-k-full { color: var(--lc-gold); }
+.lc-k-part { color: var(--lc-peach); }
+.lc-k-none { color: var(--lc-disabled); }
+
+/* Column chooser: a bracket flyout beside the menu button. */
+.lc-cc {
+	position: fixed;
+	z-index: 30;
+	width: 300px;
+	max-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	background: var(--lc-black);
+	border: solid var(--lc-lavender);
+	border-width: 0 0 6px 10px;
+	border-radius: 0 0 0 20px;
+	box-shadow: 0 16px 40px rgba(0, 0, 0, .8);
+	font-family: var(--lc-font);
+	outline: none;
+}
+
+.lc-cc-head { display: flex; align-items: stretch; justify-content: space-between; gap: 6px; padding: 4px 4px 4px 0; }
+.lc-cc-head b {
+	display: flex;
+	align-items: flex-end;
+	padding: 6px 14px 2px;
+	background: var(--lc-gold);
+	color: var(--lc-black);
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	border-radius: 0 14px 14px 0;
+}
+.lc-cc button { font: inherit; cursor: pointer; border: 0; }
+.lc-cc-reset {
+	padding: 6px 12px 2px;
+	background: var(--lc-peach);
+	color: var(--lc-black);
+	font-size: 14px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	border-radius: 14px 0 0 14px;
+}
+.lc-cc-reset:hover { background: var(--lc-gold); }
+
+.lc-cc-list { list-style: none; margin: 0; padding: 4px 0; min-height: 0; overflow-y: auto; }
+.lc-cc-row {
+	display: grid;
+	grid-template-columns: 22px minmax(0, 1fr) 22px;
+	align-items: center;
+	gap: 10px;
+	padding: 6px 12px 6px 14px;
+	color: var(--lc-disabled);
+	font-size: 16px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	box-shadow: inset 0 -1px 0 var(--lc-surface);
+}
+.lc-cc-row.on { color: var(--lc-ink); }
+.lc-cc-row:hover { background: var(--lc-surface); }
+.lc-cc-row.lift { position: relative; z-index: 2; background: var(--lc-surface); box-shadow: 0 4px 0 var(--lc-gold); }
+
+.lc-cc-lamp { width: 22px; height: 12px; padding: 0; border-radius: 0 6px 6px 0; background: var(--lc-surface); }
+.lc-cc-row.on .lc-cc-lamp { background: var(--lc-gold); }
+.lc-cc-lamp:hover { background: var(--lc-peach); }
+
+.lc-cc-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.lc-cc-grab {
+	height: 8px;
+	border-top: 2px solid var(--lc-lavender);
+	border-bottom: 2px solid var(--lc-lavender);
+	cursor: grab;
+}
+.lc-cc-grab:hover { border-color: var(--lc-gold); }
+
+.lc-cc-foot { padding: 4px 4px 6px 0; }
+.lc-cc-icons {
+	width: 100%;
+	padding: 6px 14px 2px;
+	background: var(--lc-steel);
+	color: var(--lc-black);
+	font-size: 15px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	text-align: left;
+	border-radius: 0 14px 14px 0;
+}
+.lc-cc-icons:hover { background: var(--lc-gold); }
+
+.lc-cc button:hover { animation: lc-ping .28s steps(1, end) 1; }
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-reg-rows.boot .lc-row, .lc-cc button:hover { animation: none !important; }
+}

@@ -1,0 +1,2 @@
+/* LCARSv2 "Military time" setting: 24-hour HHMM clock with seconds. */
+:root { --lc-military: 1; }

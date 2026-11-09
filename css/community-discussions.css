@@ -1,0 +1,526 @@
+/* LCARSv2 S14 discussions: the forum index (topic rows as registers, a command
+ * column on the right) and the thread view (OP and replies as log entries,
+ * the reply composer as a black well). Scoped to the discussion area that both
+ * pages share. Augmented Steam and SteamDB elements belong to S15. */
+
+/* ---------------------------------------------- paging (both pages) */
+
+.apphub_Discussion_Content .forum_paging {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+	color: var(--lc-lilac) !important;
+	font-size: 14px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	padding: 6px 4px 6px 10px !important;
+	margin-bottom: 4px;
+}
+
+.apphub_Discussion_Content .forum_paging a { color: var(--lc-lavender); }
+.apphub_Discussion_Content .forum_paging a:hover { color: var(--lc-gold); }
+
+.apphub_Discussion_Content .forum_paging .pagebtn {
+	background: var(--lc-coral) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 12px 12px 0 !important;
+	padding: 0 12px !important;
+	font-weight: 600;
+}
+
+.apphub_Discussion_Content .forum_paging_controls > .pagebtn:first-child { border-radius: 12px 0 0 12px !important; }
+.apphub_Discussion_Content .forum_paging .pagebtn.disabled { background: var(--lc-surface) !important; color: var(--lc-disabled) !important; }
+.apphub_Discussion_Content .forum_paging .pagebtn:hover:not(.disabled) { background: var(--lc-gold) !important; }
+
+.apphub_Discussion_Content .forum_pagesize_options {
+	color: var(--lc-lilac);
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .forum_pagesize_options a { color: var(--lc-peach); }
+.apphub_Discussion_Content .forum_pagesize_options a:hover { color: var(--lc-gold); }
+
+/* ------------------------------------------------ forum index rows */
+
+/* Topic row: icon | topic and author | replies | last post. The overlay
+ * link stays a full-row target. */
+.apphub_Discussion_Content .forum_topics .forum_topic {
+	display: grid;
+	grid-template-columns: 34px minmax(0, 1fr) 84px 150px;
+	grid-template-rows: auto auto;
+	align-items: center;
+	min-height: 48px;
+	margin: 0 !important;
+	padding: 4px 14px 4px 0 !important;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+	animation: lc-disc-row .32s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic:nth-child(2) { animation-delay: 24ms; }
+.apphub_Discussion_Content .forum_topics .forum_topic:nth-child(3) { animation-delay: 48ms; }
+.apphub_Discussion_Content .forum_topics .forum_topic:nth-child(4) { animation-delay: 72ms; }
+.apphub_Discussion_Content .forum_topics .forum_topic:nth-child(5) { animation-delay: 96ms; }
+.apphub_Discussion_Content .forum_topics .forum_topic:nth-child(n+6) { animation-delay: 120ms; }
+
+.apphub_Discussion_Content .forum_topics .forum_topic.unread {
+	box-shadow: inset 8px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic:hover {
+	background: var(--lc-surface) !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic.unread:hover {
+	box-shadow: inset 8px 0 0 var(--lc-ink), inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic_icon {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	float: none;
+	padding: 0 0 0 8px;
+	align-self: center;
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic_name {
+	grid-column: 2;
+	grid-row: 1;
+	align-self: end;
+	padding: 0 !important;
+	min-width: 0;
+	color: var(--lc-ink) !important;
+	font-size: 16px;
+	letter-spacing: .02em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic.unread .forum_topic_name { font-weight: 600; color: var(--lc-ink) !important; }
+.apphub_Discussion_Content .forum_topics .forum_topic:hover .forum_topic_name { color: var(--lc-gold) !important; }
+
+.apphub_Discussion_Content .forum_topics .forum_topic_op {
+	grid-column: 2;
+	grid-row: 2;
+	align-self: start;
+	color: var(--lc-lilac) !important;
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+/* The details block is a row of cells on the grid, not a floated stack. */
+.apphub_Discussion_Content .forum_topics .forum_topic_details { display: contents; }
+
+.apphub_Discussion_Content .forum_topics .forum_topic_details > * {
+	grid-row: 1 / span 2;
+	float: none !important;
+	align-self: center;
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic_reply_count {
+	grid-column: 3;
+	justify-self: end;
+	padding: 0 !important;
+	color: var(--lc-peach) !important;
+	font-size: 17px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
+.apphub_Discussion_Content .forum_topics .forum_topic_lastpost {
+	grid-column: 4;
+	justify-self: end;
+	padding: 0 !important;
+	color: var(--lc-lavender) !important;
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	text-align: right;
+	white-space: nowrap;
+}
+
+/* ---------------------------------------------------- right column */
+
+.apphub_Discussion_Content .rightcol .rightbox {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border-left: 8px solid var(--lc-lavender);
+	border-radius: 0 0 0 20px;
+	margin-bottom: 14px;
+	color: var(--lc-ink);
+}
+
+.apphub_Discussion_Content .rightcol .rightbox.forum_list { border-left-color: var(--lc-lilac); }
+.apphub_Discussion_Content .rightcol .rightbox.rules { border-left-color: var(--lc-steel); }
+
+.apphub_Discussion_Content .rightcol .rightbox_content_header,
+.apphub_Discussion_Content .rightcol .rightSectionTopTitle {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 15px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	padding: 8px 14px 6px !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .rightcol .rightSectionTopTitle { margin: 0 0 4px; }
+
+/* Search: a field well with a lavender ring. */
+.apphub_Discussion_Content #DiscussionSearchForm .discussionSearchTextContainer {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+}
+
+.apphub_Discussion_Content .discussionSearchText {
+	background: transparent !important;
+	color: var(--lc-ink) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .discussionSearchText::placeholder { color: var(--lc-disabled); }
+
+/* Start a New Discussion: a gold command cap. */
+.apphub_Discussion_Content .rightcol .btn_darkblue_white_innerfade,
+.apphub_Discussion_Content .rightcol .btn_darkblue_white_innerfade > span {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-family: var(--lc-font) !important;
+	font-weight: 600;
+}
+
+.apphub_Discussion_Content .rightcol .btn_darkblue_white_innerfade:hover,
+.apphub_Discussion_Content .rightcol .btn_darkblue_white_innerfade:hover > span { background: var(--lc-ink) !important; }
+
+/* Sub-forums: a register with the selected row lit. */
+.apphub_Discussion_Content .forum_list .rightbox_list_header {
+	color: var(--lc-lilac);
+	font-size: 12px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	padding: 8px 14px 4px;
+}
+
+.apphub_Discussion_Content .forum_list .rightbox_list_option {
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .forum_list .rightbox_list_option:hover {
+	background: var(--lc-surface);
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface);
+}
+
+/* The selected sub-forum is a gold row (black label on it); hover lightens it. */
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected { background: var(--lc-gold) !important; box-shadow: none; }
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected:hover { background: var(--lc-ink) !important; }
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected .rightbox_list_selection_background { background: var(--lc-gold); }
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected:hover .rightbox_list_selection_background { background: var(--lc-ink); }
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected .forum_list_name a,
+.apphub_Discussion_Content .forum_list .rightbox_list_option.selected .forum_list_postcount { color: var(--lc-black) !important; font-weight: 600; }
+
+.apphub_Discussion_Content .forum_list .forum_list_name a {
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	font-size: 15px;
+}
+
+.apphub_Discussion_Content .forum_list .forum_list_postcount {
+	color: var(--lc-peach);
+	font-size: 15px;
+	font-variant-numeric: tabular-nums;
+}
+
+.apphub_Discussion_Content .rightcol .weblink a,
+.apphub_Discussion_Content .rightcol .rules a {
+	color: var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-size: 15px;
+}
+
+/* ------------------------------------------------------- thread view */
+
+.apphub_Discussion_Content .forum_breadcrumbs {
+	color: var(--lc-lilac);
+	font-family: var(--lc-font) !important;
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	padding: 4px 0 8px;
+}
+
+.apphub_Discussion_Content .forum_breadcrumbs a { color: var(--lc-lavender); }
+.apphub_Discussion_Content .forum_breadcrumbs a:hover { color: var(--lc-gold); }
+
+/* OP: the opening log entry, with the lavender elbow rail of a news post. */
+.apphub_Discussion_Content .forum_op {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lavender);
+	border-width: 12px 0 8px 12px;
+	border-radius: 46px 0 0 24px;
+	box-shadow: none !important;
+	padding: 0 0 14px;
+	margin-bottom: 12px;
+	animation: lc-disc-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.apphub_Discussion_Content .forum_op_header { background: transparent !important; padding-left: 10px; }
+
+.apphub_Discussion_Content .forum_op_header .authorline a,
+.apphub_Discussion_Content .forum_op_header .commentthread_author_link {
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 17px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .forum_op_header .date,
+.apphub_Discussion_Content .forum_op_header .commentthread_comment_timestamp {
+	color: var(--lc-peach) !important;
+	font-size: 13px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .forum_op .topic {
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 32px;
+	font-weight: 500;
+	line-height: 1.08;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	padding: 6px 14px 0 0;
+}
+
+.apphub_Discussion_Content .forum_op .content {
+	padding: 10px 14px 0 0;
+	color: var(--lc-ink);
+	font-family: var(--lc-prose) !important;
+	font-size: 15px !important;
+	line-height: 1.55 !important;
+	letter-spacing: 0 !important;
+}
+
+.apphub_Discussion_Content .forum_op .content *,
+.apphub_Discussion_Content .commentthread_comment_text * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+/* Replies: log entries. Each one is a black plate with a coloured rail;
+ * the rail cycles lavender, lilac, steel like the library news. */
+.apphub_Discussion_Content .commentthread_comment {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender);
+	border-radius: 24px 0 0 24px;
+	margin: 0 0 8px;
+	padding: 14px 14px 10px 22px;
+	animation: lc-disc-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.apphub_Discussion_Content .commentthread_comment:nth-child(3n+2) { box-shadow: inset 10px 0 0 var(--lc-lilac); }
+.apphub_Discussion_Content .commentthread_comment:nth-child(3n+3) { box-shadow: inset 10px 0 0 var(--lc-steel); }
+.apphub_Discussion_Content .commentthread_comment:hover { box-shadow: inset 10px 0 0 var(--lc-gold); }
+
+.apphub_Discussion_Content .commentthread_author_link {
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 17px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .commentthread_author_link:hover { color: var(--lc-gold) !important; }
+
+.apphub_Discussion_Content .commentthread_comment_timestamp {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 13px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .commentthread_comment_avatar {
+	box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-lavender);
+	border-radius: 0;
+}
+
+.apphub_Discussion_Content .commentthread_comment_actions .forum_comment_action { opacity: .7; }
+.apphub_Discussion_Content .commentthread_comment_actions .forum_comment_action:hover { opacity: 1; }
+
+.apphub_Discussion_Content .commentthread_comment_text {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 15px !important;
+	line-height: 1.55 !important;
+	letter-spacing: 0 !important;
+	padding: 6px 0 0;
+}
+
+.apphub_Discussion_Content .commentthread_comment_text a,
+.apphub_Discussion_Content .forum_op .content a { color: var(--lc-lavender) !important; text-decoration: underline; text-decoration-color: rgba(170, 160, 245, .4); }
+.apphub_Discussion_Content .commentthread_comment_text a:hover,
+.apphub_Discussion_Content .forum_op .content a:hover { color: var(--lc-gold) !important; }
+
+.apphub_Discussion_Content .commentthread_comment_text img,
+.apphub_Discussion_Content .forum_op .content img {
+	border-radius: 0 !important;
+	box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 5px var(--lc-surface);
+}
+
+.apphub_Discussion_Content .comment_footer_ctn {
+	box-shadow: inset 0 2px 0 var(--lc-surface);
+	margin-top: 10px;
+	padding-top: 6px;
+	color: var(--lc-lilac);
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .comment_footer_ctn a { color: var(--lc-lavender); }
+
+/* Subscribe is a command in the thread's right column: a lilac cap. */
+.apphub_Discussion_Content .rightcol .btn_grey_white_innerfade,
+.apphub_Discussion_Content .rightcol .btn_grey_white_innerfade > span {
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-family: var(--lc-font) !important;
+	font-weight: 600;
+}
+
+.apphub_Discussion_Content .rightcol .btn_grey_white_innerfade:hover,
+.apphub_Discussion_Content .rightcol .btn_grey_white_innerfade:hover > span { background: var(--lc-gold) !important; }
+.apphub_Discussion_Content .comment_footer_ctn a:hover { color: var(--lc-gold); }
+.apphub_Discussion_Content .forum_comment_permlink a { color: var(--lc-peach); }
+
+/* Reply composer: a black well with a gold POST cap. Look only: never submit. */
+.apphub_Discussion_Content .forum_newtopic_header {
+	display: inline-block;
+	width: auto;
+	margin: 14px 0 0 !important;
+	padding: 4px 16px 2px !important;
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 14px 14px 0;
+	font-family: var(--lc-font) !important;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.apphub_Discussion_Content .forum_newtopic_box {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender), inset 0 0 0 2px var(--lc-surface);
+	border-radius: 0 0 0 20px;
+	padding: 14px 14px 12px 22px !important;
+	margin: 0 0 8px;
+}
+
+.apphub_Discussion_Content .forumtopic_reply_textarea {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 15px;
+	line-height: 1.5;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+	outline: none;
+}
+
+.apphub_Discussion_Content .forumtopic_reply_textarea:focus { box-shadow: inset 0 0 0 2px var(--lc-gold); }
+
+.apphub_Discussion_Content .forum_newtopic_box .gray_bevel { background: var(--lc-black) !important; box-shadow: none !important; border: 0 !important; }
+
+.apphub_Discussion_Content .commentthread_entry_submitlink .btn_green_white_innerfade,
+.apphub_Discussion_Content .commentthread_entry_submitlink .btn_green_white_innerfade > span {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	font-family: var(--lc-font) !important;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.apphub_Discussion_Content .commentthread_entry_submitlink .btn_green_white_innerfade:hover,
+.apphub_Discussion_Content .commentthread_entry_submitlink .btn_green_white_innerfade:hover > span { background: var(--lc-ink) !important; }
+
+.apphub_Discussion_Content .commentthread_entry_autosubscribe label { color: var(--lc-lilac); letter-spacing: .06em; text-transform: uppercase; font-size: 14px; }
+
+/* More discussions: mini register rows in the right column. */
+.apphub_Discussion_Content .rightcol .forum_topic_mini {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	min-height: 34px;
+	padding: 4px 10px 4px 12px !important;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+}
+
+.apphub_Discussion_Content .rightcol .forum_topic_mini.unread { box-shadow: inset 8px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface); }
+.apphub_Discussion_Content .rightcol .forum_topic_mini:hover { background: var(--lc-surface) !important; box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface); }
+
+/* Details come first in the markup; the title goes first on screen. */
+.apphub_Discussion_Content .rightcol .forum_topic_mini .forum_topic_details { order: 1; display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+.apphub_Discussion_Content .rightcol .forum_topic_mini .forum_topic_name {
+	order: 0;
+	flex: 1 1 auto;
+	color: var(--lc-ink) !important;
+	font-size: 14px;
+	letter-spacing: .02em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	min-width: 0;
+}
+
+.apphub_Discussion_Content .rightcol .forum_topic_mini .forum_topic_reply_count { color: var(--lc-peach) !important; font-size: 15px; }
+.apphub_Discussion_Content .rightcol .forum_topic_mini:hover .forum_topic_name { color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------ motion */
+
+@keyframes lc-disc-row { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes lc-disc-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	.apphub_Discussion_Content .forum_topics .forum_topic,
+	.apphub_Discussion_Content .forum_op,
+	.apphub_Discussion_Content .commentthread_comment { animation: none !important; }
+}

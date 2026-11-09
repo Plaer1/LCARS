@@ -1,0 +1,17 @@
+/* LCARSv2 palette preset: Nemesis (stardate 2379).
+ * Source hexes: trekcolors R package (leonawicz), lcars palettes; slot
+ * mapping and contrast lifts are LCARSv2's (black text on fills stays
+ * legible). Only slots change; geometry and fonts stay the design doc's. */
+
+/* :root:root: condition sheets load before library.css, whose tokens.css would win a tie. */
+:root:root {
+	--lc-palette-jingle: "local:2"; /* the cover of this era (js/boot.js) */
+	--lc-gold: #dfaf71;
+	--lc-peach: #dd8244;
+	--lc-lavender: #4bb0ff;
+	--lc-coral: #a96428;
+	--lc-lilac: #87eeff;
+	--lc-steel: #3786ff;
+	--lc-surface: #0f1c24;
+	--lc-disabled: #58717c;
+}

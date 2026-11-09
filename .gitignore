@@ -1,0 +1,4 @@
+# Personal jingles (your own MIDI / note files): never committed or shipped.
+jingles/local/
+# Coordinator plans, notes, tools and artifacts (matches the ATOMS repo).
+.clanker/

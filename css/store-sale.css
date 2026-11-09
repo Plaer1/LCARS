@@ -1,0 +1,209 @@
+/* LCARSv2 S13: store category and sale pages (Steam's partner-sale renderer).
+ * Every rule is scoped to body.sale_page_background, so any category or sale
+ * gets the same frame. The event art stays as the hero, framed in a lavender
+ * detail box under a title rail. Sale sections set colours inline, so the
+ * overrides use attribute selectors and !important. */
+
+/* Ground: black, not Steam blue. */
+body.sale_page_background,
+body.sale_page_background .react_landing_background,
+body.sale_page_background .SaleBackgroundCtn,
+body.sale_page_background .SaleCustomCSS,
+body.sale_page_background .SaleBackground {
+	background-color: var(--lc-black) !important;
+	background-image: none !important;
+}
+
+/* Inline linear gradients are the Steam-blue section and tab-bar fills; drop
+ * the gradient and let the black ground show. Keep the colour alone: some
+ * of these are video scrims, and an opaque colour would hide the video. */
+body.sale_page_background [style*="linear-gradient"] {
+	background-image: none !important;
+}
+
+/* The page-wide art stays visible under a hero column only; below the hero
+ * the sections sit on black. */
+body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[style*="url("],
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w- {
+	left: 288px !important;
+	right: 288px !important;
+	width: auto !important;
+	overflow: hidden;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+}
+
+/* Scream's art sits under the store header, so its rail goes at the foot of
+ * the hero. The strategy hero is a plain background: move it under the header
+ * strip and put its rail on top. */
+body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[style*="url("] {
+	height: 460px !important;
+}
+
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w- {
+	top: 70px !important;
+	height: 576px !important;
+}
+
+/* Title rail on the hero: outward pill cap on the right. */
+body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[style*="url("]::before,
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w-::before {
+	content: 'Store briefing';
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	left: 0;
+	height: 24px;
+	padding: 0 18px 0 16px;
+	line-height: 24px;
+	background: var(--lc-lavender);
+	color: var(--lc-black);
+	border-radius: 0 12px 12px 0;
+	font-family: var(--lc-font);
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	z-index: 2;
+	pointer-events: none;
+	animation: lc-sale-rail .7s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+/* The real event name, when transitions.js has read it from the page. */
+body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[data-lc-event][style*="url("]::before,
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w-[data-lc-event]::before {
+	content: attr(data-lc-event);
+}
+
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w-::before {
+	top: 0;
+	bottom: auto;
+}
+
+/* Fade the art into the black sections below. */
+body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[style*="url("]::after,
+body.sale_page_background .SaleBackground > .fNzGZCCbi6w-::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 35%;
+	background: linear-gradient(transparent, var(--lc-black));
+	pointer-events: none;
+}
+
+@keyframes lc-sale-rail {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+
+/* Section frames: lavender bracket down the left, black ground. */
+body.sale_page_background .SaleOuterContainer .SaleSectionCtn {
+	background-color: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender);
+}
+
+body.sale_page_background .SaleSectionLabelCtn {
+	box-shadow: inset 0 -3px 0 var(--lc-lavender);
+}
+
+body.sale_page_background .SaleSectionHeader {
+	color: var(--lc-gold) !important;
+	font-size: 22px !important;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	padding: 0 10px;
+}
+
+/* Inline colours from the sale: white text to the ink token, darkorange
+ * rules and text to gold. */
+body.sale_page_background [style*="color: white"] {
+	color: var(--lc-ink) !important;
+}
+
+body.sale_page_background [style*="darkorange"] {
+	color: var(--lc-gold) !important;
+	border-left-color: var(--lc-gold) !important;
+}
+
+/* Carousel arrows: the peach command colour, gold on hover. */
+body.sale_page_background [class*="carousel__back-button"],
+body.sale_page_background [class*="carousel__next-button"] {
+	color: var(--lc-peach) !important;
+}
+
+/* Tab strip: a black bank with a lavender base; the sale's active-tab colour
+ * token points at gold. */
+body.sale_page_background [style*="--SaleTabActiveColor"] {
+	--SaleTabActiveColor: var(--lc-gold) !important;
+	box-shadow: inset 0 -4px 0 var(--lc-lavender);
+}
+
+body.sale_page_background .SaleSectionTabContainer {
+	gap: 0 !important;
+}
+
+body.sale_page_background .SaleSectionTabContainer > * > * {
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+/* Hover plates the tab on surface; the active tab is already gold, so the
+ * plate is what changes for it too. */
+body.sale_page_background .SaleSectionTabContainer .IfKYdvlkwj4-:hover {
+	background-color: var(--lc-surface) !important;
+	color: var(--lc-gold) !important;
+}
+
+/* Capsules: square plates, the hovered one carries the gold marker. Both
+ * sale renderers wrap every capsule in capsule_index_N. */
+body.sale_page_background .StoreSaleWidgetOuterContainer,
+body.sale_page_background .CapsuleImageCtn {
+	border-radius: 0 !important;
+}
+
+body.sale_page_background [class*="capsule_index_"]:hover {
+	box-shadow: 0 8px 0 var(--lc-gold) !important;
+}
+
+/* Prices: gold discount block, black price plate. The hashed class is the
+ * same discount box on the category rows that the name does not cover. */
+body.sale_page_background .StoreSaleDiscountBox,
+body.sale_page_background .kjiBcsaqA8o- {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	font-weight: 600 !important;
+}
+
+body.sale_page_background .kjiBcsaqA8o- * {
+	color: var(--lc-black) !important;
+}
+
+/* Capsule decorators (wishlist, owned) and the wishlist flags: lavender. */
+body.sale_page_background .CapsuleDecorators span,
+body.sale_page_background .ds_flag.ds_wishlist_flag,
+body.sale_page_background .ds_wishlist_flag {
+	background-color: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+/* Discovery queue banner under the grid: black well, lavender rail, art kept. */
+body.sale_page_background .XXXE46GLJ04- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender);
+}
+
+/* The store nav's active label is Steam blue; keep it in the rail gold. */
+body.sale_page_background .supernav_active {
+	color: var(--lc-gold) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.sale_page_background .SaleBackground > .Pb0e9y8A1NQ-[style*="url("]::before,
+	body.sale_page_background .SaleBackground > .fNzGZCCbi6w-::before {
+		animation: none;
+	}
+}

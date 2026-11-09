@@ -1,0 +1,121 @@
+/* LCARSv2 S08 bank and flyout motion. Imported by library.css (main window)
+ * and popup-menus.css (popup windows); every rule is scoped to its window.
+ * js/bank-intent.js sets data-lc-open on the open bank button and appends a
+ * .lc-bank-bar to the body (the bank clips overflow, so the bar must sit outside it). */
+
+/* ---------------------------------------------- bank: open segment */
+
+/* Doubled attribute raises specificity above the :hover rule in frame.css. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD[data-lc-open][data-lc-open] {
+	background: var(--lc-gold) !important;
+}
+
+/* Keyboard focus on a bank segment: an inset ink rule, since Steam draws none. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:focus-visible,
+.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O:focus-visible {
+	outline: 2px solid var(--lc-ink);
+	outline-offset: -4px;
+}
+
+/* Lamp: a 4px ink strip at the right edge, where the flyout attaches. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD[data-lc-open]::after,
+.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O[data-lc-open]::after {
+	display: block !important;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 4px;
+	background: var(--lc-ink);
+	pointer-events: none;
+}
+
+.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O[data-lc-open] { position: relative; }
+
+/* Colour bar: the open segment reaches 10px into the gutter, over 120 ms. */
+.lc-bank-bar {
+	position: fixed;
+	z-index: 6;
+	width: 10px;
+	background: var(--lc-gold);
+	pointer-events: none;
+	transform-origin: left center;
+	animation: lc-bar-out .22s cubic-bezier(.45, 0, .2, 1) both;
+}
+
+.lc-bank-bar.lc-retract { animation: lc-bar-in .2s ease-in both; }
+
+@keyframes lc-bar-out { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes lc-bar-in { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* ---------------------------------------------- bank: department colour */
+
+/* The top elbow, top rail and filler wear the active department's colour; js/steam.js
+ * sets data-dept and wipes the new colour along the rail and down the filler. */
+html[data-dept="1"] { --lc-dept: var(--lc-peach); }
+html[data-dept="2"] { --lc-dept: var(--lc-lavender); }
+html[data-dept="3"] { --lc-dept: var(--lc-lilac); }
+html[data-dept="4"] { --lc-dept: var(--lc-coral); }
+html[data-dept="5"] { --lc-dept: var(--lc-steel); }
+
+/* ---------------------------------------------- bank: selection arm */
+
+/* The selected block, and any hovered or open one, reaches out toward the page. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD._1gqEjB5QsKT_NftD1dEsdZ::after,
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:hover::after,
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:hover::after,
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O[aria-expanded="true"]::after,
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:has([aria-expanded="true"])::after,
+.lc-bank-sys > .lc-ext:hover::after {
+	content: '';
+	display: block !important;
+	position: absolute;
+	left: 100%;
+	top: 0;
+	bottom: 0;
+	width: 12px;
+	background: var(--lc-gold);
+	border-radius: 0 6px 6px 0;
+	pointer-events: none;
+	animation: lc-arm .16s steps(4, end) both;
+}
+
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:not(._1gqEjB5QsKT_NftD1dEsdZ):hover::after { background: var(--lc-ink); }
+
+@keyframes lc-arm { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+
+/* No idle motion on the bank: nothing there lights up unless you touch it (user). */
+
+/* ---------------------------------------------- popup windows: bracket wipe */
+
+/* The bracket wipes in from the left as its window opens. */
+html.MillenniumWindow_ContextMenu .PP7LM0Ow1K5qkR8WElLpt {
+	animation: lc-bracket-wipe .28s cubic-bezier(.45, 0, .2, 1) both;
+}
+
+/* Bank menus slide out from behind the bank instead (css/popup-menus.css frames them). */
+:is(html.Store_Supernav, html.Library_Supernav, html.Community_Supernav, html.Profile_Supernav, html.Steam_Root_Menu, html.View_Root_Menu, html.Friends_Root_Menu, html.Games_Root_Menu, html.Help_Root_Menu) .PP7LM0Ow1K5qkR8WElLpt {
+	animation: lc-bracket-slide .26s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes lc-bracket-slide { from { transform: translateX(-100%); } to { transform: none; } }
+
+@keyframes lc-bracket-wipe {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-bank ._7AlhCx3XGzBeIrQaCneUD,
+	.lc-bank ._7AlhCx3XGzBeIrQaCneUD::after,
+	.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O,
+	.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O::after,
+	.lc-bank-sys > .lc-ext,
+	.lc-bank-sys > .lc-ext::after { animation: none !important; }
+	.lc-bank-bar,
+	.lc-bank-bar.lc-retract,
+	html.MillenniumWindow_ContextMenu .PP7LM0Ow1K5qkR8WElLpt { animation: none !important; }
+}

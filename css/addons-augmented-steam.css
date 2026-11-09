@@ -1,0 +1,91 @@
+/* LCARSv2 S15 Augmented Steam elements. AS paints its own blues, greens and
+ * yellows, so every add-on node here resolves to a token. Only add-on classes
+ * are styled; Steam's own dynamic-store flags (ds_*) are not in this file.
+ * Imported by store-pages.css and community-pages.css. */
+
+/* Header menu button (the dropdown does not render in this client). */
+#as-menu.as-menu { font-family: var(--lc-font); color: var(--lc-lilac) !important; }
+#as-menu.as-menu button { background: none; border: 0; color: var(--lc-lilac); font: inherit; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+#as-menu.as-menu button:hover { color: var(--lc-gold); }
+
+/* Command buttons: the peach caps stack used on store and apphub headers. */
+.es_app_btn, .es_community_btn, a.itad_ico {
+	background: var(--lc-peach); color: var(--lc-black); font-family: var(--lc-font); text-transform: uppercase; letter-spacing: 0.04em;
+}
+.es_app_btn:hover, .es_community_btn:hover, a.itad_ico:hover { background: var(--lc-gold); color: var(--lc-black); }
+/* Steam's blue apphub button rule outranks the selectors above; repeat with more weight. */
+html body a.itad_ico.btnv6_blue_hoverfade, html body a.itad_ico, html body a.es_community_btn { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-color: var(--lc-black) !important; }
+html body a.itad_ico.btnv6_blue_hoverfade:hover, html body a.itad_ico:hover, html body a.es_community_btn:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+html body a.itad_ico > span, html body a.es_community_btn > span { color: var(--lc-black) !important; }
+
+/* ITAD price box. */
+.itad-pricing { background: var(--lc-black); color: var(--lc-lilac) !important; font-family: var(--lc-font); }
+.itad-pricing__main, .itad-pricing__bundled { color: var(--lc-lilac) !important; }
+.itad-pricing__price { color: var(--lc-ink) !important; }
+.itad-pricing__cut { color: var(--lc-gold) !important; }
+a.itad-pricing__main { color: var(--lc-lavender) !important; }
+a.itad-pricing__main:hover { color: var(--lc-gold) !important; }
+
+/* Regional price table and its hover card. */
+.es_regional_prices { background: var(--lc-black); color: var(--lc-lilac); }
+.es_regional { color: var(--lc-ink); border-color: var(--lc-surface); }
+.es_regional:hover { box-shadow: inset 0 0 0 1px var(--lc-gold); }
+.es_regional_onmouse { background: var(--lc-black); color: var(--lc-ink); border: 1px solid var(--lc-lavender); }
+.es_regional_icon, .es_regional_arrow { color: var(--lc-lavender); }
+.es-regprice { color: var(--lc-ink); }
+.es-converted { color: var(--lc-lilac); }
+.es-perc { color: var(--lc-lilac); }
+.es-perc--higher { color: var(--lc-coral); }
+.es-perc--lower { color: var(--lc-gold); }
+.es-perc--equal { color: var(--lc-lilac); }
+
+/* DLC checklist. */
+.es_dlc_option { background: transparent; color: var(--lc-lavender); border: 1px solid var(--lc-lavender); font-family: var(--lc-font); text-transform: uppercase; }
+.es_dlc_option:hover { background: var(--lc-lavender); color: var(--lc-black); }
+.es_selected_btn { background: var(--lc-gold); color: var(--lc-black); border-color: var(--lc-gold); }
+.es_dlc_label { color: var(--lc-ink); }
+a.es_highlight_checked { color: var(--lc-gold); }
+/* Ignored-by-preference flag is AS's own; disabled grey is its token. */
+.ds_excluded_by_preferences_flag { background: var(--lc-disabled); color: var(--lc-black); }
+/* Page title tagged by AS: gold, as on the store app page. */
+div.es_highlight_checked { color: var(--lc-gold) !important; }
+/* Overlay spans have no text; ink keeps their currentColor borders on token. */
+.es_overlay_container, .es_overlay { color: var(--lc-ink); }
+
+/* Bundle flag and review block. */
+.ds_flag.ds_completetheset { background: var(--lc-steel); color: var(--lc-black); }
+.es_review_toggle { background: var(--lc-peach); color: var(--lc-black); font-family: var(--lc-font); text-transform: uppercase; }
+.es_review_toggle:hover { background: var(--lc-gold); }
+.es_review_section { color: var(--lc-ink); }
+
+/* How Long To Beat and the external info link. */
+.es_hltb { color: var(--lc-lilac) !important; }
+a.es_external_icon { background: var(--lc-black); color: var(--lc-ink); }
+a.es_external_icon:hover { color: var(--lc-lavender); }
+
+/* Current players. */
+.as_players { color: var(--lc-lilac); }
+.as_stat { color: var(--lc-ink) !important; }
+.as-homepage { color: var(--lc-lilac); }
+
+/* Search filters: range slider, review count and discount inputs. */
+.as-double-slider { color: var(--lc-ink); }
+.as-double-slider__input { accent-color: var(--lc-lavender); }
+.as-double-slider__input--upper, .as-double-slider__input--lower { accent-color: var(--lc-gold); }
+.as-range-display { color: var(--lc-lilac); }
+.as-reviews-count-filter__header, .as-discount-percent-filter__header { color: var(--lc-lilac); font-family: var(--lc-font); text-transform: uppercase; letter-spacing: 0.08em; }
+.as-reviews-count-filter__content, .as-discount-percent-filter__content { color: var(--lc-ink); }
+.as-reviews-count-filter__input, .as-discount-percent-filter__input { background: var(--lc-black); color: var(--lc-ink); border: 1px solid var(--lc-lilac); border-radius: 0; font-family: var(--lc-font); }
+.as-reviews-count-filter__input:hover, .as-discount-percent-filter__input:hover { border-color: var(--lc-gold); }
+.as-reviews-count-filter__input:focus-visible, .as-discount-percent-filter__input:focus-visible { outline: 2px solid var(--lc-gold); outline-offset: 0; }
+
+/* Profile: link icons to outside sites (grey when the account has no entry). */
+i.asi-steamdbcalc, i.asi-steamgifts, i.asi-steamtrades, i.asi-backpacktf, i.as-gray { color: var(--lc-lavender); opacity: 0.7; }
+i.asi-steamdbcalc:hover, i.asi-steamgifts:hover, i.asi-steamtrades:hover, i.asi-backpacktf:hover { color: var(--lc-gold); opacity: 1; }
+
+/* Inventory and listing pager. */
+.es_pagego, .es_pagenumber { color: var(--lc-lilac); font-family: var(--lc-font); }
+.es_pagenumber { background: var(--lc-black); color: var(--lc-ink); border: 1px solid var(--lc-lavender); }
+.es_gotopage_btn { background: var(--lc-peach); color: var(--lc-black); border: 0; font-family: var(--lc-font); text-transform: uppercase; }
+.es_gotopage_btn:hover { background: var(--lc-gold); }
+.as_stat span { color: var(--lc-peach) !important; }

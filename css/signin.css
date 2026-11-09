@@ -1,0 +1,118 @@
+@import url('tokens.css');
+
+/* LCARSv2 "Sign in to Steam" window: the first web window at startup (the
+ * native updater splash before it can't be themed). Palette and type only, no
+ * layout changes, so signing in always keeps working: a black console well,
+ * gold primary command, lavender rails. */
+
+/* Outside the card's rounded outline the window shows the desktop. */
+html { background: transparent !important; color: var(--lc-ink) !important; }
+body { background: var(--lc-black) !important; color: var(--lc-ink) !important; clip-path: inset(0 round 44px 15px 13px 34px); }
+
+body, body * { font-family: var(--lc-font) !important; letter-spacing: .04em; }
+
+body::before { /* top rail with an elbow, drawn behind everything */
+	content: '';
+	position: fixed;
+	left: 0; right: 0; top: 0;
+	height: 14px;
+	background: var(--lc-lavender);
+	border-radius: 0 0 0 14px;
+	pointer-events: none;
+}
+
+input, textarea, select {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 6px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+input:focus { box-shadow: inset 6px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-gold) !important; }
+
+button, .DialogButton, [type="submit"] {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 18px 18px 0 !important;
+	text-transform: uppercase;
+	font-weight: 600 !important;
+}
+
+button[type="submit"], .DialogButton.Primary { background: var(--lc-gold) !important; }
+
+button:hover, .DialogButton:hover { background: var(--lc-ink) !important; }
+
+a { color: var(--lc-lavender) !important; }
+
+/* Throbbers and progress bars: gold on black. */
+[class*="Throbber"] *, [class*="throbber"] * { border-color: var(--lc-gold) !important; }
+progress, [role="progressbar"] { accent-color: var(--lc-gold); }
+
+/* The "Loading user data" card: no blurred game art or Steam spinner, a console
+ * readout in the same elbow, bank and rails as the main window. Same window as
+ * sign-in; these classes only exist while loading, so the sign-in form keeps its
+ * plain layout. The frame is one block (body::before) with a black well over it
+ * (body::after), the way the shell's elbows are cut. */
+html:has(._3CN5DkgNMvdtT9fJhNOj_v) body { isolation: isolate; background: transparent !important; } /* the frame paints it; black under the curve would rim it */
+html:has(._3CN5DkgNMvdtT9fJhNOj_v) body::before {
+	inset: 0;
+	height: auto;
+	z-index: -1;
+	box-sizing: border-box;
+	padding: 56px 0 0 12px;
+	content: 'LCARS';
+	color: var(--lc-black);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .1em;
+	border-radius: 44px 15px 13px 34px;
+	background: linear-gradient(to bottom,
+		var(--lc-lavender) 0 84px, var(--lc-black) 84px 89px,
+		var(--lc-gold) 89px 169px, var(--lc-black) 169px 174px,
+		var(--lc-lavender) 174px 254px, var(--lc-black) 254px 259px,
+		var(--lc-lavender) 259px calc(100% - 69px), var(--lc-black) calc(100% - 69px) calc(100% - 64px),
+		var(--lc-peach) calc(100% - 64px) 100%);
+}
+html:has(._3CN5DkgNMvdtT9fJhNOj_v) body::after {
+	content: '';
+	position: fixed;
+	inset: 30px 0 20px 96px;
+	z-index: -1;
+	pointer-events: none;
+	background: var(--lc-black);
+	border-radius: 22px 0 0 18px;
+}
+._3NH9aXAeVjt_j6_vKppevN, ._3NH9aXAeVjt_j6_vKppevN *:not(._3CN5DkgNMvdtT9fJhNOj_v *) { background: transparent !important; }
+._3MJTdOkAxu5hiJ565avrpz { display: none !important; }
+._3NH9aXAeVjt_j6_vKppevN .closeButton svg, ._3NH9aXAeVjt_j6_vKppevN .closeButton svg * { color: var(--lc-black) !important; fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+._3CN5DkgNMvdtT9fJhNOj_v { margin-left: 96px !important; }
+._1DWH_4M4yAq8O2T06-3ckY { display: none !important; }
+._3CN5DkgNMvdtT9fJhNOj_v::before {
+	content: 'LIBRARY COMPUTER';
+	display: block;
+	color: var(--lc-gold);
+	font-size: 38px;
+	letter-spacing: .08em;
+	text-align: center;
+}
+._3CN5DkgNMvdtT9fJhNOj_v::after { /* working bar */
+	content: '';
+	display: block;
+	width: 288px;
+	height: 10px;
+	margin: 14px auto 0;
+	background: repeating-linear-gradient(90deg, var(--lc-peach) 0 32px, var(--lc-black) 32px 36px);
+	animation: lc-signin-load 1.4s steps(8) infinite;
+}
+@keyframes lc-signin-load {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) { ._3CN5DkgNMvdtT9fJhNOj_v::after { animation: none; } }
+._234vZnlQxRbmkpJ5Qq82Mc { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+._1-nHjRywUoX7Mpyc6JOPaQ { background: var(--lc-surface) !important; border-radius: 0 !important; }
+._2_0JonK7eKEvh8IoOvq0-B { background: var(--lc-gold) !important; border-radius: 0 !important; }
+._3YzgVE15q0lUY1uAwRQm1U, ._3YzgVE15q0lUY1uAwRQm1U img { border-radius: 0 !important; }
+._2tyxJwWA7FRwarLgRU2dWa { color: var(--lc-lavender) !important; text-transform: uppercase; }

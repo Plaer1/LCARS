@@ -1,0 +1,429 @@
+/* LCARSv2 boot sequence (js/boot.js). A full-window console that powers up
+ * in order: scan line, elbow, bank segments, rails, then the library computer's
+ * identification block; the centre swipes away onto the live shell and the frame stays.
+ * All motion is keyframed (frame.css zeroes transitions). */
+
+#lc-boot {
+	position: fixed;
+	inset: 0;
+	z-index: 2147483000;
+	font-family: var(--lc-font);
+	text-transform: uppercase;
+	color: var(--lc-ink);
+	overflow: hidden;
+	clip-path: inset(0 0 0 0);
+}
+
+/* Before the shell is up nothing has marked the window transparent yet, and
+ * Steam's frames sit under the overlay, so from the window's first frame until
+ * the overlay leaves, the whole page is clipped to the console outline. An
+ * opaque window shows black there. Steam's own spinner page goes black too. */
+html.MillenniumWindow_MainSteamWindow:not(.lc-shell), html:has(#lc-boot) { background: transparent !important; }
+html.MillenniumWindow_MainSteamWindow:not(.lc-shell) body, html:has(#lc-boot) body {
+	background: transparent !important; /* a body background would spread to the whole canvas, past the clip */
+	clip-path: var(--lc-window-clip, inset(0 0 0 0));
+}
+html.MillenniumWindow_MainSteamWindow:not(.lc-shell) body::before, html:has(#lc-boot) body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: var(--lc-black);
+}
+._2YwTwqFtU04JgwfzXSAcSV, ._3pXasCUulX4jjqO79s4q_F, ._3sa1NXudhvcc1U7HrlLdNQ { background: var(--lc-black) !important; }
+._39-WTtOSEPJqAEjOcNGE3j { display: none !important; }
+
+html:has(#lc-boot) #lc-debug-host { visibility: hidden !important; }
+
+/* The centre: the black and the readout on it, one layer, so the handover swipes them together. */
+.b-center { position: absolute; inset: 0; }
+.b-well { position: absolute; inset: 0; background: var(--lc-black); }
+
+/* Blocks drawn exactly over the real frame (js/boot.js alignFrame). */
+.b-frame { position: absolute; inset: 0; }
+.b-frame i {
+	position: absolute;
+	box-sizing: border-box;
+	background-color: var(--seg);
+	background-repeat: no-repeat;
+	animation: lc-boot-seg .3s calc(.4s + var(--n) * .05s) steps(1, end) both;
+}
+.b-frame.settled i { animation: none; }
+
+/* Handover (js/boot.js HANDOVER): only the centre swipes off. The frame stays: its blocks
+ * match the real ones under them, so fading them out reads as the labels fading in. */
+#lc-boot.out { pointer-events: none; }
+#lc-boot.out:not(.still) .b-center { animation: lc-boot-wipe-off .36s steps(14, end) both; }
+#lc-boot.out:not(.still) .b-top,
+#lc-boot.out:not(.still) .b-elbow,
+#lc-boot.out:not(.still) .b-bank,
+#lc-boot.out:not(.still) .b-rail,
+#lc-boot.out:not(.still) .b-frame { animation: lc-boot-labels .4s .32s ease both; }
+
+@keyframes lc-boot-wipe-off { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
+@keyframes lc-boot-labels { to { opacity: 0; } }
+
+/* Scan line sweeps the dark panel once before anything lights. */
+.b-scan {
+	position: absolute; left: 0; right: 0; top: 0;
+	height: 2px;
+	background: var(--lc-lavender);
+	animation: lc-boot-scan .55s linear both;
+}
+
+@keyframes lc-boot-scan {
+	from { transform: translateY(0); opacity: 1; }
+	to { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Elbow: the console's top-left sweep draws in from its corner, the shell's own shape. */
+.b-elbow {
+	position: absolute; left: 0; top: 0;
+	width: var(--lc-bank); height: 78px;
+	background: var(--lc-dept, var(--lc-lavender));
+	border-radius: var(--lc-elbow) 0 0 0;
+	display: flex; align-items: flex-end; justify-content: flex-end;
+	padding: 0 10px 5px 0;
+	box-sizing: border-box;
+	color: var(--lc-black);
+	font-size: 15px; font-weight: 600; letter-spacing: .06em;
+	animation: lc-boot-elbow .32s .15s steps(6, end) both;
+}
+
+.b-elbow::after { /* inner black cutout where it meets the top bar */
+	content: '';
+	position: absolute;
+	left: 100%;
+	top: var(--lc-rail);
+	width: var(--lc-fillet);
+	height: var(--lc-fillet);
+	background: radial-gradient(circle at 100% 100%, transparent calc(var(--lc-fillet) - .5px), var(--lc-dept, var(--lc-lavender)) var(--lc-fillet));
+}
+
+@keyframes lc-boot-elbow { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -30px 0 0); } }
+
+/* The top bar: the real bar's blocks in its order (js/boot.js TOP_BAR), first as plain
+ * colour. Then labels fade in, and the beam shrinks to its sliver to uncover the title. */
+.b-top {
+	--title-at: 26px;
+	--title-w: 283px;
+	position: absolute;
+	left: var(--lc-bank);
+	right: 0;
+	top: 0;
+	height: var(--lc-rail);
+	animation: lc-boot-wipe-x .45s .55s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.b-top > * {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	overflow: hidden;
+	white-space: nowrap;
+	color: var(--lc-black);
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.b-top span { letter-spacing: inherit; animation: lc-boot-appear .4s 1.05s both; }
+
+.b-bar { left: 0; right: 533px; background: var(--lc-dept, var(--lc-lavender)); }
+
+.b-top .b-title {
+	left: var(--title-at);
+	width: var(--title-w);
+	padding: 0 12px;
+	align-items: center;
+	justify-content: flex-start;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: .04em;
+}
+
+.b-top .b-title span { animation-delay: 1.4s; }
+
+.b-beam {
+	--sliver: .0841; /* the sliver's share of the beam: 26 of 309 px, until js/boot.js measures it */
+	left: 0;
+	width: calc(var(--title-at) + var(--title-w));
+	background: var(--lc-dept, var(--lc-lavender));
+	transform-origin: left;
+	will-change: transform;
+	animation: lc-boot-beam .45s 1.15s cubic-bezier(.7, 0, .3, 1) both;
+}
+
+@keyframes lc-boot-beam { to { transform: scaleX(var(--sliver)); } }
+
+.b-toggle { left: 314px; width: 159px; background: var(--lc-black); }
+.b-ops, .b-shelves { padding: 0 14px 5px; font-size: 17px; letter-spacing: .1em; }
+.b-ops { left: 319px; width: 56px; background: var(--lc-gold); }
+.b-shelves { left: 380px; width: 88px; background: var(--lc-steel); }
+.b-news, .b-alerts, .b-big { padding: 0 12px 4px; font-size: 15px; letter-spacing: .08em; }
+.b-news { right: 456px; width: 72px; background: var(--lc-lilac); }
+.b-alerts { right: 370px; width: 81px; background: var(--lc-peach); }
+.b-account { right: 235px; width: 130px; padding: 0 12px 4px; font-size: 14px; background: var(--lc-lilac); }
+.b-big { right: 116px; width: 114px; background: var(--lc-steel); }
+.b-controls { right: 0; width: 111px; background: var(--lc-coral); border-radius: 0 calc(var(--lc-rail) / 2) calc(var(--lc-rail) / 2) 0; }
+
+#lc-boot.still .b-beam { transform: scaleX(var(--sliver)); }
+
+@keyframes lc-boot-wipe-x { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes lc-boot-wipe-y { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* Bank: six segments light top to bottom, each with a stepped flash. */
+.b-bank {
+	position: absolute; left: 0; top: 83px; bottom: 0;
+	width: var(--lc-bank);
+	display: flex; flex-direction: column; gap: 5px;
+}
+
+.b-bank i {
+	flex: 1 1 0;
+	background: var(--lc-surface);
+	display: flex; align-items: flex-end; justify-content: flex-end;
+	padding: 0 12px 6px;
+	font-style: normal;
+	animation: lc-boot-seg .3s calc(.4s + var(--n) * .1s) steps(1, end) both;
+}
+
+.b-bank i:nth-child(1) { --seg: var(--lc-peach); } /* the shell's bank colours */
+.b-bank i:nth-child(2) { --seg: var(--lc-lavender); }
+.b-bank i:nth-child(3) { --seg: var(--lc-lilac); }
+.b-bank i:nth-child(4) { --seg: var(--lc-coral); }
+.b-bank i:nth-child(5) { --seg: var(--lc-steel); }
+.b-bank i:last-child { --seg: var(--lc-peach); border-radius: 0 0 0 calc(var(--lc-elbow) - 12px); }
+
+.b-bank b { color: var(--lc-black); font-size: 16px; font-weight: 600; letter-spacing: .1em; }
+
+@keyframes lc-boot-seg {
+	0% { background: var(--lc-surface); }
+	30% { background: var(--lc-ink); }
+	60% { background: var(--seg); filter: brightness(1.4); }
+	100% { background: var(--seg); filter: brightness(1); }
+}
+
+/* The rail along the bank's base. */
+.b-rail {
+	position: absolute; right: 0;
+	background: var(--lc-lavender);
+	animation: lc-boot-wipe-x .45s .55s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.b-rail-base { left: calc(var(--lc-bank) + 5px); bottom: 0; height: 26px; background: var(--lc-peach); border-radius: 0 13px 13px 0; animation-delay: .75s; }
+
+/* Identification block. */
+.b-id {
+	position: absolute; left: 260px; top: 50%;
+	transform: translateY(-50%);
+	max-width: calc(100% - 320px);
+}
+
+.b-id h1 {
+	margin: 0;
+	color: var(--lc-gold);
+	font-size: clamp(56px, 7vw, 112px);
+	font-weight: 500;
+	letter-spacing: .06em;
+	line-height: .95;
+	animation: lc-boot-wipe-x .5s .7s steps(16, end) both;
+}
+
+.b-id h2 {
+	margin: 10px 0 34px;
+	font-size: clamp(20px, 2.2vw, 34px);
+	font-weight: 400;
+	letter-spacing: .32em;
+	color: var(--lc-peach);
+}
+
+.b-id h2 span { display: inline-block; animation: lc-boot-wipe-x .55s 1s steps(27, end) both; }
+
+.b-id dl { display: flex; gap: 5px; margin: 0; }
+
+.b-id dl div {
+	min-width: 170px;
+	padding: 6px 14px 8px 22px;
+	box-shadow: inset 10px 0 0 var(--lc-lavender);
+	animation: lc-boot-wipe-y .25s both;
+}
+
+.b-id dl div:nth-child(1) { animation-delay: 1.05s; }
+.b-id dl div:nth-child(2) { animation-delay: 1.25s; box-shadow: inset 10px 0 0 var(--lc-peach); }
+.b-id dl div:nth-child(3) { animation-delay: 1.4s; box-shadow: inset 10px 0 0 var(--lc-steel); }
+
+.b-id dt { font-size: 14px; letter-spacing: .16em; color: var(--lc-lavender); }
+.b-id dd { margin: 2px 0 0; font-size: 44px; color: var(--lc-ink); font-variant-numeric: tabular-nums; }
+
+.b-ok {
+	margin: 28px 0 0;
+	display: inline-block;
+	padding: 4px 18px 6px;
+	background: var(--lc-gold);
+	color: var(--lc-black);
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: .2em;
+	border-radius: 0 16px 16px 0;
+	animation: lc-boot-ok .5s 1.6s steps(1, end) both;
+}
+
+@keyframes lc-boot-ok {
+	0% { opacity: 0; }
+	20% { opacity: 1; }
+	40% { opacity: 0; }
+	60%, 100% { opacity: 1; }
+}
+
+/* Loading widgets, so the screen stays alive while Steam loads behind it. Only transform
+ * and opacity move, which the browser can run off the main thread that Steam keeps stalling. */
+.b-sweep {
+	position: relative;
+	width: min(420px, 100%);
+	height: 10px;
+	margin-top: 18px;
+	background: var(--lc-surface);
+	overflow: hidden;
+	animation: lc-boot-appear .01s 1.6s steps(1, end) both;
+}
+
+.b-sweep i {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 24%;
+	background: linear-gradient(90deg, var(--lc-coral) 0 22%, var(--lc-gold) 22% 78%, var(--lc-peach) 78%);
+	will-change: transform;
+	animation: lc-boot-sweep 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes lc-boot-sweep { to { transform: translateX(317%); } }
+@keyframes lc-boot-appear { from { opacity: 0; } to { opacity: 1; } }
+
+.b-widgets {
+	position: absolute;
+	right: 40px;
+	top: 76px;
+	bottom: 46px;
+	display: flex;
+	gap: 34px;
+	align-items: stretch;
+	animation: lc-boot-wipe-y .3s 1.1s steps(8, end) both;
+}
+
+/* The column of record IDs, scrolling up. */
+.b-stream {
+	width: 74px;
+	overflow: hidden;
+	color: var(--lc-lilac);
+	font-size: 15px;
+	line-height: 1.5;
+	letter-spacing: .1em;
+	text-align: right;
+	white-space: pre;
+	font-variant-numeric: tabular-nums;
+	box-shadow: inset 2px 0 0 var(--lc-steel);
+}
+
+.b-stream > div { will-change: transform; animation: lc-boot-stream 26s linear infinite; }
+@keyframes lc-boot-stream { to { transform: translateY(-50%); } }
+
+.b-gauges {
+	width: clamp(170px, 28vh, 300px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 26px;
+}
+
+.b-gauges p {
+	margin: 0;
+	color: var(--lc-peach);
+	font-size: 16px;
+	letter-spacing: .2em;
+	text-align: center;
+	animation: lc-boot-blink 1.4s steps(1, end) infinite;
+}
+
+@keyframes lc-boot-blink { 0%, 62% { opacity: 1; } 63%, 100% { opacity: .25; } }
+
+/* Rings: arcs turning against each other around a pulsing core. */
+.b-rings { position: relative; aspect-ratio: 1; }
+
+.b-rings i {
+	position: absolute;
+	border-radius: 50%;
+	will-change: transform;
+	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - var(--w)), #000 calc(100% - var(--w) + 1px));
+	mask: radial-gradient(farthest-side, transparent calc(100% - var(--w)), #000 calc(100% - var(--w) + 1px));
+	animation: lc-boot-turn 9s linear infinite;
+}
+
+.b-rings i:nth-child(1) {
+	--w: 14px;
+	inset: 0;
+	background: repeating-conic-gradient(var(--lc-peach) 0 26deg, transparent 26deg 40deg, var(--lc-coral) 40deg 66deg, transparent 66deg 80deg, var(--lc-lilac) 80deg 106deg, transparent 106deg 120deg);
+}
+
+.b-rings i:nth-child(2) {
+	--w: 10px;
+	inset: 16%;
+	background: conic-gradient(var(--lc-lavender) 0 110deg, transparent 110deg 150deg, var(--lc-steel) 150deg 280deg, transparent 280deg);
+	animation-duration: 5.5s;
+	animation-direction: reverse;
+}
+
+.b-rings i:nth-child(3) {
+	--w: 12px;
+	inset: 31%;
+	background: conic-gradient(var(--lc-gold) 0 130deg, transparent 130deg 150deg, var(--lc-coral) 150deg 235deg, transparent 235deg);
+	animation-duration: 2.6s;
+}
+
+.b-rings b {
+	position: absolute;
+	inset: 44%;
+	border-radius: 50%;
+	background: var(--lc-gold);
+	will-change: opacity;
+	animation: lc-boot-core 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes lc-boot-turn { to { transform: rotate(360deg); } }
+@keyframes lc-boot-core { from { opacity: 1; } to { opacity: .3; } }
+
+/* The level meter: bars rising and falling out of step. */
+.b-eq { display: flex; gap: 4px; height: 64px; align-items: stretch; }
+
+.b-eq i {
+	flex: 1 1 0;
+	background: var(--lc-lavender);
+	transform-origin: bottom;
+	will-change: transform;
+	animation: lc-boot-eq calc(.62s + var(--n) * 47ms) ease-in-out calc(var(--n) * -113ms) infinite alternate;
+}
+
+.b-eq i:nth-child(6n+2) { background: var(--lc-peach); }
+.b-eq i:nth-child(6n+3) { background: var(--lc-gold); }
+.b-eq i:nth-child(6n+4) { background: var(--lc-coral); }
+.b-eq i:nth-child(6n+5) { background: var(--lc-lilac); }
+.b-eq i:nth-child(6n+6) { background: var(--lc-steel); }
+
+@keyframes lc-boot-eq { from { transform: scaleY(.12); } to { transform: scaleY(1); } }
+
+@media (max-width: 1180px) { .b-stream { display: none; } }
+@media (max-width: 960px), (max-height: 520px) { .b-widgets { display: none; } }
+
+/* Reduced motion: a static card for a moment, then gone. */
+#lc-boot.still *, #lc-boot.still { animation: none !important; }
+#lc-boot.still .b-bank i:nth-child(n) { background: var(--seg); }
+#lc-boot.still.out { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+	#lc-boot * { animation: none !important; }
+}

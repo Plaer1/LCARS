@@ -1,0 +1,26 @@
+@import url('tokens.css');
+
+/* LCARSv2 desktop toasts (js/popups.js): achievements, friends, downloads. A black
+ * well with a lavender elbow rail; Steam's blue glow and gradient go. */
+
+html, body, body * { font-family: var(--lc-font) !important; text-shadow: none !important; box-shadow: none !important; }
+html, body, .zXrpABNQHpWKgSzqnGlL { background: transparent !important; }
+
+._1OOQPJx0nCNP9ME9toCmV7 { /* DesktopToastPopup */
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lavender) !important;
+	border-width: 6px 0 6px 14px !important;
+	border-radius: 18px 0 0 18px !important;
+	box-sizing: border-box;
+	color: var(--lc-ink) !important;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	overflow: hidden;
+}
+
+._3RkGkNRNheAkoRA3migph5 { display: none !important; } /* DesktopToastBackground */
+
+._1OOQPJx0nCNP9ME9toCmV7 * { color: var(--lc-ink) !important; background: transparent !important; }
+._1OOQPJx0nCNP9ME9toCmV7 svg * { fill: var(--lc-gold) !important; stroke: none !important; }
+._1OOQPJx0nCNP9ME9toCmV7 img { border-radius: 0 !important; }

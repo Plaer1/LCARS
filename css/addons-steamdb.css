@@ -1,0 +1,61 @@
+/* LCARSv2 S15 SteamDB elements. SteamDB's blocks use Steam blue and green, so
+ * every add-on node resolves to a token. Its options page runs on a
+ * chrome-extension:// origin that this patch does not match; it stays unthemed.
+ * Imported by store-pages.css and community-pages.css. */
+
+/* App page: lowest recorded price and stats block. */
+.steamdb_prices { background: var(--lc-black); color: var(--lc-lavender); font-family: var(--lc-font); }
+a.steamdb_prices:hover { color: var(--lc-gold); }
+.steamdb_prices_top span { color: var(--lc-gold); }
+.steamdb_prices_bottom { color: var(--lc-lilac); }
+.steamdb_stats, .steamdb_stats_grid { color: var(--lc-ink); }
+.steamdb_stats_name { color: var(--lc-lilac); }
+.steamdb_stats_number { color: var(--lc-lavender); }
+a.steamdb_stats_logo { color: var(--lc-lavender); }
+a.steamdb_stats_logo:hover { color: var(--lc-gold); }
+
+/* Glance rows: rating and update age. */
+.steamdb_rating, .steamdb_rating.steamdb_rating_good { color: var(--lc-lavender) !important; }
+.steamdb_last_update { color: var(--lc-ink); }
+.steamdb_last_update_old { color: var(--lc-coral) !important; }
+
+/* Developer and publisher links. */
+.steamdb_dev_pub_link_container { color: var(--lc-ink); }
+a.steamdb_dev_pub_link { color: var(--lc-ink); }
+a.steamdb_dev_pub_link:hover { color: var(--lc-gold); }
+.steamdb_collapse_dev_pub_links { color: var(--lc-lavender); }
+
+/* "Already in your library" notice. */
+a.steamdb_already_in_library_link { color: var(--lc-gold); }
+a.steamdb_already_in_library_link:hover { color: var(--lc-ink); }
+button.steamdb_already_in_library_collapse { background: none; border: 0; color: var(--lc-gold); font: inherit; cursor: pointer; }
+button.steamdb_already_in_library_collapse:hover { color: var(--lc-ink); }
+
+/* App ID link and the "View on SteamDB" link bar. */
+html body a.steamdb_link.btn_black.btn_tiny, html body a.steamdb_link.btn_black, html body a.steamdb_link, html body .game_purchase_action a.steamdb_link.btn_black.btn_tiny { color: var(--lc-ink) !important; background: var(--lc-black) !important; }
+html body .game_purchase_action a.steamdb_link.steamdb_link.btn_black.btn_tiny:hover, html body a.steamdb_link.steamdb_link.btn_black.btn_tiny:hover, html body a.steamdb_link:hover { color: var(--lc-gold) !important; background: var(--lc-black) !important; }
+span.steamdb_link_id { color: var(--lc-lilac); }
+a.linkbar_steamdb { background: var(--lc-black); color: var(--lc-ink); border: 1px solid var(--lc-lavender); font-family: var(--lc-font); }
+a.linkbar_steamdb:hover { border-color: var(--lc-gold); color: var(--lc-gold); }
+
+/* Apphub header buttons (discussions, workshop, forum). */
+a.btn_steamdb, a.steamdb_ico { background: var(--lc-peach); color: var(--lc-black); font-family: var(--lc-font); text-transform: uppercase; }
+a.btn_steamdb:hover, a.steamdb_ico:hover { background: var(--lc-gold); color: var(--lc-black); }
+/* Steam's blue button rules outrank the plain selectors above, so these repeat with more weight. */
+html body a.btn_steamdb.btnv6_blue_hoverfade, html body a.btn_steamdb, html body a.steamdb_ico { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-color: var(--lc-black) !important; }
+html body a.btn_steamdb.btnv6_blue_hoverfade:hover, html body a.btn_steamdb:hover, html body a.steamdb_ico:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+html body a.btn_steamdb > span, html body a.steamdb_ico > span { color: var(--lc-black) !important; }
+
+/* Inventory: gift info line and the SteamDB sidebar links. */
+.steamdb_gift_info { color: var(--lc-steel); font-family: var(--lc-font); }
+.steamdb_gift_info a { color: var(--lc-lilac); }
+.steamdb_gift_info a:hover { color: var(--lc-gold); }
+
+/* Profile: SteamDB self-profile line. */
+img.steamdb_self_profile { opacity: 0.8; }
+img.steamdb_self_profile:hover { opacity: 1; }
+
+/* Explore page: auto-discover queue panel. */
+.steamdb_cheat_queue { background: var(--lc-black); color: var(--lc-ink); border: 1px solid var(--lc-lavender); }
+.steamdb_cheat_queue_text { color: var(--lc-lilac); }
+.steamdb_prices_top b { color: var(--lc-gold) !important; }

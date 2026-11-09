@@ -1,0 +1,380 @@
+/* LCARSv2 S14 workshop home (#ig_bottom). The browse block is a black well with
+ * a lavender bracket; the sort list uses the filter-drawer register language
+ * (ops-filters.css); item tiles are capsule plates with the gold selection
+ * ring; the paging arrows are coral caps; the news is log entries like the
+ * library news. Scoped by the workshop's own containers. */
+
+/* ---------------------------------------------------- section tabs */
+
+#ig_bottom .sharedfiles_tabs_ctn .sectionTabs { display: flex; gap: var(--lc-slice); align-items: stretch; }
+
+#ig_bottom .sectionTab {
+	display: flex;
+	align-items: flex-end;
+	height: 30px;
+	padding: 0 16px 4px;
+	background: var(--lc-lavender);
+	color: var(--lc-black);
+	font-family: var(--lc-font);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	border-radius: 16px 0 0 16px;
+}
+
+#ig_bottom .sectionTab.about { border-radius: 0 16px 16px 0; }
+#ig_bottom .sectionTab span { color: var(--lc-black) !important; }
+#ig_bottom .sectionTab:hover { background: var(--lc-ink); }
+
+#ig_bottom .sectionTab.active {
+	background: var(--lc-gold);
+	box-shadow: inset 0 -5px 0 var(--lc-black), 0 4px 0 var(--lc-gold);
+}
+
+/* ------------------------------------------------------ title block */
+
+#ig_bottom .title {
+	font-family: var(--lc-font) !important;
+	color: var(--lc-lavender) !important;
+	font-size: 36px;
+	font-weight: 500;
+	line-height: 40px;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .subtitle {
+	font-family: var(--lc-prose) !important;
+	color: var(--lc-peach) !important;
+	font-size: 14px;
+	line-height: 1.45;
+	letter-spacing: 0 !important;
+}
+
+#ig_bottom .subtitle a { color: var(--lc-lavender); }
+#ig_bottom .subtitle a:hover { color: var(--lc-gold); }
+
+/* ------------------------------------------------------ browse block */
+
+#ig_bottom .browseApps {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+	border-left: 10px solid var(--lc-lavender);
+	border-radius: 0 0 0 26px;
+}
+
+#ig_bottom .browseAppsTitleContainer {
+	background: var(--lc-surface) !important;
+	box-shadow: inset 0 -3px 0 var(--lc-black);
+}
+
+#ig_bottom .browseAppsTitle {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 26px;
+	font-weight: 500;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .browseAppsTitle .highlight { color: var(--lc-gold) !important; font-weight: 600; }
+
+#ig_bottom .searchApps {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+}
+
+#ig_bottom .searchApps .searchAppsInput,
+#ig_bottom .searchApps input {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .searchApps input::placeholder { color: var(--lc-disabled); }
+
+/* ------------------------------------------------------- sort register */
+
+#ig_bottom .workshopAppsSort {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+	border-left: 8px solid var(--lc-lilac);
+	border-radius: 0 0 0 20px;
+	box-sizing: border-box;
+	padding: 0 0 6px 0;
+}
+
+#ig_bottom .workshopAppsSortTitle {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	padding: 10px 14px 6px !important;
+}
+
+#ig_bottom .browseOption {
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+}
+
+#ig_bottom .browseOption a {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 16px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .browseOption:hover {
+	box-shadow: inset 8px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface);
+}
+
+#ig_bottom .browseOption:not(.selected):hover a { color: var(--lc-gold) !important; }
+
+/* The selected sort is a gold row (the black label sits on it). Hover lightens it. */
+#ig_bottom .browseOption.selected { background: var(--lc-gold) !important; box-shadow: none; }
+#ig_bottom .browseOption.selected .rightbox_list_selection_background { background: var(--lc-gold) !important; }
+#ig_bottom .browseOption.selected a { color: var(--lc-black) !important; font-weight: 600; }
+#ig_bottom .browseOption.selected:hover { background: var(--lc-ink) !important; }
+#ig_bottom .browseOption.selected:hover .rightbox_list_selection_background { background: var(--lc-ink) !important; }
+
+/* ------------------------------------------------------ item tiles */
+
+#ig_bottom .workshopAppsRow .app {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -6px 0 var(--lc-steel);
+}
+
+#ig_bottom .workshopAppsRow .app:nth-child(4n+2) { box-shadow: inset 0 -6px 0 var(--lc-lilac); }
+#ig_bottom .workshopAppsRow .app:nth-child(4n+3) { box-shadow: inset 0 -6px 0 var(--lc-peach); }
+#ig_bottom .workshopAppsRow .app:nth-child(4n+4) { box-shadow: inset 0 -6px 0 var(--lc-lavender); }
+
+#ig_bottom .workshopAppsRow .app:hover {
+	box-shadow: inset 0 -6px 0 var(--lc-gold), 0 0 0 2px var(--lc-gold);
+}
+
+#ig_bottom .workshopAppsRow .appItem,
+#ig_bottom .workshopAppsRow .appCover,
+#ig_bottom .workshopAppsRow .appCoverHover {
+	border-radius: 0 !important;
+}
+
+#ig_bottom .workshopAppsRow .appNumItems {
+	color: var(--lc-lilac) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .workshopAppsRow .appNumItems::after { content: none; }
+
+/* Paging: coral caps on the prev and next arrows. */
+#ig_bottom .workshop_apps_paging_controls .pagebtn {
+	background: var(--lc-coral) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 12px 12px 0 !important;
+	font-family: var(--lc-font);
+	font-weight: 600;
+	padding: 0 12px;
+}
+
+#ig_bottom #workshop_apps_btn_prev { border-radius: 12px 0 0 12px !important; }
+#ig_bottom .workshop_apps_paging_controls .pagebtn.disabled { background: var(--lc-surface) !important; color: var(--lc-disabled) !important; }
+#ig_bottom .workshop_apps_paging_controls .pagebtn:hover:not(.disabled) { background: var(--lc-gold) !important; }
+
+#ig_bottom #workshop_apps_links .workshop_apps_paging_pagelink {
+	color: var(--lc-lavender);
+	font-family: var(--lc-font);
+	letter-spacing: .08em;
+}
+
+#ig_bottom #workshop_apps_links .workshop_apps_paging_pagelink:not(.active):hover { color: var(--lc-gold); }
+#ig_bottom #workshop_apps_links .workshop_apps_paging_pagelink.active { color: var(--lc-gold); font-weight: 600; }
+
+#ig_bottom .workshop_apps_paging_summary {
+	color: var(--lc-lilac);
+	font-family: var(--lc-font) !important;
+	font-size: 14px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+/* ----------------------------------------------------- right column */
+
+#ig_bottom #rightContents .primary_panel {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+}
+
+#ig_bottom #rightContents .primary_panel > img {
+	box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-lavender);
+	border-radius: 0 !important;
+}
+
+#ig_bottom #rightContents .primary_panel > a {
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 18px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+#ig_bottom #rightContents .current_player_workshop_link a.dropdown {
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+#ig_bottom #rightContents .rightSectionTopTitle {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	padding: 6px 0 4px;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+	margin-bottom: 6px;
+}
+
+#ig_bottom #rightContents .rightDetailsBlock {
+	color: var(--lc-ink);
+	font-family: var(--lc-prose) !important;
+	font-size: 14px;
+	line-height: 1.5;
+	letter-spacing: 0 !important;
+}
+
+#ig_bottom #rightContents .subscribeRSS a {
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+#ig_bottom #rightContents .subscribeRSS a:hover { color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------- news as log */
+
+#ig_bottom #profileBlock .mainSectionHeader {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 16px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	box-shadow: inset 0 -3px 0 var(--lc-surface);
+	padding-bottom: 4px;
+	margin-bottom: 12px;
+}
+
+#ig_bottom .announcement.detailBox {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lavender);
+	border-width: 12px 0 8px 12px;
+	border-radius: 46px 0 0 24px;
+	box-shadow: none;
+	padding: 14px 14px 12px 22px;
+	margin: 0 0 18px;
+	animation: lc-wks-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+#ig_bottom .announcement.detailBox:nth-child(3n+2) { border-color: var(--lc-lilac); }
+#ig_bottom .announcement.detailBox:nth-child(3n+3) { border-color: var(--lc-steel); }
+
+#ig_bottom .announcement .headline a {
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .announcement .byline {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 13px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .announcement .byline a { color: var(--lc-lilac) !important; }
+
+#ig_bottom .announcement .bodytext,
+#ig_bottom .announcement .bodytext * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+#ig_bottom .announcement .bodytext {
+	color: var(--lc-ink);
+	font-size: 15px;
+	line-height: 1.55;
+	padding-top: 8px;
+}
+
+#ig_bottom .announcement .bb_h2 {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 19px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	box-shadow: inset 0 -3px 0 var(--lc-surface);
+	padding-bottom: 2px;
+	margin: 16px 0 6px;
+}
+
+#ig_bottom .announcement .bb_link { color: var(--lc-lavender) !important; text-decoration: underline; text-decoration-color: rgba(170, 160, 245, .4); }
+#ig_bottom .announcement .bb_link:hover { color: var(--lc-gold) !important; }
+#ig_bottom .announcement .bodytext b { color: var(--lc-peach); }
+
+#ig_bottom .announcement .bodytext img,
+#ig_bottom .announcement .bodytext video {
+	border-radius: 0 !important;
+	box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 5px var(--lc-surface);
+}
+
+#ig_bottom .announcement .commentsLink .btn_grey_black,
+#ig_bottom .announcement .commentsLink .btn_grey_black > span {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 14px 14px 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+#ig_bottom .announcement .commentsLink .btn_grey_black:hover,
+#ig_bottom .announcement .commentsLink .btn_grey_black:hover > span { background: var(--lc-gold) !important; }
+
+#ig_bottom #viewAllAnnouncements .linkStandard {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 15px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+#ig_bottom #viewAllAnnouncements .linkStandard:hover { color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------ motion */
+
+@keyframes lc-wks-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	#ig_bottom .announcement.detailBox { animation: none !important; }
+}

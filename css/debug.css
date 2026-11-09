@@ -1,0 +1,551 @@
+/* LCARSv2 annotator overlays (slice S18). Loaded inside the shadow root of
+ * #lc-debug-host, so page CSS cannot reach these nodes. Tokens inherit from
+ * :root through the host. Menu rules by worker R go below the note editor. */
+
+[data-lc-layer] {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+}
+
+/* Hover box and label (picker.js) */
+.dbg-box {
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: none;
+	box-sizing: border-box;
+	border: 2px solid var(--lc-gold);
+	pointer-events: none;
+	will-change: transform;
+}
+
+.dbg-box.is-on {
+	display: block;
+}
+
+.dbg-label {
+	position: absolute;
+	left: -2px;
+	top: -24px;
+	max-width: min(460px, 90vw);
+	padding: 2px 8px;
+	background: var(--lc-gold);
+	color: var(--lc-black);
+	font: 600 13px/20px var(--lc-font);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Note box (picker.js) over a clear scrim: a click on the scrim cancels. */
+.dbg-scrim {
+	position: fixed;
+	inset: 0;
+	display: none;
+	pointer-events: auto;
+	cursor: default;
+}
+
+.dbg-scrim.is-on {
+	display: block;
+}
+
+/* Alt held: takes the pointer from the page so its hover can't end (js/debug/picker.js). */
+.dbg-shield {
+	position: fixed;
+	inset: 0;
+	display: none;
+	pointer-events: auto;
+	cursor: crosshair;
+	background: transparent;
+}
+
+.dbg-shield.is-on {
+	display: block;
+}
+
+.dbg-note {
+	position: fixed;
+	left: 8px;
+	top: 8px;
+	display: none;
+	box-sizing: border-box;
+	width: min(380px, calc(100vw - 16px));
+	padding: 12px 14px;
+	background: var(--lc-surface);
+	border-left: 4px solid var(--lc-coral);
+	color: var(--lc-ink);
+	font: 500 14px/1.45 var(--lc-prose);
+	pointer-events: auto;
+}
+
+.dbg-note.is-open {
+	display: block;
+	animation: dbg-note-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.dbg-note-title {
+	margin-bottom: 4px;
+	color: var(--lc-lavender);
+	font: 600 17px/1.2 var(--lc-font);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.dbg-note-hint {
+	margin-bottom: 8px;
+	color: var(--lc-lilac);
+}
+
+/* The manager's inline edit box (menu.js). */
+.dbg-note-input {
+	box-sizing: border-box;
+	width: 100%;
+	height: 36px;
+	padding: 0 10px;
+	border: 1px solid var(--lc-steel);
+	border-radius: 0;
+	background: var(--lc-black);
+	color: var(--lc-ink);
+	font: 500 14px var(--lc-prose);
+	outline: none;
+}
+
+.dbg-note-input:focus {
+	border-color: var(--lc-gold);
+}
+
+.dbg-note-hint.is-error {
+	color: var(--lc-coral);
+}
+
+/* The input lives in this frame, out of reach of Steam's key shortcuts. */
+.dbg-note-frame {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 36px;
+	border: 0;
+	background: transparent;
+	color-scheme: dark;
+}
+
+.dbg-note-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.dbg-btn {
+	height: 32px;
+	padding: 0 14px;
+	border: 0;
+	border-radius: 16px;
+	background: var(--lc-lavender);
+	color: var(--lc-black);
+	font: 600 13px var(--lc-font);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.dbg-btn:hover {
+	background: var(--lc-peach);
+}
+
+.dbg-btn.dbg-primary {
+	background: var(--lc-gold);
+}
+
+.dbg-btn.dbg-primary:hover {
+	background: var(--lc-ink);
+}
+
+.dbg-btn:focus-visible {
+	outline: 2px solid var(--lc-ink);
+	outline-offset: 2px;
+}
+
+@keyframes dbg-note-in {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dbg-note.is-open {
+		animation: none;
+	}
+}
+
+/* ---- menu (menu.js, worker R): mini-panel, note manager, flash ---- */
+[hidden] {
+	display: none !important;
+}
+
+.dbg-btn:disabled,
+.dbg-btn:disabled:hover {
+	background: var(--lc-disabled);
+	color: var(--lc-black);
+	cursor: default;
+}
+
+.dbg-btn[aria-pressed="true"] {
+	background: var(--lc-gold);
+}
+
+.dbg-btn.dbg-danger {
+	background: var(--lc-coral);
+}
+
+.dbg-btn.dbg-danger:hover {
+	background: var(--lc-ink);
+}
+
+.dbg-menu, .dbg-notes, .dbg-note { -webkit-app-region: no-drag; app-region: no-drag; } /* Steam's title zones drag the window and swallow clicks */
+
+.dbg-menu {
+	position: fixed;
+	right: 16px;
+	bottom: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 6px;
+	max-width: calc(100vw - 16px);
+	color: var(--lc-ink);
+	font: 500 14px/1.45 var(--lc-prose);
+	pointer-events: auto;
+	animation: dbg-menu-in 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.dbg-menu-bar {
+	display: flex;
+	align-items: stretch;
+	gap: 4px;
+	padding: 4px;
+	background: var(--lc-surface);
+}
+
+.dbg-menu-grip {
+	width: 26px;
+	min-height: 32px;
+	border-radius: 16px 0 0 16px;
+	background: var(--lc-steel) radial-gradient(circle, var(--lc-black) 1.5px, transparent 2px) 50% 50% / 7px 7px; /* a dot grid: grab here */
+	cursor: grab;
+	touch-action: none;
+}
+
+.dbg-menu-grip:active { cursor: grabbing; }
+
+/* Collapsed: only the handle, gold while the annotator is on so that state still shows. */
+.dbg-menu.is-collapsed .dbg-menu-bar > :not(.dbg-menu-grip) { display: none; }
+/* Just the pill (user: no grey box around it; rounded all the way). */
+.dbg-menu.is-collapsed .dbg-menu-bar { background: transparent !important; box-shadow: none !important; }
+.dbg-menu.is-collapsed .dbg-menu-grip { border-radius: 16px; }
+.dbg-menu:has([data-act=annotator][aria-pressed=true]) .dbg-menu-grip { background-color: var(--lc-gold); }
+
+.dbg-menu-bar .dbg-btn {
+	white-space: nowrap;
+}
+
+.dbg-menu-toggle {
+	padding: 0 12px;
+}
+
+/* The menu above the bar. */
+.dbg-menu-more {
+	box-sizing: border-box;
+	display: grid;
+	gap: 6px;
+	width: 268px;
+	max-width: 100%;
+	padding: 10px;
+	background: var(--lc-surface);
+}
+
+.dbg-menu-box {
+	display: grid;
+	gap: 6px;
+}
+
+/* JINGLES opens a flyout beside the menu, not more rows in it. */
+.dbg-menu-more { position: relative; }
+.dbg-btn[data-act=jingles]::before { content: '\25C2\00A0'; }
+.dbg-btn[data-act=jingles][aria-expanded=true] { background: var(--lc-gold); }
+.dbg-menu-box[data-part=jingles] {
+	position: absolute;
+	right: calc(100% + 6px);
+	width: 220px;
+	padding: 10px;
+	box-sizing: border-box;
+	background: var(--lc-surface);
+}
+.dbg-menu-box[data-part=jingles].is-right { right: auto; left: calc(100% + 6px); }
+
+.dbg-menu-text {
+	box-sizing: border-box;
+	width: 100%;
+	height: 120px;
+	padding: 6px 8px;
+	border: 1px solid var(--lc-steel);
+	border-radius: 0;
+	background: var(--lc-black);
+	color: var(--lc-ink);
+	font: 500 14px/1.4 var(--lc-prose);
+	resize: vertical;
+	outline: none;
+}
+
+.dbg-menu-text:focus {
+	border-color: var(--lc-gold);
+}
+
+.dbg-menu-status {
+	max-width: 420px;
+	padding: 4px 10px;
+	background: var(--lc-surface);
+	color: var(--lc-ink);
+}
+
+.dbg-menu-status:empty {
+	display: none;
+}
+
+.dbg-menu-status.is-error,
+.dbg-menu-usage.is-error {
+	color: var(--lc-coral);
+}
+
+.dbg-menu-usage {
+	color: var(--lc-lilac);
+}
+
+.dbg-notes {
+	position: fixed;
+	top: 16px;
+	right: 16px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: min(560px, calc(100vw - 32px));
+	max-height: calc(100vh - 32px);
+	background: var(--lc-surface);
+	border-left: 4px solid var(--lc-gold);
+	color: var(--lc-ink);
+	font: 500 14px/1.45 var(--lc-prose);
+	pointer-events: auto;
+	animation: dbg-menu-in 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.dbg-notes-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 8px;
+	padding: 8px 12px;
+	background: var(--lc-gold);
+	color: var(--lc-black);
+}
+
+.dbg-notes-title {
+	font: 600 17px/1.2 var(--lc-font);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.dbg-notes-origin,
+.dbg-notes-count {
+	font: 600 13px/1.2 var(--lc-font);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.dbg-notes-count {
+	margin-right: auto;
+}
+
+.dbg-notes-error {
+	min-height: 20px;
+	padding: 0 12px;
+	color: var(--lc-coral);
+}
+
+.dbg-notes-list {
+	flex: 1 1 auto;
+	min-height: 0;
+	margin: 0;
+	padding: 4px 12px 12px;
+	overflow-y: auto;
+	list-style: none;
+}
+
+.dbg-notes-empty {
+	padding: 16px 0;
+	color: var(--lc-lilac);
+}
+
+.dbg-note-row {
+	margin: 0 0 8px;
+	padding: 8px 10px 10px;
+	border-left: 3px solid var(--lc-lavender);
+	background: var(--lc-black);
+}
+
+.dbg-note-row.is-done {
+	border-left-color: var(--lc-disabled);
+}
+
+.dbg-note-row.is-done .dbg-row-text {
+	color: var(--lc-lilac);
+}
+
+.dbg-row-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 10px;
+	font: 600 13px/1.3 var(--lc-font);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--lc-lilac);
+}
+
+.dbg-row-num {
+	color: var(--lc-gold);
+}
+
+.dbg-row-status {
+	color: var(--lc-peach);
+}
+
+.dbg-row-route {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font: 500 14px/1.3 var(--lc-prose);
+	letter-spacing: 0;
+	text-transform: none;
+	color: var(--lc-lavender);
+}
+
+.dbg-row-time {
+	margin-left: auto;
+}
+
+.dbg-row-text {
+	margin: 4px 0;
+	color: var(--lc-ink);
+	overflow-wrap: anywhere;
+}
+
+.dbg-row-dim {
+	color: var(--lc-lilac);
+	font-style: italic;
+}
+
+.dbg-row-sel {
+	margin-bottom: 6px;
+	color: var(--lc-lilac);
+	font: 500 14px/1.35 var(--lc-prose);
+	overflow-wrap: anywhere;
+}
+
+.dbg-row-edit {
+	display: grid;
+	gap: 6px;
+	margin: 4px 0 6px;
+}
+
+.dbg-row-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+
+.dbg-row-ask {
+	margin-right: 4px;
+	color: var(--lc-coral);
+	font: 600 13px/1.2 var(--lc-font);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+@keyframes dbg-menu-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes dbg-flash {
+	0% {
+		opacity: 1;
+		box-shadow: 0 0 0 0 var(--lc-gold);
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		box-shadow: 0 0 0 14px transparent;
+	}
+}
+
+.dbg-flash {
+	position: fixed;
+	box-sizing: border-box;
+	border: 3px solid var(--lc-gold);
+	pointer-events: none;
+	animation: dbg-flash 1400ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dbg-menu,
+	.dbg-notes,
+	.dbg-flash {
+		animation: none;
+	}
+}
+
+/* The bar in its own always-on-top window (menu.js installPill). The window is sized to
+   what shows and anchored by its bottom-left corner, so nothing here may size itself to
+   the viewport: notes stack above the bar, everything left-aligned. */
+:host(.is-pill) [data-lc-layer=menu] {
+	inset: auto auto 0 0 !important;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+}
+:host(.is-pill) .dbg-menu {
+	position: static;
+	max-width: none;
+	align-items: flex-start;
+	animation: none;
+}
+:host(.is-pill) .dbg-notes {
+	position: static;
+	order: -1;
+	width: 560px;
+	max-height: 600px;
+	animation: none;
+}
+:host(.is-pill) .dbg-menu-more { max-width: none; }
+:host(.is-pill) .dbg-menu-bar { background: transparent; } /* rounded buttons on the window's black, no box */

@@ -1,0 +1,13 @@
+/* LCARSv2 community pages: one patch for all of steamcommunity.com. The front
+ * page sheet scopes itself; each page family sheet scopes by Steam's body
+ * classes (profile_page, inventory, forum, workshop). */
+@import url('community.css');
+@import url('community-profile.css');
+@import url('community-subpage.css');
+@import url('community-inventory.css');
+@import url('community-discussions.css');
+@import url('community-workshop.css');
+@import url('addons-augmented-steam.css');
+@import url('addons-steamdb.css');
+@import url('web-motion.css');
+@import url('web-frame.css');

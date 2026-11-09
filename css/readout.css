@@ -1,0 +1,293 @@
+/* LCARSv2 game readout (js/readout.js). The overview panel becomes a grid:
+ *
+ *   ┌ readout (title rail + numeric data blocks) ┐ ┌ command bank ┐
+ *   ├ store/community link tabs ──────────────────┴──────────────┤
+ *   ├ description / features (when Steam shows them) ────────────┤
+ *   └ activity log │ spec sheet ─────────────────────────────────┘ */
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1fr) clamp(230px, 18vw, 300px);
+	grid-template-areas:
+		"readout bank"
+		"links links"
+		"info info"
+		"cols cols";
+	column-gap: 22px;
+	align-items: start;
+	padding-top: 18px;
+}
+
+/* A narrow record (small window): the command bank drops below the readout. */
+html.lc-readout-on :has(> ._27RcNu8aXKBpYkHcNNrt-X) { container: lc-record / inline-size; }
+@container lc-record (max-width: 700px) {
+	html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X {
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas: "readout" "bank" "links" "info" "cols";
+		row-gap: 18px;
+	}
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._1Qa-Aq8WFiF9584yU_1xuC { display: none !important; } /* glass backdrop */
+html.lc-readout-on .lc-readout { grid-area: readout; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._1U7LKpx70kEsz3jJwAFOi- { grid-area: bank; width: auto !important; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._3-V8vjmrwuJM6Ws3tsjFJj { grid-area: links; margin-top: 18px !important; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._2jPMy2QZr8bWi6yrk5ZzHA { grid-area: info; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > .OhSdLYuggDtBcWjYP0j_9 { grid-area: cols; }
+
+/* ---------------------------------------------------------- readout */
+
+.lc-readout { position: relative; padding-left: 60px; min-width: 0; }
+
+.lc-readout::before { /* bank bracket down the left */
+	content: '';
+	position: absolute;
+	left: 0; top: 0; bottom: 0;
+	width: 52px;
+	background: linear-gradient(to bottom, var(--lc-gold) 0 46px, var(--lc-black) 46px 51px, var(--lc-lavender) 51px calc(100% - 40px), var(--lc-black) calc(100% - 40px) calc(100% - 35px), var(--lc-coral) calc(100% - 35px));
+	border-radius: 26px 0 0 26px;
+	animation: lc-bank-grow .6s ease-out both;
+}
+
+.lc-ro-rail {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0;
+	height: 46px;
+	margin-bottom: 12px;
+}
+
+.lc-ro-rail::after {
+	content: '';
+	position: absolute;
+	left: 0; right: 0; top: 50%;
+	height: 22px;
+	transform: translateY(-50%);
+	background: var(--lc-lavender);
+	border-radius: 0 11px 11px 0;
+	z-index: 0;
+}
+
+.lc-ro-rail > * { position: relative; z-index: 1; background: var(--lc-black); }
+
+.lc-ro-rail h2 {
+	margin: 0;
+	padding: 0 14px 0 0;
+	color: var(--lc-gold);
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 46px;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 70%;
+}
+
+.lc-ro-rail b {
+	padding: 0 12px;
+	color: var(--lc-peach);
+	font-size: 22px;
+	font-weight: 500;
+	letter-spacing: .12em;
+}
+
+.lc-ro-state {
+	margin-left: auto;
+	margin-right: 18px;
+	padding: 2px 14px 0 !important;
+	color: var(--lc-black) !important;
+	background: var(--lc-peach) !important;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	border-radius: 0 12px 12px 0;
+}
+
+.lc-ro-state.t-off { background: var(--lc-disabled) !important; }
+.lc-ro-state.t-run { background: var(--lc-gold) !important; animation: lc-pulse 1.2s ease-in-out infinite; }
+.lc-ro-state.t-busy { background: var(--lc-coral) !important; }
+
+.lc-ro-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 5px;
+}
+
+.lc-ro-grid .ro {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding: 6px 12px 10px 20px;
+	background: var(--lc-black);
+	box-shadow: inset 8px 0 0 var(--lc-steel), inset 0 -3px 0 var(--lc-surface);
+	min-height: 104px;
+	animation: lc-block-in .45s ease-out both;
+	container-type: inline-size; /* values size to their block */
+}
+
+.lc-ro-grid .ro:nth-child(2) { animation-delay: 60ms; box-shadow: inset 8px 0 0 var(--lc-lilac), inset 0 -3px 0 var(--lc-surface); }
+.lc-ro-grid .ro:nth-child(3) { animation-delay: 120ms; box-shadow: inset 8px 0 0 var(--lc-peach), inset 0 -3px 0 var(--lc-surface); }
+.lc-ro-grid .ro:nth-child(4) { animation-delay: 180ms; box-shadow: inset 8px 0 0 var(--lc-gold), inset 0 -3px 0 var(--lc-surface); }
+.lc-ro-grid .ro:nth-child(5) { animation-delay: 240ms; box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -3px 0 var(--lc-surface); }
+.lc-ro-grid .ro:nth-child(6) { animation-delay: 300ms; box-shadow: inset 8px 0 0 var(--lc-coral), inset 0 -3px 0 var(--lc-surface); }
+
+.lc-ro-grid dt {
+	color: var(--lc-peach);
+	font-size: 14px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+}
+
+.lc-ro-grid dd {
+	margin: 2px 0 0;
+	color: var(--lc-ink);
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: .01em;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	/* 54 px when there's room; shrinks so ~6 digits fit (the font's digits are ~.38em) */
+	font-size: clamp(24px, calc((100cqi - 32px) / 2.3), 54px);
+}
+
+.lc-ro-grid :is(.last, .size) dd { font-size: clamp(20px, calc((100cqi - 32px) / 3.1), 54px); } /* 2026.299, 36.4 GB */
+
+.lc-ro-grid :is(dt, small) { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.lc-ro-grid dd em { font-style: normal; font-size: .5em; color: var(--lc-lavender); margin-left: 3px; }
+.lc-ro-grid .hours dd { color: var(--lc-gold); }
+
+.lc-ro-grid small {
+	margin-top: 4px;
+	color: var(--lc-lavender);
+	font-size: 14px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.lc-ro-grid .ach-bar { /* segmented completion gauge */
+	position: absolute;
+	left: 20px; right: 12px; bottom: 8px;
+	height: 6px;
+	background: repeating-linear-gradient(90deg, var(--lc-surface) 0 10px, transparent 10px 13px);
+}
+
+.lc-ro-grid .ach-bar u {
+	display: block;
+	height: 100%;
+	width: 0;
+	background: repeating-linear-gradient(90deg, var(--lc-gold) 0 10px, transparent 10px 13px);
+	transition: width .9s cubic-bezier(.2, .8, .2, 1) !important;
+}
+
+.lc-ro-grid .ach small { margin-bottom: 8px; }
+
+/* ----------------------------------------------- command bank (real bar) */
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3fLo166MlaNqP8r8tTyRz { background: transparent !important; box-shadow: none !important; }
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._9EHg918wH6CQCQlD5PWOO { /* Row → vertical bank */
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	gap: var(--lc-slice) !important;
+	padding: 0 !important;
+	height: auto !important;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._1YbtIWcfkQJOysLXQbwzRf { display: none !important; } /* stats: shown big in the readout */
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._2zxzStp5qY5M1evOm8keES { width: 100% !important; height: auto !important; overflow: visible !important; } /* ActionSection */
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3Y87YQY56ZCOqhgcZFaDc5,
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3fLo166MlaNqP8r8tTyRz,
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- { height: auto !important; max-height: none !important; overflow: visible !important; }
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._1FnJ6dPuknQFQ2RTpKTI16 {
+	width: calc(100% - 30px) !important;
+	height: 74px !important;
+	margin: 0 !important;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._1FnJ6dPuknQFQ2RTpKTI16 ._3ydigb6zZAjJ0JCDgHwSYA {
+	height: 74px !important;
+	justify-content: flex-end !important;
+	align-items: flex-end !important;
+	padding: 0 14px 8px !important;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._33cnXIqTRgRr49_FNXIHj6 { font-size: 40px !important; }
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._1EAxK56o5a9Nieu5HYkJ4k { width: 100% !important; margin: 0 !important; } /* RightControls */
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	gap: var(--lc-slice) !important;
+	width: 100% !important;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > * { width: 100% !important; margin: 0 !important; }
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3qDWQGB0rtwM3qpXTb11Q- {
+	width: 100% !important;
+	height: 42px !important;
+	padding: 0 14px 5px !important;
+	border-radius: 0 !important;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > :last-child ._3qDWQGB0rtwM3qpXTb11Q-,
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > ._3qDWQGB0rtwM3qpXTb11Q-:last-child { border-radius: 0 21px 21px 0 !important; }
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3qDWQGB0rtwM3qpXTb11Q-::after { font-size: 18px; }
+
+/* The bank's own stack colors. */
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > :nth-child(1) ._3qDWQGB0rtwM3qpXTb11Q- { background: var(--lc-peach) !important; }
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > :nth-child(2) { --x: 0; }
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > ._3qDWQGB0rtwM3qpXTb11Q-:nth-child(2) { background: var(--lc-lilac) !important; }
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- .lO1IF132jJ1gc9yz2HYvV > ._3qDWQGB0rtwM3qpXTb11Q-:nth-child(3) { background: var(--lc-steel) !important; }
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3qDWQGB0rtwM3qpXTb11Q-:hover { background: var(--lc-gold) !important; }
+
+/* Short window: Steam swaps the command bar for its own header copy (.jnXtv79…) pinned
+ * over the top of the hero, and hides the real bar (_39Rhe…, opacity 0). The header
+ * stays at the top (user: "those buttons should just be at the top"); the hero starts
+ * below it instead of under it, and the empty bar slot goes. */
+._2Nq6ov7A1hGcHXVOXNt_OE:has(> .jnXtv79jL6SXXwlJYPtQz) .NZMJ6g2iVnFsOOp-lDmIP { margin-top: 58px; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._1U7LKpx70kEsz3jJwAFOi-._39RheXihcN6H2k2muQTjkI { display: none !important; }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X:has(> ._1U7LKpx70kEsz3jJwAFOi-._39RheXihcN6H2k2muQTjkI) {
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-areas: "readout" "links" "info" "cols";
+}
+
+/* Hero: a shorter framed viewport so the readout sits above the fold. */
+html.lc-readout-on .NZMJ6g2iVnFsOOp-lDmIP { max-height: 300px; }
+
+@keyframes lc-block-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes lc-bank-grow { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-readout::before, .lc-ro-grid .ro, .lc-ro-state.t-run { animation: none !important; }
+}
+
+/* Round 6. The PLAY button's dropdown segment is Steam's green (or blue on Install):
+ * a slice of black, then the button's own cap colour. Its icon was tiny next to the label. */
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._2q-gZ3XJzlvSGHSF-GvSmi,
+._1FnJ6dPuknQFQ2RTpKTI16 ._2q-gZ3XJzlvSGHSF-GvSmi {
+	background: var(--lc-peach) !important;
+	background-image: none !important;
+	box-shadow: inset 4px 0 0 var(--lc-black) !important;
+}
+
+._1FnJ6dPuknQFQ2RTpKTI16 ._2q-gZ3XJzlvSGHSF-GvSmi:hover { background: var(--lc-ink) !important; }
+._1FnJ6dPuknQFQ2RTpKTI16 ._2q-gZ3XJzlvSGHSF-GvSmi svg * { fill: var(--lc-black) !important; }
+
+._1FnJ6dPuknQFQ2RTpKTI16 ._3ydigb6zZAjJ0JCDgHwSYA > svg {
+	width: 34px !important;
+	height: 34px !important;
+	flex: 0 0 34px;
+}

@@ -1,0 +1,385 @@
+/* LCARSv2 library achievements (the overlay page over a game). One framed
+ * panel: lavender dialog rail with a curved outer corner, gold title, a
+ * segmented completion gauge, joined tabs, and the achievements as a
+ * register (icon plate, uppercase name, prose description, peach date).
+ * Row leads carry the state: gold when unlocked, disabled when locked,
+ * coral for RARE and lilac for classified. The global gauge is the row's
+ * own % bar (width stays inline data). js/achievements.js only tags the
+ * RARE (<5%) and classified rows, which CSS cannot read from text. */
+
+/* Backdrop: the game page goes dark, not blurred. */
+.HruWVPwIDh2FFOOH7OiSs { backdrop-filter: none !important; background: rgba(0, 0, 0, .82) !important; }
+
+/* The panel and its rail. */
+.gioyPMOZttYFcnmgLnsWf ._3FQHgRosfNJYE44Fsd_U6z {
+	background: var(--lc-black) !important;
+	border: solid var(--lc-lavender);
+	border-width: 12px 0 8px 12px;
+	border-radius: 46px 0 0 26px;
+	box-shadow: 0 0 0 4px var(--lc-black), 0 30px 80px rgba(0, 0, 0, .9);
+	animation: lc-panel-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+/* Wider modal: the register reads better with room for the gauge and the date. */
+.gioyPMOZttYFcnmgLnsWf { width: min(1120px, 92%) !important; max-width: none !important; }
+.gioyPMOZttYFcnmgLnsWf ._2FqpD91Xarb7f0uIOuXFOR,
+.gioyPMOZttYFcnmgLnsWf ._3FQHgRosfNJYE44Fsd_U6z { width: 100% !important; }
+
+.gioyPMOZttYFcnmgLnsWf ._2iGYYePQN5QQzHWNLybmd4 { background: transparent !important; }
+.gioyPMOZttYFcnmgLnsWf ._36Dp_CLuZbFCm7KDc9tbCv { background-image: none !important; } /* hero wash behind the header */
+.gioyPMOZttYFcnmgLnsWf ._36Dp_CLuZbFCm7KDc9tbCv * { background-image: none; }
+
+.gioyPMOZttYFcnmgLnsWf ._3wNylaCAUJ8XtRM6mu2C0k { /* title */
+	color: var(--lc-gold) !important;
+	font-size: 38px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._3wNylaCAUJ8XtRM6mu2C0k img { display: none; } /* tiny app icon */
+
+.gioyPMOZttYFcnmgLnsWf ._gDkIgrqhJq-FtbuR9wJi { background: transparent !important; padding: 0 !important; }
+
+.gioyPMOZttYFcnmgLnsWf ._17zZlCuxyWWUil57ZLDOXp { /* "572 of 637 achievements earned", "(90%)" */
+	color: var(--lc-peach) !important;
+	font-size: 16px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._1-nHjRywUoX7Mpyc6JOPaQ { /* header gauge track */
+	height: 12px !important;
+	border-radius: 0 !important;
+	background: repeating-linear-gradient(90deg, var(--lc-surface) 0 14px, transparent 14px 18px) !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._2_0JonK7eKEvh8IoOvq0-B { /* header gauge fill (width is inline) */
+	transform-origin: 0 50%;
+	border-radius: 0 !important;
+	background: repeating-linear-gradient(90deg, var(--lc-gold) 0 14px, transparent 14px 18px) !important;
+	box-shadow: none !important;
+}
+
+/* Tabs: joined lavender segments, current one gold with a black marker. */
+.gioyPMOZttYFcnmgLnsWf ._2JobstxtZVYF3078DblN2M, .gioyPMOZttYFcnmgLnsWf ._19z_50-qWZWxcgXfWNtSWb { background: var(--lc-black) !important; }
+.gioyPMOZttYFcnmgLnsWf ._1CJeU7emnRNSJ8Xk3Leavm { display: flex; gap: var(--lc-slice); }
+
+.gioyPMOZttYFcnmgLnsWf ._3eEbSktrstBdLk0dVpnKVI {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	height: 38px !important;
+	padding: 0 16px 5px !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	margin: 0 !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._3eEbSktrstBdLk0dVpnKVI:first-child { border-radius: 19px 0 0 19px !important; padding-left: 24px !important; }
+.gioyPMOZttYFcnmgLnsWf ._3eEbSktrstBdLk0dVpnKVI:last-child { border-radius: 0 19px 19px 0 !important; padding-right: 24px !important; }
+.gioyPMOZttYFcnmgLnsWf ._3eEbSktrstBdLk0dVpnKVI:hover { background: var(--lc-ink) !important; }
+
+.gioyPMOZttYFcnmgLnsWf ._3eEbSktrstBdLk0dVpnKVI._3Gp1bACHx__POxmy6Gd3kG {
+	background: var(--lc-gold) !important;
+	box-shadow: inset 0 -6px 0 var(--lc-black);
+}
+
+.gioyPMOZttYFcnmgLnsWf ._1nq0ibcuVEbRv0z_wk9pIQ {
+	color: var(--lc-black) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+}
+
+/* Search + compare: flat wells. */
+.gioyPMOZttYFcnmgLnsWf ._1MqIGcIt2RcNHgT09vMWTj .DialogInput_Wrapper,
+.gioyPMOZttYFcnmgLnsWf ._1MqIGcIt2RcNHgT09vMWTj input,
+.gioyPMOZttYFcnmgLnsWf ._1UeO0R_NRSTMbWLI02pecg .DialogDropDown {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+/* List wells: black ground on both tabs (the Steam navy goes). */
+.gioyPMOZttYFcnmgLnsWf ._1UXC2lGcmNTGepRJTwtuH0,
+.gioyPMOZttYFcnmgLnsWf ._2HS5QwHZM9rkt-lx6YWlBF { background: var(--lc-black) !important; }
+
+/* Section titles ("Hidden achievements") interrupt a peach rail. */
+.gioyPMOZttYFcnmgLnsWf .IM0uEBPVo6MDEDQLGzeZr {
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 30px !important;
+	margin: 18px 0 10px !important;
+	padding-left: 50px !important;
+	color: var(--lc-peach) !important;
+	font-size: 20px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+	background: linear-gradient(90deg, var(--lc-peach) 0 40px, transparent 40px) 0 50% / 100% 14px no-repeat !important;
+}
+
+/* ------------------------------------------------ shared row parts */
+
+.gioyPMOZttYFcnmgLnsWf ._17dhGq-FsL8xZBes7dOOlN, .gioyPMOZttYFcnmgLnsWf ._3LS_NZyqY77COuRN-Z3TVB { /* name */
+	color: var(--lc-ink) !important;
+	font-size: 19px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._3LS_NZyqY77COuRN-Z3TVB { font-size: 18px !important; }
+
+.gioyPMOZttYFcnmgLnsWf ._1WP2YDDWrL5LPHoS04AKx8, .gioyPMOZttYFcnmgLnsWf ._231lloeMz5EvNkHHGXN6RJ { /* description: prose, readable */
+	color: var(--lc-ink) !important;
+	opacity: .82;
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+	letter-spacing: 0 !important;
+	text-transform: none;
+}
+
+.gioyPMOZttYFcnmgLnsWf .VQbek1VTyOX04qHmTsssW { /* "% of all players" (My tab) */
+	color: var(--lc-lavender) !important;
+	font-size: 13px !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._2fFW2raBfeDt3WOPB-aQAq { /* unlock date */
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase;
+	text-align: right;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._1fEbX-PfpZ2FhkhttWcm-V, .gioyPMOZttYFcnmgLnsWf ._2V2sHETNfa62yMoDwSF3_t { border-radius: 0 !important; }
+.gioyPMOZttYFcnmgLnsWf ._1fEbX-PfpZ2FhkhttWcm-V { box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-surface); }
+
+/* RARE and classified chips sit before the name or the % (JS tags the rows). */
+.lc-classified ._3LS_NZyqY77COuRN-Z3TVB::before,
+.lc-classified ._17dhGq-FsL8xZBes7dOOlN::before {
+	content: 'Classified';
+	display: inline-block;
+	margin-right: 10px;
+	padding: 0 8px;
+	background: var(--lc-lilac);
+	color: var(--lc-black);
+	font-size: 13px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+/* ------------------------------------------------ personal rows */
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-steel), inset 0 -2px 0 var(--lc-surface) !important;
+	margin-bottom: 4px !important;
+	position: relative;
+}
+
+.gioyPMOZttYFcnmgLnsWf .cvw8DHMUBKuZs5DeLJOQ2 { padding-left: 20px !important; }
+
+/* Unlocked: gold lead (the date is the proof). */
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:has(._2fFW2raBfeDt3WOPB-aQAq)) {
+	box-shadow: inset 8px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+/* Locked: disabled lead, name and icon dimmed; the description stays readable. */
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:not(:has(._2fFW2raBfeDt3WOPB-aQAq))) {
+	box-shadow: inset 8px 0 0 var(--lc-disabled), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:not(:has(._2fFW2raBfeDt3WOPB-aQAq))) ._17dhGq-FsL8xZBes7dOOlN { color: var(--lc-disabled) !important; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:not(:has(._2fFW2raBfeDt3WOPB-aQAq))) img._2V2sHETNfa62yMoDwSF3_t { filter: grayscale(1) brightness(.6); }
+
+/* Hidden placeholder: a coral "classified" block, named in the chip. */
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:has(._1ABm6sfuqiZZDSL9z8mW1a)) {
+	box-shadow: inset 8px 0 0 var(--lc-coral), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._1ABm6sfuqiZZDSL9z8mW1a { background: var(--lc-coral); color: var(--lc-black); }
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:where(:has(._1ABm6sfuqiZZDSL9z8mW1a)) ._17dhGq-FsL8xZBes7dOOlN::before {
+	content: 'Classified';
+	display: inline-block;
+	margin-right: 10px;
+	padding: 0 8px;
+	background: var(--lc-coral);
+	color: var(--lc-black);
+	font-size: 13px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:hover {
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -3px 0 var(--lc-gold) !important;
+	background: var(--lc-surface) !important;
+}
+
+/* ------------------------------------------------ global rows */
+
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-steel), inset 0 -2px 0 var(--lc-surface) !important;
+	position: relative;
+}
+
+/* Owned: the check is gold; not owned: an empty hollow slot. */
+.gioyPMOZttYFcnmgLnsWf ._1vd1pZ7fwu6SLn898cXkOs { color: var(--lc-gold); }
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:where(:not(:has(._1vd1pZ7fwu6SLn898cXkOs svg))) ._1vd1pZ7fwu6SLn898cXkOs {
+	box-shadow: inset 0 0 0 2px var(--lc-disabled);
+}
+
+/* The global % bar: a segmented gold gauge along the bottom. Its inline
+ * width is the data; only the box and the paint change. */
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO .UWkKthLfz_5MM3NdASE2W::before { /* unfilled track */
+	content: '';
+	position: absolute;
+	left: 0; right: 0; bottom: 0;
+	height: 8px;
+	background: repeating-linear-gradient(90deg, var(--lc-surface) 0 14px, transparent 14px 18px);
+}
+
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO ._2lgHVJbZwxb10Md7bZ6USU {
+	top: auto !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	height: 8px !important;
+	transform-origin: 0 50%; /* js/achievements.js scales the fill from its left edge */
+	background: repeating-linear-gradient(90deg, var(--lc-gold) 0 14px, var(--lc-black) 14px 18px) !important;
+}
+
+/* The % as a black end block with gold figures. */
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO ._17WmAft0lOwrau_jKP2_JW {
+	position: relative;
+	z-index: 1;
+	margin-left: 12px;
+	padding: 0 8px 3px 14px;
+	background: var(--lc-black);
+	box-shadow: inset 0 -3px 0 var(--lc-gold);
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font);
+	font-size: 18px !important;
+	font-weight: 600;
+	letter-spacing: .06em;
+	white-space: nowrap;
+}
+
+/* Classified (hidden) rows: lilac lead. Declared before RARE so a rare hidden row keeps its coral. */
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO.lc-classified {
+	box-shadow: inset 8px 0 0 var(--lc-lilac), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+/* RARE (<5%): coral lead, coral figures, a chip before the %. */
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO.lc-rare {
+	box-shadow: inset 8px 0 0 var(--lc-coral), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO.lc-rare ._17WmAft0lOwrau_jKP2_JW {
+	color: var(--lc-coral) !important;
+	box-shadow: inset 0 -3px 0 var(--lc-coral);
+}
+
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO.lc-rare ._17WmAft0lOwrau_jKP2_JW::before {
+	content: 'Rare';
+	display: inline-block;
+	margin-right: 8px;
+	padding: 0 8px;
+	background: var(--lc-coral);
+	color: var(--lc-black);
+	font-size: 14px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:hover {
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -3px 0 var(--lc-gold) !important;
+	background: var(--lc-surface) !important;
+}
+
+/* Compare and search: the avatar is a square frame, the label a peach block. */
+.gioyPMOZttYFcnmgLnsWf ._1AQz-G1NsOauVRdAiPszfd { background: var(--lc-surface); }
+.gioyPMOZttYFcnmgLnsWf .avatarHolder { border-radius: 0 !important; box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-lavender); }
+.gioyPMOZttYFcnmgLnsWf .avatarHolder img { border-radius: 0 !important; object-fit: cover; }
+
+.gioyPMOZttYFcnmgLnsWf ._2HS5QwHZM9rkt-lx6YWlBF { gap: var(--lc-slice); }
+.gioyPMOZttYFcnmgLnsWf ._2HS5QwHZM9rkt-lx6YWlBF > div:has(> .OAV6QqJuXaBPRBW9RaPA6) {
+	display: flex;
+	align-items: center;
+	padding: 0 12px;
+	background: var(--lc-peach);
+}
+
+.gioyPMOZttYFcnmgLnsWf .OAV6QqJuXaBPRBW9RaPA6 { /* "% of all players" */
+	color: var(--lc-black) !important;
+	font-family: var(--lc-font);
+	font-size: 14px !important;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+/* Close: the rail's coral end-cap. */
+.iYW5hWQwg14WYT4PV3xe_ {
+	background: var(--lc-coral) !important;
+	border-radius: 0 20px 20px 0 !important;
+	box-shadow: none !important;
+	opacity: 1 !important;
+}
+
+.iYW5hWQwg14WYT4PV3xe_:hover { background: var(--lc-gold) !important; }
+.iYW5hWQwg14WYT4PV3xe_ svg, .iYW5hWQwg14WYT4PV3xe_ svg * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+
+/* The inactive tab panel is opacity 0 but still hit-testable; it sat over the
+ * visible list and swallowed hover on the global rows. */
+.gioyPMOZttYFcnmgLnsWf ._1V17js4wIs-3lA9XwBgMuV { pointer-events: none; }
+
+/* ------------------------------------------------ motion
+ * Rows stagger in (30 ms steps, the first 12 only; the list is virtualised
+ * so later rows appear without ceremony). Gauges fill in steps on first show. */
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(-n+12),
+.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(-n+12) { animation: lc-row-in .36s ease-out both; }
+
+
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(2), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(2) { animation-delay: 30ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(3), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(3) { animation-delay: 60ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(4), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(4) { animation-delay: 90ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(5), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(5) { animation-delay: 120ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(6), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(6) { animation-delay: 150ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(7), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(7) { animation-delay: 180ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(8), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(8) { animation-delay: 210ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(9), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(9) { animation-delay: 240ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(10), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(10) { animation-delay: 270ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(11), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(11) { animation-delay: 300ms; }
+.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M:nth-child(12), .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO:nth-child(12) { animation-delay: 330ms; }
+
+@keyframes lc-panel-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+@keyframes lc-row-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	.gioyPMOZttYFcnmgLnsWf ._3FQHgRosfNJYE44Fsd_U6z, .gioyPMOZttYFcnmgLnsWf ._2_0JonK7eKEvh8IoOvq0-B,
+	.gioyPMOZttYFcnmgLnsWf ._2Kmn7fJOkLT4KyWl467a9M, .gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO,
+	.gioyPMOZttYFcnmgLnsWf ._316Uo4SBrQ_beBdSYn2HNO ._2lgHVJbZwxb10Md7bZ6USU { animation: none !important; }
+}
+
+/* Header art (note 59): the blurred copy goes; the sharp one is a faint wash, as on profiles,
+ * so the gold title stays readable on a bright picture (Fallout 4's sky hid it). */
+._3Fjw7Sm_QUgOr8r3khWTSm { display: none !important; }
+._1R9r2OBCxAmtuUVrgBEUBw { opacity: .18 !important; filter: grayscale(.5); }

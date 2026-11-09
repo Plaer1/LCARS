@@ -1,0 +1,17 @@
+/* LCARSv2 palette preset: 29th century.
+ * Source hexes: trekcolors R package (leonawicz), lcars palettes; slot
+ * mapping and contrast lifts are LCARSv2's (black text on fills stays
+ * legible). Only slots change; geometry and fonts stay the design doc's. */
+
+/* :root:root: condition sheets load before library.css, whose tokens.css would win a tie. */
+:root:root {
+	--lc-palette-jingle: "local:2"; /* the cover of this era (js/boot.js) */
+	--lc-gold: #72e2e4;
+	--lc-peach: #bc956e;
+	--lc-lavender: #24bee2;
+	--lc-coral: #d19fa2;
+	--lc-lilac: #5fc9a0;
+	--lc-steel: #3a74f0;
+	--lc-surface: #0c1a1e;
+	--lc-disabled: #8d627e;
+}

@@ -1,0 +1,41 @@
+/* LCARSv2 S24: LCARS scrollbars with real gutters.
+ * One set of rules for the main window, Settings, popup menus, store pages and
+ * the community hub. The track is a black slot; the thumb is a rounded lavender
+ * bar (gold on hover, peach while dragged).
+ * Only ::-webkit-scrollbar pseudo-elements: scrollbar-color and scrollbar-width
+ * would switch these off in Chrome 121+. Selectors start with `html` so they
+ * outrank the older unscoped blocks until the coordinator deletes those. */
+
+/* Bars (round 6, user: the segmented elevator looked gross): a plain black
+ * slot with one solid rounded LCARS bar. No rail line, no end caps, no shadow. */
+html ::-webkit-scrollbar { width: 10px !important; height: 10px !important; background: var(--lc-black) !important; }
+html ::-webkit-scrollbar-corner, html ::-webkit-scrollbar-track { background: var(--lc-black) !important; box-shadow: none !important; border: 0 !important; }
+html ::-webkit-scrollbar-button { display: none !important; }
+html ::-webkit-scrollbar-thumb {
+	background: var(--lc-lavender) !important;
+	border: 2px solid var(--lc-black) !important;
+	border-radius: 5px !important;
+	box-shadow: none !important;
+	min-height: 40px;
+}
+html ::-webkit-scrollbar-thumb:hover { background: var(--lc-gold) !important; }
+html ::-webkit-scrollbar-thumb:active { background: var(--lc-peach) !important; }
+
+/* Popup menus: the same, thinner. */
+html.MillenniumWindow_ContextMenu ::-webkit-scrollbar { width: 6px !important; height: 6px !important; }
+html.MillenniumWindow_ContextMenu ::-webkit-scrollbar-thumb { border-width: 1px !important; border-radius: 3px !important; }
+
+/* Steam darkens the top of a scrolled page (StickyHeaderShadow); LCARS has no shadows. */
+._2_86QNCjVvJTL3Qe6Xztx_ { display: none !important; }
+
+/* Gutters: the bar always keeps its place and content keeps 6 px of black off it. */
+.lc-reg-scroll { scrollbar-gutter: stable; padding-right: 6px; }
+._3lDczhulqraStjCitLYJ1K._2l416KfEtI4CL0mCUEmOBw { scrollbar-gutter: stable; padding-right: 6px; }
+/* Store and community pages scroll the document; the Steam shell does not, so scope to the browser window. */
+html.MillenniumWindow_SteamBrowser { scrollbar-gutter: stable; }
+html.MillenniumWindow_SteamBrowser body { padding-right: 6px; }
+
+/* LCARS has no shadows (user, round 6). The theme never uses text-shadow, so it
+ * is off everywhere this shared sheet is imported (library, settings, menus,
+ * store, community). Blurred box shadows: css/no-shadows.css (library only). */
+html *, html *::before, html *::after { text-shadow: none !important; }

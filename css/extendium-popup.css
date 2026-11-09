@@ -1,0 +1,62 @@
+/* LCARSv2 S09 Extendium popup: the useBrowserViewContextMenu window that the
+ * SUBSPACE segment and the puzzle button open. css/popup-menus.css imports this
+ * file; every rule is scoped to html.extendium so the other menus are untouched.
+ * The bracket is steel; rows are a black register; a pinned extension shows a
+ * gold lamp; "Manage extensions" is a gold cap. */
+
+/* Extendium puts .extendium on every window, so this must not outrank the per-menu
+ * colours in css/popup-menus.css: :where() gives it no specificity. */
+:where(html.MillenniumWindow_ContextMenu.extendium) { --lc-ext: var(--lc-steel); }
+
+html.extendium .DialogHeader {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 20px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase;
+	line-height: 1 !important;
+}
+
+/* Extension rows: black register, steel lead on hover. */
+html.extendium .eKmEXJCm_lgme24Fp_HWt {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+html.extendium .eKmEXJCm_lgme24Fp_HWt:hover { box-shadow: inset 8px 0 0 var(--lc-steel), inset 0 -2px 0 var(--lc-surface) !important; }
+
+html.extendium ._3jMlJm4PQCA8SfNlUR99Fo {
+	font-family: var(--lc-font) !important;
+	font-size: 16px !important;
+	letter-spacing: .07em;
+	text-transform: uppercase;
+	color: var(--lc-ink) !important;
+}
+
+/* Pin and settings: small square caps. Pinned (its button now reads Unpin) = gold lamp. */
+html.extendium .PSZtxj2h3MlyYv-c9dgke button.DialogButton {
+	background: var(--lc-surface) !important;
+	color: var(--lc-lavender) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	min-width: 26px !important;
+	height: 26px !important;
+	padding: 0 6px !important;
+}
+
+html.extendium .PSZtxj2h3MlyYv-c9dgke button.DialogButton:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+html.extendium .PSZtxj2h3MlyYv-c9dgke button[title="Unpin"] { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+html.extendium .PSZtxj2h3MlyYv-c9dgke button[title="Unpin"]:hover { background: var(--lc-ink) !important; }
+
+/* Manage extensions: the gold cap (its wrapper is the one with a pointer cursor). */
+html.extendium [style*="cursor: pointer"] > .eKmEXJCm_lgme24Fp_HWt {
+	background: var(--lc-gold) !important;
+	box-shadow: none !important;
+}
+
+html.extendium [style*="cursor: pointer"] > .eKmEXJCm_lgme24Fp_HWt * { color: var(--lc-black) !important; fill: var(--lc-black) !important; }
+html.extendium [style*="cursor: pointer"]:hover > .eKmEXJCm_lgme24Fp_HWt { background: var(--lc-ink) !important; }

@@ -1,0 +1,373 @@
+/* LCARSv2 downloads page (/library/downloads, S27). Scoped to Steam's
+ * DownloadsPage root so nothing leaks into the library or store. Flat caps
+ * and line art only: no shadows, every colour a --lc-* token. Recon:
+ * robonotes/lcarsv2-round6/recon-downloads.md */
+
+@keyframes lc-dl-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* The page's parent panel still carries Steam's grey-blue border. */
+._2Nq6ov7A1hGcHXVOXNt_OE:has(> ._1bq4x9pa4-9RLY-dXWUZTp) { border-color: var(--lc-surface); }
+
+@keyframes lc-dl-ping {
+	0% { filter: brightness(1.55); }
+	34% { filter: brightness(1); }
+	67% { filter: brightness(1.3); }
+	100% { filter: brightness(1); }
+}
+
+/* ------------------------------------------------ page and header rail */
+
+/* Header rail copies .lc-rail-host (library-home.css): pill cap, black
+ * interruption carrying the title, rail runs on to the right edge. */
+._1bq4x9pa4-9RLY-dXWUZTp {
+	position: relative;
+	box-sizing: border-box;
+	padding-top: 44px;
+	background-color: var(--lc-black);
+	background-image: linear-gradient(var(--lc-lavender), var(--lc-lavender));
+	background-repeat: no-repeat;
+	background-position: 52px 13px;
+	background-size: calc(100% - 60px) 18px;
+	color: var(--lc-ink);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp::before {
+	content: '';
+	position: absolute;
+	left: 8px;
+	top: 13px;
+	width: 36px;
+	height: 18px;
+	border-radius: 9px 0 0 9px;
+	background: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp::after {
+	content: 'Downloads';
+	position: absolute;
+	left: 52px;
+	top: 0;
+	height: 44px;
+	padding: 0 14px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-family: var(--lc-font);
+	font-size: 32px;
+	line-height: 44px;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+/* ------------------------------------------- now-downloading well */
+
+._1bq4x9pa4-9RLY-dXWUZTp ._373v1eWNyaPKhgnea9FZSt {
+	position: relative;
+	background: var(--lc-black);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._373v1eWNyaPKhgnea9FZSt::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 12px;
+	background: var(--lc-lavender);
+	border-radius: 0 10px 10px 0;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._3Mbhnlk1Go2j8yCdjthzc7 { background: var(--lc-black) !important; } /* Steam's navy hero well */
+
+._1bq4x9pa4-9RLY-dXWUZTp ._3mZ2rKd2RECK4q4ufmsDYX {
+	background-image: none;
+	background-color: var(--lc-black);
+	border-radius: 0;
+}
+
+/* Graph lines: lavender network, peach disk. No Steam blue. */
+._1bq4x9pa4-9RLY-dXWUZTp ._1BxZDLT8KveuJzn-1q4NTP path {
+	fill: none;
+	stroke: var(--lc-lavender);
+	stroke-width: 2px;
+	vector-effect: non-scaling-stroke;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1BxZDLT8KveuJzn-1q4NTP ._2-AUyaXfJHWP85tZVENytR path {
+	stroke: var(--lc-peach);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._2-AUyaXfJHWP85tZVENytR {
+	border-bottom: 2px solid var(--lc-surface);
+}
+
+/* Readouts: each stat gets a coloured bar, numbers large and tabular. */
+/* Fixed heights clipped the figures; let the stat rows size to their text. */
+._1bq4x9pa4-9RLY-dXWUZTp ._2XqX2Zbz7zS2_xq8AksGCu,
+._1bq4x9pa4-9RLY-dXWUZTp ._vrwj4IQ-vqMravrbJb64 {
+	height: auto;
+	overflow: visible;
+}
+/* In a narrow window the readouts wrap instead of running off the right edge. */
+._1bq4x9pa4-9RLY-dXWUZTp ._vrwj4IQ-vqMravrbJb64 { flex-wrap: wrap; row-gap: 2px; } /* three rows fit the 200 px graph box */
+
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ {
+	width: auto;
+	height: auto;
+	overflow: visible;
+	min-width: 150px;
+	margin-right: 22px;
+	padding-left: 12px;
+	border-left: 8px solid var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ:nth-child(2) { border-left-color: var(--lc-peach); }
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ:nth-child(3) { border-left-color: var(--lc-gold); }
+
+/* Legend icons follow their bar colour (cleanup-library.css paints them peach). */
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ:nth-child(1) ._33jqEbo2sBXJZ08w9BkdEM svg { color: var(--lc-lavender) !important; }
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ:nth-child(2) ._33jqEbo2sBXJZ08w9BkdEM svg { color: var(--lc-peach) !important; }
+._1bq4x9pa4-9RLY-dXWUZTp ._26UBk-6weCeV-VClfXNWJZ:nth-child(3) ._33jqEbo2sBXJZ08w9BkdEM svg { color: var(--lc-gold) !important; }
+
+._1bq4x9pa4-9RLY-dXWUZTp ._5TdA4FjU9OYsTIaHzloD { height: auto; }
+
+._1bq4x9pa4-9RLY-dXWUZTp .Ayu--dDVVaKmP2gNYPAQ0 {
+	height: auto;
+	font-family: var(--lc-font);
+	font-size: 13px;
+	line-height: 16px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .Ayu--dDVVaKmP2gNYPAQ0 svg path { fill: currentColor; }
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1iulCOMUxV6sBbqoKo_yXw {
+	font-size: 13px;
+	color: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._5TdA4FjU9OYsTIaHzloD {
+	padding-left: 0;
+	color: var(--lc-ink);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .eXF8xL2LUtzeWMbK-FSRz {
+	font-family: var(--lc-font);
+	font-size: 34px;
+	line-height: 38px !important; /* Steam pins 18px, so the digits rode up over the label */
+	height: auto !important;
+	color: var(--lc-ink);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* ------------------------------------------------ section headers */
+
+/* Section rail as in library-home.css; the black title box interrupts it. */
+._1bq4x9pa4-9RLY-dXWUZTp .qq2xItSXjpCsNrcxyPJtO {
+	position: relative;
+	z-index: 1;
+	min-height: 34px;
+	margin-bottom: 10px;
+	padding-left: 52px;
+	padding-right: 40px;
+	animation: lc-dl-wipe .5s ease-out backwards;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .qq2xItSXjpCsNrcxyPJtO::before {
+	content: '';
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	width: 36px;
+	height: 18px;
+	transform: translateY(-50%);
+	border-radius: 9px 0 0 9px;
+	background: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .qq2xItSXjpCsNrcxyPJtO::after {
+	content: '';
+	position: absolute;
+	left: 52px;
+	right: 8px;
+	top: 50%;
+	height: 18px;
+	transform: translateY(-50%);
+	background: var(--lc-lavender);
+	z-index: -1;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .ROxNrcM6LrA4aUyH8IpFp {
+	background: var(--lc-black);
+	padding-right: 12px;
+	color: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .TK9wvF55dyA6RcOclozC8 {
+	font-family: var(--lc-font);
+	font-size: 24px;
+	line-height: 34px;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	color: var(--lc-gold);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .qrwf3iWWPa-yXVD0zOlHM {
+	background: var(--lc-black);
+	padding-left: 12px;
+	font-family: var(--lc-font);
+	font-size: 13px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--lc-lavender);
+}
+
+/* Clear All is also a DialogButton; button. raises it above the generic cap. */
+._1bq4x9pa4-9RLY-dXWUZTp button._1GdR5LbENV7LOGROJBxohI {
+	background: var(--lc-coral) !important;
+	border-color: var(--lc-coral) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 14px 14px 0;
+	font-family: var(--lc-font);
+	font-size: 18px;
+	letter-spacing: .06em;
+	text-transform: uppercase !important;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp button._1GdR5LbENV7LOGROJBxohI:hover {
+	background: var(--lc-gold) !important;
+	border-color: var(--lc-gold) !important;
+	animation: lc-dl-ping .28s steps(1, end) 1;
+}
+
+/* Empty queue line: prose, not caps. */
+._1bq4x9pa4-9RLY-dXWUZTp ._1nCT-M7nZcoNzedbVzbXha {
+	font-family: var(--lc-prose);
+	font-size: 15px;
+	line-height: 1.45;
+	color: var(--lc-lavender);
+}
+
+/* --------------------------------------------------- queue rows */
+
+/* Register-style record: black, 2 px surface rule underneath, lavender lead. */
+._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo {
+	border-bottom: 2px solid var(--lc-surface);
+	animation: lc-dl-wipe .42s ease-out backwards;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo:nth-child(2) { animation-delay: 60ms; }
+._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo:nth-child(3) { animation-delay: 120ms; }
+._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo:nth-child(4) { animation-delay: 180ms; }
+._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo:nth-child(5) { animation-delay: 240ms; }
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1VNuYHM6BPBOJspC6zPf5r {
+	background: var(--lc-black);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1VNuYHM6BPBOJspC6zPf5r::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 8px;
+	background: var(--lc-lavender);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1VNuYHM6BPBOJspC6zPf5r:hover { background: var(--lc-surface); }
+._1bq4x9pa4-9RLY-dXWUZTp ._1VNuYHM6BPBOJspC6zPf5r:hover::before { background: var(--lc-gold); }
+._1bq4x9pa4-9RLY-dXWUZTp ._1VNuYHM6BPBOJspC6zPf5r:hover ._35eOQ6EeVHNV5HGBrJ1-Vu { color: var(--lc-gold); }
+
+._1bq4x9pa4-9RLY-dXWUZTp ._2E7G8grj_-tgxXbTXs1t2E { background-color: var(--lc-surface); }
+._1bq4x9pa4-9RLY-dXWUZTp .WYgDg9NyCcMIVuMyZ_NBC { border-radius: 0; }
+
+._1bq4x9pa4-9RLY-dXWUZTp ._35eOQ6EeVHNV5HGBrJ1-Vu {
+	font-family: var(--lc-font);
+	font-size: 22px;
+	line-height: 26px;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	color: var(--lc-ink);
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .Bku7JSkuQ7NyWi6M4w1sl,
+._1bq4x9pa4-9RLY-dXWUZTp .sv3ZHPWbrD7yjwx5Mi3u5 {
+	font-family: var(--lc-font);
+	font-size: 13px;
+	line-height: 18px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--lc-lavender);
+	font-variant-numeric: tabular-nums;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1SyggnJY6qbRSmbZpkK3-H {
+	font-family: var(--lc-font);
+	font-size: 15px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--lc-peach);
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ----------------------------------------------------- buttons */
+
+/* Flat peach caps, gold on hover. Steam (settings.css) and cleanup-library.css
+ * paint these with !important, so the rules sit under the page root and
+ * carry !important too. */
+._1bq4x9pa4-9RLY-dXWUZTp .DialogButton {
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	font-family: var(--lc-font);
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp .DialogButton:hover {
+	background: var(--lc-gold) !important;
+	animation: lc-dl-ping .28s steps(1, end) 1;
+}
+
+/* Remove (x): coral. Declared after the generic cap so it wins. */
+._1bq4x9pa4-9RLY-dXWUZTp ._2xR-V97DWI7svSjgiCb3N- { background: var(--lc-coral) !important; }
+._1bq4x9pa4-9RLY-dXWUZTp ._2xR-V97DWI7svSjgiCb3N-:hover { background: var(--lc-gold) !important; }
+
+/* Play: peach cap; library-game.css paints this container ink on hover with !important. */
+._1bq4x9pa4-9RLY-dXWUZTp ._1FnJ6dPuknQFQ2RTpKTI16 {
+	background: var(--lc-peach) !important;
+	border-radius: 0 20px 20px 0;
+}
+
+._1bq4x9pa4-9RLY-dXWUZTp ._1FnJ6dPuknQFQ2RTpKTI16:hover {
+	background: var(--lc-gold) !important;
+	animation: lc-dl-ping .28s steps(1, end) 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	._1bq4x9pa4-9RLY-dXWUZTp ._21P7c4MWmsU2QSZeL-uyZo,
+	._1bq4x9pa4-9RLY-dXWUZTp .qq2xItSXjpCsNrcxyPJtO,
+	._1bq4x9pa4-9RLY-dXWUZTp .DialogButton:hover,
+	._1bq4x9pa4-9RLY-dXWUZTp ._1GdR5LbENV7LOGROJBxohI:hover,
+	._1bq4x9pa4-9RLY-dXWUZTp ._1FnJ6dPuknQFQ2RTpKTI16:hover { animation: none; }
+}
+
+/* "Auto-updates enabled": a lavender LCARS chip, not Steam's blue link chip. */
+._1bq4x9pa4-9RLY-dXWUZTp ._117rQTHH1RIewY7sSlvg3Z {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 8px 8px 0;
+	padding: 1px 10px !important;
+	font-family: var(--lc-font);
+	font-size: 13px !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+._1bq4x9pa4-9RLY-dXWUZTp ._117rQTHH1RIewY7sSlvg3Z:hover { background: var(--lc-gold) !important; }

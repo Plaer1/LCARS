@@ -1,0 +1,133 @@
+/* LCARSv2 S05 register motion (js/ops-motion.js). The choreography runs on
+ * element.animate; these rules hold only the static states it needs. */
+
+/* The width FLIP replaces ops.css's lc-dock entry, which would clip the register. */
+.lc-ops.lc-mo-dock { animation: none !important; }
+
+/* Peach leading edge that rides the game card's reveal (created and removed by the script). */
+.lc-mo-lead {
+	position: fixed;
+	z-index: 30;
+	width: 6px;
+	pointer-events: none;
+	background: var(--lc-peach);
+	border-radius: 3px;
+}
+
+/* Open-row marker, a gold bar that steps from one game row to the next. */
+.lc-reg-scroll > .lc-mo-marker {
+	position: absolute;
+	left: 0;
+	width: 6px;
+	height: 34px;
+	background: var(--lc-gold);
+	pointer-events: none;
+	z-index: 2;
+}
+
+/* Hamburger: a peach cap beside the gold back command. */
+.lc-mo-menu {
+	flex: 0 0 52px;
+	width: 52px;
+	height: 44px;
+	padding: 0 0 4px;
+	background: var(--lc-peach);
+	color: var(--lc-black);
+	font-size: 26px;
+	line-height: 1;
+	border-radius: 0 22px 22px 0;
+}
+
+.lc-mo-menu:hover, .lc-mo-menu[aria-expanded="true"] { background: var(--lc-gold); }
+.lc-mo-menu:focus-visible { outline: 2px solid var(--lc-gold); outline-offset: 2px; }
+
+/* Flyout: the dialog bracket used by the collection popover. */
+.lc-mo-fly {
+	position: fixed;
+	z-index: 70;
+	width: 260px;
+	max-height: 60vh;
+	overflow-y: auto;
+	background: var(--lc-black);
+	border: solid var(--lc-peach);
+	border-width: 0 0 6px 10px;
+	border-radius: 0 0 0 20px;
+	padding: 4px 0 6px;
+	box-shadow: 0 16px 40px rgba(0, 0, 0, .8);
+}
+
+.lc-mo-fly:focus { outline: none; }
+
+.lc-mo-h {
+	padding: 6px 12px 2px;
+	color: var(--lc-peach);
+	font-family: var(--lc-font);
+	font-size: 13px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.lc-mo-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 7px 12px;
+	background: var(--lc-black);
+	color: var(--lc-ink);
+	font-size: 16px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	text-align: left;
+	box-shadow: inset 0 -1px 0 var(--lc-surface);
+}
+
+.lc-mo-item:hover, .lc-mo-item:focus-visible { background: var(--lc-gold); color: var(--lc-black); outline: none; }
+
+.lc-mo-lamp {
+	flex: 0 0 12px;
+	width: 12px;
+	height: 12px;
+	border-radius: 0 6px 6px 0;
+	background: var(--lc-surface);
+}
+
+.lc-mo-lamp.on { background: var(--lc-peach); }
+.lc-mo-item:hover .lc-mo-lamp.on, .lc-mo-item:focus-visible .lc-mo-lamp.on { background: var(--lc-black); }
+
+@media (prefers-reduced-motion: reduce) {
+	.lc-mo-lead, .lc-reg-scroll > .lc-mo-marker { display: none; }
+}
+
+/* Game card held off-screen until Steam has rendered it (ops-motion.js swipes it in). */
+html.lc-card-hold ._3xRRJfD2xy95i9NhJxLTp0 > ._3BFcmjAaMyP6GTPwc0VyWi { clip-path: inset(0 0 0 100%); }
+
+/* While the game page (or shelves) slides, its black wells go transparent so it
+ * moves as content, not as a slab (user, 2026-10-30). */
+html.lc-card-sliding ._3xRRJfD2xy95i9NhJxLTp0 > ._3BFcmjAaMyP6GTPwc0VyWi,
+html.lc-card-sliding ._3xRRJfD2xy95i9NhJxLTp0 > ._3BFcmjAaMyP6GTPwc0VyWi :is(._2Dd4T78PcCTUVgOtDGFY5j, ._3fLo166MlaNqP8r8tTyRz, ._3VQUewWB8g6Z5qB4C7dGFr, ._3lDczhulqraStjCitLYJ1K) {
+	background: transparent !important;
+}
+
+/* While a store or community page loads (~2 s), Steam has already hidden the
+ * library (inline display:none); keep it on screen under the web view until the
+ * page slides in over it (js/ops-motion.js webSlide). */
+html.lc-web-wait .RGNMWtyj73_-WdhflrmuY {
+	display: flex !important;
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+}
+
+/* Web page curtain (js/ops-motion.js webSlide): the page's own frame rails
+ * (css/web-frame.css markup), at the web view's bounds, slide in over the
+ * library while the page loads. No loader: nothing animates while it waits. The transform keeps
+ * the rails' position:fixed relative to the curtain. */
+.lc-web-curtain {
+	position: fixed;
+	z-index: 80;
+	background: var(--lc-black);
+	transform: translateZ(0);
+	pointer-events: none;
+}
+

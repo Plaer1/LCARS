@@ -1,0 +1,99 @@
+/* LCARSv2 library-side leftovers (slice S21-A): Steam-coloured bits the per-page slices did not cover.
+ * Imported last by library.css, so equal-specificity rules here win. Every value is a palette token. */
+
+/* Library home: "New to library" badge (was Steam #1a9fff). */
+.N8aJrSpxQ6II4CY_aFdYI {
+	background: var(--lc-lavender);
+	color: var(--lc-black);
+	border-color: var(--lc-lavender);
+}
+
+/* Update / "already up to date" toast (was Steam blue fill, grey text). */
+._2iJsgdTIX9Tj23rWnB7Q-c {
+	background: var(--lc-surface);
+	color: var(--lc-ink);
+	border-color: var(--lc-lavender);
+}
+
+/* Carousel arrows (was Steam grey tile). */
+.SVGIcon_Button.SVGIcon_Arrow {
+	background: var(--lc-surface);
+	border-color: var(--lc-lavender);
+	color: var(--lc-lavender);
+}
+.SVGIcon_Button.SVGIcon_Arrow:hover {
+	background: var(--lc-gold);
+	border-color: var(--lc-gold);
+	color: var(--lc-black);
+}
+
+/* Avatar border (was Steam #383c43). */
+._3h-QRJGxnVOIExtHD1R0f2.avatar {
+	border-color: var(--lc-lavender);
+}
+
+/* Library filter panel: surface, lavender rail, ink text. */
+.Woh0kBQCmatzC1daBX9i6 {
+	background: var(--lc-surface) !important;
+	border-color: var(--lc-lavender);
+	color: var(--lc-ink);
+}
+.Woh0kBQCmatzC1daBX9i6 .DialogDropDown {
+	background: var(--lc-black);
+	color: var(--lc-ink);
+	border-color: var(--lc-lavender);
+}
+.Woh0kBQCmatzC1daBX9i6 .DialogDropDown:hover {
+	background: var(--lc-gold);
+	color: var(--lc-black);
+	border-color: var(--lc-gold);
+}
+.Woh0kBQCmatzC1daBX9i6 .DialogDropDown_CurrentDisplay,
+.Woh0kBQCmatzC1daBX9i6 .DialogDropDown_Arrow {
+	color: var(--lc-ink);
+}
+
+/* "Save as Dynamic Collection" primary (was Steam #4b6ea3). */
+._1bqGAcZx1C71VYj14hz0po {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-color: var(--lc-lavender) !important;
+}
+._1bqGAcZx1C71VYj14hz0po:hover {
+	background: var(--lc-gold) !important;
+	border-color: var(--lc-gold) !important;
+}
+
+/* Blue section labels in the filter panel (was Steam #26b7ff). */
+._3iV2vMTw_vwWJ_gmiz1Q1k {
+	color: var(--lc-lavender) !important;
+	border-color: var(--lc-lavender) !important;
+}
+
+/* Collection view: app-name chips (was Steam #1e90ff pills with white rims). */
+._3gzh_NvTKey56JeHY7Q1WW {
+	background: var(--lc-lavender) !important; /* Steam sets the blue fill with more weight than a plain rule */
+	color: var(--lc-black);
+	border-color: var(--lc-lavender);
+}
+._3gzh_NvTKey56JeHY7Q1WW:hover {
+	background: var(--lc-gold) !important;
+	border-color: var(--lc-gold);
+	color: var(--lc-black);
+}
+
+/* Progress rings (Steam #74d1ff / white stroke). */
+.SVGIcon_ProgressCircle circle {
+	stroke: var(--lc-gold) !important;
+}
+
+/* Achievements overlay: the grey-blue (rgb 172,178,184) left after S07 is on borders and icons, not text. */
+.gioyPMOZttYFcnmgLnsWf svg {
+	color: var(--lc-lilac);
+}
+.gioyPMOZttYFcnmgLnsWf .Panel {
+	border-color: var(--lc-disabled);
+}
+
+/* The filter button's holder turns Steam grey while the pane is open. */
+.vCCmYvn9yQ_V8CpKupllU { background: transparent !important; }

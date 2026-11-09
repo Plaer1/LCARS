@@ -1,0 +1,86 @@
+@import url('tokens.css');
+
+/* LCARSv2 S09 Extendium manager: the "Extensions" window (skin.json patches
+ * ^Extensions$ to this file). Colours and fonts only; Steam's layout stays.
+ * Outer surfaces go black, the title bar carries a lavender rail, root actions
+ * are command segments, and each extension is a card with a steel lead. */
+
+html.extendium, html.extendium body,
+html.extendium .PopupFullWindow,
+html.extendium .GenericConfirmDialog,
+html.extendium .extension-manager-popup {
+	background: var(--lc-black) !important;
+}
+
+html.extendium .extension-manager-popup {
+	font-family: var(--lc-prose) !important;
+	color: var(--lc-ink) !important;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+html.extendium .TitleBar { background: var(--lc-black) !important; }
+html.extendium .title-area-highlight { background: var(--lc-lavender) !important; }
+
+/* Window controls: lavender glyphs, gold on hover. */
+html.extendium .windowControlButton svg path,
+html.extendium .windowControlButton svg line { stroke: var(--lc-lavender) !important; fill: var(--lc-lavender) !important; }
+html.extendium .windowControlButton:hover { background: var(--lc-gold) !important; }
+html.extendium .windowControlButton:hover svg path,
+html.extendium .windowControlButton:hover svg line { stroke: var(--lc-black) !important; fill: var(--lc-black) !important; }
+
+/* Root actions: command segments with black ink. */
+html.extendium .root-buttons .DialogButton {
+	background: var(--lc-steel) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+html.extendium .root-buttons .DialogButton:hover { background: var(--lc-gold) !important; }
+html.extendium .root-buttons .DialogButton svg,
+html.extendium .root-buttons .DialogButton svg * { fill: var(--lc-black) !important; color: var(--lc-black) !important; }
+
+/* Cards: surface panels, a steel lead that turns gold under the pointer. */
+html.extendium .extension-card {
+	background: var(--lc-surface) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 6px 0 0 var(--lc-steel) !important;
+}
+
+html.extendium .extension-card:hover { box-shadow: inset 6px 0 0 var(--lc-gold) !important; }
+
+html.extendium .extension-card .name {
+	font-family: var(--lc-font) !important;
+	font-size: 18px !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: var(--lc-ink) !important;
+}
+
+html.extendium .extension-card .secondary-text { color: var(--lc-lilac) !important; }
+
+/* Card actions: small square caps. */
+html.extendium .extension-buttons .DialogButton {
+	background: var(--lc-black) !important;
+	color: var(--lc-lavender) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	font-size: 15px !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+html.extendium .extension-buttons .DialogButton:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+	html.extendium .extension-card { transition: none !important; }
+}

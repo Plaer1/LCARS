@@ -1,0 +1,425 @@
+/* LCARSv2 game page: the hero art sits in a detail frame (11px left/top
+ * rail, 7px base rail, curved outer corner); PLAY is a gold split terminal
+ * cap; stats are an aligned register; store links are joined tabs; each
+ * side section is an L-rail under a title-interrupted header. */
+
+._3lDczhulqraStjCitLYJ1K._2l416KfEtI4CL0mCUEmOBw { background: var(--lc-black) !important; }
+
+/* ----------------------------------------------------------- detail frame */
+
+.NZMJ6g2iVnFsOOp-lDmIP { /* TopCapsule */
+	box-sizing: border-box;
+	border: solid var(--lc-lavender);
+	border-width: 11px 0 7px 11px;
+	border-radius: 44px 0 0 26px;
+	overflow: hidden;
+	margin: 0 10px 0 0;
+}
+
+/* Steam's hero is a CSS parallax (perspective on the scroller, the art pushed back in 3D),
+ * which forces the frame to overflow: visible, so the art left its frame while scrolling.
+ * The parallax goes: the art sits flat and the frame clips it. */
+.NZMJ6g2iVnFsOOp-lDmIP.NZMJ6g2iVnFsOOp-lDmIP {
+	overflow: hidden !important;
+	transform-style: flat !important;
+	border-radius: 44px 0 0 26px;
+}
+.NZMJ6g2iVnFsOOp-lDmIP ._1IX7FPSY9Jb82KhBVBSkZa { transform: none !important; }
+
+.NZMJ6g2iVnFsOOp-lDmIP::after { /* the frame, over the art */
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	box-sizing: border-box;
+	border: solid var(--lc-lavender);
+	border-width: 11px 0 7px 11px;
+	border-radius: 44px 0 0 26px;
+	pointer-events: none;
+}
+
+._1IX7FPSY9Jb82KhBVBSkZa img.HSQWw9HUAP6jtA2OZjS-u { filter: brightness(.35) grayscale(.4) !important; }
+
+/* Collection tags: small joined segments, top right. */
+/* Tags: one right-aligned column inside the ring. Tags that don't fit start a new column,
+ * which the huge column gap pushes out of the panel's clip, so none shows cut in half. */
+._2b6WkTnmJxMuX1biL7aS3C {
+	gap: var(--lc-slice) 9999px !important;
+	z-index: 3;
+	bottom: 14px !important;
+	flex-flow: column wrap-reverse !important;
+	justify-content: flex-start !important;
+	align-content: flex-start !important;
+	align-items: flex-start !important;
+}
+
+._1HS4twEHtDJ_8MWgJT4VBd {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	padding: 2px 10px !important;
+	opacity: 1 !important;
+}
+
+._1HS4twEHtDJ_8MWgJT4VBd:nth-child(3n+2) { background: var(--lc-lilac) !important; }
+._1HS4twEHtDJ_8MWgJT4VBd:nth-child(3n+3) { background: var(--lc-lavender) !important; }
+._1HS4twEHtDJ_8MWgJT4VBd:last-child { border-radius: 0 12px 12px 0 !important; padding-right: 14px !important; }
+._1HS4twEHtDJ_8MWgJT4VBd:hover { background: var(--lc-gold) !important; }
+
+/* ---------------------------------------------------------- play bar */
+
+._3fLo166MlaNqP8r8tTyRz { background: var(--lc-black) !important; backdrop-filter: none !important; }
+._3Y87YQY56ZCOqhgcZFaDc5 { background: transparent !important; }
+
+/* The in-page bar continues the frame's base rail as a thin rule. */
+._1U7LKpx70kEsz3jJwAFOi- ._3fLo166MlaNqP8r8tTyRz { box-shadow: inset 0 -4px 0 var(--lc-surface); }
+._2L3s2nzh7yCnNESfI5_dN1 ._3fLo166MlaNqP8r8tTyRz { box-shadow: inset 0 -4px 0 var(--lc-lavender); }
+
+/* PLAY: gold block + separate round terminal cap. */
+._1FnJ6dPuknQFQ2RTpKTI16, ._1FnJ6dPuknQFQ2RTpKTI16 ._3ydigb6zZAjJ0JCDgHwSYA {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+._1FnJ6dPuknQFQ2RTpKTI16 {
+	position: relative;
+	background: var(--lc-gold) !important;
+	margin-right: 36px !important;
+	overflow: visible !important;
+}
+
+._1FnJ6dPuknQFQ2RTpKTI16::after { /* the split terminal cap */
+	content: '';
+	position: absolute;
+	left: calc(100% + var(--lc-slice));
+	top: 0;
+	bottom: 0;
+	width: 24px;
+	background: inherit;
+	border-radius: 0 999px 999px 0;
+}
+
+._1FnJ6dPuknQFQ2RTpKTI16 ._3ydigb6zZAjJ0JCDgHwSYA { background: transparent !important; color: var(--lc-black) !important; }
+
+._1FnJ6dPuknQFQ2RTpKTI16:not(._3cI5TXsFX3bvpR-7EBOtxq) { background: var(--lc-peach) !important; } /* install/update */
+._1FnJ6dPuknQFQ2RTpKTI16:hover { background: var(--lc-ink) !important; }
+
+._1FnJ6dPuknQFQ2RTpKTI16 svg, ._1FnJ6dPuknQFQ2RTpKTI16 svg * { fill: var(--lc-black) !important; }
+
+._33cnXIqTRgRr49_FNXIHj6 {
+	font-size: 28px !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+	color: var(--lc-black) !important;
+}
+
+/* Stats: aligned register entries divided by thin lavender posts. */
+._1kiZKVbDe-9Ikootk57kpA { position: relative; padding-left: 12px !important; }
+
+._1kiZKVbDe-9Ikootk57kpA::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 6px;
+	bottom: 6px;
+	width: 4px;
+	background: var(--lc-lavender);
+}
+
+._34lrt5-Fc3usZU6trA1P0- {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+}
+
+._2TYVGoD27ZMfjRirKQNLfk {
+	color: var(--lc-ink) !important;
+	font-size: 18px !important;
+	font-weight: 500 !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+._1mDAVT4sTzFRwJtlKCw2Ws svg:not(.SVGIcon_Button) *, ._1tIg-QIrwMNtCm7NcYADyi svg *, ._3bkqc-SsCg0b3FTEuewlK8 svg * {
+	fill: var(--lc-lavender) !important;
+}
+
+._1GZdosVXnfrf69yU8DWASl svg * { fill: none !important; stroke: var(--lc-lavender) !important; }
+
+._3rpUkswF6xc_ste4Ros_xM { color: var(--lc-gold) !important; font-size: 24px !important; text-transform: uppercase; letter-spacing: .05em; }
+
+/* Progress: gold blocks on a surface track, square ends. */
+._25YVDTaClw6Y2COPsU0UaV, ._3ns9185LizH61StaAXuAp6 {
+	background: var(--lc-surface) !important;
+	border-radius: 0 !important;
+	height: 8px !important;
+}
+
+._1FnTqlsi2_-TJf1d5apoS6, ._3Rm36_oeAhvIg6ZYP9l1Jj {
+	background: repeating-linear-gradient(90deg, var(--lc-gold) 0 10px, transparent 10px 13px) !important;
+	border-radius: 0 !important;
+	height: 100% !important;
+}
+
+/* Right controls: joined lavender segments, outward cap on the last. */
+.lO1IF132jJ1gc9yz2HYvV { gap: var(--lc-slice); }
+
+._3qDWQGB0rtwM3qpXTb11Q- {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	height: var(--lc-command) !important;
+	margin: 0 !important;
+}
+
+.lO1IF132jJ1gc9yz2HYvV > :last-child ._3qDWQGB0rtwM3qpXTb11Q-,
+.lO1IF132jJ1gc9yz2HYvV > ._3qDWQGB0rtwM3qpXTb11Q-:last-child { border-radius: 0 18px 18px 0 !important; padding-right: 18px !important; }
+._3qDWQGB0rtwM3qpXTb11Q-:hover { background: var(--lc-gold) !important; }
+._21hXW2oDD7zvNsoOaW7Yob._2WaHZuAetbqENmqDthu3nl { background: var(--lc-coral) !important; } /* favorited */
+
+/* Icon buttons become worded segments: CONFIG / CTRL / INFO / FAV. */
+._3qDWQGB0rtwM3qpXTb11Q- {
+	width: auto !important;
+	min-width: 0 !important;
+	padding: 0 12px 4px 20px !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+}
+
+._3qDWQGB0rtwM3qpXTb11Q- svg { display: none !important; }
+
+._3qDWQGB0rtwM3qpXTb11Q-::after {
+	content: 'Menu';
+	color: var(--lc-black);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+._3qDWQGB0rtwM3qpXTb11Q-:has(.SVGIcon_Settings)::after { content: 'Config'; }
+._3qDWQGB0rtwM3qpXTb11Q-._1oYt_BfxCHnA-_6sfUHiNn::after { content: 'Ctrl'; }
+._3qDWQGB0rtwM3qpXTb11Q-:has(.SVGIcon_Information)::after { content: 'Info'; }
+._3qDWQGB0rtwM3qpXTb11Q-._21hXW2oDD7zvNsoOaW7Yob::after { content: 'Fav'; }
+._3qDWQGB0rtwM3qpXTb11Q-._21hXW2oDD7zvNsoOaW7Yob._2WaHZuAetbqENmqDthu3nl::after { content: 'Fav \2022 On'; }
+
+._3oddBTkj_FjknCgBnPqcmQ { width: auto !important; }
+
+/* Remaining play-bar glyphs (cloud, clock, trophy) are small lavender plates. */
+._1tIg-QIrwMNtCm7NcYADyi, ._3bkqc-SsCg0b3FTEuewlK8 {
+	background: var(--lc-lavender);
+	border-radius: 0 10px 10px 0;
+	padding: 4px;
+	box-sizing: border-box;
+}
+
+._1tIg-QIrwMNtCm7NcYADyi svg *, ._3bkqc-SsCg0b3FTEuewlK8 svg *, .MbTRimZpGCATmn39ae8RT * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+._1GZdosVXnfrf69yU8DWASl svg * { fill: none !important; stroke: var(--lc-black) !important; }
+
+/* ------------------------------------------------------- joined tabs */
+
+._3-V8vjmrwuJM6Ws3tsjFJj ._31ptFGGMZrSQc5BCX1e5lm { background: transparent !important; box-shadow: none !important; border: 0 !important; }
+
+.DgVQapkBmhAW6oPY5rPZo { gap: 0; }
+
+._1b6LYWVijW-9E4YV0keDWZ { /* Link */
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	padding: 10px 14px 4px !important;
+	margin-right: var(--lc-slice);
+	box-shadow: none;
+}
+
+._1b6LYWVijW-9E4YV0keDWZ ._2sNDjgK9EWiPLdNGkjun-w { color: var(--lc-black) !important; opacity: 1 !important; }
+
+._7k4qmaN8SUMvv6u-L81uk:first-child ._1b6LYWVijW-9E4YV0keDWZ { border-radius: 16px 0 0 16px !important; padding-left: 20px !important; }
+._1b6LYWVijW-9E4YV0keDWZ:hover {
+	background: var(--lc-gold) !important;
+	box-shadow: inset 0 -5px 0 var(--lc-black), 0 4px 0 var(--lc-gold);
+}
+
+._1bIMOmWaxKrMdVMWU21ku { background: var(--lc-steel) !important; border-radius: 0 16px 16px 0; }
+._1bIMOmWaxKrMdVMWU21ku svg * { fill: var(--lc-black) !important; }
+
+/* ------------------------------------------------- section L-rails */
+
+._2r4TK4BAuU-J4FuF_O7v_5 { --lc-rail-color: var(--lc-lavender); margin-bottom: 22px !important; }
+.vzLedtsu3TtTlKLEKzIhH:nth-child(4n+1) ._2r4TK4BAuU-J4FuF_O7v_5 { --lc-rail-color: var(--lc-peach); }
+.vzLedtsu3TtTlKLEKzIhH:nth-child(4n+2) ._2r4TK4BAuU-J4FuF_O7v_5 { --lc-rail-color: var(--lc-lilac); }
+.vzLedtsu3TtTlKLEKzIhH:nth-child(4n+3) ._2r4TK4BAuU-J4FuF_O7v_5 { --lc-rail-color: var(--lc-steel); }
+.vzLedtsu3TtTlKLEKzIhH:nth-child(4n+4) ._2r4TK4BAuU-J4FuF_O7v_5 { --lc-rail-color: var(--lc-coral); }
+
+._1Q2q_tQ9_Eq8YdEHNAHS3F { /* SectionHeader → elbow + rail with title interruption */
+	position: relative;
+	background: none !important;
+	padding-left: 0 !important;
+	margin-bottom: 0 !important;
+	min-height: 26px;
+	display: flex !important;
+	align-items: center;
+	z-index: 1;
+}
+
+._1Q2q_tQ9_Eq8YdEHNAHS3F::before { /* elbow head: rail turns down into the side rail */
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 40px;
+	height: 26px;
+	background: var(--lc-rail-color);
+	border-radius: 18px 0 0 0;
+}
+
+._1Q2q_tQ9_Eq8YdEHNAHS3F::after {
+	content: '';
+	position: absolute;
+	left: 40px;
+	right: 0;
+	top: 0;
+	height: 12px;
+	background: var(--lc-rail-color);
+	z-index: -1;
+}
+
+._1SQ30LQnUhED7sXI79rmas { /* Label: black interruption */
+	background: var(--lc-black) !important;
+	margin-left: 48px;
+	padding: 0 8px !important;
+	position: relative;
+	top: -2px;
+}
+
+._3i0kopAostOz2IDi9HqmeN {
+	color: var(--lc-gold) !important;
+	font-size: 20px !important;
+	font-weight: 500 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	line-height: 26px !important;
+}
+
+._1SQ30LQnUhED7sXI79rmas svg * { fill: var(--lc-gold) !important; }
+
+._31ptFGGMZrSQc5BCX1e5lm { /* section body: side + base rail */
+	background: var(--lc-black) !important;
+	border: solid var(--lc-rail-color, var(--lc-lavender)) !important;
+	border-width: 0 0 7px 11px !important;
+	border-radius: 0 0 0 20px !important;
+	box-shadow: none !important;
+	margin: 0 !important;
+	padding: 12px 14px 14px 18px !important;
+}
+
+._5uvIN6jXDXzzck59F-nhv { color: var(--lc-ink) !important; }
+
+/* Section commands: peach endcaps. */
+._3Cdin80d-hVsakHUZboheb {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 14px 14px 0 !important;
+	box-shadow: none !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	padding: 4px 16px 2px 10px !important;
+}
+
+._3Cdin80d-hVsakHUZboheb:hover { background: var(--lc-gold) !important; }
+
+._1qG6xUlNu-qvdhpSxwed5 { background: transparent !important; color: var(--lc-lavender) !important; border-radius: 0 !important; }
+
+/* Spec contents. */
+._2L06P_EWxoS_20kC2eNCQl, .nTb1NqsRSnwl0UTOYn_JA { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .08em; font-weight: 500 !important; }
+._2A8NghNvAnMQQTHsudFu7H path { fill: var(--lc-lavender) !important; }
+._2A8NghNvAnMQQTHsudFu7H rect { fill: transparent !important; }
+
+._38t1mljBjmJfqjpVzMT1CG { background: var(--lc-surface) !important; border-radius: 0 !important; }
+._3jC8om-5Sci_dkUB-6VYiU { color: var(--lc-gold) !important; text-transform: uppercase; letter-spacing: .06em; }
+._1fEbX-PfpZ2FhkhttWcm-V, ._2aVnDeExEHiUFX0zwr_BTO, ._2V2sHETNfa62yMoDwSF3_t { border-radius: 0 !important; }
+._39Y01uSRcLiDg5DneTTR0m { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; }
+
+/* Activity log: black records with a lavender marker, gold on hover. */
+._1AYE16384J_ecLpN0sEYc5.UVeN0kaD3zv1feMj_mMw5, ._1HZy7BvOZuPT8feUwadL4W {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+._1AYE16384J_ecLpN0sEYc5.UVeN0kaD3zv1feMj_mMw5 { box-shadow: inset 6px 0 0 var(--lc-steel) !important; }
+._1AYE16384J_ecLpN0sEYc5.UVeN0kaD3zv1feMj_mMw5:hover { box-shadow: inset 6px 0 0 var(--lc-gold), 0 4px 0 var(--lc-gold) !important; }
+
+._2lVtDi3eSjGcLfXVsRgoUy { display: none !important; }
+
+._3pcPRPvuGH7hEM33zLknZO { background: var(--lc-surface) !important; height: 4px !important; }
+
+._3yTl3RiWfo-Itg-xp967wP textarea, ._3yTl3RiWfo-Itg-xp967wP .DialogInput_Wrapper {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+}
+
+._3yTl3RiWfo-Itg-xp967wP textarea:focus { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+
+._2JSyABqFEh-v_dwaTnBydR, .bACIuqv-b_9TztCczFK19, ._39ZurKJQex6v69aXzvc_nj {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+._2lNdDLgjQdeBXmMlPO8lvq { background: none !important; }
+
+/* Community content tiles: black plates with a lavender base rail. */
+._3QS6OBHpvI5bXsSQA2zQuW {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 -5px 0 var(--lc-steel) !important;
+}
+
+._3QS6OBHpvI5bXsSQA2zQuW:hover { box-shadow: inset 0 -5px 0 var(--lc-gold), 0 0 0 2px var(--lc-gold) !important; }
+._1dJuvQ4rvlB0q8vmLJH3l2 { background: var(--lc-surface) !important; }
+._3uabislt81gdMksbxzc-iN { background-image: none !important; }
+._27RcNu8aXKBpYkHcNNrt-X, ._1Qa-Aq8WFiF9584yU_1xuC, .Jbe--NUNw7sxbxGsMSjVa { background: transparent !important; backdrop-filter: none !important; }
+
+.OhSdLYuggDtBcWjYP0j_9 { padding-top: 14px; } /* ColumnContainer */
+
+/* The PLAY split arrow: the button's own colour between two slices, not a stray gold bar. */
+._1FnJ6dPuknQFQ2RTpKTI16 ._2q-gZ3XJzlvSGHSF-GvSmi._2q-gZ3XJzlvSGHSF-GvSmi._2q-gZ3XJzlvSGHSF-GvSmi {
+	background: inherit !important;
+	width: 38px !important;
+	flex: 0 0 auto;
+	border-left: var(--lc-slice) solid var(--lc-black);
+	box-sizing: border-box;
+}
+
+/* "Revise your review?": a coral alert bracket, not Steam's grey plate. */
+._3LE-6w1ItIAB4CKJFCa3Od, ._2SAb6geDpe6toA1GaP0GjH { background: var(--lc-black) !important; }
+._3LE-6w1ItIAB4CKJFCa3Od { box-shadow: inset 8px 0 0 var(--lc-coral) !important; border-radius: 16px 0 0 16px; padding-left: 10px; }
+.qX4kNo6O0M-mYntdErKSJ { color: var(--lc-gold) !important; text-transform: uppercase; letter-spacing: .06em; }
+.My1beniJXh9pXud8rxYLK { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .06em; }
+._35_OgqfHHZfSzTYfv367K6 { background: var(--lc-peach) !important; color: var(--lc-black) !important; border: 0 !important; border-radius: 0 14px 14px 0 !important; font-weight: 600 !important; text-transform: uppercase; }
+._35_OgqfHHZfSzTYfv367K6:hover { background: var(--lc-gold) !important; }
+
+/* Store / DLC / Community links: one joined command strip. */
+._7k4qmaN8SUMvv6u-L81uk, .DY4_wSF8h9T5o46hO5I9V { margin: 0 !important; padding: 0 !important; width: auto !important; }
+
+/* Activity feed: the lavender bar belongs to each card; it overshot as a bump below them. */
+.UVeN0kaD3zv1feMj_mMw5 { box-shadow: none !important; }
+.NEMXhMlqXOCJwfgWlHXhT { background: var(--lc-black) !important; box-shadow: inset 6px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important; }

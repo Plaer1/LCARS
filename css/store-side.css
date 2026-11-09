@@ -1,0 +1,769 @@
+/* LCARSv2 S12 store side pages: cart, wishlist, search, app reviews.
+ * Cart and wishlist share body.r0DFA3TwTH8- (and their React header), so the
+ * header rules sit on that body class and the page content rules use hashed
+ * classes that exist on one page only. Search and reviews scope by body.search_page
+ * and body.app. Tokens only; Steam's own motion is zeroed by store.css. */
+
+/* ------------------------------------------------ header (cart, wishlist)
+ * These pages build their own React header, so store.css's segment rules
+ * miss it and it stays Steam blue. Same segments as the front page. */
+
+body.r0DFA3TwTH8-,
+body.r0DFA3TwTH8- #StoreTemplate,
+body.r0DFA3TwTH8- ._68SYvTNlZNs-,
+body.r0DFA3TwTH8- .otLXAz3VIiY-,
+body.r0DFA3TwTH8- section.jGMVnjZbmZM-,
+body.r0DFA3TwTH8- .v3B63V0zBTo-,
+body.r0DFA3TwTH8- .WCG-2-OYepA-,
+body.r0DFA3TwTH8- ._1T0orHOy3Sc-,
+body.r0DFA3TwTH8- .rGuH1gD4ryg-,
+body.r0DFA3TwTH8- .t-LlQicBZjE- {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+}
+
+body.r0DFA3TwTH8- .WCG-2-OYepA-,
+body.r0DFA3TwTH8- ._1T0orHOy3Sc- { box-shadow: none !important; }
+
+/* Departments: four segments then More, each a fill with black ink. */
+body.r0DFA3TwTH8- .Arq9lUyXVpM- { gap: var(--lc-slice) !important; }
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button,
+body.r0DFA3TwTH8- .fqnYTxNXL9w- > button {
+	--lc-seg: var(--lc-lavender);
+	align-self: flex-start !important;
+	margin: 6px 0 0 0 !important;
+	height: 40px !important;
+	padding: 0 10px 4px 16px !important;
+	background: var(--lc-seg) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	white-space: nowrap;
+	align-items: flex-end !important;
+}
+
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button:nth-child(1) { --lc-seg: var(--lc-peach); border-radius: 20px 0 0 20px !important; padding-left: 24px !important; }
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button:nth-child(2) { --lc-seg: var(--lc-lilac); }
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button:nth-child(3) { --lc-seg: var(--lc-steel); }
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button:nth-child(4) { --lc-seg: var(--lc-lavender); }
+body.r0DFA3TwTH8- .fqnYTxNXL9w- > button { --lc-seg: var(--lc-coral); }
+
+body.r0DFA3TwTH8- .Arq9lUyXVpM- > button:hover,
+body.r0DFA3TwTH8- .fqnYTxNXL9w- > button:hover { --lc-seg: var(--lc-gold); }
+
+body.r0DFA3TwTH8- .Arq9lUyXVpM- button *,
+body.r0DFA3TwTH8- .fqnYTxNXL9w- > button * { color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- .Arq9lUyXVpM- button svg *,
+body.r0DFA3TwTH8- .fqnYTxNXL9w- > button svg * { fill: var(--lc-black) !important; }
+
+/* Search field: a well with a lavender frame, gold when focused. */
+body.r0DFA3TwTH8- form._5fxF1NcznNc- { background: var(--lc-black) !important; border-radius: 0 !important; }
+body.r0DFA3TwTH8- ._5fxF1NcznNc- .-hkvZFcHSmg- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	border-radius: 0 !important;
+}
+body.r0DFA3TwTH8- ._5fxF1NcznNc- .-hkvZFcHSmg-:focus-within { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+body.r0DFA3TwTH8- input.S-0LcpbLAf8- {
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-size: 15px !important;
+}
+body.r0DFA3TwTH8- input.S-0LcpbLAf8-::placeholder { color: var(--lc-disabled) !important; }
+body.r0DFA3TwTH8- button.et-RRc3JMu8- { background: var(--lc-lavender) !important; border-radius: 0 !important; }
+body.r0DFA3TwTH8- button.et-RRc3JMu8-:hover { background: var(--lc-gold) !important; }
+body.r0DFA3TwTH8- button.et-RRc3JMu8- svg *, body.r0DFA3TwTH8- button.et-RRc3JMu8- path { fill: var(--lc-black) !important; }
+
+/* Suggestions drop: a black plate under a lavender rail, commands in peach. */
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	border-radius: 0 !important;
+}
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] a { background: var(--lc-peach) !important; border-radius: 0 !important; }
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] a { color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] a:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] a * { color: var(--lc-black) !important; text-transform: uppercase; letter-spacing: .06em; }
+body.r0DFA3TwTH8- [id^="searchSuggestions_"] * { color: var(--lc-black) !important; }
+
+/* The supernav sits under the rail; keep its text off Steam blue anyway. */
+body.r0DFA3TwTH8- nav._3xhf62uevQo- a { color: var(--lc-lavender) !important; }
+
+/* Wishlist and cart caps: peach then gold, the rail's outward ends. */
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a {
+	align-self: flex-start !important;
+	height: 40px !important;
+	margin: 6px 0 0 0 !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	padding: 0 14px 4px !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	color: var(--lc-black) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+}
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a:first-child { background: var(--lc-peach) !important; border-radius: 20px 0 0 20px !important; }
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a:last-child { background: var(--lc-gold) !important; border-radius: 0 20px 20px 0 !important; padding-right: 20px !important; }
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a:hover { background: var(--lc-ink) !important; }
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a * { color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- ._5LVptMyFAZw- > a svg * { fill: var(--lc-black) !important; }
+
+/* ------------------------------------------------------------- cart
+ * Line items are register rows; the total is a gold readout; "Continue to
+ * payment" is a gold cap. Only looked at, never clicked. */
+
+body.r0DFA3TwTH8- .OgjhAXUXuQw-,
+body.r0DFA3TwTH8- .OgjhAXUXuQw- * {
+	color: var(--lc-lilac) !important;
+	font-size: 12px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+}
+body.r0DFA3TwTH8- .OgjhAXUXuQw- a { color: var(--lc-lavender) !important; }
+
+body.r0DFA3TwTH8- .X7xBVzjXbzw- {
+	display: flex !important;
+	align-items: center;
+	gap: 12px;
+	color: var(--lc-lavender) !important;
+	font-size: 30px !important;
+	font-weight: 500 !important;
+	line-height: 1.1 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+}
+body.r0DFA3TwTH8- .X7xBVzjXbzw-::before {
+	content: '';
+	flex: 0 0 38px;
+	height: 18px;
+	background: var(--lc-lavender);
+	border-radius: 9px 0 0 9px;
+}
+
+/* Warning: gold bar, black caps. */
+body.r0DFA3TwTH8- .Px5OaOH5lTc- {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 20px 20px 0 !important;
+	box-shadow: inset 12px 0 0 var(--lc-black);
+	padding-left: 24px !important;
+	font-size: 15px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.r0DFA3TwTH8- .Px5OaOH5lTc- * { color: var(--lc-black) !important; }
+
+/* Line items: register rows with a lavender rail. */
+body.r0DFA3TwTH8- .i-xXuvHLioU-.Panel {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+}
+body.r0DFA3TwTH8- .fDgifICDL4M- {
+	color: var(--lc-ink) !important;
+	font-size: 18px !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+body.r0DFA3TwTH8- .i-xXuvHLioU- a { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; }
+body.r0DFA3TwTH8- .i-xXuvHLioU- sup { color: var(--lc-peach) !important; }
+body.r0DFA3TwTH8- .-nS4ZC0Bruo- { color: var(--lc-ink) !important; font-size: 18px !important; }
+
+body.r0DFA3TwTH8- .PwGZnF9BFA8- {
+	background: var(--lc-surface) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	border-radius: 0 14px 14px 0 !important;
+}
+body.r0DFA3TwTH8- .PwGZnF9BFA8- span { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .06em; }
+
+body.r0DFA3TwTH8- ._8IaR06zcRE4-,
+body.r0DFA3TwTH8- .BFDdk5e7x8k- {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.r0DFA3TwTH8- ._8IaR06zcRE4-:hover,
+body.r0DFA3TwTH8- .BFDdk5e7x8k-:hover { color: var(--lc-gold) !important; }
+
+/* Overlap warning: caps head in peach, body in readable prose. */
+body.r0DFA3TwTH8- .A5KVCw7vUiI- {
+	color: var(--lc-peach) !important;
+	font-size: 15px !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.r0DFA3TwTH8- ._2SE2pmscwUI-,
+body.r0DFA3TwTH8- ._2SE2pmscwUI- * {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+	letter-spacing: 0 !important;
+}
+
+/* Payment commands: secondary lilac cap, primary gold cap. */
+body.r0DFA3TwTH8- a.inqz7Zdx9Xg-.ob-nIzzquk8- {
+	height: 36px;
+	border-radius: 0 18px 18px 0 !important;
+	box-shadow: none !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-weight: 600 !important;
+}
+body.r0DFA3TwTH8- a.inqz7Zdx9Xg-.ob-nIzzquk8-.fkz-MePtKwI- { background: var(--lc-lilac) !important; color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- a.inqz7Zdx9Xg-.ob-nIzzquk8-.WPxeXV5lR1E- { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- a.inqz7Zdx9Xg-.ob-nIzzquk8- * { color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- a.inqz7Zdx9Xg-.ob-nIzzquk8-:hover { background: var(--lc-ink) !important; }
+
+body.r0DFA3TwTH8- .VVwUDw-BQqg- {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.r0DFA3TwTH8- .VVwUDw-BQqg-:hover { color: var(--lc-coral) !important; }
+
+/* Estimated total: gold readout block. */
+body.r0DFA3TwTH8- .i1XZFikuzME- {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 12px 0 0 var(--lc-gold) !important;
+	padding-left: 24px !important;
+}
+body.r0DFA3TwTH8- .fWNjRJXvRgI- {
+	color: var(--lc-lilac) !important;
+	font-size: 14px !important;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+}
+body.r0DFA3TwTH8- .n9HLAjXXhvI- {
+	color: var(--lc-gold) !important;
+	font-size: 26px !important;
+	line-height: 1 !important;
+	letter-spacing: .04em;
+}
+body.r0DFA3TwTH8- .bi47TlP7SSw- {
+	color: var(--lc-lilac) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	letter-spacing: 0 !important;
+}
+
+body.r0DFA3TwTH8- .nfxC9n3FRVE- { background: var(--lc-black) !important; }
+body.r0DFA3TwTH8- .FN7MZpXIvZw-,
+body.r0DFA3TwTH8- .YrxkWXNtDMU- {
+	font-family: var(--lc-prose) !important;
+	font-size: 15px !important;
+	letter-spacing: 0 !important;
+	line-height: 1.45 !important;
+	color: var(--lc-ink) !important;
+}
+body.r0DFA3TwTH8- .YrxkWXNtDMU- { font-size: 14px !important; color: var(--lc-lilac) !important; }
+body.r0DFA3TwTH8- .YrxkWXNtDMU- a { color: var(--lc-lavender) !important; }
+
+/* Recommendations: lavender caps head, black capsule plates. */
+body.r0DFA3TwTH8- ._2fWfeYh526c- {
+	display: flex !important;
+	align-items: center;
+	gap: 12px;
+	color: var(--lc-lavender) !important;
+	font-size: 22px !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.r0DFA3TwTH8- ._2fWfeYh526c-::before {
+	content: '';
+	flex: 0 0 38px;
+	height: 18px;
+	background: var(--lc-lavender);
+	border-radius: 9px 0 0 9px;
+}
+body.r0DFA3TwTH8- .gXsTTmkhkp8- { color: var(--lc-peach) !important; }
+body.r0DFA3TwTH8- .Y9w82-bhx7g- { color: var(--lc-lilac) !important; }
+
+/* ----------------------------------------------------------- wishlist
+ * Rows are register entries: capsule, name, tags, review band, price block,
+ * date added. Sort and filter become joined segments. Look only: never click
+ * the grips, sort, Empty, Export, remove or Add to Cart. */
+
+body.r0DFA3TwTH8- .KFyvA5BJClc- h2 {
+	color: var(--lc-lavender) !important;
+	font-size: 32px !important;
+	font-weight: 500 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+}
+body.r0DFA3TwTH8- .mpKocPQdcN4- { box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-lavender); }
+
+body.r0DFA3TwTH8- button.svelte-1j74s6o {
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 16px 16px 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-weight: 600;
+}
+body.r0DFA3TwTH8- button.svelte-1j74s6o.destructive {
+	background: var(--lc-coral) !important;
+	border-radius: 16px 0 0 16px !important;
+}
+body.r0DFA3TwTH8- button.svelte-1j74s6o:hover { background: var(--lc-gold) !important; }
+body.r0DFA3TwTH8- button.svelte-1j74s6o.destructive:hover { background: var(--lc-ink) !important; }
+
+body.r0DFA3TwTH8- .BKhk6CZ5ib0- {
+	color: var(--lc-lilac) !important;
+	font-size: 12px !important;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+/* Filter bar: a search well, then joined sort segments. */
+body.r0DFA3TwTH8- input.QoJP0e0vzFA- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 -2px 0 var(--lc-lavender) !important;
+	color: var(--lc-ink) !important;
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.r0DFA3TwTH8- input.QoJP0e0vzFA-:focus { box-shadow: inset 0 -2px 0 var(--lc-gold) !important; }
+
+body.r0DFA3TwTH8- .smdxg72XyCE- { gap: var(--lc-slice) !important; }
+body.r0DFA3TwTH8- .smdxg72XyCE- > button {
+	height: 38px !important;
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+}
+body.r0DFA3TwTH8- .smdxg72XyCE- > button:first-child { background: var(--lc-lavender) !important; border-radius: 19px 0 0 19px !important; }
+body.r0DFA3TwTH8- .smdxg72XyCE- > button:last-child { background: var(--lc-steel) !important; border-radius: 0 19px 19px 0 !important; }
+body.r0DFA3TwTH8- .smdxg72XyCE- > button:hover { background: var(--lc-gold) !important; }
+body.r0DFA3TwTH8- .smdxg72XyCE- > button * { color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- .smdxg72XyCE- > button svg * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+
+/* Rows. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 12px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg-:hover { box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-gold) !important; }
+
+/* Drag grip: a lavender tab with a black mark. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- > img:first-child {
+	background: var(--lc-lavender) !important;
+	filter: brightness(0) !important;
+	padding: 4px 3px;
+	box-sizing: border-box;
+}
+
+body.r0DFA3TwTH8- .PE-3oq-yIvg- img.TaL3HQOZ35g- { border-radius: 0 !important; box-shadow: none !important; }
+
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .I8vuMMV-osE- {
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .I8vuMMV-osE-:hover { color: var(--lc-gold) !important; }
+
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .JmLh4Njn6Xg-,
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .TU39sK7r2pU-,
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .lgaj8WbBqtc-,
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .ZdGB16lKY0I- {
+	color: var(--lc-lilac) !important;
+	font-size: 11px !important;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .nqLMv8j-iBw- {
+	color: var(--lc-ink) !important;
+	font-size: 12px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+/* Category and tag chips: peach for the category, lavender for tags. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .Vy3rNuKLunU- {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .U3ndjc3qoW8- {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .U3ndjc3qoW8-:hover { background: var(--lc-gold) !important; }
+
+/* Review band: a surface plate with a gold verdict. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- ._0uIJq8Pia8Q- {
+	background: var(--lc-surface) !important;
+	color: var(--lc-gold) !important;
+	padding: 2px 8px;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	font-size: 12px !important;
+}
+
+/* Demo badge: peach, not Steam green. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .kkZ9PsIE60o- {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .p0Gsr94HawQ- {
+	background: var(--lc-surface) !important;
+	border-radius: 0 !important;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .p0Gsr94HawQ- span { color: var(--lc-lilac) !important; text-transform: uppercase; letter-spacing: .08em; }
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .p0Gsr94HawQ-:hover { background: var(--lc-coral) !important; }
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .p0Gsr94HawQ-:hover span { color: var(--lc-black) !important; }
+
+/* Price block: gold rail, ink price, gold cap for Add to Cart. */
+body.r0DFA3TwTH8- .PE-3oq-yIvg- ._6QzykeEsckc- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 8px 0 0 var(--lc-gold);
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- .-HQzBzl6lqI- {
+	color: var(--lc-ink) !important;
+	font-size: 18px !important;
+	letter-spacing: .04em;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- ._6QzykeEsckc- > :not(.-HQzBzl6lqI-) {
+	background: var(--lc-gold) !important;
+	background-image: none !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 16px 16px 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- ._6QzykeEsckc- > :not(.-HQzBzl6lqI-) * {
+	color: var(--lc-black) !important;
+	background: transparent !important;
+	background-image: none !important;
+}
+body.r0DFA3TwTH8- .PE-3oq-yIvg- ._6QzykeEsckc- > :not(.-HQzBzl6lqI-):hover { background: var(--lc-ink) !important; }
+
+/* Unavailable items keep the red-alert colour. */
+body.r0DFA3TwTH8- .BJZT09Z-vCI- { color: var(--lc-coral) !important; text-transform: uppercase; letter-spacing: .04em; font-size: 13px !important; }
+
+/* ------------------------------------------------------------- search
+ * Results are register rows; the right column is a bank of collapsible
+ * groups in the filter drawer's language (ops-filters.css). */
+
+/* Supernav text and the suggestions "Advanced Search" row, same as the cart header. */
+body.search_page .supernav_container a.menuitem { color: var(--lc-lavender) !important; }
+body.search_page [id^="searchSuggestions_"] { background: var(--lc-black) !important; box-shadow: inset 0 0 0 2px var(--lc-lavender) !important; }
+body.search_page [id^="searchSuggestions_"] a { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+body.search_page [id^="searchSuggestions_"] a * { color: var(--lc-black) !important; }
+
+/* The tag strip carries Steam's blue gradient image; the black well replaces it. */
+body.search_page .page_header_ctn {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+}
+body.search_page .searchbar {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 -3px 0 var(--lc-lavender);
+}
+body.search_page .searchbar_left input.text {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.search_page .searchbar_left input.text:focus { box-shadow: inset 0 0 0 2px var(--lc-gold); }
+body.search_page .searchtag {
+	background: var(--lc-lavender) !important;
+	border-radius: 0 16px 16px 0 !important;
+}
+body.search_page .searchtag span,
+body.search_page .searchtag .label { color: var(--lc-black) !important; text-transform: uppercase; letter-spacing: .06em; }
+body.search_page .sortbox .label {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+}
+body.search_page .sortbox button.trigger {
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	box-shadow: inset 0 -2px 0 var(--lc-gold);
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+body.search_page .search_results_filtered_warning {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	box-shadow: inset 8px 0 0 var(--lc-peach);
+}
+
+body.search_page a.search_result_row {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+}
+body.search_page a.search_result_row:hover {
+	color: var(--lc-ink) !important;
+	box-shadow: inset 14px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-gold) !important;
+}
+body.search_page a.search_result_row .title {
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+body.search_page a.search_result_row:hover .title { color: var(--lc-gold) !important; }
+/* Struck-through price: the disabled grey sits at 4:1 on black; lilac reads. */
+body.search_page .discount_original_price { color: var(--lc-lilac) !important; }
+body.search_page .search_released {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	font-size: 13px !important;
+}
+body.search_page .ds_flag.ds_wishlist_flag {
+	background-color: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+body.search_page .ds_flag.ds_owned_flag {
+	background-color: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+/* Filter column: block headers are segments, bodies are registers with a rail. */
+body.search_page #additional_search_options .block_header {
+	background: var(--lc-lavender) !important;
+	border: 0 !important;
+	border-radius: 0 14px 14px 0 !important;
+	padding: 2px 10px 3px !important;
+	margin-bottom: 4px;
+}
+body.search_page #additional_search_options .block:nth-child(3n+2) > .block_header { background: var(--lc-peach) !important; }
+body.search_page #additional_search_options .block:nth-child(3n+3) > .block_header { background: var(--lc-lilac) !important; }
+body.search_page #additional_search_options .block_header,
+body.search_page #additional_search_options .block_header * {
+	color: var(--lc-black) !important;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+	font-size: 14px !important;
+}
+body.search_page #additional_search_options .block_content {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-surface);
+	padding-left: 14px !important;
+}
+body.search_page #additional_search_options .block_rule { background: var(--lc-surface) !important; }
+body.search_page #additional_search_options .tab_filter_control,
+body.search_page #additional_search_options .tab_filter_control_label {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-size: 13px !important;
+}
+body.search_page #additional_search_options .tab_filter_control:hover,
+body.search_page #additional_search_options .tab_filter_control:hover .tab_filter_control_label { color: var(--lc-gold) !important; }
+/* Steam's price slider is a native range input: its track takes the accent. */
+body.search_page #additional_search_options .range_input:not([class*="as-"]) { accent-color: var(--lc-lavender); }
+body.search_page #additional_search_options .range_display:not([class*="as-"]) {
+	color: var(--lc-lilac) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.search_page #additional_search_options input.search_filter_suggest {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: inset 0 -2px 0 var(--lc-lavender) !important;
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.search_page #additional_search_options input.search_filter_suggest:focus { box-shadow: inset 0 -2px 0 var(--lc-gold) !important; }
+
+/* -------------------------------------------------------------- reviews
+ * Review cards are log entries (news.css language): reviewer block on the
+ * left, verdict lamp, hours, posted date, prose body. Scoped to .review_ctn,
+ * which holds the review list; the graph (.EpJ2bqGTew8-) is S25's. */
+
+body.app .review_ctn ._4rFF1L9jPC8- {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+	animation: lc-s12-entry .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+body.app .review_ctn ._4rFF1L9jPC8-:hover {
+	box-shadow: inset 14px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-gold) !important;
+}
+
+body.app .review_ctn .Bbflu2codsU- {
+	color: var(--lc-lavender) !important;
+	font-size: 15px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.app .review_ctn .o62k18gmiXQ-,
+body.app .review_ctn ._4zGuwHiO90Y- {
+	color: var(--lc-lilac) !important;
+	font-size: 11px !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.app .review_ctn .SpnUX-euB8g- { box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 4px var(--lc-steel); }
+
+/* Verdict lamp: gold for recommended, coral for not recommended (Steam marks
+ * that tile with Q-ri1pkIYZs-; the vote buttons reuse the tile, so scope to the band). */
+body.app .review_ctn .PaJFVCJu0g0- { background: var(--lc-surface) !important; }
+body.app .review_ctn .PaJFVCJu0g0- .H2acnhvyOf8- { background: var(--lc-gold) !important; }
+body.app .review_ctn .PaJFVCJu0g0- .H2acnhvyOf8- path { fill: var(--lc-black) !important; }
+body.app .review_ctn .PaJFVCJu0g0- .H2acnhvyOf8-.Q-ri1pkIYZs- { background: var(--lc-coral) !important; }
+body.app .review_ctn .PaJFVCJu0g0- .H2acnhvyOf8-.Q-ri1pkIYZs- path { fill: var(--lc-black) !important; }
+body.app .review_ctn ._6TbBRA-XF68- {
+	color: var(--lc-gold) !important;
+	font-size: 15px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.app .review_ctn .zrWiY5l1Qvs- {
+	color: var(--lc-peach) !important;
+	font-size: 12px !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+body.app .review_ctn .bgorXAs2e8Y- {
+	color: var(--lc-lilac) !important;
+	font-size: 11px !important;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+}
+body.app .review_ctn .eNXwO1akYzc-,
+body.app .review_ctn .eNXwO1akYzc- * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+body.app .review_ctn .eNXwO1akYzc- {
+	color: var(--lc-ink) !important;
+	font-size: 15px !important;
+	line-height: 1.5 !important;
+}
+
+body.app .review_ctn .kNt2mI9s0Wo- > .FFdVb5PNBwQ- {
+	color: var(--lc-lilac) !important;
+	font-size: 12px !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+}
+body.app .review_ctn button.kJdKC3epVXw- {
+	background: var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	color: var(--lc-black) !important;
+}
+body.app .review_ctn button.kJdKC3epVXw- * { color: var(--lc-black) !important; }
+body.app .review_ctn button.kJdKC3epVXw-:hover { background: var(--lc-gold) !important; }
+body.app .review_ctn .ef0Z3fMBRDM- { color: var(--lc-lilac) !important; }
+
+body.app .review_ctn .lldeUKTkoO0- {
+	color: var(--lc-lavender) !important;
+	font-size: 15px !important;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+}
+
+/* Round 6 notes 28-31: the rest of the review card and the section around it. */
+/* The fade over a long review: to black, not Steam's navy (note 29). */
+body.app .review_ctn .o79HbP6msR0- { background: linear-gradient(to bottom, transparent, var(--lc-black)) !important; }
+body.app .review_ctn button.Z0aIjhPUXKM- { /* Read More */
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 13px 13px 0 !important;
+	font-family: var(--lc-font) !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	box-shadow: none !important;
+}
+body.app .review_ctn button.Z0aIjhPUXKM-:hover { background: var(--lc-gold) !important; }
+/* Reviewer's PC specs: pale blue on steel blue was hard to read (note 28/30). A black
+ * readout with a steel rail, peach label, ink values. */
+body.app .review_ctn .ev-4YE2674o- {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	box-shadow: inset 8px 0 0 var(--lc-steel), inset 0 -2px 0 var(--lc-surface) !important;
+	border-radius: 0 !important;
+	padding: 6px 12px 8px 20px !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .04em;
+}
+body.app .review_ctn .ev-4YE2674o- * { color: var(--lc-ink) !important; }
+body.app .review_ctn .ev-4YE2674o- .D6w-d1v2-Vc- { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+body.app .review_ctn hr.q1Lt-A9efKo- { border: 0 !important; height: 2px; background: var(--lc-surface) !important; }
+body.app .review_ctn .j8nIw0zXcJo- { color: var(--lc-lilac) !important; text-transform: uppercase; letter-spacing: .06em; }
+body.app .review_ctn .ePITP9CnlMU-, body.app .review_ctn .ePITP9CnlMU- svg, body.app .review_ctn .ePITP9CnlMU- path { color: var(--lc-lavender) !important; fill: var(--lc-lavender) !important; }
+
+/* The summary block: a lavender bracket instead of Steam's two hairlines (note 31). */
+body.app #app_reviews_hash .d57g2l1FXWk- {
+	position: relative;
+	padding-left: 22px;
+	box-shadow: inset 12px 0 0 var(--lc-lavender);
+	border-radius: 0 0 0 22px;
+}
+body.app #app_reviews_hash .nQmgFD0Ujec- { height: 6px !important; background: var(--lc-lavender) !important; border-radius: 0 3px 3px 0; }
+body.app #app_reviews_hash .PwTlk5b4Rh0- { box-shadow: none !important; }
+body.app #app_reviews_hash .nS3iAoyO-XI- { background: transparent !important; }
+body.app #app_reviews_hash button.rmyhMJV7U78- { /* Filters */
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 13px 13px 0 !important;
+}
+body.app #app_reviews_hash button.rmyhMJV7U78- * { color: var(--lc-black) !important; fill: var(--lc-black) !important; }
+body.app #app_reviews_hash button.rmyhMJV7U78-:hover { background: var(--lc-gold) !important; }
+
+/* "In Steam Family library" (note 27): a flat lilac lamp, not Steam's blue gradient. */
+.package_in_library_flag {
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 9px 9px 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	font-family: var(--lc-font) !important;
+}
+.package_in_library_flag.in_own_library { background: var(--lc-gold) !important; }
+.package_in_library_flag * { color: var(--lc-black) !important; }
+
+@keyframes lc-s12-entry {
+	from { opacity: 0; transform: translateX(12px); }
+	to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.app .review_ctn ._4rFF1L9jPC8- { animation: none !important; }
+}
+
+/* Steam's "ignored" flag on capsules (every store page): dim, like disabled records. */
+.ds_flag.ds_ignored_flag {
+	background-color: var(--lc-disabled) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}

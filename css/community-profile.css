@@ -1,0 +1,234 @@
+/* LCARSv2 profile pages (body.profile_page). The owner's animated art becomes
+ * a faint wash, like the store app art; a friend keeps their own theme art.
+ * Panels get black plates and lavender rails, the header is a console panel,
+ * showcases and comments are titled sections and log entries. Only panel
+ * surfaces are overridden, so a friend's theme colours stay in their art. */
+
+/* ------------------------------------------------------------ art ground */
+
+body.profile_page .profile_animated_background { opacity: .16 !important; filter: grayscale(.5); }
+
+/* Own profile: the default purple ground goes, so the wash shows through. */
+body.profile_page:has(.profile_animated_background) .profile_content {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+body.profile_page:has(.profile_animated_background) .profile_header_bg_texture {
+	background-color: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	background-image: none !important;
+}
+
+/* ---------------------------------------------------------------- header */
+
+/* Console panel: lavender rails top and bottom. */
+body.profile_page .profile_header_bg_texture {
+	box-shadow: inset 0 8px 0 var(--lc-lavender), inset 0 -8px 0 var(--lc-lavender);
+}
+
+/* Avatar in a bracket: [ ] outside the frame. */
+body.profile_page .profile_header_content > .playerAvatar { position: relative; }
+body.profile_page .profile_header_content > .playerAvatar::before {
+	content: '';
+	position: absolute;
+	left: -12px; right: -12px; top: -8px; bottom: -8px;
+	border: solid var(--lc-lavender);
+	border-width: 0 6px;
+	pointer-events: none;
+}
+
+body.profile_page .actual_persona_name {
+	color: var(--lc-gold) !important;
+	font-size: 30px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase;
+}
+
+body.profile_page .header_real_name {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+/* Level: a readout block with a peach lead. */
+body.profile_page a.persona_level_btn {
+	display: flex !important;
+	align-items: center;
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	box-shadow: inset 10px 0 0 var(--lc-peach);
+	padding-left: 14px !important;
+	border-radius: 0 !important;
+}
+
+body.profile_page .persona_level, body.profile_page .persona_level_btn .persona_name {
+	color: var(--lc-peach) !important;
+	font-size: 18px !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+body.profile_page .profile_header_badge { border-radius: 0 !important; box-shadow: inset 0 -3px 0 var(--lc-lavender); }
+
+/* Header commands: peach caps, gold on hover. */
+body.profile_page .profile_header_actions .btn_profile_action,
+body.profile_page .profile_header_actions .btn_profile_action > span {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+body.profile_page .profile_header_actions .btn_profile_action:hover,
+body.profile_page .profile_header_actions .btn_profile_action:hover > span {
+	background: var(--lc-gold) !important;
+}
+
+/* ------------------------------------------------------- panels & rails */
+
+body.profile_page .profile_customization,
+body.profile_page .profile_comment_area,
+body.profile_page .showcase_content_bg {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	border-radius: 0 !important;
+}
+
+body.profile_page .profile_customization {
+	box-shadow: inset 6px 0 0 var(--lc-lavender);
+}
+
+/* Section title rails: gold caps on black, lavender base rail. */
+body.profile_page .profile_customization_header,
+body.profile_page .profile_recentgame_header,
+body.profile_page .commentthread_header {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 0 -4px 0 var(--lc-lavender);
+	border-radius: 0 !important;
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 20px !important;
+	font-weight: 500 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase;
+	text-shadow: none !important;
+}
+
+/* Recently played: the achievement strip was Steam purple; it becomes a plate. */
+body.profile_page .recent_game,
+body.profile_page .game_info_stats {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	border-radius: 0 !important;
+}
+
+body.profile_page .game_info_stats { box-shadow: inset 6px 0 0 var(--lc-lilac); }
+
+body.profile_page .showcase_bodylabel {
+	color: var(--lc-peach) !important;
+	font-size: 13px !important;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+/* Right column: a bank of blocks, each with its own coloured lead. */
+body.profile_page .profile_rightcol { background: none !important; }
+
+body.profile_page .responsive_status_info,
+body.profile_page .responsive_count_link_area,
+body.profile_page .profile_group_links,
+body.profile_page .profile_friend_links {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent);
+	box-shadow: inset 8px 0 0 var(--lc-steel);
+	padding: 6px 8px 8px 14px;
+	margin-bottom: 10px;
+}
+
+body.profile_page .profile_group_links, body.profile_page .profile_friend_links { box-shadow: inset 8px 0 0 var(--lc-lilac); }
+
+body.profile_page .profile_count_link {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	box-shadow: inset 0 -2px 0 var(--lc-surface);
+}
+
+/* ------------------------------------------------ prose and log entries */
+
+body.profile_page .profile_summary {
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.5 !important;
+	letter-spacing: 0 !important;
+	color: var(--lc-ink) !important;
+}
+
+/* Comments are log entries: black plate, lilac lead, peach author. */
+body.profile_page .commentthread_comment {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent);
+	box-shadow: inset 8px 0 0 var(--lc-lilac);
+	padding: 8px 10px 8px 14px;
+	margin-bottom: 6px;
+}
+
+body.profile_page .author_name_group a {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+body.profile_page .commentthread_comment_text {
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.5 !important;
+	letter-spacing: 0 !important;
+	color: var(--lc-ink) !important;
+}
+
+/* Reply box: a black well with a gold focus ring. Look only; never submit. */
+body.profile_page textarea.commentthread_textarea {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+}
+
+body.profile_page textarea.commentthread_textarea:focus {
+	box-shadow: inset 0 0 0 2px var(--lc-gold);
+	outline: none;
+}
+
+/* -------------------------------------------------------------- motion */
+
+@keyframes lc-profile-in {
+	from { opacity: 0; transform: translateX(-14px); }
+	to { opacity: 1; transform: none; }
+}
+
+body.profile_page .profile_customization {
+	animation: lc-profile-in .42s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+body.profile_page .profile_customization:nth-child(2n) { animation-delay: 60ms; }
+
+body.profile_page .profile_rightcol > div {
+	animation: lc-profile-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+body.profile_page .profile_rightcol > div:nth-child(2) { animation-delay: 60ms; }
+body.profile_page .profile_rightcol > div:nth-child(3) { animation-delay: 120ms; }
+body.profile_page .profile_rightcol > div:nth-child(4) { animation-delay: 180ms; }
+
+@media (prefers-reduced-motion: reduce) {
+	body.profile_page .profile_customization,
+	body.profile_page .profile_rightcol > div { animation: none; }
+}

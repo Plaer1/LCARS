@@ -1,0 +1,17 @@
+/* LCARSv2 palette preset: First Contact.
+ * Source hexes: trekcolors R package (leonawicz), lcars palettes; slot
+ * mapping and contrast lifts are LCARSv2's (black text on fills stays
+ * legible). Only slots change; geometry and fonts stay the design doc's. */
+
+/* :root:root: condition sheets load before library.css, whose tokens.css would win a tie. */
+:root:root {
+	--lc-palette-jingle: "local:2"; /* the cover of this era (js/boot.js) */
+	--lc-gold: #c2b74b;
+	--lc-peach: #cd883e;
+	--lc-lavender: #bebcdf;
+	--lc-coral: #b46757;
+	--lc-lilac: #c198b0;
+	--lc-steel: #ae697d;
+	--lc-surface: #231a20;
+	--lc-disabled: #7f6676;
+}

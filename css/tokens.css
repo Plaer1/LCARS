@@ -1,0 +1,40 @@
+/* LCARSv2 tokens. Roles and geometry from the archived "LCARS / Operations"
+ * spec: black continuous ground, light reading ink, lavender structural
+ * rails, coral selected framing, peach secondary commands, gold emphasis
+ * and persistent selection, black ink on every colored fill. */
+
+@font-face {
+	font-family: 'LC Antonio';
+	src: url('../fonts/Antonio.ttf') format('truetype');
+	font-weight: 100 700;
+	font-style: normal;
+}
+
+:root {
+	--lc-black: #000000;
+	--lc-ink: #fff3db;
+	--lc-lavender: #aaa0f5;
+	--lc-coral: #d97880;
+	--lc-peach: #ffbd8f;
+	--lc-gold: #ffad00;
+	--lc-surface: #201b2a;
+	--lc-disabled: #756879;
+	/* Two quieter rail tones so long banks don't read as one flat slab;
+	 * both are mixes of the authored lavender/peach roles above. */
+	--lc-lilac: #c9a6e8;
+	--lc-steel: #8f8ad8;
+
+	--lc-font: 'LC Antonio', 'Antonio', 'Arial Narrow', sans-serif;
+	--lc-prose: Arial, 'Helvetica Neue', sans-serif;
+
+	/* Construction measurements (desktop). */
+	--lc-bank: 145px;        /* department bank width */
+	--lc-gutter: 22px;       /* black separation bank → register */
+	--lc-slice: 5px;         /* black slices between bank segments */
+	--lc-rail: 38px;         /* header rail */
+	--lc-rail-thin: 16px;    /* register rail */
+	--lc-elbow: 62px;        /* outer elbow radius */
+	--lc-fillet: 26px;       /* inner black cutout radius */
+	--lc-cap: 22px;          /* outward command caps */
+	--lc-command: 36px;      /* native command height */
+}

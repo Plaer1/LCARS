@@ -1,0 +1,75 @@
+/* LCARSv2 window corners (S23). Imported by library.css, settings.css and
+ * popup-menus.css, so every rule is scoped to its own window.
+ *
+ * Resize grip: Steam's corner adjuster becomes the bottom rail's outward cap,
+ * a peach quarter-round with signal arcs spreading into the corner.
+ * It must stay hit-testable: native resize depends on it, so never
+ * display:none or pointer-events:none here. The hidden variant lives in
+ * css/corner/grip-hidden.css.
+ *
+ * Popup menus: their window has TransparentParentWindow, so the outside of the
+ * bracket's rounded corner can show the desktop. The bracket stays opaque. */
+
+html.lc-shell .window_resize_grip,
+html.lc-settings .window_resize_grip {
+	display: block;
+	width: 26px !important;
+	height: 26px !important; /* the rail's height: its top edge lines up with Friends & Chat */
+	opacity: 1 !important;
+	border-radius: 0 0 26px 0; /* the window-corner arc */
+	background-color: var(--lc-peach) !important;
+	/* Raw colour: a url() has no tokens. */
+	/* Black rings cut the whole cap, centred on the arc that rounds it, so the bands run into the corner. */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='none' stroke='%23000' stroke-width='2.6'%3E%3Cpath d='M7.5 0A7.5 7.5 0 0 1 0 7.5M14.5 0A14.5 14.5 0 0 1 0 14.5M21 0A21 21 0 0 1 0 21'/%3E%3C/svg%3E") !important;
+	background-size: 100% 100% !important; /* Steam sizes this to 16 px, 4 px in */
+	background-position: 0 0 !important;
+	background-repeat: no-repeat !important;
+}
+
+html.lc-shell .window_resize_grip:hover,
+html.lc-settings .window_resize_grip:hover {
+	background-color: var(--lc-gold) !important;
+	animation: lc-ping .28s steps(1, end) 1;
+}
+
+html.MillenniumWindow_ContextMenu,
+html.MillenniumWindow_ContextMenu body,
+html.MillenniumWindow_ContextMenu .ContextMenuPopupBody {
+	background: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-shell .window_resize_grip:hover,
+	html.lc-settings .window_resize_grip:hover { animation: none; }
+}
+
+/* Transparent main window (needs the "Change Window Params" plugin, which
+ * creates windows with TransparentParentWindow; steam.js reads the flag from
+ * the window URL and adds html.lc-transparent).
+ * Only the area outside the console outline goes see-through: the outer frame
+ * is clipped to the elbows' curves and the page layers behind it are cleared. */
+:root { --lc-window-clip: inset(0 round calc(var(--lc-elbow) + 2px) calc(var(--lc-rail) / 2 + 2px) 26px calc(var(--lc-elbow) - 10px)); }
+
+html.lc-shell.lc-transparent,
+html.lc-shell.lc-transparent body,
+html.lc-shell.lc-transparent ._1ENHEsrSLcTRtPQFl1F-wL,
+html.lc-shell.lc-transparent ._1rDh5rXSFZJOqCa4UpnI4z {
+	background: transparent !important;
+}
+
+/* Steam's 1 px inset bevels on the top and bottom bar containers (unblurred, so
+ * no-shadows.css keeps them); the old 6 px clip hid the bottom one. */
+._3Z7VQ1IMk4E3HsHvrkLNgo, ._3vCzSrrXZzZjVJFZNg9SGu { box-shadow: none !important; }
+
+/* Steam draws its window outline as a 1 px black border on the root container
+ * (left, right, bottom). Over the transparent corners it showed as a hairline
+ * frame around the app (user, round 6). */
+html.lc-shell ._1ENHEsrSLcTRtPQFl1F-wL { border-width: 0 !important; }
+
+html.lc-shell.lc-transparent ._3mz8wQ6Q44B8P7pzPP4Iyw {
+	/* Each corner rounds like the shape that ends there (elbow, window-control cap,
+	 * bottom rail, bottom elbow), 2 px wider so the clip's curve runs just inside
+	 * the shape's own: the shape's soft edge never blends into the black backing
+	 * as a dark rim (round 6). */
+	clip-path: var(--lc-window-clip);
+}

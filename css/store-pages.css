@@ -1,0 +1,13 @@
+/* LCARSv2 store pages: one patch for all of store.steampowered.com; each
+ * sheet scopes itself (front page vs app page) by Steam's own body classes. */
+@import url('store.css');
+@import url('store-app.css');
+@import url('scrollbars.css');
+@import url('store-queue.css');
+@import url('store-side.css');
+@import url('store-sale.css');
+@import url('store-reviews-graph.css');
+@import url('addons-augmented-steam.css');
+@import url('addons-steamdb.css');
+@import url('web-motion.css');
+@import url('web-frame.css');

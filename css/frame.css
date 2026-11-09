@@ -1,0 +1,689 @@
+/* LCARSv2 console frame. The window is one LCARS panel:
+ *
+ *   ╭──────────── top rail · title interruption · controls ──────────╮
+ *   │ elbow                                                          (cap
+ *   ├ bank segment     ┌ register ┐ ┌ main view ───────────────────┐
+ *   ├ bank segment     │          │ │                              │
+ *   ├ filler · date    └──────────┘ └──────────────────────────────┘
+ *   │ elbow
+ *   ╰──────────── bottom rail · downloads · friends ────────────────(cap
+ *
+ * Internal joins are square; only outer elbows and outward caps curve. The top
+ * elbow, top rail and filler take the active department's colour (--lc-dept,
+ * css/bank-motion.css). */
+
+body, body * {
+	font-family: var(--lc-font) !important;
+	font-synthesis: none !important;
+	letter-spacing: .02em;
+}
+
+body { background: var(--lc-black) !important; color: var(--lc-ink); }
+
+* { transition-duration: 0s !important; } /* LCARS state changes are instant; console motion is keyframed */
+
+::selection { background: var(--lc-gold); color: var(--lc-black); }
+
+
+._1ENHEsrSLcTRtPQFl1F-wL, ._3mz8wQ6Q44B8P7pzPP4Iyw, ._1rDh5rXSFZJOqCa4UpnI4z,
+.RGNMWtyj73_-WdhflrmuY, ._3xRRJfD2xy95i9NhJxLTp0, ._3BFcmjAaMyP6GTPwc0VyWi {
+	background: var(--lc-black) !important;
+}
+
+._2CmrnGY-Amtd83ScJkFvx2 { display: none !important; } /* URL bar spacer */
+
+/* ---------------------------------------------------------------- grid */
+
+.lc-shell ._3mz8wQ6Q44B8P7pzPP4Iyw { /* OuterFrame */
+	position: relative;
+	display: grid !important;
+	grid-template-columns: var(--lc-bank) minmax(0, 1fr);
+	grid-template-rows: var(--lc-rail) minmax(0, 1fr) 26px;
+	grid-template-areas: "elbowT top" "bank main" "elbowB bottom";
+	padding: 0; /* the console reaches the window's edges */
+	box-sizing: border-box;
+}
+
+.lc-shell ._3Z7VQ1IMk4E3HsHvrkLNgo { grid-area: top; min-width: 0; } /* TopBar */
+.lc-shell ._1rDh5rXSFZJOqCa4UpnI4z { /* ContentFrame */
+	grid-area: main;
+	min-width: 0;
+	min-height: 0;
+	margin: 16px 0 14px var(--lc-gutter);
+	overflow: clip !important; /* hidden could still be scrolled by focus(), shifting the page up (user: top cut off) */
+}
+.lc-shell ._1_yS5UP7el0aN4vntx3dx { grid-area: bottom; min-width: 0; } /* BottomBarContainer */
+
+/* -------------------------------------------------------------- elbows */
+
+.lc-elbow {
+	position: relative;
+	background: var(--lc-lavender);
+	color: var(--lc-black);
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	box-sizing: border-box;
+	padding: 0 10px 5px 0;
+	font-size: 15px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	z-index: 2;
+}
+
+.lc-elbow-top {
+	grid-area: elbowT;
+	-webkit-app-region: drag; /* grab the STEAM elbow to move the window, like the titlebar */
+	app-region: drag;
+	align-self: start;
+	height: 78px;
+	background: var(--lc-dept, var(--lc-lavender));
+	border-radius: var(--lc-elbow) 0 0 0;
+}
+
+/* Inner black cutout where the bank meets the top rail. */
+.lc-elbow-top::after {
+	content: '';
+	position: absolute;
+	left: 100%;
+	top: var(--lc-rail);
+	width: var(--lc-fillet);
+	height: var(--lc-fillet);
+	background: radial-gradient(circle at 100% 100%, transparent calc(var(--lc-fillet) - .5px), var(--lc-dept, var(--lc-lavender)) var(--lc-fillet));
+}
+
+.lc-elbow-bottom {
+	grid-area: elbowB;
+	align-self: end;
+	height: 64px;
+	border-radius: 0 0 0 calc(var(--lc-elbow) - 12px);
+	background: var(--lc-peach);
+	align-items: flex-start;
+	padding-top: 6px;
+}
+
+.lc-elbow-bottom::after {
+	content: '';
+	position: absolute;
+	left: 100%;
+	bottom: 26px;
+	width: var(--lc-fillet);
+	height: var(--lc-fillet);
+	background: radial-gradient(circle at 100% 0, transparent calc(var(--lc-fillet) - .5px), var(--lc-peach) var(--lc-fillet));
+}
+
+/* ---------------------------------------------------------------- bank */
+
+.lc-bank {
+	grid-area: bank;
+	display: flex;
+	flex-direction: column;
+	gap: var(--lc-slice);
+	/* clear the elbow above and below, with one black slice each */
+	padding: calc(78px - var(--lc-rail) + var(--lc-slice)) 0 calc(64px - 26px + var(--lc-slice));
+	min-height: 0;
+	clip-path: inset(0 -14px 0 0); /* clips like overflow:hidden, but lets the selection arm reach out */
+}
+
+.lc-bank-nav { display: contents; }
+
+.lc-bank-nav ._2D64jIEK7wpUR_NlObDW76 { /* SuperNav moved in */
+	flex: 0 0 auto !important;
+	display: grid !important;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--lc-slice) !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	height: auto !important;
+	min-height: 0 !important;
+	counter-reset: lc-dept;
+}
+
+/* Back / forward: one split segment, the two halves side by side. */
+.lc-bank svg._25lBLzuVeYAUG279up4xP8 {
+	width: 100% !important;
+	height: 30px !important;
+	margin: 0 !important;
+	padding: 8px 0 !important;
+	box-sizing: border-box;
+	background: var(--lc-steel) !important;
+	opacity: 1 !important;
+	fill: var(--lc-black) !important;
+}
+
+.lc-bank svg._25lBLzuVeYAUG279up4xP8 * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+.lc-bank svg._25lBLzuVeYAUG279up4xP8:hover { background: var(--lc-gold) !important; }
+.lc-bank svg._25lBLzuVeYAUG279up4xP8:hover * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD { grid-column: 1 / -1; }
+
+/* Destinations: flat segments, label low and right, black ink. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD {
+	--lc-seg: var(--lc-peach);
+	counter-increment: lc-dept;
+	position: relative;
+	min-height: clamp(28px, 5vh, 58px); /* 30 px at Steam's 600 px floor, so the whole bank fits */
+	height: auto !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	background: var(--lc-seg) !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+}
+
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(5n+2) { --lc-seg: var(--lc-lavender); }
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(5n+3) { --lc-seg: var(--lc-lilac); }
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(5n+4) { --lc-seg: var(--lc-coral); }
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(5n+5) { --lc-seg: var(--lc-steel); }
+
+/* Department number, top-left, the way bank segments carry codes. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD::before {
+	content: counter(lc-dept, decimal-leading-zero);
+	position: absolute;
+	top: 4px;
+	left: 8px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--lc-black);
+	opacity: .55;
+}
+
+.lc-bank ._19axKcqYRuaJ8vdYKYmtTQ { /* MenuButton */
+	background: transparent !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	padding: 0 8px 4px 8px !important;
+	height: auto !important;
+	font-size: 19px !important;
+	font-weight: 600 !important;
+	letter-spacing: .05em !important;
+	line-height: 1 !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	white-space: nowrap;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Steam navigates only from the label, so the label covers the whole segment
+ * (it used to be a 77x23 corner and most clicks only opened the menu). */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD ._19axKcqYRuaJ8vdYKYmtTQ {
+	position: absolute !important;
+	inset: 0;
+	display: flex !important;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:hover { background: var(--lc-ink) !important; }
+
+/* Selected department: gold. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD._1gqEjB5QsKT_NftD1dEsdZ {
+	background: var(--lc-gold) !important;
+}
+
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD._1gqEjB5QsKT_NftD1dEsdZ ._19axKcqYRuaJ8vdYKYmtTQ,
+.lc-bank ._19axKcqYRuaJ8vdYKYmtTQ * {
+	border: 0 !important;
+	box-shadow: none !important;
+	text-decoration: none !important;
+}
+
+.lc-bank ._19axKcqYRuaJ8vdYKYmtTQ::after, .lc-bank ._19axKcqYRuaJ8vdYKYmtTQ::before,
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD::after { display: none !important; }
+
+.lc-bank-fill {
+	flex: 1 1 auto;
+	min-height: 0; /* gives way to the segments in a short window */
+	overflow: hidden;
+	container: lc-fill / size;
+	background: var(--lc-lavender); /* not the department colour: on STORE that was peach, the same as the elbow below (user) */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	padding: 0 10px 6px;
+	color: var(--lc-black);
+	gap: 2px;
+}
+
+/* Too short for the clock: a plain filler. */
+@container lc-fill (max-height: 46px) { .lc-bank-fill > * { display: none; } }
+
+.lc-bank-fill b { font-weight: 600; font-size: 18px; line-height: 1; letter-spacing: .06em; }
+.lc-bank-fill .lc-date { font-size: 14px; opacity: .7; }
+.lc-bank-fill .lc-time i { font-style: normal; font-size: .6em; opacity: .7; margin-left: 3px; } /* military seconds */
+
+/* ----------------------------------------------------------- top rail */
+
+.lc-shell ._3Z7VQ1IMk4E3HsHvrkLNgo { background: var(--lc-black) !important; min-height: 0 !important; }
+.lc-shell ._3Z3ohQ8-1NKnCZkbS6fvy { display: none !important; } /* emptied SuperNavBar */
+
+._39oUCO1OuizVPwcnnv88no { /* TitleBar */
+	height: var(--lc-rail) !important;
+	min-height: 0 !important;
+	background: var(--lc-black) !important;
+	gap: var(--lc-slice);
+	align-items: stretch !important;
+}
+
+/* ------------------------------------------------- bank: SYSTEM group */
+
+/* Root menus moved into the bank by js/steam.js: a stack of short segments,
+ * headed by a small peach group label. */
+.lc-bank-sys {
+	display: flex;
+	flex-direction: column;
+	gap: var(--lc-slice);
+	margin-top: clamp(2px, 1vh, 8px);
+}
+
+.lc-bank-sys::before {
+	content: 'System';
+	color: var(--lc-peach);
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	text-align: right;
+	padding-right: 6px;
+	line-height: 1;
+}
+
+/* One column: flyouts open to the right, so nothing may sit between a button and its menu. */
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--lc-slice) !important;
+	height: auto !important;
+	width: 100% !important;
+	max-width: none !important; /* Steam caps the root bar at 100% - 99px */
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: visible !important; /* the hover arm reaches past the bank */
+	background: transparent !important;
+}
+
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O {
+	--lc-seg: var(--lc-steel);
+	position: relative;
+	width: auto !important;
+	box-sizing: border-box;
+	height: clamp(24px, 4vh, 30px) !important;
+	margin: 0 !important;
+	padding: 0 7px 3px !important;
+	background: var(--lc-seg) !important;
+	color: var(--lc-black) !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	border-radius: 0 !important;
+	min-width: 0;
+}
+
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:first-child { --lc-seg: var(--lc-peach); }
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:nth-child(2) { --lc-seg: var(--lc-lilac); }
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:nth-child(5) { --lc-seg: var(--lc-lilac); }
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:hover { --lc-seg: var(--lc-gold); }
+
+/* An open root menu keeps its button gold while the popup is up. */
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O:has([aria-expanded="true"]),
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O[aria-expanded="true"] { --lc-seg: var(--lc-gold); }
+
+.lc-bank-sys ._1Ky59qmywxOUtNcI1cgmkX > ._2UyOBeiSdBayaFdRa39N2O * { color: var(--lc-black) !important; }
+
+.bSKGlAJG2UVWTsntEJY2v { color: var(--lc-black) !important; display: flex; align-items: flex-end; gap: 6px; }
+.bSKGlAJG2UVWTsntEJY2v svg, .bSKGlAJG2UVWTsntEJY2v svg path { fill: var(--lc-black) !important; }
+
+/* The long rail, interrupted by the current view's title. */
+._30vB9DdsPK7VrZAbb5Q1Av { /* DragArea */
+	flex: 1 1 auto !important;
+	min-width: 120px;
+	background: var(--lc-dept, var(--lc-lavender)) !important;
+	display: flex;
+	align-items: stretch;
+	justify-content: flex-start;
+	overflow: hidden;
+}
+
+.lc-title {
+	margin-left: 26px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-size: 30px;
+	font-weight: 500;
+	line-height: var(--lc-rail);
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	padding: 0 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 70%;
+	pointer-events: none;
+}
+
+/* A short rail (small window) drops "Library •" so the view's own name shows; the bank already says Library. */
+._30vB9DdsPK7VrZAbb5Q1Av { container: lc-rail / inline-size; }
+@container lc-rail (max-width: 460px) { .lc-title-dept { display: none; } }
+
+/* Announcements / notifications / account: segments. */
+._3cykd-VfN_xBxf3Qxriccm {
+	height: var(--lc-rail) !important;
+	margin: 0 !important; /* Steam's 5 px top margin dropped it below the rail */
+	padding: 0 !important;
+	gap: var(--lc-slice);
+	align-items: stretch !important;
+	background: var(--lc-black) !important;
+}
+
+._3cykd-VfN_xBxf3Qxriccm > * { display: flex !important; align-items: stretch !important; height: var(--lc-rail) !important; }
+
+._2Szzh5sKyGgnLUR870zbDE, ._3yD46y5pd3zOGR7CzKs0mC {
+	height: var(--lc-rail) !important;
+	margin: 0 !important;
+	border-radius: 0 !important;
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center;
+	min-width: 44px;
+}
+
+._3yD46y5pd3zOGR7CzKs0mC { background: var(--lc-lilac) !important; padding: 0 12px 4px !important; font-weight: 600 !important; text-transform: uppercase; align-items: flex-end !important; }
+
+/* The account segment's wrapper is 24 px tall in Steam; it is a full rail segment
+ * like its neighbours, avatar and name low like their labels (round 6). */
+._3cykd-VfN_xBxf3Qxriccm ._2Lu3d-5qLmW4i19ysTt2jT { height: var(--lc-rail) !important; display: flex !important; align-items: stretch !important; margin: 0 !important; }
+._3cykd-VfN_xBxf3Qxriccm ._3yD46y5pd3zOGR7CzKs0mC { height: 100% !important; max-height: none !important; box-sizing: border-box; gap: 8px; padding: 2px 10px 2px 2px !important; align-items: center !important; } /* Steam caps it at 24 px */
+/* The picture takes the segment's height. */
+._3cykd-VfN_xBxf3Qxriccm ._3yD46y5pd3zOGR7CzKs0mC .nibodjvvrm86uCfnnAn4g,
+._3cykd-VfN_xBxf3Qxriccm ._3yD46y5pd3zOGR7CzKs0mC ._3h-QRJGxnVOIExtHD1R0f2 { width: 34px !important; height: 34px !important; }
+._2Szzh5sKyGgnLUR870zbDE:hover, ._3yD46y5pd3zOGR7CzKs0mC:hover { background: var(--lc-gold) !important; }
+._2Szzh5sKyGgnLUR870zbDE svg *, ._3yD46y5pd3zOGR7CzKs0mC svg * { fill: var(--lc-black) !important; }
+
+/* Title-bar icon buttons become worded segments, label low and right. */
+._2Szzh5sKyGgnLUR870zbDE {
+	padding: 0 12px 4px 26px !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+	width: auto !important;
+	max-width: none !important;
+	box-sizing: border-box;
+}
+
+._3cykd-VfN_xBxf3Qxriccm > *, ._3cykd-VfN_xBxf3Qxriccm .tool-tip-source { width: auto !important; max-width: none !important; }
+._2Szzh5sKyGgnLUR870zbDE svg { display: none !important; }
+
+._2Szzh5sKyGgnLUR870zbDE::after {
+	white-space: nowrap;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--lc-black);
+	line-height: 1;
+}
+
+._2Szzh5sKyGgnLUR870zbDE._5wILZhsLODVwGfcJ0hKmJ::after { content: 'News'; }
+._2Szzh5sKyGgnLUR870zbDE.RtSv39ZoBOySnb8XQ5hJf::after { content: 'Alerts'; }
+._2Szzh5sKyGgnLUR870zbDE._3LKQ3S_yqrebeNL2OEvOCn0::after,
+._2Szzh5sKyGgnLUR870zbDE[class*="_3LKQ3S_yqrebeNL"]::after { content: 'Big Picture'; }
+._2Szzh5sKyGgnLUR870zbDE._5wILZhsLODVwGfcJ0hKmJ { background: var(--lc-lilac) !important; }
+._2Szzh5sKyGgnLUR870zbDE[class*="_3LKQ3S_yqrebeNL"] { background: var(--lc-steel) !important; }
+
+/* Alerts waiting: the segment goes gold (Steam's NoNew class means none). */
+._2Szzh5sKyGgnLUR870zbDE.RtSv39ZoBOySnb8XQ5hJf:not(._3qhGkQ5qLVNQQ-J2-uPoHt) { background: var(--lc-gold) !important; }
+._2Szzh5sKyGgnLUR870zbDE.RtSv39ZoBOySnb8XQ5hJf > :not(svg) { color: var(--lc-black) !important; font-weight: 600; margin-right: 6px; }
+
+/* Window controls are the rail's outward endcap. */
+.qP17eBPXkfezFfexZ4hC3 { /* WindowControls */
+	height: var(--lc-rail) !important;
+	background: var(--lc-peach) !important;
+	border-radius: 0 calc(var(--lc-rail) / 2) calc(var(--lc-rail) / 2) 0;
+	padding-right: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.qP17eBPXkfezFfexZ4hC3 .title-area, .qP17eBPXkfezFfexZ4hC3 .title-bar-actions { height: var(--lc-rail) !important; align-items: center; }
+.title-area-highlight { background: transparent !important; }
+.title-bar-actions .title-area-icon { border-radius: 0 !important; }
+.title-bar-actions .title-area-icon:hover { background: var(--lc-gold) !important; }
+.SVGIcon_Minimize line, .SVGIcon_Restore rect, .SVGIcon_Restore line, .SVGIcon_Restore polyline,
+.SVGIcon_Maximize rect, .SVGIcon_Maximize line, .SVGIcon_X_Line line {
+	stroke: var(--lc-black) !important;
+	stroke-opacity: 1 !important;
+	stroke-width: 2px;
+}
+
+/* Web views' URL bar is the page frame's top rail (user, round 6): a lilac rail
+ * interrupted by the page title and ID (gold on black, js/urlbar.js), the
+ * address on the bar, and the reload button as the lavender right cap. It sits
+ * where css/web-frame.css drew the page's own rail (8 px down, 12 px in, 28 px
+ * tall); the page no longer draws one. */
+.UkR3sY319PuaUNuUWks2K {
+	display: flex !important;
+	align-items: center !important;
+	height: 28px !important;
+	min-height: 0 !important;
+	margin: 8px 12px 0 !important;
+	padding: 0 !important;
+	background: var(--lc-lilac) !important;
+	border-radius: 999px !important;
+	box-shadow: none !important;
+	overflow: hidden;
+}
+
+.UkR3sY319PuaUNuUWks2K > .lc-url-title {
+	order: 1;
+	flex: 0 0 auto;
+	height: 100%;
+	margin-left: 22px;
+	display: flex;
+	align-items: center;
+	gap: .5em;
+	padding: 0 12px 0 8px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-family: var(--lc-font);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.UkR3sY319PuaUNuUWks2K > .lc-url-title i { font-style: normal; font-variant-numeric: tabular-nums; }
+
+.UkR3sY319PuaUNuUWks2K ._2m_orETo6AghzAnc0sISCt { /* address */
+	order: 2;
+	flex: 1 1 auto;
+	min-width: 0;
+	height: 100% !important;
+	padding: 0 10px !important;
+	background: transparent !important;
+	display: flex !important;
+	align-items: center !important;
+}
+
+.UkR3sY319PuaUNuUWks2K .MZPxEZcxAGtPDf1NYtouS {
+	color: var(--lc-black) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px !important;
+	font-weight: 500;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.UkR3sY319PuaUNuUWks2K > ._3izqEKa-zuPIrUDSm1bRvf { /* reload: the right cap */
+	order: 3;
+	flex: 0 0 44px;
+	height: 100% !important;
+	margin: 0 !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	background: var(--lc-lavender) !important;
+	border-radius: 0 999px 999px 0 !important;
+}
+
+.UkR3sY319PuaUNuUWks2K > ._3izqEKa-zuPIrUDSm1bRvf:hover { background: var(--lc-gold) !important; }
+.UkR3sY319PuaUNuUWks2K svg { width: 14px; height: 14px; }
+.UkR3sY319PuaUNuUWks2K svg, .UkR3sY319PuaUNuUWks2K svg * { fill: var(--lc-black) !important; }
+
+/* While a page loads behind the curtain (ops-motion.js), the rail is already up
+ * above it, over the library, and draws in from the left. */
+html.lc-web-wait .UkR3sY319PuaUNuUWks2K {
+	position: relative;
+	z-index: 3;
+	animation: lc-url-draw 420ms cubic-bezier(.45, 0, .2, 1) backwards;
+}
+
+@keyframes lc-url-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+@media (prefers-reduced-motion: reduce) { html.lc-web-wait .UkR3sY319PuaUNuUWks2K { animation: none; } }
+
+/* -------------------------------------------------------- bottom rail */
+
+.lc-shell ._1_yS5UP7el0aN4vntx3dx { /* BottomBarContainer */
+	height: 26px !important;
+	min-height: 0 !important;
+	background: var(--lc-black) !important;
+	position: relative;
+	overflow: visible !important;
+}
+
+._3vCzSrrXZzZjVJFZNg9SGu { /* BottomBar */
+	height: 26px !important;
+	min-height: 0 !important;
+	padding: 0 !important;
+	background: var(--lc-black) !important;
+	display: flex !important;
+	align-items: stretch !important;
+	gap: var(--lc-slice);
+	border: 0 !important;
+}
+
+._2foCkpRXhqq0UGVE50BWqj { display: none !important; } /* Add a Game: Games menu has it */
+
+._2EQ7ghgqIdjKv9jsQC0Zq9 { /* DownloadStatus: the long peach rail */
+	flex: 1 1 auto !important;
+	background: var(--lc-peach) !important;
+	height: 26px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	padding: 0 14px !important;
+}
+
+._2EQ7ghgqIdjKv9jsQC0Zq9 { overflow: clip !important; } /* a downloading game's name and bar stay in the rail */
+
+.ip-YZhijAMZcuRoXBGiye, .ip-YZhijAMZcuRoXBGiye * {
+	color: var(--lc-black) !important;
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.ip-YZhijAMZcuRoXBGiye svg, ._1TdaAqMFadi0UTqilrkelR svg { display: none !important; } /* the words carry it */
+
+._1TdaAqMFadi0UTqilrkelR { /* Friends: outward endcap */
+	height: 26px !important;
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important; /* the resize cap after it is the rail's end */
+	padding: 0 18px 0 14px !important;
+	margin: 0 28px 0 0 !important; /* clears the corner resize cap (window-corners.css), with a segment gap */
+	display: flex !important;
+	align-items: center !important;
+}
+
+._1TdaAqMFadi0UTqilrkelR:hover { background: var(--lc-ink) !important; }
+
+._1TdaAqMFadi0UTqilrkelR ._3OhUxFVlQYr9W5ThxstR8k {
+	color: var(--lc-black) !important;
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+._1TdaAqMFadi0UTqilrkelR svg * { fill: var(--lc-black) !important; }
+
+/* Alerts that live in the bottom host float above the rail. */
+._2iJsgdTIX9Tj23rWnB7Q-c { bottom: 32px !important; }
+
+/* ------------------------------------------------------- console motion */
+
+/* OPS / SHELVES switch, riding in the rail beside the title (home only). */
+.lc-rail-toggle {
+	-webkit-app-region: no-drag;
+	align-self: stretch;
+	display: flex;
+	gap: var(--lc-slice);
+	margin-left: var(--lc-slice);
+	background: var(--lc-black);
+	padding: 0 var(--lc-slice);
+}
+
+.lc-rail-toggle button {
+	border: 0;
+	padding: 0 14px 5px;
+	background: var(--lc-steel);
+	color: var(--lc-black);
+	font: inherit;
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	display: flex;
+	align-items: flex-end;
+	cursor: pointer;
+}
+
+.lc-rail-toggle button:hover { background: var(--lc-ink); }
+.lc-rail-toggle button.on { background: var(--lc-gold); cursor: default; }
+
+/* Power-up: once per UI load the bank segments sweep in from the elbow. */
+html.lc-boot .lc-bank > * , html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD,
+html.lc-boot .lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O {
+	animation: lc-seg-in .38s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(1) { animation-delay: .08s; }
+html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(2) { animation-delay: .14s; }
+html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(3) { animation-delay: .20s; }
+html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(4) { animation-delay: .26s; }
+html.lc-boot .lc-bank ._7AlhCx3XGzBeIrQaCneUD:nth-of-type(5) { animation-delay: .32s; }
+html.lc-boot .lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O { animation-delay: .42s; }
+html.lc-boot .lc-bank-fill { animation-delay: .5s; }
+html.lc-boot .lc-elbow-top, html.lc-boot ._39oUCO1OuizVPwcnnv88no { animation: lc-rail-in .5s ease-out both; }
+
+/* Title interruption: a gold scan passes across on every route change. */
+.lc-title.lc-sweep { animation: lc-title-scan .5s steps(6) both; }
+
+@keyframes lc-seg-in { from { transform: translateX(-110%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes lc-rail-in { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+@keyframes lc-title-scan {
+	0% { color: var(--lc-black); background: var(--lc-gold); }
+	60% { color: var(--lc-black); background: var(--lc-gold); }
+	100% { color: var(--lc-gold); background: var(--lc-black); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-boot *, .lc-title.lc-sweep { animation: none !important; }
+}

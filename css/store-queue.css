@@ -1,0 +1,104 @@
+/* LCARSv2 S11 discovery queue: the queue strip on app pages (?queue=1, Steam
+ * adds in_queue to #queueCtn) and the /explore/ landing. This sheet loads on
+ * every store page, so each rule is scoped to body.app or body.explore. */
+
+/* ------------------------------------------------- queue strip (app page) */
+
+/* Black well with a lavender rail on the left and bottom, not Steam's slate. */
+body.app #queueCtn.queue_ctn {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 12px 0 0 var(--lc-lavender) !important; /* no long rail along the bottom */
+	border-radius: 14px 0 0 14px;
+}
+body.app #queueCtn .queue_reason_description { color: var(--lc-lilac) !important; font-size: 14px !important; letter-spacing: .04em; }
+body.app #queueCtn .queue_reason_description a { color: var(--lc-lavender) !important; text-transform: uppercase; }
+body.app #queueCtn .dq_settings_link { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Helper line: gold rail, no gradient. */
+body.app #queueCtn .queue_controls_description {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 6px 0 0 var(--lc-gold);
+	color: var(--lc-gold) !important;
+	font-size: 14px !important;
+	padding-left: 12px;
+	letter-spacing: .02em;
+}
+
+/* Command caps: peach Wishlist, lavender Follow, coral Ignore, gold Next. */
+body.app #queueCtn .add_to_wishlist { background: var(--lc-peach) !important; }
+body.app #queueCtn .queue_btn_follow .btnv6_blue_hoverfade { background: var(--lc-lavender) !important; }
+body.app #queueCtn .queue_btn_ignore .btnv6_blue_hoverfade { background: var(--lc-coral) !important; }
+body.app #queueCtn .btnv6_blue_hoverfade.btn_medium:hover { background: var(--lc-gold) !important; }
+
+body.app #queueCtn .btn_next_in_queue { background: var(--lc-gold) !important; }
+body.app #queueCtn .btn_next_in_queue::after { border-left-color: var(--lc-gold) !important; }
+body.app #queueCtn .btn_next_in_queue:hover { background: var(--lc-ink) !important; }
+body.app #queueCtn .btn_next_in_queue:hover::after { border-left-color: var(--lc-ink) !important; }
+body.app #queueCtn .next_in_queue_content { background: none !important; }
+body.app #queueCtn .next_in_queue_content, body.app #queueCtn .next_in_queue_content span { color: var(--lc-black) !important; }
+
+/* ----------------------------------------------- next item (app page load)
+ * A full navigation replaces the page on Next, so the arriving item slides in
+ * from the right on load. The outgoing slide is S16's cross-page motion. */
+
+@keyframes lc-queue-strip-in {
+	from { opacity: 0; transform: translateX(48px); }
+	to { opacity: 1; transform: none; }
+}
+@keyframes lc-queue-capsule-in {
+	from { opacity: 0; transform: translateX(160px); }
+	to { opacity: 1; transform: none; }
+}
+body.app #queueCtn.in_queue { animation: lc-queue-strip-in 520ms cubic-bezier(.2, .7, .2, 1) 120ms both; }
+body.app:has(#queueCtn.in_queue) #game_highlights .leftcol { animation: lc-queue-capsule-in 640ms cubic-bezier(.2, .8, .2, 1) both; }
+
+/* ------------------------------------------------- /explore/ landing */
+
+/* Headings: lavender caps, like the other store panels. */
+body.explore .pageheader, body.explore .discovery_queue_apps > h2, body.explore .rightcol > h2 {
+	color: var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+body.explore .queue_page_desc, body.explore .faq_answer {
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+	letter-spacing: 0 !important;
+}
+body.explore .faq_question { color: var(--lc-lavender) !important; font-size: 20px !important; }
+
+/* Panels: black well with a lavender rail; stat boxes on the surface tone. */
+body.explore .discovery_queue_customize_ctn { background: var(--lc-black) !important; box-shadow: inset 10px 0 0 var(--lc-lavender); }
+body.explore .explore_rightcol_box { background: var(--lc-surface) !important; box-shadow: inset 6px 0 0 var(--lc-lavender); }
+body.explore .explore_rightcol_header { color: var(--lc-lilac) !important; }
+body.explore .explore_rightcol_explain { color: var(--lc-lilac) !important; }
+
+/* Start banner: gold command, ink on hover. */
+body.explore .discovery_queue_overlay:hover .discovery_queue_overlay_message { background: var(--lc-ink) !important; color: var(--lc-black) !important; }
+
+/* Customize dialog (Steam's own <dialog>, opened from either page): same panels.
+ * Restyled in place; its OK and Cancel stay Steam's buttons. */
+dialog.newmodal:has(.dq_settings_content) {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 12px 0 0 var(--lc-lavender) !important;
+}
+dialog.newmodal:has(.dq_settings_content) .title_text { color: var(--lc-lavender) !important; text-transform: uppercase; letter-spacing: .06em; }
+dialog.newmodal:has(.dq_settings_content) .dq_settings_section_title { color: var(--lc-lilac) !important; }
+dialog.newmodal:has(.dq_settings_content) .dq_settings_checkrow { background: var(--lc-surface) !important; }
+dialog.newmodal:has(.dq_settings_content) .dq_settings_checkrow input[type=checkbox] { accent-color: var(--lc-gold); }
+dialog.newmodal:has(.dq_settings_content) .dq_settings_checkrow:hover { box-shadow: inset 6px 0 0 var(--lc-gold); }
+
+/* ---------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+	body.app #queueCtn.in_queue, body.app:has(#queueCtn.in_queue) #game_highlights .leftcol { animation: none !important; }
+}
+
+/* The Next-in-queue arrow is Steam-blue art: black like the command's text. */
+body.app #queueCtn .next_in_queue_content img, body.app #queueCtn .next_in_queue_content i, body.app #queueCtn .queue_btn_menu img, body.app #queueCtn .queue_btn_menu i { filter: brightness(0) !important; }

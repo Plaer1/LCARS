@@ -1,0 +1,243 @@
+/* LCARSv2 inventory (body.inventory_page). Game tabs are a bank of joined
+ * segments; the item grid is square black tiles with a gold select; the item
+ * detail pane is a well with a lavender rail and its commands are peach caps.
+ * View only: nothing here changes what the account or inventory can do. */
+
+/* --------------------------------------------------------------- header */
+
+body.inventory_page .profile_small_header_texture {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	box-shadow: inset 0 8px 0 var(--lc-lavender), inset 0 -8px 0 var(--lc-lavender);
+}
+
+body.inventory_page .profile_small_header_avatar > .playerAvatar { position: relative; }
+body.inventory_page .profile_small_header_avatar > .playerAvatar::before {
+	content: '';
+	position: absolute;
+	left: -10px; right: -10px; top: -6px; bottom: -6px;
+	border: solid var(--lc-lavender);
+	border-width: 0 5px;
+	pointer-events: none;
+}
+
+body.inventory_page .profile_small_header_name a {
+	color: var(--lc-gold) !important;
+	font-size: 26px !important;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+}
+
+body.inventory_page .profile_small_header_location,
+body.inventory_page .profile_small_header_arrow {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+/* ---------------------------------------------------- top commands */
+
+body.inventory_page .new_trade_offer_btn,
+body.inventory_page .new_trade_offer_btn > span {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+body.inventory_page .new_trade_offer_btn:hover,
+body.inventory_page .new_trade_offer_btn:hover > span {
+	background: var(--lc-gold) !important;
+}
+
+body.inventory_page #inventory_more_trigger,
+body.inventory_page #contextselect_trigger {
+	background: var(--lc-black) !important;
+	color: var(--lc-lavender) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+	border: 0 !important;
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+body.inventory_page #contextselect_trigger {
+	color: var(--lc-gold) !important;
+	font-size: 20px !important;
+	letter-spacing: .08em;
+}
+
+body.inventory_page #inventory_more_trigger:hover,
+body.inventory_page #contextselect_trigger:hover {
+	color: var(--lc-gold) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-gold);
+}
+
+/* ------------------------------------------------------------ game tabs */
+
+body.inventory_page .games_list_tabs_ctn {
+	background: var(--lc-black) !important;
+	box-shadow: inset -8px 0 0 var(--lc-steel);
+}
+
+/* Segments: lavender caps, gold when selected, ink on hover. Separators go. */
+body.inventory_page .games_list_tab {
+	display: flex !important;
+	align-items: center;
+	gap: 6px;
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 14px 14px 0 !important;
+	box-shadow: none !important;
+	margin: 0 0 var(--lc-slice);
+	padding: 3px 10px 3px 4px !important;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+body.inventory_page .games_list_tab_separator, body.inventory_page .games_list_tab_row_separator { display: none !important; }
+
+body.inventory_page .games_list_tab_name { color: var(--lc-black) !important; font-size: 13px; line-height: 1.2; }
+body.inventory_page .games_list_tab_number { color: var(--lc-black) !important; font-size: 12px; margin-left: auto; }
+
+body.inventory_page .games_list_tab.active { background: var(--lc-gold) !important; }
+body.inventory_page .games_list_tab:not(.active):hover { background: var(--lc-ink) !important; }
+
+/* ------------------------------------------------------------ main panel */
+
+body.inventory_page #tabcontent_inventory {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	box-shadow: inset 0 8px 0 var(--lc-lavender);
+	border-radius: 0 !important;
+}
+
+body.inventory_page .filter_label { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .08em; font-size: 13px !important; }
+
+body.inventory_page #filter_control.filter_search_box {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender);
+	border: 0 !important;
+	border-radius: 0 !important;
+}
+
+body.inventory_page .filter_tag_button {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+	text-transform: uppercase;
+}
+
+body.inventory_page .filter_tag_button, body.inventory_page .filter_tag_button span { color: var(--lc-lavender) !important; }
+body.inventory_page .filter_tag_button:hover { box-shadow: inset 0 0 0 2px var(--lc-gold); }
+body.inventory_page .filter_tag_button:hover, body.inventory_page .filter_tag_button:hover span { color: var(--lc-gold) !important; }
+
+/* Notice for new items: a peach-railed alert. */
+body.inventory_page .alertbox {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-peach);
+}
+
+body.inventory_page .alertbox_header {
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	text-transform: uppercase;
+	letter-spacing: .08em;
+	font-size: 16px !important;
+}
+
+body.inventory_page .alertbox_content { background: var(--lc-black) !important; }
+
+/* ------------------------------------------------------------ item grid */
+
+/* Square black tiles. Select: gold border; hover: lavender border. */
+body.inventory_page .itemHolder {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border-radius: 0 !important;
+}
+
+body.inventory_page .itemHolder .item {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 2px solid var(--lc-surface) !important;
+	border-radius: 0 !important;
+	box-sizing: border-box;
+}
+
+/* Hover adds a lavender inner rail, so the selected tile still reacts. */
+body.inventory_page .itemHolder .item:hover { border-color: var(--lc-lavender) !important; box-shadow: inset 0 0 0 2px var(--lc-lavender); }
+
+body.inventory_page .itemHolder .item.activeInfo { border-color: var(--lc-gold) !important; }
+
+/* Paging: lavender pill caps; disabled ones fall back to surface. */
+body.inventory_page .pagebtn {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 10px 10px 0 !important;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+body.inventory_page .pagebtn:not(.disabled):hover { background: var(--lc-gold) !important; }
+
+body.inventory_page .pagebtn.disabled {
+	background: var(--lc-surface) !important;
+	color: var(--lc-disabled) !important;
+}
+
+body.inventory_page .pagecounts, body.inventory_page .pagecounts * { color: var(--lc-peach) !important; letter-spacing: .06em; }
+
+/* ----------------------------------------------------- item detail pane */
+
+/* The well with a lavender rail. Steam's own blocks inside keep their layout. */
+body.inventory_page .inventory_page_right #iteminfo1 {
+	background: color-mix(in srgb, var(--lc-black) 84%, transparent) !important;
+	box-shadow: inset 10px 0 0 var(--lc-lavender);
+	border-radius: 0 !important;
+}
+
+/* Commands: peach caps, gold on hover. SteamDB's own buttons are S15's. */
+body.inventory_page .inventory_page_right #iteminfo1 a:not(.btnv6_blue_hoverfade),
+body.inventory_page .inventory_page_right #iteminfo1 button {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+body.inventory_page .inventory_page_right #iteminfo1 a:not(.btnv6_blue_hoverfade):hover,
+body.inventory_page .inventory_page_right #iteminfo1 button:hover {
+	background: var(--lc-gold) !important;
+}
+
+/* ---------------------------------------------------------------- motion */
+
+@keyframes lc-tile-in {
+	from { opacity: 0; transform: translateY(6px); }
+	to { opacity: 1; transform: none; }
+}
+
+/* Tiles wipe in by column, so a page change reads as one sweep. */
+body.inventory_page .itemHolder { animation: lc-tile-in .32s cubic-bezier(.2, .8, .2, 1) both; }
+body.inventory_page .itemHolder:nth-child(5n+2) { animation-delay: 40ms; }
+body.inventory_page .itemHolder:nth-child(5n+3) { animation-delay: 80ms; }
+body.inventory_page .itemHolder:nth-child(5n+4) { animation-delay: 120ms; }
+body.inventory_page .itemHolder:nth-child(5n+5) { animation-delay: 160ms; }
+
+@media (prefers-reduced-motion: reduce) {
+	body.inventory_page .itemHolder { animation: none; }
+}

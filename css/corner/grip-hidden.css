@@ -1,0 +1,3 @@
+/* LCARSv2 "Resize corner: Hidden" setting: the grip stays hit-testable (resizing still works), just invisible. */
+html .window_resize_grip { opacity: 0 !important; }
+html ._1TdaAqMFadi0UTqilrkelR { border-radius: 0 13px 13px 0 !important; } /* no cap after it: Friends ends the rail again */

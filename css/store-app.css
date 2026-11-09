@@ -1,0 +1,420 @@
+/* LCARSv2 store game page (:is(body.app, body.sub)). The game's own art stays as a faint
+ * wash; the media player sits in a detail frame; the glance column is a data
+ * register; purchase options are gold-railed command panels; every section
+ * heading interrupts a rail. Shared store chrome comes from store.css. */
+
+:is(body.app, body.sub) { background: var(--lc-black) !important; }
+
+/* .game_page_background wraps the whole page; the art itself is a CSS
+ * background on the page wrapper and on an event-art layer. */
+:is(body.app, body.sub) .game_page_background, :is(body.app, body.sub) .game_page_background.game { background-color: var(--lc-black) !important; background-image: none !important; }
+:is(body.app, body.sub) .fyTBoA4Uknk- { opacity: .14 !important; filter: grayscale(.5) !important; }
+/* These wrap real content (the media block lives in the glow): strip paint only. */
+:is(body.app, body.sub) .game_background_glow, :is(body.app, body.sub) .game_background_lighten { background: none !important; box-shadow: none !important; }
+
+/* Prose stays proportional. */
+:is(body.app, body.sub) #game_area_description, :is(body.app, body.sub) #game_area_description *, :is(body.app, body.sub) .game_description_snippet,
+:is(body.app, body.sub) .sysreq_contents, :is(body.app, body.sub) .sysreq_contents *, :is(body.app, body.sub) .review_box .content,
+:is(body.app, body.sub) .game_area_purchase_game p {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+/* ----------------------------------------------------------- title */
+
+:is(body.app, body.sub) .breadcrumbs, :is(body.app, body.sub) .breadcrumbs a {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+}
+
+:is(body.app, body.sub) .apphub_AppName {
+	color: var(--lc-gold) !important;
+	font-size: 46px !important;
+	font-weight: 500 !important;
+	line-height: 1.05 !important;
+	letter-spacing: .04em !important;
+	text-transform: uppercase !important;
+}
+
+/* ------------------------------------------------------- highlights */
+
+:is(body.app, body.sub) #game_highlights { background: transparent !important; background-image: none !important; }
+
+/* Media player: detail frame (lavender left/top rail, curved corner). */
+:is(body.app, body.sub) #game_highlights .leftcol {
+	box-sizing: border-box;
+	border: solid var(--lc-lavender);
+	border-width: 12px 0 8px 12px;
+	border-radius: 44px 0 0 22px;
+	overflow: hidden;
+	background: var(--lc-black);
+}
+
+/* Glance column: a register on black with a bank down its left. */
+:is(body.app, body.sub) #game_highlights .rightcol {
+	position: relative;
+	background: var(--lc-black) !important;
+	padding-left: 22px !important;
+	box-sizing: border-box;
+}
+
+:is(body.app, body.sub) #game_highlights .rightcol::before {
+	content: '';
+	position: absolute;
+	left: 0; top: 0; bottom: 0;
+	width: 14px;
+	background: linear-gradient(to bottom, var(--lc-peach) 0 30%, var(--lc-black) 30% calc(30% + 5px), var(--lc-steel) calc(30% + 5px) 70%, var(--lc-black) 70% calc(70% + 5px), var(--lc-coral) calc(70% + 5px));
+	border-radius: 0 0 0 10px;
+}
+
+:is(body.app, body.sub) .game_header_image_full { border-radius: 0 !important; }
+
+:is(body.app, body.sub) .game_description_snippet { color: var(--lc-ink) !important; font-size: 14px !important; line-height: 1.5 !important; }
+
+:is(body.app, body.sub) .user_reviews_summary_row, :is(body.app, body.sub) .release_date, :is(body.app, body.sub) .dev_row {
+	display: grid !important;
+	grid-template-columns: 112px 1fr;
+	align-items: baseline;
+	border-bottom: 2px solid var(--lc-surface);
+	padding: 4px 0 !important;
+}
+
+:is(body.app, body.sub) .user_reviews_summary_row .subtitle, :is(body.app, body.sub) .release_date .subtitle, :is(body.app, body.sub) .dev_row .subtitle {
+	color: var(--lc-peach) !important;
+	font-size: 13px !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+}
+
+:is(body.app, body.sub) .user_reviews_summary_row .summary, :is(body.app, body.sub) .release_date .date, :is(body.app, body.sub) .dev_row .summary, :is(body.app, body.sub) .dev_row a {
+	color: var(--lc-ink) !important;
+	font-size: 16px !important;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+:is(body.app, body.sub) .game_review_summary.positive { color: var(--lc-gold) !important; }
+:is(body.app, body.sub) .game_review_summary.mixed { color: var(--lc-peach) !important; }
+:is(body.app, body.sub) .game_review_summary.negative { color: var(--lc-coral) !important; }
+:is(body.app, body.sub) .responsive_reviewdesc_short, :is(body.app, body.sub) .user_reviews_summary_row .responsive_hidden { color: var(--lc-lavender) !important; }
+
+/* Tags: joined segments. */
+:is(body.app, body.sub) .glance_tags_label { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+:is(body.app, body.sub) .glance_tags { display: flex !important; flex-wrap: wrap; gap: 4px; }
+
+:is(body.app, body.sub) .app_tag {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	margin: 0 !important;
+	padding: 3px 9px 1px !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+}
+
+:is(body.app, body.sub) .app_tag:nth-child(4n+2) { background: var(--lc-lilac) !important; }
+:is(body.app, body.sub) .app_tag:nth-child(4n+3) { background: var(--lc-steel) !important; }
+:is(body.app, body.sub) .app_tag:nth-child(4n+4) { background: var(--lc-peach) !important; }
+:is(body.app, body.sub) .app_tag:hover { background: var(--lc-gold) !important; }
+:is(body.app, body.sub) .app_tag.add_button { border-radius: 0 10px 10px 0 !important; }
+
+/* Queue actions bar and "already in library" notice. */
+:is(body.app, body.sub) .queue_overflow_ctn, :is(body.app, body.sub) #queueActionsCtn { background: transparent !important; }
+
+:is(body.app, body.sub) .game_area_already_owned {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -3px 0 var(--lc-gold);
+	color: var(--lc-gold) !important;
+	padding-left: 24px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+:is(body.app, body.sub) .game_area_already_owned * { color: var(--lc-gold) !important; background: transparent !important; }
+:is(body.app, body.sub) .already_in_library { font-size: 18px !important; }
+
+/* ---------------------------------------------------- purchase panels */
+
+:is(body.app, body.sub) .game_area_purchase_game {
+	position: relative;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 0 0 0 22px !important;
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -6px 0 var(--lc-gold) !important;
+	padding: 14px 16px 22px 30px !important;
+}
+
+:is(body.app, body.sub) .game_area_purchase_game h1 {
+	color: var(--lc-gold) !important;
+	font-size: 26px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+:is(body.app, body.sub) .game_purchase_action, :is(body.app, body.sub) .game_purchase_action_bg {
+	background: transparent !important;
+	border-radius: 0 !important;
+}
+
+:is(body.app, body.sub) .game_purchase_price, :is(body.app, body.sub) .discount_block {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border-radius: 0 !important;
+	font-size: 18px !important;
+	letter-spacing: .06em;
+	box-shadow: inset 0 0 0 2px var(--lc-surface);
+}
+
+:is(body.app, body.sub) .btn_green_steamui, :is(body.app, body.sub) .btn_green_steamui > span {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 18px 18px 0 !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+	text-shadow: none !important;
+}
+
+:is(body.app, body.sub) .btn_green_steamui:hover, :is(body.app, body.sub) .btn_green_steamui:hover > span { background: var(--lc-ink) !important; }
+
+/* ---------------------------------------------------- section headings */
+
+:is(body.app, body.sub) #game_area_description h2, :is(body.app, body.sub) .game_page_autocollapse h2, :is(body.app, body.sub) .block_header h2,
+:is(body.app, body.sub) .game_area_dlc_section h2, :is(body.app, body.sub) #app_reviews_hash h2, :is(body.app, body.sub) h2.gradientbg {
+	display: flex !important;
+	align-items: center;
+	gap: 12px;
+	background: none !important;
+	border: 0 !important;
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 26px !important;
+	font-weight: 500 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	padding: 0 !important;
+	margin: 24px 0 14px !important;
+}
+
+:is(body.app, body.sub) #game_area_description h2::before, :is(body.app, body.sub) .game_page_autocollapse h2::before, :is(body.app, body.sub) .block_header h2::before,
+:is(body.app, body.sub) .game_area_dlc_section h2::before, :is(body.app, body.sub) #app_reviews_hash h2::before, :is(body.app, body.sub) h2.gradientbg::before {
+	content: '';
+	flex: 0 0 38px;
+	height: 18px;
+	background: var(--lc-lavender);
+	border-radius: 9px 0 0 9px;
+}
+
+:is(body.app, body.sub) #game_area_description h2::after, :is(body.app, body.sub) .game_page_autocollapse h2::after, :is(body.app, body.sub) .block_header h2::after,
+:is(body.app, body.sub) .game_area_dlc_section h2::after, :is(body.app, body.sub) #app_reviews_hash h2::after, :is(body.app, body.sub) h2.gradientbg::after {
+	content: '';
+	flex: 1 1 auto;
+	height: 12px;
+	background: var(--lc-lavender);
+	border-radius: 0 6px 6px 0;
+}
+
+:is(body.app, body.sub) #game_area_description { color: var(--lc-ink) !important; font-size: 15px; line-height: 1.6; }
+:is(body.app, body.sub) #game_area_description img { border-radius: 0 !important; }
+:is(body.app, body.sub) .sysreq_contents, :is(body.app, body.sub) .sysreq_contents * { color: #c9bfae !important; }
+:is(body.app, body.sub) .sysreq_contents strong { color: var(--lc-peach) !important; }
+
+/* Right column info blocks: black with a colored lead. */
+:is(body.app, body.sub) .responsive_apppage_details_right, :is(body.app, body.sub) #category_block {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 8px 0 0 var(--lc-steel);
+	padding-left: 18px !important;
+}
+
+:is(body.app, body.sub) .game_area_features_list_ctn a, :is(body.app, body.sub) .game_area_details_specs_ctn { background: transparent !important; color: var(--lc-ink) !important; }
+:is(body.app, body.sub) .game_area_details_specs_ctn:hover { box-shadow: inset 6px 0 0 var(--lc-gold); }
+:is(body.app, body.sub) .game_area_details_specs_ctn .label { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; }
+:is(body.app, body.sub) .block_title, :is(body.app, body.sub) .details_block b { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+:is(body.app, body.sub) .details_block, :is(body.app, body.sub) .details_block a { color: var(--lc-ink) !important; }
+
+/* Reviews. */
+:is(body.app, body.sub) .review_box {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: inset 8px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface);
+	padding-left: 18px;
+}
+
+:is(body.app, body.sub) .review_box .title { color: var(--lc-gold) !important; text-transform: uppercase; letter-spacing: .06em; }
+:is(body.app, body.sub) .review_box .content { color: var(--lc-ink) !important; }
+:is(body.app, body.sub) .review_box .hours, :is(body.app, body.sub) .review_box .postedDate { color: var(--lc-peach) !important; }
+
+/* ------------------------------------------------- remaining panels */
+
+:is(body.app, body.sub) .game_page_background_ctn, :is(body.app, body.sub) .related_items_ctn,
+:is(body.app, body.sub) .Y2-ks0gaz6E-, :is(body.app, body.sub) .nKsKxQO2ePs-, :is(body.app, body.sub) .PwTlk5b4Rh0-, :is(body.app, body.sub) ._3tTNLTWh51g-,
+:is(body.app, body.sub) .-JC2DTwjTLY-, :is(body.app, body.sub) .Bj8vGJI7AGo-, :is(body.app, body.sub) .block {
+	background-image: none !important;
+	background-color: transparent !important;
+}
+
+/* In-library stats panel and DLC rows: register entries. */
+:is(body.app, body.sub) .game_area_play_stats, :is(body.app, body.sub) .game_area_dlc_row {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 8px 0 0 var(--lc-peach), inset 0 -2px 0 var(--lc-surface);
+	padding-left: 18px !important;
+	color: var(--lc-ink) !important;
+}
+
+:is(body.app, body.sub) .game_area_dlc_row:hover { box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-gold); }
+:is(body.app, body.sub) .game_area_play_stats a, :is(body.app, body.sub) .game_area_play_stats .already_in_library { color: var(--lc-lavender) !important; }
+
+/* Feature labels, link bar, sysreq tabs, small chips. */
+:is(body.app, body.sub) .label, :is(body.app, body.sub) .linkbar, :is(body.app, body.sub) .jPVI0mk1nqU- {
+	background: var(--lc-black) !important;
+	box-shadow: inset 6px 0 0 var(--lc-steel);
+	border-radius: 0 !important;
+	color: var(--lc-ink) !important;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+:is(body.app, body.sub) .linkbar:hover, :is(body.app, body.sub) .label:hover { box-shadow: inset 6px 0 0 var(--lc-gold); color: var(--lc-gold) !important; }
+
+:is(body.app, body.sub) .sysreq_tabs { background: none !important; display: flex; gap: 4px; }
+:is(body.app, body.sub) .sysreq_tab { background: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 !important; text-transform: uppercase; letter-spacing: .08em; }
+:is(body.app, body.sub) .sysreq_tab.active { background: var(--lc-gold) !important; box-shadow: inset 0 -5px 0 var(--lc-black); }
+
+/* Blue informational text Steam uses for links and states. */
+:is(body.app, body.sub) a, :is(body.app, body.sub) .game_area_play_stats .hours_played { color: var(--lc-lavender); }
+:is(body.app, body.sub) .already_owned_actions .review_create h1, :is(body.app, body.sub) #review_create h1, :is(body.app, body.sub) .game_area_play_stats h1 { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .06em; }
+
+/* ------------------------------------------------- right column and page parts */
+
+/* Steam Deck block: an info block like the others, with a command button. */
+.-h3mdabpWCk- { background: var(--lc-black) !important; box-shadow: inset 8px 0 0 var(--lc-steel); padding-left: 18px !important; border-radius: 0 !important; }
+.z7OUnz8a2LE- { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+.QvYBOAdgkPk- { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .05em; }
+.S0TPsOpik3c- { background: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 999px 999px 0 !important; text-transform: uppercase; letter-spacing: .05em; }
+.S0TPsOpik3c-:hover { background: var(--lc-gold) !important; }
+
+/* Features list: the accessibility row matches the rows above it, and so do the notices. */
+.LtwI-MuOmiI- { background: transparent !important; color: var(--lc-ink) !important; border-radius: 0 !important; }
+.d7UCTQDYGFg- { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; }
+.checkcol span { color: var(--lc-gold) !important; }
+.DRM_notice { background: var(--lc-black) !important; background-image: none !important; box-shadow: inset 6px 0 0 var(--lc-coral); color: var(--lc-peach) !important; border-radius: 0 !important; }
+.DRM_notice a { color: var(--lc-lavender) !important; }
+
+.game_purchase_discount_countdown { color: var(--lc-peach) !important; }
+.game_page_autocollapse_readmore { color: var(--lc-gold) !important; }
+._1WAcs3o8Lg4-, .JIdk89M-jjc- { background: var(--lc-surface) !important; color: var(--lc-ink) !important; border-radius: 0 !important; }
+.k9Sm1n-4mwI- { background: var(--lc-black) !important; }
+._630lLH8fjII- { background: var(--lc-black) !important; background-image: none !important; border-radius: 0 !important; }
+.yYL-OrX9PtQ- { background: var(--lc-lavender) !important; border-radius: 0 !important; }
+.yYL-OrX9PtQ-:hover { background: var(--lc-gold) !important; }
+.EWCiFLRR-T8- { color: var(--lc-black) !important; }
+
+/* ---------------------------------------------------- bundle and package pages */
+
+body.sub .pageheader { color: var(--lc-gold) !important; font-weight: 500 !important; text-transform: uppercase; letter-spacing: .05em; }
+body.sub h2.bb_tag, body.sub #game_area_description h2 { color: var(--lc-gold) !important; text-transform: uppercase; letter-spacing: .05em; }
+body.sub .package_totals_row { color: var(--lc-ink) !important; }
+body.sub .package_totals_row .price, body.sub .savings, body.sub .message { color: var(--lc-gold) !important; }
+body.sub .action_btn { background: var(--lc-lavender) !important; border-radius: 0 !important; }
+body.sub .action_btn:hover { background: var(--lc-gold) !important; }
+body.sub .action_btn, body.sub .action_btn * { color: var(--lc-black) !important; }
+body.sub .details_block a, body.sub .language_list, body.sub .language_list i { color: var(--lc-ink) !important; }
+
+.BffT7IQWKYg-.eBjRkRA8NpA- { background: var(--lc-gold) !important; }
+.BffT7IQWKYg-.aejFKWIp7Dg- { background: var(--lc-surface) !important; }
+.block_header .right a { background: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+
+/* ------------------------------------------------ annotation pass 2026-11-08 */
+
+/* Release date / Last update: SteamDB's row pulled itself up over the rule between them. */
+:is(body.app, body.sub) .glance_ctn_responsive_left .dev_row.steamdb_last_update,
+:is(body.app, body.sub) .glance_ctn_responsive_left .release_date { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+/* Extension buttons (SteamDB, Augmented Steam) by the Community Hub command: black glyphs on the gold pill. */
+.apphub_OtherSiteInfo a img, .apphub_OtherSiteInfo a i, .apphub_OtherSiteInfo a svg, .apphub_OtherSiteInfo a span > * { filter: brightness(0) !important; }
+.apphub_OtherSiteInfo a.btn_medium { border-radius: 0 !important; background: var(--lc-gold) !important; margin-right: var(--lc-slice); }
+.apphub_OtherSiteInfo a.btn_medium:last-child { background: var(--lc-peach) !important; border-radius: 0 16px 16px 0 !important; }
+.apphub_OtherSiteInfo a.btn_medium:hover { background: var(--lc-ink) !important; }
+
+/* "Is this game relevant": a lilac bracket, LCARS links, icons inside the text column. */
+:is(body.app, body.sub) .recommendation_reasons p.reason { padding-left: 22px !important; background-position: 0 50% !important; color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .05em; }
+:is(body.app, body.sub) .recommendation_reasons a { color: var(--lc-lavender) !important; }
+:is(body.app, body.sub) .recommendation_reasons hr { background: var(--lc-lilac) !important; border: 0 !important; height: 2px !important; }
+
+/* Feature list and controller rows: register rows, no store green or blue. */
+#category_block .game_area_details_specs_ctn { background: transparent !important; box-shadow: inset 0 -1px 0 var(--lc-surface); }
+#category_block .game_area_details_specs_ctn:hover { box-shadow: inset 0 -2px 0 var(--lc-gold); }
+#category_block .game_area_details_specs_ctn .label { color: var(--lc-ink) !important; }
+#category_block [class*="BxW4vbYGn9w"] *, #category_block .BxW4vbYGn9w- { color: var(--lc-peach) !important; background: transparent !important; }
+
+/* SteamPeek (an addon we support): a bracketed gallery. */
+#steampeek { background: var(--lc-black) !important; border: 0 !important; border-radius: 16px 0 0 16px !important; box-shadow: inset 8px 0 0 var(--lc-lilac), inset 0 5px 0 var(--lc-lilac), inset 0 -5px 0 var(--lc-lilac) !important; }
+#steampeek * { border-radius: 0 !important; box-shadow: none !important; }
+#steampeek h2, #steampeek h3 { color: var(--lc-gold) !important; font-family: var(--lc-font) !important; text-transform: uppercase; letter-spacing: .06em; }
+#steampeek a[class*="btn"], #steampeek [class*="more"] { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 14px 14px 0 !important; text-transform: uppercase; font-family: var(--lc-font) !important; }
+#steampeek [class*="price"] { color: var(--lc-gold) !important; font-family: var(--lc-font) !important; font-size: 18px !important; }
+
+/* Recent reviews: the text clears its bar, and the bar's colour says which way the review went. */
+._4rFF1L9jPC8- { padding-left: 14px !important; box-sizing: border-box; }
+._4rFF1L9jPC8-:nth-child(4n+2) { box-shadow: inset 10px 0 0 var(--lc-lilac), inset 0 -2px 0 var(--lc-surface) !important; }
+._4rFF1L9jPC8-:nth-child(4n+3) { box-shadow: inset 10px 0 0 var(--lc-peach), inset 0 -2px 0 var(--lc-surface) !important; }
+._4rFF1L9jPC8-:nth-child(4n) { box-shadow: inset 10px 0 0 var(--lc-steel), inset 0 -2px 0 var(--lc-surface) !important; }
+.apphub_OtherSiteInfo a.btn_steamdb span { filter: brightness(0) !important; } /* the SteamDB and PCGamingWiki glyphs are background images */
+
+/* Clipped reviews (note 52): Steam clips at ten lines of 22.5 px; the body keeps that exact line
+ * height so the cut lands between lines and never through one. */
+.eNXwO1akYzc- .FFdVb5PNBwQ- { line-height: 22.5px !important; }
+
+/* App page video player (note 9). The control fade goes; the controls sit on a black strip. */
+.uacZ-90MOII- { background: none !important; }
+.EE0MOLi31qY- { background: var(--lc-black) !important; }
+.GsDewiltMCM-, .BffT7IQWKYg- { border-radius: 0 !important; }
+.GsDewiltMCM- { background: var(--lc-surface) !important; }
+.eBjRkRA8NpA- { background: var(--lc-gold) !important; }
+.EE0MOLi31qY- svg, .EE0MOLi31qY- .SVGIcon_Button { color: var(--lc-peach) !important; }
+.EE0MOLi31qY- .tool-tip-source:hover svg { color: var(--lc-gold) !important; }
+.QkF4JCVWpWw-, .QkF4JCVWpWw- * { color: var(--lc-lavender) !important; font-variant-numeric: tabular-nums; }
+.k9Sm1n-4mwI- { background: var(--lc-black) !important; border-radius: 0 !important; }
+.vzX4l4uGgUg- { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .05em; }
+.AAuicaihzn0- { color: var(--lc-lavender) !important; }
+.HOEA4Jz0kQU- { background: var(--lc-steel) !important; }
+
+/* Its quality menu: a small panel with the bank's elbow. */
+.LzRinklSJ-4- {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-steel) !important;
+	border-width: 0 0 6px 10px !important;
+	border-radius: 0 0 0 16px !important;
+	box-shadow: none !important;
+}
+._2uk-hbrhKFI- { color: var(--lc-ink) !important; border-radius: 0 !important; font-family: var(--lc-font) !important; text-transform: uppercase; letter-spacing: .05em; background: none !important; }
+._2uk-hbrhKFI-:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+._2uk-hbrhKFI-.vi2dzrdIGJY- { color: var(--lc-gold) !important; }
+._2uk-hbrhKFI-.vi2dzrdIGJY-:hover { color: var(--lc-black) !important; }
+._2uk-hbrhKFI- svg, ._2uk-hbrhKFI- svg * { color: inherit !important; fill: currentColor !important; stroke: currentColor !important; } /* Steam's tick is painted blue */
+.Y9S-qDK8XPE- { background: var(--lc-surface) !important; height: 2px !important; }
+
+/* Thumbnail strip arrows and the play marker on video thumbnails: flat caps. */
+.eUqFFnnOpaE- { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 !important; opacity: 1 !important; }
+.eUqFFnnOpaE-:hover { background: var(--lc-gold) !important; }
+.eUqFFnnOpaE- svg { color: var(--lc-black) !important; }
+.GssTy6neAgg- { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 17px 17px 0 !important; }
+.GssTy6neAgg- svg { color: var(--lc-black) !important; }
+
+/* Hover tooltips anywhere on the store. */
+.store_tooltip { background: var(--lc-black) !important; background-image: none !important; color: var(--lc-ink) !important; border: 0 !important; border-left: 4px solid var(--lc-gold) !important; border-radius: 0 !important; box-shadow: none !important; font-family: var(--lc-font) !important; }
+
+/* Game icon at the title's height (note 10). */
+.apphub_AppIcon { width: 48px !important; height: 48px !important; background: none !important; border: 0 !important; padding: 0 !important; }
+.apphub_AppIcon img { width: 48px !important; height: 48px !important; border: 0 !important; border-radius: 0 !important; display: block; }

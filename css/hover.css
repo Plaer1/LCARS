@@ -1,0 +1,58 @@
+/* LCARSv2 hover language. Colors still change instantly (LCARS state is
+ * not tweened), but every control acknowledges the pointer with a short
+ * stepped flash, the way panel buttons blink on touch. One keyframe, any
+ * color: it works on brightness, so each control keeps its own palette. */
+
+@keyframes lc-ping {
+	0% { filter: brightness(1.55); }
+	34% { filter: brightness(1); }
+	67% { filter: brightness(1.3); }
+	100% { filter: brightness(1); }
+}
+
+@keyframes lc-nudge { from { transform: translateX(0); } 40% { transform: translateX(5px); } to { transform: translateX(2px); } }
+
+/* Bank, rail and command segments. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:hover,
+.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O:hover,
+.lc-bank svg._25lBLzuVeYAUG279up4xP8:hover,
+.lc-rail-toggle button:hover,
+._2Szzh5sKyGgnLUR870zbDE:hover, ._3yD46y5pd3zOGR7CzKs0mC:hover,
+.lc-ops-tabs button:hover, .lc-ops-coll:hover, .lc-reg-cols button:hover,
+.lc-well-cmds button:hover, .lc-ops-back:hover,
+._1FnJ6dPuknQFQ2RTpKTI16:hover, ._3qDWQGB0rtwM3qpXTb11Q-:hover,
+._1b6LYWVijW-9E4YV0keDWZ:hover, ._3Cdin80d-hVsakHUZboheb:hover,
+._3pSPluBgf0NeR1kkCLWMhR:hover, ._3mzKdQXht__YHo6PX1LmB6:hover, ._1TxHdzOt3OD9ikR3xIseKe:hover,
+._2EQ7ghgqIdjKv9jsQC0Zq9:hover, ._1TdaAqMFadi0UTqilrkelR:hover,
+._3eEbSktrstBdLk0dVpnKVI:hover, .iYW5hWQwg14WYT4PV3xe_:hover,
+._1_vCR1dPfyJ7_yukwDqblf:hover, ._1t_97P9KMsEBaPq9y-6OUl:hover,
+.DialogButton:hover, ._1-vlriAtKYDViAEunue4VO:hover,
+.bsNegRKT1Hbv4tqHrOk9- > *:hover, ._1HS4twEHtDJ_8MWgJT4VBd:hover {
+	animation: lc-ping .28s steps(1, end) 1;
+}
+
+/* Labels in bank segments slide toward the content they will open. */
+.lc-bank ._7AlhCx3XGzBeIrQaCneUD:hover ._19axKcqYRuaJ8vdYKYmtTQ,
+.lc-bank-sys ._2UyOBeiSdBayaFdRa39N2O:hover > * {
+	animation: lc-nudge .22s ease-out both;
+}
+
+/* Register rows: the ID block lights and the row gains a lavender lead. */
+.lc-row:hover { box-shadow: inset 3px 0 0 var(--lc-lavender); }
+.lc-row:hover .c-id { animation: lc-ping .28s steps(1, end) 1; }
+.lc-row:hover .c-name { color: var(--lc-gold); }
+
+/* Capsules and event cards: a gold base marker draws in under the art. */
+._1pwP4eeP1zQD7PEgmsep0W:hover .WYgDg9NyCcMIVuMyZ_NBC,
+.B-vCdL38RiJlhfSRgZv78:hover { animation: lc-ping .28s steps(1, end) 1; }
+
+/* Readout blocks respond too: the colored lead brightens to gold. */
+.lc-ro-grid .ro:hover { box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -3px 0 var(--lc-gold) !important; }
+.lc-well-data > div:hover { box-shadow: inset 10px 0 0 var(--lc-gold) !important; }
+
+/* Section rails on the game page: hovering a section lights its header. */
+._2r4TK4BAuU-J4FuF_O7v_5:hover { --lc-rail-color: var(--lc-gold); }
+
+@media (prefers-reduced-motion: reduce) {
+	* { animation: none !important; }
+}

@@ -1,0 +1,275 @@
+{
+	"name": "LCARSv2",
+	"author": "Plaer1",
+	"description": "Steam as one LCARS console: a left command bank sweeping into top and bottom rails, title-interrupted section rails, gold selection and black reading wells. Built from the archived LCARS / Operations design spec.",
+	"version": "0.1.0",
+	"tags": [
+		"Dark",
+		"LCARS",
+		"Layout"
+	],
+	"Patches": [
+		{
+			"MatchRegexString": "^Steam$",
+			"TargetCss": "css/library.css",
+			"TargetJs": "js/steam.js"
+		},
+		{
+			"MatchRegexString": "^Steam Settings$",
+			"TargetCss": "css/settings.css",
+			"TargetJs": "js/settings.js"
+		},
+		{
+			"MatchRegexString": "^Sign in to Steam$",
+			"TargetCss": "css/signin.css"
+		},
+		{
+			"MatchRegexString": "(?:Menu|Supernav)$",
+			"TargetCss": "css/popup-menus.css"
+		},
+		{
+			"MatchRegexString": "^Extensions$",
+			"TargetCss": "css/extendium-manager.css"
+		},
+		{
+			"MatchRegexString": "^https://store\\.steampowered\\.com/.*$",
+			"TargetCss": "css/store-pages.css",
+			"TargetJs": "js/web/transitions.js"
+		},
+		{
+			"MatchRegexString": "^https://steamcommunity\\.com/.*$",
+			"TargetCss": "css/community-pages.css",
+			"TargetJs": "js/web/transitions.js"
+		}
+	],
+	"Conditions": {
+		"Palette": {
+			"tab": "General",
+			"default": "Operations (design doc)",
+			"description": "LCARS color era. Hex values from the trekcolors palettes (stardate years are the conventional TNG / DS9 / Voyager / Nemesis readings); fills are lifted where needed so black text stays readable.",
+			"values": {
+				"Operations (design doc)": {},
+				"TNG late / DS9 early (2369)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/tng-2369.css"
+					}
+				},
+				"Classic (2357)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/classic-2357.css"
+					}
+				},
+				"DS9 / Voyager (2375)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/ds9-voyager-2375.css"
+					}
+				},
+				"Nemesis (2379)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/nemesis-2379.css"
+					}
+				},
+				"First Contact": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/first-contact.css"
+					}
+				},
+				"Cardassian (DS9 station)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/cardassian.css"
+					}
+				},
+				"29th century": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/twenty-ninth-century.css"
+					}
+				},
+				"NX-01 (Enterprise)": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/nx01.css"
+					}
+				},
+				"23rd century": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/twenty-third-century.css"
+					}
+				},
+				"Red alert": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/red-alert.css"
+					}
+				},
+				"LCARS alternate": {
+					"TargetCss": {
+						"affects": [
+							".*"
+						],
+						"src": "css/palettes/alternate.css"
+					}
+				}
+			}
+		},
+		"Stardate": {
+			"tab": "General",
+			"default": "yes",
+			"description": "Show the stardate (TNG-era convention) instead of the calendar date in the bank and the boot sequence.",
+			"values": {
+				"no": {},
+				"yes": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/clock/stardate.css"
+					}
+				}
+			}
+		},
+		"Military time": {
+			"tab": "General",
+			"default": "yes",
+			"description": "24-hour HHMM clock with seconds. Off shows a 12-hour clock.",
+			"values": {
+				"no": {},
+				"yes": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/clock/military.css"
+					}
+				}
+			}
+		},
+		"UI sounds": {
+			"tab": "General",
+			"default": "yes",
+			"description": "Short synthesized console chirps and the boot jingle. Turn off for silence.",
+			"values": {
+				"no": {},
+				"yes": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/sounds-on.css"
+					},
+					"TargetJs": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "js/sound.js"
+					}
+				}
+			}
+		},
+		"Boot jingle": {
+			"tab": "General",
+			"default": "Match color skin",
+			"description": "Played once when the Steam UI loads (needs UI sounds). By default it matches the Palette setting's era; or pick a cover or Random. The covers are your own files in jingles/local/ (git-ignored, never shipped); without them it stays silent.",
+			"values": {
+				"Match color skin": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/match.css"
+					}
+				},
+				"None": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/none.css"
+					}
+				},
+				"Random": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/local.css"
+					}
+				},
+				"Original series": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/local-1.css"
+					}
+				},
+				"TNG": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/local-2.css"
+					}
+				},
+				"DS9": {
+					"TargetCss": {
+						"affects": [
+							"^Steam$"
+						],
+						"src": "css/jingle/local-3.css"
+					}
+				}
+			}
+		},
+		"Debug menu": {
+			"tab": "General",
+			"default": "no",
+			"description": "Floating LCARS debug panel: compare with/without the theme and annotate elements. Notes stay in Steam's own browser storage.",
+			"values": {
+				"no": {
+					"TargetJs": {
+						"affects": [
+							".*"
+						],
+						"src": "js/debug/debug-off.js"
+					}
+				},
+				"yes": {
+					"TargetJs": {
+						"affects": [
+							".*"
+						],
+						"src": "js/debug/debug-on.js"
+					}
+				}
+			}
+		}
+	}
+}

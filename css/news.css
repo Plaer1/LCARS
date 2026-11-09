@@ -1,0 +1,116 @@
+/* LCARSv2 library news (events opened from a game page's activity).
+ * Each post is a transmission log entry inside a dialog rail: peach type
+ * and date blocks, gold title, readable prose on black. The side column
+ * (close / scroll / game) becomes a short command bank. */
+
+._3CJsgSK-y815Zeoe6bz6dh { background: rgba(0, 0, 0, .86) !important; backdrop-filter: none !important; }
+
+.stsss-bTNuazY8FYtvTOX, ._2-IygC3-t05_RYwPl6Fkgt { display: none !important; } /* blurred art washes */
+
+._1KsYSVzmvIfRivBTcx-_GE._3_SEiDNs-lzwV7cTF6gcgt { /* one post */
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lavender);
+	border-width: 12px 0 8px 12px;
+	border-radius: 46px 0 0 24px;
+	box-sizing: border-box !important; /* the rail sits inside Steam's width */
+	box-shadow: none !important;
+	animation: lc-panel-in .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+._1KsYSVzmvIfRivBTcx-_GE._3_SEiDNs-lzwV7cTF6gcgt:nth-child(3n+2) { border-color: var(--lc-lilac); }
+._1KsYSVzmvIfRivBTcx-_GE._3_SEiDNs-lzwV7cTF6gcgt:nth-child(3n+3) { border-color: var(--lc-steel); }
+
+._3z2NYCkFizMu4fMvWTIBUG { background: transparent !important; background-image: none !important; padding-top: 14px !important; }
+
+._3bWTO29arCCJ6PBGRZ7fRy, ._2WwG2r8yZuu2EMJgFTQZp8 { display: flex !important; align-items: center; gap: var(--lc-slice); }
+
+.Udzrpqr8534T5DvVZveNP { /* event type: NEWS, MAJOR UPDATE... */
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	padding: 2px 10px !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	letter-spacing: .12em !important;
+	text-transform: uppercase !important;
+}
+
+._2VqeQaZVaUkkEWaiLkmqmT, .xBUZ1jJ4rafFpeTqBLFXy, ._2KsEbGy9kiSDeQpcqEc9DG, .MBkkhT4wei3tWetnWbiqn {
+	color: var(--lc-peach) !important;
+	font-size: 14px !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+}
+
+.TqEPC9bhvVpZ1rb3Z8Mbd { /* title */
+	color: var(--lc-gold) !important;
+	font-size: 36px !important;
+	font-weight: 500 !important;
+	line-height: 1.05 !important;
+	letter-spacing: .04em !important;
+	text-transform: uppercase !important;
+}
+
+._20f2sKS2M7PlPSnPCinT26, ._1rbgKYHeRvzrIyqHCzaLIr { color: var(--lc-lavender) !important; font-size: 17px !important; letter-spacing: .06em !important; text-transform: uppercase; }
+
+._32mHvRSmD7AVK9OIOPlaFu { background: transparent !important; }
+
+/* Body: proportional prose on black, ink and lavender links. */
+.A_A2B6fTn_MPLlGCmsLtd._3NW5vEM9HgfQrgR4W-Xy_s,
+.A_A2B6fTn_MPLlGCmsLtd._3NW5vEM9HgfQrgR4W-Xy_s * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+.A_A2B6fTn_MPLlGCmsLtd._3NW5vEM9HgfQrgR4W-Xy_s { color: var(--lc-ink) !important; font-size: 15px !important; line-height: 1.55 !important; }
+.A_A2B6fTn_MPLlGCmsLtd._3NW5vEM9HgfQrgR4W-Xy_s ._3cln317VYhwhE1fSeMCG48 { color: var(--lc-gold) !important; }
+.A_A2B6fTn_MPLlGCmsLtd a, ._29bMZB6BOQfTQ_3za-w60I { color: var(--lc-lavender) !important; text-decoration: underline; text-decoration-color: rgba(170, 160, 245, .4); }
+.A_A2B6fTn_MPLlGCmsLtd a:hover { color: var(--lc-gold) !important; }
+
+.A_A2B6fTn_MPLlGCmsLtd h1, .A_A2B6fTn_MPLlGCmsLtd h2, .A_A2B6fTn_MPLlGCmsLtd h3 {
+	font-family: var(--lc-font) !important;
+	color: var(--lc-peach) !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase;
+	border-bottom: 3px solid var(--lc-surface);
+}
+
+.A_A2B6fTn_MPLlGCmsLtd img { border-radius: 0 !important; box-shadow: 0 0 0 2px var(--lc-black), 0 0 0 5px var(--lc-surface); }
+
+._18fHxiLGI4r8_CPauC1oep { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+
+/* Footer: votes / discuss / share as a row of segments on a surface rail. */
+.mKmrOjr9bGjKAolgp9NoD { background: var(--lc-black) !important; box-shadow: inset 0 3px 0 var(--lc-surface); }
+
+.mKmrOjr9bGjKAolgp9NoD ._1ABCOz8DSrl-YJdh1xD-m0, .rHz7G5xZ3qXUYUcBW2bzX, ._3qVz2p-X14nAGX6EWNC87I {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+.mKmrOjr9bGjKAolgp9NoD ._1ABCOz8DSrl-YJdh1xD-m0:hover, .rHz7G5xZ3qXUYUcBW2bzX:hover, ._3qVz2p-X14nAGX6EWNC87I:hover { background: var(--lc-gold) !important; }
+.mKmrOjr9bGjKAolgp9NoD svg, .mKmrOjr9bGjKAolgp9NoD svg * { fill: var(--lc-black) !important; }
+._3csl-MPe-hKuT8hQpOqEG5, .QQy4BCjcpjCfAvTKAqBq3, ._3P2XeK0HGdzGWS3fRQ4_vX { color: var(--lc-black) !important; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+._3csl-MPe-hKuT8hQpOqEG5 { color: var(--lc-gold) !important; }
+
+/* Side column: a short command bank. */
+._2tSyrRxMCRWK6K09JErgI_ { gap: var(--lc-slice); }
+
+._1_vCR1dPfyJ7_yukwDqblf, ._1t_97P9KMsEBaPq9y-6OUl {
+	background: var(--lc-peach) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	opacity: 1 !important;
+}
+
+._1_vCR1dPfyJ7_yukwDqblf { background: var(--lc-coral) !important; border-radius: 0 25px 25px 0 !important; }
+._1t_97P9KMsEBaPq9y-6OUl._3vBD2B7lrr6iXm8dGe71lI { border-radius: 0 14px 0 0 !important; }
+._1t_97P9KMsEBaPq9y-6OUl._3VePRhMGWFsbGaZjSNXJjV { border-radius: 0 0 14px 0 !important; }
+._1t_97P9KMsEBaPq9y-6OUl._2a5oSdTIcFV3c3ymUNsu6l { background: var(--lc-lavender) !important; padding: 4px; box-sizing: border-box; }
+._1_vCR1dPfyJ7_yukwDqblf:hover, ._1t_97P9KMsEBaPq9y-6OUl:hover { background: var(--lc-gold) !important; }
+._1_vCR1dPfyJ7_yukwDqblf svg *, ._1t_97P9KMsEBaPq9y-6OUl svg * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+
+/* Steam lets the control column overlap the post's right margin; move it
+ * clear so it reads as its own bank beside the log. */
+._2tSyrRxMCRWK6K09JErgI_ { transform: translateX(36px); }

@@ -1,0 +1,326 @@
+/* LCARSv2 inline modal and profile subpages. Community cards open their content in an
+ * iframe inside #modalContent: the frame below is a record panel around it, and the page
+ * inside (a review, or any .profile_subpage_column page such as friends-who-play) is a
+ * personnel record: elbow header, flat art, command stack at the right, log entries. */
+
+/* ------------------------------------------------------------ modal frame */
+
+#modalBG, .newmodal_background { background: var(--lc-black) !important; opacity: .85 !important; }
+
+#modalContent.modal_frame {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+/* Closing rail, under the frame. */
+#modalContent.modal_frame::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -14px;
+	height: 12px;
+	background: var(--lc-steel);
+	border-radius: 6px;
+}
+
+#modalContentTitleBar {
+	position: relative;
+	box-sizing: border-box;
+	height: 32px;
+	padding: 0 70px 0 26px !important;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: linear-gradient(to right, var(--lc-lavender) 0 calc(100% - 52px), transparent 0) !important; /* stops at the close cap: it showed round that cap's corners */
+	filter: none !important;
+	border-radius: 16px 0 0 16px;
+	overflow: hidden;
+}
+#modalContentTitleBarLink {
+	flex: 0 1 auto;
+	min-width: 0;
+	color: var(--lc-black) !important;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 32px;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none;
+}
+#modalContentTitleBarImageLink { flex: none; display: flex; }
+#modalContentTitleBarImageLink img { filter: brightness(0); }
+
+/* The close command: its own coral cap, cut off from the rail by a black slice. */
+.modalContentDismissImage {
+	top: 0 !important;
+	right: 0 !important;
+	width: 52px !important;
+	height: 32px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	background: var(--lc-coral) !important;
+	border-left: var(--lc-slice) solid var(--lc-black);
+	border-radius: 0 16px 16px 0;
+}
+.modalContentDismissImage:hover { background: var(--lc-gold) !important; }
+.modalContentDismissImage img { filter: brightness(0); }
+
+#modalContentWait, #modalContentFrameContainer { background: var(--lc-black) !important; }
+
+/* ------------------------------------------------------------ subpage ground */
+
+.profile_subpage_column, .profile_subpage_column .maincontent, .profile_subpage_column .bluefade {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+}
+.profile_subpage_column .maincontent { width: auto !important; padding: 0 16px 16px !important; margin: 0 !important; }
+.profile_subpage_column .bluefade { padding: 14px 0 16px !important; }
+
+/* Friend list sections: a title in a thin rail, Steam's underline gone. */
+.mainSectionHeader.friendListSectionHeader {
+	margin: 18px 0 10px !important;
+	padding: 2px 8px 2px 18px !important;
+	background: var(--lc-steel) !important;
+	border: 0 !important;
+	border-radius: 13px 0 0 13px;
+	color: var(--lc-black) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+.mainSectionHeader.friendListSectionHeader a { color: var(--lc-black) !important; text-decoration: underline; }
+.review_page_content { margin-top: 16px !important; }
+html:has(.profile_subpage_column) { overflow-x: hidden; }
+
+/* ------------------------------------------------------------- header */
+
+.profile_small_header_bg { background: none !important; padding: 0 !important; height: auto !important; margin: 10px 12px 0 !important; }
+.profile_small_header_texture {
+	position: relative;
+	box-sizing: border-box;
+	min-height: 96px;
+	padding: 14px 16px 12px 16px !important;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lilac);
+	border-width: 14px 0 0 44px;
+	border-radius: 56px 0 0 0;
+}
+.profile_small_header_texture .playerAvatar, .profile_small_header_avatar { position: static !important; flex: none; margin: 0 !important; background: none !important; border: 0 !important; padding: 0 !important; }
+.profile_small_header_texture .playerAvatar img, .profile_small_header_avatar img { display: block; border: 0 !important; border-radius: 0 !important; background: none !important; }
+.profile_small_header_text { position: static !important; flex: 1 1 0; min-width: 0; margin: 0 !important; padding: 0 !important; width: auto !important; display: flex; flex-wrap: wrap; align-items: baseline; }
+.profile_small_header_name a, .profile_small_header_name { color: var(--lc-gold) !important; font-size: 34px !important; font-weight: 500 !important; line-height: 40px !important; text-transform: uppercase; letter-spacing: .05em; }
+.profile_small_header_arrow {
+	font-size: 0 !important; /* Steam's ">>" text */
+	width: 18px !important;
+	height: 4px !important;
+	margin: 0 8px !important;
+	align-self: center;
+	background: var(--lc-peach) !important;
+	background-image: none !important;
+}
+.profile_small_header_location { color: var(--lc-lavender) !important; font-size: 17px !important; text-transform: uppercase; letter-spacing: .05em; }
+.profile_small_header_text a:hover .profile_small_header_location { color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------- record: side stack */
+
+.review_app_actions { background: none !important; padding: 0 !important; border: 0 !important; }
+.review_app_actions .game_capsule, .gameLogoHolder_default img { display: block; border: 0 !important; border-radius: 0 !important; }
+.gameLogoHolder_default { margin-bottom: var(--lc-slice) !important; padding: 0 !important; background: none !important; }
+.review_app_actions .general_btn.panel_btn {
+	box-sizing: border-box;
+	display: flex !important;
+	align-items: flex-end;
+	gap: 8px;
+	width: 100% !important;
+	height: 34px;
+	margin: 0 0 var(--lc-slice) !important;
+	padding: 0 18px 4px 10px !important;
+	background: var(--lc-peach) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	color: var(--lc-black) !important;
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+.review_app_actions .general_btn.panel_btn:nth-of-type(2) { background: var(--lc-lavender) !important; }
+.review_app_actions .general_btn.panel_btn:nth-of-type(3) { background: var(--lc-lilac) !important; border-radius: 0 0 17px 0 !important; }
+.review_app_actions .general_btn.panel_btn:hover { background: var(--lc-gold) !important; }
+.review_app_actions .toolsIcon { display: none; }
+
+/* Friends who want or own this game, under the commands. */
+.rightSectionTopTitle { color: var(--lc-gold) !important; font-size: 14px !important; text-transform: uppercase; letter-spacing: .05em; margin-top: 14px; }
+.rightSectionTopTitle a { color: var(--lc-gold) !important; }
+.profile_subpage_column .friendBlock {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-left: 6px solid var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	margin-bottom: 6px !important;
+}
+.profile_subpage_column .friendBlock:hover { border-left-color: var(--lc-gold) !important; background: var(--lc-surface) !important; }
+.profile_subpage_column .friendBlock .playerAvatar { background: none !important; border: 0 !important; padding: 0 !important; }
+.profile_subpage_column .friendBlock .playerAvatar img { border: 0 !important; border-radius: 0 !important; }
+.profile_subpage_column .friendBlockContent { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .05em; }
+.profile_subpage_column .friendSmallText, .profile_subpage_column .friendSmallText a { color: var(--lc-peach) !important; }
+
+/* ------------------------------------------------------------ record: body */
+
+.ratingBar {
+	background: none !important;
+	border: 0 !important;
+	padding: 0 0 8px !important;
+	color: var(--lc-lavender) !important;
+	font-size: 13px !important;
+}
+.review_award_ctn { float: none !important; display: flex; gap: var(--lc-slice); margin: 6px 0 0 !important; }
+.review_award { background: var(--lc-surface) !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; margin: 0 !important; color: var(--lc-ink) !important; }
+.review_award:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+.ratingSummaryBlock { margin: 0 !important; }
+.ratingSummaryHeader { background: none !important; border: 0 !important; padding: 0 !important; }
+.ratingSummary { color: var(--lc-gold) !important; font-size: 26px !important; line-height: 28px !important; text-transform: uppercase; letter-spacing: .05em; }
+.playTime { color: var(--lc-peach) !important; font-size: 14px !important; }
+.review_source { display: none !important; }
+.recommendation_date { color: var(--lc-lavender) !important; font-size: 13px !important; text-transform: uppercase; letter-spacing: .05em; padding: 8px 0 !important; }
+
+#ReviewText, .review_area_content {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 15px !important;
+	line-height: 22px !important;
+	letter-spacing: 0 !important;
+}
+
+.review_rate_bar {
+	border: 0 !important;
+	margin-top: 12px !important;
+	padding: 0 !important;
+	display: flex;
+	align-items: center;
+	gap: var(--lc-slice);
+	flex-wrap: wrap;
+	color: var(--lc-lavender) !important;
+	text-transform: uppercase;
+	background: none !important;
+}
+.review_rate_bar .btn_grey_grey, .review_rate_bar .btn_grey_grey > span {
+	background: var(--lc-peach) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	color: var(--lc-black) !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+}
+.review_rate_bar .btn_grey_grey:hover, .review_rate_bar .btn_grey_grey:hover > span { background: var(--lc-gold) !important; }
+.review_rate_bar .ico16, .review_rate_bar .reward_btn_icon { filter: brightness(0); }
+#ReviewReportBtn {
+	margin-left: auto;
+	float: none !important;
+	width: auto !important;
+	height: 22px;
+	display: inline-flex !important;
+	align-items: center;
+	padding: 0 14px 0 8px !important;
+	border-radius: 0 11px 11px 0 !important;
+	background: var(--lc-coral) !important;
+}
+#ReviewReportBtn:hover { background: var(--lc-gold) !important; }
+#ReviewReportBtn > * { display: none !important; }
+#ReviewReportBtn::after { content: 'REPORT'; color: var(--lc-black); font-size: 14px; font-weight: 600; }
+
+/* ------------------------------------------------------------ comment log */
+
+#comments { border: 0 !important; margin-top: 18px !important; padding: 0 !important; background: none !important; }
+.commentthread_header {
+	box-sizing: border-box;
+	height: 28px;
+	padding: 0 8px 0 18px !important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--lc-steel) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 14px 0 0 14px;
+}
+.commentthread_header_and_count { background: none !important; padding: 0 !important; height: auto !important; }
+.commentthread_header_and_count, .commentthread_header_and_count * { color: var(--lc-black) !important; font-size: 16px !important; font-weight: 600 !important; text-transform: uppercase; letter-spacing: .06em; }
+.commentthread_paging { color: var(--lc-black) !important; height: auto !important; display: flex; align-items: center; }
+.commentthread_footer .commentthread_paging { color: var(--lc-lavender) !important; justify-content: flex-end; }
+.commentthread_pagelinks_ctn { display: flex; align-items: center; gap: 4px; }
+.commentthread_area .pagebtn {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	color: var(--lc-peach) !important;
+	height: 18px !important;
+	line-height: 18px !important;
+	padding: 0 10px !important;
+}
+.commentthread_area .pagebtn.disabled { color: var(--lc-disabled) !important; }
+.commentthread_area .pagebtn:hover:not(.disabled) { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+.commentthread_pagelink { cursor: pointer; padding: 0 3px; }
+.commentthread_pagelink.active { color: inherit !important; font-weight: 700; text-decoration: underline; }
+
+.commentthread_comment_container { background: none !important; }
+.commentthread_comment {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+	border-left: 6px solid var(--lc-surface) !important;
+	box-shadow: none !important;
+	margin: 8px 0 0 !important;
+	padding: 6px 8px 8px 12px !important;
+	width: auto !important;
+}
+.commentthread_comment:hover { border-left-color: var(--lc-gold) !important; }
+.commentthread_comment_avatar { background: none !important; padding: 0 !important; border: 0 !important; }
+.commentthread_comment_avatar img { border: 0 !important; border-radius: 0 !important; background: none !important; }
+.commentthread_author_link, .commentthread_author_link bdi { color: var(--lc-lavender) !important; font-size: 15px !important; text-transform: uppercase; letter-spacing: .05em; }
+.commentthread_comment_timestamp { color: var(--lc-peach) !important; font-size: 12px !important; text-transform: uppercase; }
+.commentthread_comment_text {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 20px !important;
+	letter-spacing: 0 !important;
+}
+.commentthread_comment_actions img { filter: grayscale(1) brightness(1.6); }
+
+/* Signed-in comment box. */
+.commentthread_entry { margin-top: 10px !important; }
+.commentthread_entry, .commentthread_entry_quotebox { background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; }
+.commentthread_entry textarea, .commentthread_textarea {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+}
+.commentthread_entry .playerAvatar, .commentthread_entry .commentthread_user_avatar { background: none !important; border: 0 !important; padding: 0 !important; }
+.commentthread_entry .playerAvatar img { border: 0 !important; border-radius: 0 !important; }
+.commentthread_subscribe_ctn, .commentthread_subscribe_checkbox { color: var(--lc-black) !important; }

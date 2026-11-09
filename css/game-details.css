@@ -1,0 +1,251 @@
+/* LCARSv2 S06 game details (INFO) panel. Steam mounts this panel as a direct
+ * child of the overview grid, and readout.css drops it into the 300 px bank
+ * column, which crushes the description cells to 16 px. Open state only
+ * (_3s6_6sN8LyrlTHc_z6VfNU); the collapsed panel keeps Steam's 0-height
+ * hidden box. Layout: capsule | prose over facts | lamp rows; the footer is a
+ * joined tag. The top rail wipes in when the panel opens. */
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU {
+	grid-area: info;
+	position: relative;
+	box-sizing: border-box;
+	width: auto !important;
+	min-width: 0;
+	height: auto !important;
+	max-height: none !important;
+	overflow: visible !important;
+	margin: 18px 0 0 !important;
+	justify-self: stretch;
+}
+
+/* Top rail: lavender bar with a black title interruption. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 22px;
+	background: var(--lc-lavender);
+	border-radius: 18px 0 0 0;
+	z-index: 0;
+	transform-origin: left center;
+	animation: lc-rec-wipe .6s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU::after {
+	content: 'Game record';
+	position: absolute;
+	left: 52px;
+	top: 0;
+	height: 22px;
+	padding: 0 12px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font: 500 18px/22px var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	z-index: 1;
+	animation: lc-rec-label .4s ease-out .35s both;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1FXWy2UilVZIppT-PetDWw {
+	pointer-events: none;
+}
+
+/* Record body: black well with lavender side and base rails. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2jPMy2QZr8bWi6yrk5ZzHA {
+	box-sizing: border-box;
+	width: 100% !important;
+	margin-top: 22px;
+	padding: 16px 20px 14px 22px;
+	background: var(--lc-black) !important;
+	border: solid var(--lc-lavender);
+	border-width: 0 0 7px 11px;
+	border-radius: 0 0 0 26px;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._37mmOlZM_8n5yJAG5CHiW7 {
+	display: grid !important;
+	grid-template-columns: 160px minmax(0, 1fr) minmax(200px, 260px);
+	grid-template-rows: auto 1fr;
+	grid-template-areas:
+		"cap prose lamps"
+		"cap facts lamps";
+	column-gap: 26px;
+	row-gap: 16px;
+	align-items: start;
+	width: 100%;
+	height: auto !important;
+	min-height: 0;
+}
+
+/* Portrait capsule, framed like the hero. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1Id6ZFEUVa5PKEMIvSg4nE {
+	grid-area: cap;
+	width: 160px;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU img._24_AuLm54JVe1Zc0AApCDR {
+	display: block;
+	width: 160px !important;
+	height: 240px !important;
+	object-fit: cover;
+	border-radius: 0 !important;
+	box-shadow: 0 0 0 3px var(--lc-black), 0 0 0 6px var(--lc-lavender);
+}
+
+/* Description: readable prose, measure capped at 70ch. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2AMl0koRXkR77BaY7Sa3Ie {
+	grid-area: prose;
+	display: block;
+	width: auto;
+	min-width: 0;
+	max-width: 70ch;
+	margin: 0;
+	font-family: var(--lc-prose) !important;
+	font-size: 15px !important;
+	line-height: 1.55 !important;
+	letter-spacing: 0;
+	color: var(--lc-ink) !important;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2AMl0koRXkR77BaY7Sa3Ie * {
+	font-family: inherit !important;
+	font-size: inherit !important;
+	line-height: inherit !important;
+	color: inherit !important;
+}
+
+/* Developer / publisher / franchise / release: label and value blocks. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._3cntzF30xAuwn1ARWJjvCb {
+	grid-area: facts;
+	display: grid;
+	grid-template-columns: max-content minmax(0, 1fr);
+	gap: 8px 18px;
+	align-content: start;
+	min-width: 0;
+	width: auto;
+	margin: 0;
+	padding: 10px 0 0;
+	box-shadow: inset 0 2px 0 var(--lc-surface);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1vYL2q-91QLy-FBzntE7E5 {
+	color: var(--lc-peach);
+	font: 500 14px/1.45 var(--lc-font);
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._-9icu8LqT7inRSJISgnkh {
+	min-width: 0;
+	color: var(--lc-ink);
+	font: 15px/1.45 var(--lc-prose);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2j8Xh4pPOOgF4MF6FVUI28 {
+	color: var(--lc-lavender) !important;
+	text-decoration: underline;
+	text-decoration-color: rgba(170, 160, 245, .4);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2j8Xh4pPOOgF4MF6FVUI28:hover {
+	color: var(--lc-gold) !important;
+}
+
+/* Features: lamp rows; each row's lamp takes the rail colour of its position. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU .nkIX48cHLbjc0eaP5CNmM {
+	grid-area: lamps;
+	display: flex !important;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+	width: auto;
+	padding: 0;
+	align-self: stretch;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_ {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: auto;
+	min-height: 28px;
+	padding: 3px 10px 3px 16px;
+	background: var(--lc-surface);
+	box-shadow: none;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 6px;
+	background: var(--lc-lavender);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_:nth-child(3n+2)::before { background: var(--lc-peach); }
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_:nth-child(3n+3)::before { background: var(--lc-steel); }
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1VoVzLPXjhlaguJLgO8htG {
+	color: var(--lc-ink);
+	font: 500 16px/1.2 var(--lc-font);
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_:hover {
+	background: var(--lc-black);
+	box-shadow: inset 0 0 0 2px var(--lc-gold);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._1SIa8xLHqCJGyeA9sQ4yK_:hover ._1VoVzLPXjhlaguJLgO8htG {
+	color: var(--lc-gold);
+}
+
+/* Footer: a joined peach tag under the record. */
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2UN73dmbVcWzIR2ZCr8KID {
+	display: inline-block;
+	margin-top: 16px;
+	padding: 4px 14px 3px 12px;
+	background: var(--lc-peach);
+	color: var(--lc-black);
+	border-radius: 0 12px 12px 0;
+	font: 500 14px/1.45 var(--lc-prose);
+}
+
+html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU ._2UN73dmbVcWzIR2ZCr8KID b {
+	color: var(--lc-black);
+	font-weight: 700;
+}
+
+/* The play-bank tooltip ("Hide game details") is a small black chip. */
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._2FxbHJzYoH024ko7zqcJOf {
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	border: 2px solid var(--lc-gold);
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding: 2px 8px 1px !important;
+	font: 500 13px/1.2 var(--lc-font) !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+html.lc-readout-on ._1U7LKpx70kEsz3jJwAFOi- ._3vg1vYU7iTWqONciv9cuJN {
+	background: transparent !important;
+}
+
+@keyframes lc-rec-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes lc-rec-label { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU::before,
+	html.lc-readout-on ._27RcNu8aXKBpYkHcNNrt-X > ._25oBZpa3dUcMw8QAsa2u67._3s6_6sN8LyrlTHc_z6VfNU::after { animation: none !important; }
+}

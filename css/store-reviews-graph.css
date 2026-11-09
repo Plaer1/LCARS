@@ -1,0 +1,182 @@
+/* LCARSv2 review graph (S28 redo): Steam's plain-DOM histogram, restyled in place.
+ * Bars are data: only colour is touched, never left/top/width/height. Hashed classes are
+ * from the store bundle of 2026-10-30; anchor on structure if they change.
+ * Panel 1 is ALL TIME (thin bars); panel 2 (.Cbt2Mrm2GWw-) is LAST 30 DAYS (wide bars). */
+
+/* ------------------------------------------------------- well and rails */
+
+.EpJ2bqGTew8- {
+	background: var(--lc-black) !important;
+	background-image: linear-gradient(var(--lc-lavender), var(--lc-lavender)) !important;
+	background-size: 100% 6px !important;
+	background-repeat: no-repeat !important;
+}
+
+/* Lavender left elbow rail. */
+.EpJ2bqGTew8-::before {
+	content: '';
+	position: absolute;
+	left: 0; top: 0; bottom: 0;
+	width: 12px;
+	background: var(--lc-lavender);
+	pointer-events: none;
+}
+
+/* The one gold title, set into the top rail. */
+.EpJ2bqGTew8-::after {
+	content: 'REVIEW TELEMETRY';
+	position: absolute;
+	left: 24px; top: 0;
+	height: 12px;
+	padding: 0 8px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-family: var(--lc-font);
+	font-size: 12px;
+	line-height: 12px;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	pointer-events: none;
+}
+
+/* Recent panel: a surface plate so the two panels read as separate displays. */
+.EpJ2bqGTew8- > .Cbt2Mrm2GWw- {
+	background: var(--lc-surface) !important;
+}
+
+/* Diagonal seam: a thin lavender line, not a solid wedge. */
+.EpJ2bqGTew8- svg polygon {
+	fill: none !important;
+	stroke: var(--lc-lavender) !important;
+	stroke-width: 1px !important;
+}
+
+/* Baseline at zero. */
+.EpJ2bqGTew8- .xFlW4jpX2P4- { background: var(--lc-lavender) !important; }
+
+/* Range/selection overlays: gold tint, no edge effect. */
+.EpJ2bqGTew8- ._8wTd2idUC6Y- {
+	background: color-mix(in srgb, var(--lc-gold) 18%, transparent) !important;
+}
+
+/* ------------------------------------------------------------------ axes */
+
+.EpJ2bqGTew8- .IYszGSONzIc- {
+	color: var(--lc-lilac) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 13px !important;
+	letter-spacing: .04em;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Keep history y-labels clear of the 12 px rail. */
+.EpJ2bqGTew8- > ._1FOq8Z-HYOo-:not(.Cbt2Mrm2GWw-) .IYszGSONzIc- { margin-left: 8px; }
+
+.EpJ2bqGTew8- .fJc-AASyFaI- {
+	color: var(--lc-lavender) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 12px !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ bars */
+
+/* Thin history bars: solid fill only. A border or outline would swallow 1.9 px bars. */
+.EpJ2bqGTew8- .O-8dtoH-sG4- {
+	border: 0 !important;
+	outline: none !important;
+}
+
+.EpJ2bqGTew8- .Mt7HaS-isCE- { background-color: var(--lc-lavender) !important; }
+.EpJ2bqGTew8- .Hh776DjC2yA- { background-color: var(--lc-coral) !important; }
+
+.EpJ2bqGTew8- .O-8dtoH-sG4-:hover,
+.EpJ2bqGTew8- .O-8dtoH-sG4-:focus { background-color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------- tooltip */
+
+/* Black chip with a gold border (outline, not a shadow). Steam keeps position and size. */
+.EpJ2bqGTew8- .sT2QLMTaLYc- {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 2px solid var(--lc-gold) !important;
+	border-radius: 0 !important;
+}
+
+.EpJ2bqGTew8- .sT2QLMTaLYc- * {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+}
+
+.EpJ2bqGTew8- .Rm-sLza2W1I- {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+/* ------------------------------------------------------- summary and cap */
+
+/* Verdict spans carry no verdict class here, so they stay ink. */
+.mwKSuZzCBzM- > .uvSy4AFvxhc- {
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+/* Show/Hide graph: Steam's DialogButton in the filter row, as a peach cap. */
+.dXmWkYet5kI- .XInq2YYReWw- {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+}
+
+.dXmWkYet5kI- .XInq2YYReWw-:hover { background: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------- motion */
+
+/* One container reveal, left to right, the first time the graph scrolls into view
+ * (js/web/transitions.js adds .lc-graph-go). The end clip is outset so the tooltip is never cut. */
+@keyframes lc-s28-reveal {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(-40px -40px -40px -40px); }
+}
+
+.EpJ2bqGTew8-.lc-graph-go {
+	animation: lc-s28-reveal 400ms steps(8, end) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.EpJ2bqGTew8-.lc-graph-go { animation: none !important; }
+}
+
+/* ------------------------------------------------------- annotation pass 2026-11-08 */
+
+/* Both charts are black wells ruled like a console scope; the bars stay exactly as Steam draws them. */
+.EpJ2bqGTew8- ._1FOq8Z-HYOo- {
+	background-color: var(--lc-black) !important;
+	background-image: repeating-linear-gradient(to bottom, var(--lc-surface) 0 1px, transparent 1px 44px) !important;
+}
+/* The last-30-days panel: a coral bracket with its own title tab. */
+.EpJ2bqGTew8- .Cbt2Mrm2GWw- { position: relative; box-shadow: inset 0 6px 0 var(--lc-coral), inset -12px 0 0 var(--lc-coral), inset 0 -6px 0 var(--lc-coral) !important; }
+.EpJ2bqGTew8- .Cbt2Mrm2GWw-::after {
+	content: 'LAST 30 DAYS';
+	position: absolute;
+	top: 0; right: 40px;
+	padding: 0 10px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font: 500 13px var(--lc-font);
+	letter-spacing: .1em;
+	line-height: 14px;
+}

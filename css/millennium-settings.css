@@ -1,0 +1,721 @@
+/* LCARSv2 S22: Millennium's own settings dialog (MILLENNIUM in the Steam root
+ * menu). It opens inside the main Steam window at /millennium/settings/<page>,
+ * so every rule hangs off .MillenniumSettings to stay out of the library. The
+ * components are the same Steam settings parts css/settings.css themes, so the
+ * look is lifted from there: bank on the left, register rows on black. */
+
+/* Steam's nav icons here are 1768px SVGs that stretch the page list and push
+ * the dialog off-screen. They are decoration, so they go. */
+html.lc-shell .MillenniumSettings ._1rD8X96FdnksZLvRRlEiCR { display: none !important; }
+
+/* Steam's type is replaced everywhere in the dialog; prose is restored below. */
+html.lc-shell .MillenniumSettings,
+html.lc-shell .MillenniumSettings * {
+	font-family: var(--lc-font) !important;
+	font-synthesis: none !important;
+	letter-spacing: .02em;
+}
+
+html.lc-shell .MillenniumSettings,
+html.lc-shell .MillenniumSettings .DialogContent,
+html.lc-shell .MillenniumSettings .DialogContentTransition,
+html.lc-shell .MillenniumSettings .DialogBody {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+}
+
+/* Descriptions stay proportional and readable (14 px minimum). */
+html.lc-shell .MillenniumSettings ._1W1to_azoBRG95oNAFpf9Q,
+html.lc-shell .MillenniumSettings ._1W1to_azoBRG95oNAFpf9Q * {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+	color: var(--lc-ink) !important;
+	opacity: .8;
+}
+
+/* -------------------------------------------------------------- bank */
+
+html.lc-shell .MillenniumSettings ._2kwFFHckg8jvnwJfg9-la8 { /* PageListColumn */
+	background: var(--lc-black) !important;
+	padding: 8px 0 8px 8px !important;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	gap: var(--lc-slice);
+}
+
+/* Bottom elbow closes the bank into the base. */
+html.lc-shell .MillenniumSettings ._2kwFFHckg8jvnwJfg9-la8::after {
+	content: '';
+	flex: 0 0 auto;
+	height: 44px;
+	background: var(--lc-peach);
+	border-radius: 0 0 0 34px;
+}
+
+/* MILLENNIUM: the top elbow, gold with the label low and right. */
+html.lc-shell .MillenniumSettings ._2rjVTGz8aLvqOdz5v2gq5C {
+	position: relative;
+	flex: 0 0 auto;
+	height: 74px !important;
+	margin: 0 !important;
+	padding: 0 10px 6px !important;
+	box-sizing: border-box;
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-radius: 48px 0 0 0;
+	display: flex !important;
+	align-items: flex-end;
+	justify-content: flex-end;
+	font-size: 18px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	line-height: 1 !important;
+}
+
+html.lc-shell .MillenniumSettings ._2rjVTGz8aLvqOdz5v2gq5C::after { /* inner black cutout under the elbow */
+	content: '';
+	position: absolute;
+	left: 100%;
+	top: 20px;
+	width: 22px;
+	height: 22px;
+	background: radial-gradient(circle at 100% 100%, transparent 21.5px, var(--lc-gold) 22px);
+}
+
+html.lc-shell .MillenniumSettings ._18QCu-7MTzd51UpVbYysDy { /* PageList */
+	flex: 1 1 auto;
+	min-height: 0;
+	background: var(--lc-black) !important;
+	padding: 0 !important;
+	display: flex;
+	flex-direction: column;
+	gap: var(--lc-slice);
+	overflow-y: auto;
+	counter-reset: lc-id;
+}
+
+/* Each page is a segment with a black ID block (01 to 06) at its left. */
+html.lc-shell .MillenniumSettings ._1-vlriAtKYDViAEunue4VO { /* PageListItem */
+	position: relative;
+	counter-increment: lc-id;
+	flex: 0 0 auto;
+	min-height: 32px;
+	margin: 0 !important;
+	padding: 0 10px 3px 40px !important;
+	border-radius: 0 !important;
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	justify-content: flex-end !important;
+	box-sizing: border-box;
+}
+
+html.lc-shell .MillenniumSettings ._1-vlriAtKYDViAEunue4VO::before {
+	content: counter(lc-id, decimal-leading-zero);
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 34px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding-top: 3px;
+	box-sizing: border-box;
+	background: var(--lc-black);
+	color: var(--lc-lavender);
+	font-size: 11px;
+	line-height: 1;
+	letter-spacing: .05em;
+}
+
+html.lc-shell .MillenniumSettings ._2PPbMrzl8PKBwpkjYs9b0i { /* item title */
+	color: var(--lc-black) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	letter-spacing: .06em !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	line-height: 1 !important;
+	padding: 0 !important;
+}
+
+html.lc-shell .MillenniumSettings ._1-vlriAtKYDViAEunue4VO:hover { background: var(--lc-ink) !important; }
+
+html.lc-shell .MillenniumSettings ._1-vlriAtKYDViAEunue4VO._2DpXjzK3WWsOtUWUrcuOG7 { /* selected */
+	background: var(--lc-gold) !important;
+	box-shadow: inset -10px 0 0 var(--lc-ink);
+}
+
+html.lc-shell .MillenniumSettings ._1-vlriAtKYDViAEunue4VO._2DpXjzK3WWsOtUWUrcuOG7::before { color: var(--lc-gold); }
+
+html.lc-shell .MillenniumSettings ._1Hye7o1wYIfc9TE9QKRW4T { /* separator: a wider black slice */
+	background: var(--lc-black) !important;
+	height: 10px !important;
+	margin: 0 !important;
+	border: 0 !important;
+}
+
+/* ------------------------------------------------------------ pages */
+
+/* Page title: a rail interrupted by the title (the rail is two flex stubs). */
+html.lc-shell .MillenniumSettings .DialogHeader {
+	display: flex !important;
+	align-items: center;
+	gap: 14px;
+	min-height: 38px;
+	margin: 0 0 12px !important;
+	padding: 0 !important;
+	color: var(--lc-gold) !important;
+	font-size: 30px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	line-height: 32px !important;
+	text-transform: uppercase;
+	background: none !important;
+}
+
+html.lc-shell .MillenniumSettings .DialogHeader::before,
+html.lc-shell .MillenniumSettings .DialogHeader::after {
+	content: '';
+	flex: 1 1 auto;
+	height: 14px;
+	background: var(--lc-lavender);
+}
+
+html.lc-shell .MillenniumSettings .DialogHeader::before {
+	flex: 0 0 36px;
+	border-radius: 7px 0 0 7px;
+	background: var(--lc-peach);
+}
+
+/* Section rail: a peach stub, the title, then a lavender rail. */
+html.lc-shell .MillenniumSettings .SettingsDialogSubHeader {
+	position: relative;
+	display: flex !important;
+	align-items: center;
+	gap: 12px;
+	color: var(--lc-peach) !important;
+	font-size: 20px !important;
+	font-weight: 500 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	padding-left: 0 !important;
+	margin-top: 18px !important;
+}
+
+html.lc-shell .MillenniumSettings .SettingsDialogSubHeader::before {
+	content: '';
+	flex: 0 0 36px;
+	height: 14px;
+	border-radius: 7px 0 0 7px;
+	background: var(--lc-peach);
+}
+
+html.lc-shell .MillenniumSettings .SettingsDialogSubHeader::after {
+	content: '';
+	flex: 1 1 auto;
+	height: 4px;
+	background: var(--lc-lavender);
+}
+
+/* Register rows: black, a coloured lead, a surface rule underneath. */
+html.lc-shell .MillenniumSettings .eKmEXJCm_lgme24Fp_HWt { /* Field */
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 6px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+	margin: 0 !important;
+}
+
+html.lc-shell .MillenniumSettings .eKmEXJCm_lgme24Fp_HWt::before,
+html.lc-shell .MillenniumSettings .eKmEXJCm_lgme24Fp_HWt::after { display: none !important; }
+
+html.lc-shell .MillenniumSettings .eKmEXJCm_lgme24Fp_HWt:hover {
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+html.lc-shell .MillenniumSettings .eKmEXJCm_lgme24Fp_HWt:focus-within {
+	outline: 2px solid var(--lc-ink);
+	outline-offset: -2px;
+}
+
+html.lc-shell .MillenniumSettings ._3jMlJm4PQCA8SfNlUR99Fo { /* label */
+	color: var(--lc-ink) !important;
+	font-size: 17px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+html.lc-shell .MillenniumSettings .SettingsLink {
+	color: var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+/* Toggles: a pill, gold when on, disabled-grey when off, a black knob. The
+ * Steam fill on ::before is replaced by the track colour so both states read. */
+html.lc-shell .MillenniumSettings ._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl {
+	background: var(--lc-disabled) !important;
+	border-radius: 11px !important;
+	box-shadow: none !important;
+}
+
+html.lc-shell .MillenniumSettings ._9Ql-oVe_j8E-vsDdyVdWo.yLrDAetGoWx0GYqA6ShfS ._2bl0iQ9xigbq4Zd1NI6NZl { background: var(--lc-gold) !important; }
+
+html.lc-shell .MillenniumSettings ._2bl0iQ9xigbq4Zd1NI6NZl::before { display: none !important; }
+
+html.lc-shell .MillenniumSettings ._9Ql-oVe_j8E-vsDdyVdWo ._1PQppcgkuXQAiFPar9AGi- {
+	background: var(--lc-black) !important;
+	box-shadow: none !important;
+}
+
+/* Dropdowns, text inputs and colour wells: black wells with a lavender ring. */
+html.lc-shell .MillenniumSettings .DialogDropDown,
+html.lc-shell .MillenniumSettings .DialogInput,
+html.lc-shell .MillenniumSettings .DialogInput_Wrapper input,
+html.lc-shell .MillenniumSettings .DialogTextInputBase,
+html.lc-shell .MillenniumSettings input.MillenniumColorPicker {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+html.lc-shell .MillenniumSettings .DialogDropDown:hover { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+html.lc-shell .MillenniumSettings .DialogDropDown_Arrow svg,
+html.lc-shell .MillenniumSettings .DialogDropDown_Arrow svg * { fill: var(--lc-peach) !important; }
+
+html.lc-shell .MillenniumSettings input.MillenniumColorPicker::-webkit-color-swatch-wrapper { padding: 0; }
+html.lc-shell .MillenniumSettings input.MillenniumColorPicker::-webkit-color-swatch { border: 0; border-radius: 0; }
+
+/* Commands: peach caps, gold on hover, disabled grey. */
+html.lc-shell .MillenniumSettings .DialogButton {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+}
+
+html.lc-shell .MillenniumSettings .DialogButton:hover:not(:disabled):not(.MillenniumLogs_LogItemButton) { background: var(--lc-gold) !important; }
+html.lc-shell .MillenniumSettings .DialogButton.Primary { background: var(--lc-gold) !important; }
+html.lc-shell .MillenniumSettings .DialogButton:disabled { background: var(--lc-disabled) !important; color: var(--lc-black) !important; }
+html.lc-shell .MillenniumSettings .DialogButton * { color: inherit !important; }
+
+/* ---------------------------------------------------------- themes */
+
+/* Theme cards are register rows. Only the active theme carries the check icon
+ * (_2DM37…) in its label, so that marks the card: gold lead and an ACTIVE chip. */
+html.lc-shell .MillenniumSettings .MillenniumThemes_ThemeItem:has(._2DM37juowId1V_DScp3l4) {
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumThemes_ThemeItem:has(._2DM37juowId1V_DScp3l4) ._3jMlJm4PQCA8SfNlUR99Fo::after {
+	content: 'ACTIVE';
+	display: inline-block;
+	margin-left: 12px;
+	padding: 2px 10px;
+	background: var(--lc-gold);
+	color: var(--lc-black);
+	font-size: 13px;
+	letter-spacing: .08em;
+	vertical-align: middle;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumThemes_Author {
+	color: var(--lc-lavender) !important;
+	font-size: 13px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+}
+
+/* The theme-config gear: a square command beside Use / Disable. */
+html.lc-shell .MillenniumSettings .MillenniumIconButton {
+	background: var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumIconButton svg,
+html.lc-shell .MillenniumSettings .MillenniumIconButton svg * { fill: var(--lc-black) !important; color: var(--lc-black) !important; }
+
+html.lc-shell .MillenniumSettings .MillenniumIconButton:hover:not(:disabled) { background: var(--lc-gold) !important; }
+
+/* Icon buttons with a word (Download) are commands, so they take the peach cap. */
+html.lc-shell .MillenniumSettings .MillenniumIconButtonWithText { background: var(--lc-peach) !important; border-radius: 0 16px 16px 0 !important; }
+html.lc-shell .MillenniumSettings .MillenniumIconButtonWithText:hover:not(:disabled) { background: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------- quick css */
+
+/* The editor opens from the button; the well is the stats block around it. */
+html.lc-shell .MillenniumSettings ._2o2fXzn99OddeqZMjbDuxQ {
+	color: var(--lc-ink) !important;
+	letter-spacing: .02em;
+}
+
+/* "Status: loaded" ticks in Steam green; the palette's gold marks it instead. */
+html.lc-shell .MillenniumSettings path[fill="green"] { fill: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------- logs */
+
+/* One button per plugin log. Level is read from its counters: info lavender,
+ * warn peach, error coral. */
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton {
+	display: flex !important;
+	align-items: center;
+	justify-content: flex-start;
+	min-height: 34px;
+	margin: 0 0 4px !important;
+	padding: 0 12px 0 14px !important;
+	background: var(--lc-black) !important;
+	color: var(--lc-lavender) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 6px 0 0 var(--lc-lavender) !important;
+	font-family: ui-monospace, 'DejaVu Sans Mono', monospace !important;
+	font-size: 14px !important;
+	letter-spacing: 0 !important;
+	text-transform: none !important;
+	text-align: left !important;
+	justify-content: flex-start !important;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton[data-warning-count]:not([data-warning-count="0"]) {
+	box-shadow: inset 6px 0 0 var(--lc-peach) !important;
+	color: var(--lc-peach) !important;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton[data-error-count]:not([data-error-count="0"]) {
+	box-shadow: inset 6px 0 0 var(--lc-coral) !important;
+	color: var(--lc-coral) !important;
+}
+
+/* Steam's hover paints the focusable wrapper gold, which hides the label; keep the ground black. */
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton:hover {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: inset 12px 0 0 var(--lc-gold) !important;
+	color: var(--lc-ink) !important;
+}
+
+/* Steam's DialogButton overlay (::before) is the gold fill; the lead already marks hover. */
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton::before,
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton::after { display: none !important; }
+
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton:hover * {
+	background: transparent !important;
+	background-image: none !important;
+	color: var(--lc-ink) !important;
+}
+
+/* Icons on the log buttons are the Steam glyphs, so keep them small. */
+html.lc-shell .MillenniumSettings .MillenniumLogs_LogItemButton svg { width: 16px !important; height: 16px !important; flex: 0 0 16px; }
+
+/* ----------------------------------------------------------- plugins */
+
+/* Plugin rows: a register row with an enable lamp. The lamp is the track
+ * itself, a short square bar; the knob is dropped because the bar is the state. */
+html.lc-shell .MillenniumSettings .MillenniumPlugins_PluginField ._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl {
+	width: 26px !important;
+	height: 12px !important;
+	border-radius: 0 !important;
+}
+
+html.lc-shell .MillenniumSettings .MillenniumPlugins_PluginField ._9Ql-oVe_j8E-vsDdyVdWo ._1PQppcgkuXQAiFPar9AGi- { display: none !important; }
+
+/* ------------------------------------------------- theme-config drawer
+
+ * LCARSv2's gear > Configure opens this drawer in the Millennium sidebar. It
+ * reuses the same Steam field, toggle and dropdown parts, so it takes the same
+ * register look. It lives outside .MillenniumSettings, so it has its own scope. */
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent,
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .DialogBody {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .02em;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .eKmEXJCm_lgme24Fp_HWt {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 6px 0 0 var(--lc-lavender), inset 0 -2px 0 var(--lc-surface) !important;
+	margin: 0 !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .eKmEXJCm_lgme24Fp_HWt:hover {
+	box-shadow: inset 12px 0 0 var(--lc-gold), inset 0 -2px 0 var(--lc-surface) !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._3jMlJm4PQCA8SfNlUR99Fo {
+	color: var(--lc-ink) !important;
+	font-size: 15px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._1W1to_azoBRG95oNAFpf9Q,
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._1W1to_azoBRG95oNAFpf9Q * {
+	font-family: var(--lc-prose) !important;
+	font-size: 14px !important;
+	line-height: 1.45 !important;
+	letter-spacing: 0 !important;
+	color: var(--lc-ink) !important;
+	opacity: .8;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._9Ql-oVe_j8E-vsDdyVdWo ._2bl0iQ9xigbq4Zd1NI6NZl {
+	background: var(--lc-disabled) !important;
+	border-radius: 11px !important;
+	box-shadow: none !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._9Ql-oVe_j8E-vsDdyVdWo.yLrDAetGoWx0GYqA6ShfS ._2bl0iQ9xigbq4Zd1NI6NZl { background: var(--lc-gold) !important; }
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._2bl0iQ9xigbq4Zd1NI6NZl::before { display: none !important; }
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent ._9Ql-oVe_j8E-vsDdyVdWo ._1PQppcgkuXQAiFPar9AGi- {
+	background: var(--lc-black) !important;
+	box-shadow: none !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .DialogDropDown {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	text-transform: uppercase;
+}
+
+/* The drawer's category picker (General) is not a DialogDropDown; it gets the same well. */
+html.lc-shell .MillenniumDesktopSidebar_EditorContent div[class*="DropDown"] {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	border-radius: 0 !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .DialogDropDown:hover,
+html.lc-shell .MillenniumDesktopSidebar_EditorContent div[class*="DropDown"]:hover { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .DialogDropDown_Arrow svg,
+html.lc-shell .MillenniumDesktopSidebar_EditorContent .DialogDropDown_Arrow svg * { fill: var(--lc-peach) !important; }
+
+/* ----------------------------------------------------------- motion */
+
+/* Page switches: the content slides in from the right, 180 ms. */
+@keyframes lc-set-in {
+	from { transform: translateX(24px); opacity: 0; }
+	to { transform: none; opacity: 1; }
+}
+
+html.lc-shell .MillenniumSettings .DialogBody { animation: lc-set-in .18s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-shell .MillenniumSettings .DialogBody { animation: none !important; }
+}
+
+/* ------------------------------------------------ Millennium desktop sidebar
+ * The quick-access panel (opened by the bank's PLUGINS segment): an LCARS
+ * bracket that swipes in from the right edge. Lavender left rail and top elbow,
+ * gold title, peach section rails, and plugins/themes as stacked segments. */
+
+html.lc-shell .MillenniumDesktopSidebar_Overlay { background: rgba(0, 0, 0, .55) !important; }
+
+html.lc-shell .MillenniumDesktopSidebar {
+	background: var(--lc-black) !important;
+	box-shadow: inset 14px 0 0 var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	/* backwards, not both: a held end state would pin transform and hide Millennium's own
+	 * slide-out (a transform transition before it sets display: none), so it just vanished. */
+	animation: lc-sidebar-swipe .48s cubic-bezier(.45, 0, .2, 1) backwards;
+}
+
+/* frame.css stops every transition; Millennium closes the panel with one (slide right,
+ * overlay fade), so these two keep theirs. */
+html.lc-shell .MillenniumDesktopSidebar,
+html.lc-shell .MillenniumDesktopSidebar_Overlay { transition-duration: .4s !important; }
+
+@keyframes lc-sidebar-swipe {
+	from { clip-path: inset(0 0 0 100%); transform: translateX(40px); }
+	to { clip-path: inset(0 0 0 0); transform: none; }
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Title {
+	background: var(--lc-lavender) !important;
+	border-radius: 0 0 0 38px !important; /* the elbow into the left rail */
+	margin-left: 0 !important;
+	position: relative;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Title > div {
+	color: var(--lc-black) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 26px !important;
+	font-weight: 600 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase !important;
+	text-align: right;
+	padding-right: 18px;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Content { padding-left: 14px !important; }
+
+/* Section headers ("Plugin Settings", "Theme Settings"): a peach rail interrupted by the title. */
+html.lc-shell .MillenniumDesktopSidebar_Content ._1IigUZ3GHaZS2Y-3V3T2rT {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Content ._1IigUZ3GHaZS2Y-3V3T2rT::after {
+	content: '';
+	flex: 1;
+	height: 6px;
+	background: var(--lc-peach);
+	border-radius: 0 3px 3px 0;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Content ._1coklnw2_jdRKBFC5RMpfh {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 16px !important;
+	letter-spacing: .14em !important;
+	text-transform: uppercase !important;
+}
+
+/* Items: stacked segments, right-aligned labels, alternating bank colours. */
+html.lc-shell .MillenniumDesktopSidebar_LibraryItemButton {
+	background: var(--lc-steel) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	justify-content: flex-end !important;
+	text-align: right !important;
+	padding: 0 14px 4px !important;
+	align-items: flex-end !important;
+	opacity: 1 !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(3n) .MillenniumDesktopSidebar_LibraryItemButton { background: var(--lc-lilac) !important; }
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(3n+1) .MillenniumDesktopSidebar_LibraryItemButton { background: var(--lc-lavender) !important; }
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:last-child .MillenniumDesktopSidebar_LibraryItemButton { border-radius: 0 0 16px 0 !important; }
+
+html.lc-shell .MillenniumDesktopSidebar_LibraryItemButton:hover,
+html.lc-shell .MillenniumDesktopSidebar_LibraryItemButton:focus-visible {
+	background: var(--lc-gold) !important;
+	animation: lc-ping .28s steps(1, end) 1;
+}
+
+/* Items stagger in after the panel swipes open. */
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source {
+	animation: lc-sidebar-item .3s cubic-bezier(.45, 0, .2, 1) both;
+}
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(2) { animation-delay: .22s; }
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(3) { animation-delay: .27s; }
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(4) { animation-delay: .32s; }
+html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source:nth-child(n+5) { animation-delay: .37s; }
+
+@keyframes lc-sidebar-item {
+	from { clip-path: inset(0 0 0 100%); }
+	to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-shell .MillenniumDesktopSidebar,
+	html.lc-shell .MillenniumDesktopSidebar_Content .tool-tip-source { animation: none !important; }
+}
+
+/* ---- round 6 (user notes) ---- */
+
+/* Steam's 1 px line along the top of the dialog. */
+html.lc-shell .MillenniumSettings { border-top: 0 !important; box-shadow: none !important; }
+
+/* Pages sit in a panel like the LCARS display screens: a thin lavender bracket under
+ * the title rail, closing at the foot with an inner curve. */
+html.lc-shell .MillenniumSettings .DialogContent {
+	border: solid var(--lc-lavender) !important;
+	border-width: 0 0 8px 12px !important;
+	border-radius: 0 0 0 30px !important;
+	box-sizing: border-box;
+	padding-left: 10px;
+	margin-top: 4px;
+}
+
+html.lc-shell .MillenniumSettings .DialogHeader {
+	color: var(--lc-gold) !important;
+	font-size: 30px !important;
+}
+
+/* Millennium's sidebar is a card on the console, not a shade over it. */
+html.lc-shell .MillenniumDesktopSidebar_Overlay {
+	background: transparent !important;
+	backdrop-filter: none !important;
+	box-shadow: none !important;
+	opacity: 1 !important;
+}
+
+html.lc-shell .MillenniumDesktopSidebar {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: solid var(--lc-lavender) !important;
+	border-width: 8px 0 8px 16px !important;
+	border-radius: 34px 0 0 34px !important;
+	box-shadow: none !important;
+	box-sizing: border-box;
+}
+
+html.lc-shell .MillenniumDesktopSidebar_Title { padding: 6px 8px 0 14px !important; }
+html.lc-shell .MillenniumDesktopSidebar_Content { background: var(--lc-black) !important; background-image: none !important; }
+
+/* Sidebar (annotation pass 2026-11-08): a panel as tall as its contents, centred on the
+ * window, bracketed top and bottom. Its slide-out transform stays Millennium's. */
+html.lc-shell .MillenniumDesktopSidebar {
+	top: 0 !important;
+	bottom: 0 !important;
+	margin-block: auto !important;
+	height: fit-content !important;
+	max-height: calc(100vh - 40px) !important;
+	border-radius: 34px 0 0 34px !important;
+	box-shadow: inset 14px 0 0 var(--lc-lavender), inset 0 -10px 0 var(--lc-lavender) !important;
+	overflow: hidden !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+html.lc-shell .MillenniumDesktopSidebar_Title {
+	flex: 0 0 auto;
+	border-radius: 34px 0 0 0 !important;
+	padding: 6px 12px 6px 40px !important;
+	width: auto !important;
+	box-sizing: border-box;
+	height: auto !important;
+	min-height: 48px;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+}
+html.lc-shell .MillenniumDesktopSidebar_Title > div:first-child { color: var(--lc-black) !important; font-size: 24px !important; font-weight: 600 !important; letter-spacing: .08em !important; }
+html.lc-shell .MillenniumDesktopSidebar_Title button { background: var(--lc-black) !important; border-radius: 0 12px 12px 0 !important; }
+html.lc-shell .MillenniumDesktopSidebar_Title button svg, html.lc-shell .MillenniumDesktopSidebar_Title button svg * { color: var(--lc-peach) !important; fill: var(--lc-peach) !important; }
+html.lc-shell .MillenniumDesktopSidebar_Content { flex: 1 1 auto; min-height: 0; height: auto !important; overflow-y: auto !important; padding-bottom: 22px !important; }

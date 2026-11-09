@@ -1,0 +1,17 @@
+/* LCARSv2 palette preset: DS9 / Voyager (stardate 2375).
+ * Source hexes: trekcolors R package (leonawicz), lcars palettes; slot
+ * mapping and contrast lifts are LCARSv2's (black text on fills stays
+ * legible). Only slots change; geometry and fonts stay the design doc's. */
+
+/* :root:root: condition sheets load before library.css, whose tokens.css would win a tie. */
+:root:root {
+	--lc-palette-jingle: "local:3"; /* the cover of this era (js/boot.js) */
+	--lc-gold: #ee9955;
+	--lc-peach: #e1785a;
+	--lc-lavender: #7896d2;
+	--lc-coral: #af5f3f;
+	--lc-lilac: #9977aa;
+	--lc-steel: #6472c7;
+	--lc-surface: #21151d;
+	--lc-disabled: #8c617d;
+}

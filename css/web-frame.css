@@ -1,0 +1,165 @@
+/* LCARSv2 web page frame (S16): the personnel-status-report rails from the design
+ * canon (reference image 10). A top rail carries the page title and its ID number,
+ * interrupting the bar; a bottom rail closes the page. Both are fixed, pill-capped
+ * and inset from the window edge, so Steam's own header and content sit in the
+ * black well between them. js/web/transitions.js draws the rails into #lc-web-frame
+ * and adds html.lc-framed, which pads the body clear of them. */
+
+:root {
+	--lc-web-edge: 8px;      /* rail distance from the window's top and bottom */
+	--lc-web-inset: 12px;    /* rail distance from the window's left and right */
+	--lc-web-top: 0px;       /* no top rail of its own: Steam's URL bar above the page is the rail (css/frame.css, round 6) */
+	--lc-web-bottom: 22px;   /* bottom rail height */
+}
+
+html.lc-framed body {
+	padding-top: calc(var(--lc-web-edge) + var(--lc-web-top) + 8px);
+	padding-bottom: calc(var(--lc-web-edge) + var(--lc-web-bottom) + 8px);
+}
+
+/* ------------------------------------------------------------- rails */
+
+#lc-web-frame { position: static; }
+
+#lc-web-frame .lc-web-rail {
+	position: fixed;
+	left: var(--lc-web-inset);
+	right: var(--lc-web-inset);
+	z-index: 900;
+	border-radius: 999px;
+	box-sizing: border-box;
+	pointer-events: none;
+}
+
+/* Top: lilac bar, lavender right cap. Hidden since round 6: the URL bar is the rail. */
+#lc-web-frame .lc-web-top { display: none; }
+
+#lc-web-frame .lc-web-top {
+	top: var(--lc-web-edge);
+	height: var(--lc-web-top);
+	background: var(--lc-lilac);
+	view-transition-name: lc-web-top;
+}
+
+#lc-web-frame .lc-web-top::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: var(--lc-web-top);
+	height: 100%;
+	border-radius: 0 999px 999px 0;
+	background: var(--lc-lavender);
+}
+
+/* The title interrupts the top bar: a black block after the left cap. */
+#lc-web-frame .lc-web-title {
+	position: absolute;
+	left: calc(var(--lc-web-top) * .8);
+	top: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	gap: .5em;
+	padding: 0 12px 0 8px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font-family: var(--lc-font);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	view-transition-name: lc-title;
+}
+
+#lc-web-frame .lc-web-id { font-variant-numeric: tabular-nums; }
+
+/* Lavender channel bar on arrival: a peach line under the top rail. */
+#lc-web-frame .lc-web-channel {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -4px;
+	height: 3px;
+	background: var(--lc-peach);
+	transform: scaleX(0);
+	transform-origin: left;
+}
+
+/* Bottom: steel bar with lavender caps at both ends. */
+#lc-web-frame .lc-web-bottom {
+	bottom: var(--lc-web-edge);
+	height: var(--lc-web-bottom);
+	background: var(--lc-steel);
+	view-transition-name: lc-web-bottom;
+}
+
+#lc-web-frame .lc-web-bottom::before,
+#lc-web-frame .lc-web-bottom::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: var(--lc-web-bottom);
+	height: 100%;
+	border-radius: 999px;
+	background: var(--lc-lavender);
+}
+
+#lc-web-frame .lc-web-bottom::before { left: 0; }
+#lc-web-frame .lc-web-bottom::after { right: 0; }
+
+/* Exit sweep: a lavender band that crosses the rail; motion lives in web-motion.css. */
+#lc-web-frame .lc-web-sweep {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: var(--lc-web-edge);
+	height: var(--lc-web-top);
+	z-index: 901;
+	background: var(--lc-lavender);
+	transform: scaleX(0);
+	transform-origin: left;
+	pointer-events: none;
+}
+
+/* ------------------------------------------------- queue readout (S11) */
+/* Built by transitions.js on queue pages: "07 / 12" and a 12-segment strip,
+ * done segments gold. Scoped to body.app; it exists only on ?queue=1 pages. */
+
+body.app .lc-queue-readout {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 8px;
+	padding-left: 14px;  /* clear the queue strip's lavender rail */
+	font-family: var(--lc-font);
+	font-size: 16px;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	color: var(--lc-gold);
+}
+
+body.app .lc-queue-readout b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+body.app .lc-queue-strip { display: flex; gap: 3px; }
+
+body.app .lc-queue-seg {
+	width: 12px;
+	height: 10px;
+	background: var(--lc-surface);
+}
+
+body.app .lc-queue-seg.lc-done { background: var(--lc-gold); }
+
+@media (prefers-reduced-motion: reduce) {
+	#lc-web-frame .lc-web-channel { display: none; }
+}
+
+/* Content scrolls under the fixed bottom rail: a black band around it keeps the
+ * rail reading as a solid console edge instead of floating over the page. */
+#lc-web-frame .lc-web-bottom { box-shadow: 0 0 0 var(--lc-web-edge) var(--lc-black); }
+
+/* No loading bobber on web pages (user): Steam's bouncing bars and its older throbbers. */
+.LoadingThrobber, [class*="Throbber"], [class*="throbber"] { display: none !important; }

@@ -1,0 +1,131 @@
+/* LCARSv2 web page motion (S16, round 6): the transporter load-in, the exit sweep
+ * and cross-document view transitions for store and community pages.
+ * js/web/transitions.js adds html.lc-anim (entrance), html.lc-beaming with
+ * #lc-beam (the transporter, removed after 1.3 s) and html.lc-leaving (exit).
+ * Content is visible by default; this sheet only adds motion, so a page without
+ * the script shows its final state. */
+
+/* Same-origin store and community navigations morph the content and keep the
+ * frame rails and title in place (their names are set in web-frame.css). */
+@view-transition { navigation: auto; }
+
+::view-transition-old(lc-web-top), ::view-transition-new(lc-web-top),
+::view-transition-old(lc-web-bottom), ::view-transition-new(lc-web-bottom),
+::view-transition-old(lc-title), ::view-transition-new(lc-title) {
+	animation: none;
+}
+
+::view-transition-old(root) {
+	animation: 340ms cubic-bezier(.45, 0, .2, 1) both lc-web-vt-out;
+}
+
+::view-transition-new(root) {
+	animation: 460ms cubic-bezier(.45, 0, .2, 1) both lc-web-vt-in;
+}
+
+@keyframes lc-web-vt-out {
+	to { clip-path: inset(0 100% 0 0); transform: translateX(-48px); }
+}
+
+@keyframes lc-web-vt-in {
+	from { clip-path: inset(0 0 0 100%); transform: translateX(48px); }
+}
+
+/* ------------------------------------------------------------ load-in */
+
+/* Transporter (round 6): the page fades up through a flicker while a column of
+ * sparkles drifts upward over it and dies away. Opacity only on the content: a
+ * filter would make Steam's fixed headers jump. */
+@keyframes lc-materialise {
+	0% { opacity: 0; }
+	18% { opacity: .12; }
+	26% { opacity: .05; }
+	44% { opacity: .45; }
+	52% { opacity: .3; }
+	72% { opacity: .85; }
+	100% { opacity: 1; }
+}
+
+@keyframes lc-beam {
+	0% { opacity: 0; background-position: 0 140px, 40px 220px, 90px 300px, 0 0; }
+	14% { opacity: 1; }
+	62% { opacity: .9; }
+	100% { opacity: 0; background-position: 0 -120px, 40px -200px, 90px -90px, 0 0; }
+}
+
+@keyframes lc-twinkle {
+	50% { filter: brightness(1.9); }
+}
+
+html.lc-beaming .responsive_page_frame {
+	animation: lc-materialise 1.1s linear both;
+}
+
+#lc-beam {
+	position: fixed;
+	/* inside the frame's rails (web-frame.css sets these; fallbacks are its values) */
+	left: var(--lc-web-inset, 12px);
+	right: var(--lc-web-inset, 12px);
+	top: calc(var(--lc-web-edge, 8px) + var(--lc-web-top, 28px) + 4px);
+	bottom: calc(var(--lc-web-edge, 8px) + var(--lc-web-bottom, 22px) + 4px);
+	z-index: 899; /* under the rails (900) */
+	pointer-events: none;
+	/* Sparse sparkles on prime-sized tiles (no visible grid) rising through a soft column glow. */
+	background:
+		radial-gradient(circle, var(--lc-ink) 0 1.4px, transparent 2.4px) 0 0 / 97px 113px,
+		radial-gradient(circle, var(--lc-lavender) 0 1.6px, transparent 2.8px) 40px 23px / 131px 89px,
+		radial-gradient(circle, var(--lc-gold) 0 1.2px, transparent 2.2px) 90px 61px / 157px 173px,
+		linear-gradient(90deg, transparent 8%, color-mix(in srgb, var(--lc-lavender) 16%, transparent) 30% 70%, transparent 92%);
+	mix-blend-mode: screen;
+	animation: lc-beam 1.2s linear both, lc-twinkle .18s steps(2) 7;
+}
+
+@keyframes lc-web-channel {
+	0% { transform: scaleX(0); opacity: 1; }
+	60% { transform: scaleX(1); opacity: 1; }
+	100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* The rails are already on screen when a page arrives from the library (the
+ * main window's curtain draws them), so they don't draw in again here. */
+
+html.lc-anim #lc-web-frame .lc-web-channel {
+	animation: lc-web-channel 600ms cubic-bezier(.45, 0, .2, 1) 220ms backwards;
+}
+
+/* --------------------------------------------------------- exit sweep */
+/* Used only for links that cannot cross-document transition (store <-> community,
+ * or any same-origin link when view transitions are missing). The script clears
+ * html.lc-leaving after 800 ms, and on pageshow, so a back-forward restore never
+ * keeps it. */
+
+@keyframes lc-web-out {
+	to { clip-path: inset(0 100% 0 0); transform: translateX(-48px); }
+}
+
+@keyframes lc-web-sweep {
+	to { transform: scaleX(1); }
+}
+
+html.lc-leaving .responsive_page_content {
+	animation: lc-web-out 320ms cubic-bezier(.45, 0, .2, 1) forwards;
+}
+
+html.lc-leaving #lc-web-frame .lc-web-sweep {
+	animation: lc-web-sweep 320ms cubic-bezier(.45, 0, .2, 1) forwards;
+}
+
+/* ------------------------------------------------------ reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+	html.lc-beaming .responsive_page_frame, #lc-beam,
+	html.lc-anim #lc-web-frame .lc-web-channel,
+	html.lc-leaving .responsive_page_content,
+	html.lc-leaving #lc-web-frame .lc-web-sweep {
+		animation: none !important;
+	}
+
+	::view-transition-old(root), ::view-transition-new(root) {
+		animation: none !important;
+	}
+}

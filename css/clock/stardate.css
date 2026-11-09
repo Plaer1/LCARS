@@ -1,0 +1,2 @@
+/* LCARSv2 "Stardate" setting: the bank shows the stardate instead of the calendar date. */
+:root { --lc-stardate: 1; }

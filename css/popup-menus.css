@@ -1,0 +1,80 @@
+/* LCARSv2 popup-window menus (root menus, SuperNav hover menus, account and
+ * notification menus). Bank menus fly out beside their button (js/flyouts.js)
+ * and are drawn as a bracket in that button's color, open to the right, so
+ * each reads as its bank segment extending sideways into a panel. */
+@import url('tokens.css');
+@import url('menus.css');
+@import url('bank-motion.css');
+@import url('extendium-popup.css');
+@import url('window-corners.css');
+@import url('scrollbars.css');
+
+* { transition-duration: 0s !important; }
+
+html.MillenniumWindow_ContextMenu { --lc-ext: var(--lc-lavender); }
+
+/* Same colors as the bank segments that open them. */
+html.Store_Supernav, html.Steam_Root_Menu { --lc-ext: var(--lc-peach); }
+html.Library_Supernav { --lc-ext: var(--lc-lavender); }
+html.Community_Supernav, html.View_Root_Menu, html.Help_Root_Menu { --lc-ext: var(--lc-lilac); }
+html.Profile_Supernav { --lc-ext: var(--lc-coral); }
+html.Friends_Root_Menu, html.Games_Root_Menu { --lc-ext: var(--lc-steel); }
+
+/* The bracket: a thick left rail, thin top and base arms, curved outer
+ * corners. The top arm meets the button edge-on. */
+html.MillenniumWindow_ContextMenu .PP7LM0Ow1K5qkR8WElLpt {
+	border-radius: 0 0 0 22px !important;
+	box-shadow:
+		inset 14px 0 0 var(--lc-ext),
+		inset 0 6px 0 var(--lc-ext),
+		inset 0 -6px 0 var(--lc-ext) !important;
+}
+
+html.MillenniumWindow_ContextMenu ._2EstNjFIIZm_WUSKm5Wt7n,
+html.MillenniumWindow_ContextMenu ._3pofGqV0buiKAfMPEs3_82 {
+	padding: 10px 6px 12px 14px !important;
+}
+
+/* Menus the bank opens: the frame is on the right and open toward the bank, so each
+ * slides out from behind the bank (css/bank-motion.css) instead of sitting beside it. */
+:is(html.Store_Supernav, html.Library_Supernav, html.Community_Supernav, html.Profile_Supernav, html.Steam_Root_Menu, html.View_Root_Menu, html.Friends_Root_Menu, html.Games_Root_Menu, html.Help_Root_Menu) .PP7LM0Ow1K5qkR8WElLpt {
+	border-radius: 0 0 22px 0 !important;
+	box-shadow:
+		inset -14px 0 0 var(--lc-ext),
+		inset 0 6px 0 var(--lc-ext),
+		inset 0 -6px 0 var(--lc-ext) !important;
+}
+:is(html.Store_Supernav, html.Library_Supernav, html.Community_Supernav, html.Profile_Supernav, html.Steam_Root_Menu, html.View_Root_Menu, html.Friends_Root_Menu, html.Games_Root_Menu, html.Help_Root_Menu) :is(._2EstNjFIIZm_WUSKm5Wt7n, ._3pofGqV0buiKAfMPEs3_82) {
+	padding: 10px 14px 12px 6px !important;
+}
+
+/* Rows: roomy targets, label low-left, gold fill under the pointer. */
+html.MillenniumWindow_ContextMenu ._1n7Wloe5jZ6fSuvV18NNWI {
+	min-height: 34px !important;
+	padding: 0 22px 5px 14px !important;
+	display: flex !important;
+	align-items: flex-end !important;
+	font-size: 17px !important;
+	letter-spacing: .07em !important;
+	box-shadow: none !important;
+	border-bottom: 2px solid var(--lc-surface) !important;
+	box-sizing: border-box;
+}
+
+html.MillenniumWindow_ContextMenu ._1n7Wloe5jZ6fSuvV18NNWI:hover,
+html.MillenniumWindow_ContextMenu ._1n7Wloe5jZ6fSuvV18NNWI.gpfocus {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+	border-bottom-color: var(--lc-gold) !important;
+	box-shadow: inset 8px 0 0 var(--lc-ink) !important;
+}
+
+/* Separators: a 10px black slice with a short tick in the menu's color. */
+html.MillenniumWindow_ContextMenu ._1n7Wloe5jZ6fSuvV18NNWI.Separator,
+html.MillenniumWindow_ContextMenu hr {
+	height: 10px !important;
+	min-height: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: linear-gradient(90deg, var(--lc-ext) 0 30px, transparent 30px) 0 50% / 100% 3px no-repeat var(--lc-black) !important;
+}

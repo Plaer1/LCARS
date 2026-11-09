@@ -1,0 +1,825 @@
+@import url('tokens.css');
+
+/* LCARSv2 store front. The store's own nav becomes a rail of department
+ * segments ending in gold/peach endcaps; every home section is a record
+ * group: a title-interrupted rail on top and a colored bank bracket down
+ * its left side; capsules take the gold row-selection marker; the tab list
+ * (New & Trending, Top Sellers...) is a joined tab bank over a register. */
+
+html, body, .responsive_page_frame, .responsive_page_content, .responsive_page_template_content,
+.home_page_body_ctn, .main_content_ctn, .page_background_holder, .home_tab_bg_ctn,
+.personal_calendar_background, .menu_takeover_background, #footer {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+}
+
+body, body * { font-family: var(--lc-font) !important; letter-spacing: .02em; }
+
+/* Long descriptions stay in proportional type. */
+.tab_item_details, .game_description_snippet, .home_section_subtitle, .curator_review,
+.recommendation_desc, .ds_flagged_text, #footer p, .tab_preview .desc {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+body { color: var(--lc-ink) !important; }
+a { color: var(--lc-lavender); }
+a:hover { color: var(--lc-gold) !important; }
+
+::selection { background: var(--lc-gold); color: var(--lc-black); }
+
+* { transition-duration: 0s !important; }
+
+/* ------------------------------------------------------------ store rail */
+
+._-6WU-qJBwUo-, .XLbP8xOkCYw- { background: var(--lc-black) !important; }
+
+.XLbP8xOkCYw- { padding: 6px 0 !important; }
+
+.HSZQmX8poSc-, .G-MCErbqVAM- { gap: var(--lc-slice) !important; }
+
+/* Departments: segments, label low-right, black ink. */
+.G-MCErbqVAM- ._2U8ldyeSqVI-, .HSZQmX8poSc- > ._2U8ldyeSqVI- {
+	--lc-seg: var(--lc-lavender);
+	background: var(--lc-seg) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	height: 40px !important;
+	width: auto !important;
+	min-width: 0 !important;
+	flex: 0 0 auto !important;
+	white-space: nowrap;
+	align-items: flex-end !important;
+	padding: 0 10px 4px 16px !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase !important;
+	letter-spacing: .06em !important;
+	box-shadow: none !important;
+}
+
+.G-MCErbqVAM- ._2U8ldyeSqVI-:first-child { border-radius: 20px 0 0 20px !important; padding-left: 28px !important; --lc-seg: var(--lc-peach); }
+.G-MCErbqVAM- ._2U8ldyeSqVI-:nth-child(2) { --lc-seg: var(--lc-lilac); }
+.G-MCErbqVAM- ._2U8ldyeSqVI-:nth-child(3) { --lc-seg: var(--lc-steel); }
+.G-MCErbqVAM- ._2U8ldyeSqVI-:nth-child(4) { --lc-seg: var(--lc-lavender); }
+.HSZQmX8poSc- > ._2U8ldyeSqVI- { --lc-seg: var(--lc-coral); }
+
+.G-MCErbqVAM- ._2U8ldyeSqVI-:hover, .HSZQmX8poSc- > ._2U8ldyeSqVI-:hover,
+.G-MCErbqVAM- ._2U8ldyeSqVI-[aria-expanded="true"] { --lc-seg: var(--lc-gold); }
+
+._2U8ldyeSqVI- *, .RVEYrzm4mGo- { color: var(--lc-black) !important; }
+._2U8ldyeSqVI- svg, ._2U8ldyeSqVI- svg * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+
+/* Search: flat field well. */
+.Tx-rbJxeMFs-, .jagq1JLF1Dc-, .rFKwchjD-WU- {
+	background: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+.jagq1JLF1Dc- { box-shadow: inset 0 0 0 2px var(--lc-lavender) !important; height: 40px !important; }
+.rFKwchjD-WU- { color: var(--lc-ink) !important; font-size: 16px !important; text-transform: uppercase; letter-spacing: .06em; height: 40px !important; }
+.rFKwchjD-WU-::placeholder { color: var(--lc-disabled) !important; }
+.jagq1JLF1Dc-:focus-within { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+.Tx-rbJxeMFs- button { background: var(--lc-lavender) !important; border-radius: 0 !important; height: 40px !important; }
+.Tx-rbJxeMFs- button svg * { fill: var(--lc-black) !important; }
+
+/* Wishlist + cart: the rail's outward caps. */
+.rQfSdlfLw80- { gap: var(--lc-slice) !important; align-items: stretch !important; }
+
+.rQfSdlfLw80- ._2U8ldyeSqVI- {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	height: 40px !important;
+	margin: 0 !important;
+	padding: 0 14px !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	box-shadow: none !important;
+	align-self: center;
+}
+
+.rQfSdlfLw80- ._2U8ldyeSqVI-:last-child { background: var(--lc-gold) !important; border-radius: 0 20px 20px 0 !important; padding-right: 22px !important; }
+.rQfSdlfLw80- ._2U8ldyeSqVI-:hover { background: var(--lc-ink) !important; }
+
+/* Search suggestions popup: dialog rail. */
+.O2jUvAs3OiU- {
+	background: var(--lc-black) !important;
+	border: solid var(--lc-lavender);
+	border-width: 0 0 7px 11px;
+	border-radius: 0 0 0 22px;
+	box-shadow: none !important;
+}
+
+/* Hero takeover: keep the art, sweep a frame under it. */
+.home_page_takeover_link, #takeover_videos { box-shadow: inset 0 -10px 0 var(--lc-lavender); }
+
+/* -------------------------------------------------------- record groups */
+
+.home_pagecontent_ctn, #home_maincap_v7 > .home_cluster_ctn {
+	--lc-group: var(--lc-lavender);
+	position: relative;
+	background: transparent !important;
+}
+
+.main_content_ctn > :nth-child(4n+1) { --lc-group: var(--lc-peach); }
+.main_content_ctn > :nth-child(4n+2) { --lc-group: var(--lc-lavender); }
+.main_content_ctn > :nth-child(4n+3) { --lc-group: var(--lc-lilac); }
+.main_content_ctn > :nth-child(4n+4) { --lc-group: var(--lc-steel); }
+
+/* Bank bracket down the left gutter of each group: outer elbow at the top,
+ * square base. */
+.home_pagecontent_ctn::before, #home_maincap_v7 > .home_cluster_ctn::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 29px; /* level with the title rail (.home_title_ctn::after) */
+	bottom: 14px;
+	width: 50px; /* runs to where the title starts */
+	box-sizing: border-box;
+	border: solid transparent;
+	border-width: 12px 0 0 18px;
+	border-radius: 30px 0 0 0;
+	/* One shape, painted only in its border, so the outer and inner curves are concentric. The
+	 * bank is in segments as LCARS banks are: the group colour, a black slice, a gold block. */
+	background: linear-gradient(to bottom, var(--lc-group) 0 calc(100% - 70px), var(--lc-black) calc(100% - 70px) calc(100% - 65px), var(--lc-gold) calc(100% - 65px) calc(100% - 24px), var(--lc-black) calc(100% - 24px) calc(100% - 19px), var(--lc-group) calc(100% - 19px)) border-box;
+	-webkit-mask: linear-gradient(#000 0 0) border-box, linear-gradient(#000 0 0) padding-box;
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) border-box exclude, linear-gradient(#000 0 0) padding-box;
+	pointer-events: none;
+}
+
+.home_pagecontent_ctn::after, #home_maincap_v7 > .home_cluster_ctn::after { /* base foot */
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 14px;
+	width: 70px;
+	height: 6px;
+	background: var(--lc-group);
+	pointer-events: none;
+}
+
+/* The group's console code on its foot (js/web/transitions.js storeGroups), black on the
+ * group colour, after the foot block. */
+.home_pagecontent_ctn[data-lc-code]::after, #home_maincap_v7 > .home_cluster_ctn[data-lc-code]::after {
+	content: attr(data-lc-code);
+	width: auto;
+	height: 18px;
+	padding: 0 10px 0 40px;
+	bottom: 14px;
+	border-radius: 0 9px 9px 0;
+	color: var(--lc-black);
+	font-family: var(--lc-font);
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 19px;
+	letter-spacing: .12em;
+}
+
+/* Section titles interrupt a rail running right. */
+.home_title_ctn, .title_grid, .tW10-at9cMc- {
+	position: relative;
+	display: flex !important;
+	align-items: center;
+	gap: 0;
+	z-index: 1;
+}
+
+.home_title_ctn::after, .title_grid::after, .tW10-at9cMc-::after {
+	content: '';
+	position: absolute;
+	left: 0; /* the elbow's arm comes in to here (.home_pagecontent_ctn::before) */
+	right: 0;
+	top: 14px;
+	height: 12px;
+	background: var(--lc-group, var(--lc-lavender));
+	border-radius: 0 6px 6px 0;
+	z-index: -1;
+}
+
+/* Widget headers (Your Personal Calendar, Discovery Queue): titled like the rest. */
+.home_page_content .WidgetHeaderCtn > :first-child, .WidgetHeaderCtn .bKJhafR0h9g- {
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 24px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+.WidgetHeaderCtn .MFeNsPbs3Hc- { color: var(--lc-peach) !important; font-family: var(--lc-font) !important; letter-spacing: .04em; }
+
+.home_title, .home_section_title, .txCSzBxQT1Q-, .home_title_ctn > :first-child {
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	font-size: 28px !important;
+	font-weight: 500 !important;
+	line-height: 40px !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+	padding: 0 12px !important;
+	margin: 0 0 0 4px !important;
+}
+
+.home_section_subtitle { color: var(--lc-peach) !important; font-family: var(--lc-font) !important; font-size: 14px !important; letter-spacing: .08em !important; text-transform: uppercase !important; background: var(--lc-black); padding: 0 8px; }
+/* "Because you played <game>": a title like the others, the game named in peach. */
+.recommended_by_deep_dive_title { color: var(--lc-peach) !important; text-transform: uppercase !important; letter-spacing: .05em !important; }
+/* Your Personal Calendar (a React widget with its own title). */
+.IdjQXo6E9yc- { color: var(--lc-gold) !important; font-family: var(--lc-font) !important; font-size: 26px !important; font-weight: 500 !important; letter-spacing: .05em !important; text-transform: uppercase !important; }
+.sGDLZ2AYREY- { color: var(--lc-peach) !important; font-family: var(--lc-font) !important; letter-spacing: .04em; }
+
+/* Commands: peach endcaps. */
+.btnv6_white_transparent, .btnv6_blue_hoverfade, .btn_small_tall, ._9wiEHoTVAzs-, .znS2DqGQQHM-,
+.see_more_link a, .home_actions_ctn a, .btn_medium {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 16px 16px 0 !important;
+	box-shadow: none !important;
+	text-transform: uppercase !important;
+	letter-spacing: .08em !important;
+	font-weight: 600 !important;
+	text-shadow: none !important;
+}
+
+.btnv6_white_transparent > span, .btnv6_blue_hoverfade > span, .btn_small_tall > span, .btn_medium > span {
+	background: transparent !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+.btnv6_white_transparent:hover, .btnv6_blue_hoverfade:hover, .btn_small_tall:hover, .znS2DqGQQHM-:hover { background: var(--lc-gold) !important; }
+
+/* Carousel arrows: flat peach endcaps. */
+/* The wide main carousel's arrow areas also hold neighbour previews, so
+ * only the arrow glyph itself becomes the endcap. */
+.arrow, .carousel_container .arrow { background-color: transparent !important; box-shadow: none !important; opacity: 1 !important; }
+
+.arrow > div {
+	position: relative;
+	background-color: var(--lc-peach) !important;
+	background-position: center !important;
+	border-radius: 0 !important;
+	filter: none !important;
+	min-width: 26px;
+	min-height: 64px;
+}
+
+/* Steam turns the left glyph over with a transform, which also flipped the cap, and its
+ * glyph is a CDN image in Steam's colours; ours is a flat triangle. */
+.arrow.left > div, .arrow.right > div { background-image: none !important; transform: none !important; }
+.arrow.left > div::after, .arrow.right > div::after { content: ''; position: absolute; inset: 0; background: var(--lc-black); }
+.arrow.left > div::after { clip-path: polygon(30% 50%, 68% 38%, 68% 62%); }
+.arrow.right > div::after { clip-path: polygon(70% 50%, 32% 38%, 32% 62%); }
+.arrow.left > div { left: 10px; border-radius: 999px 0 0 999px !important; } /* in the gap between the bank and the content, off the trim */
+.arrow.right > div { border-radius: 0 999px 999px 0 !important; }
+.arrow:hover > div { background-color: var(--lc-gold) !important; }
+
+.carousel_thumbs > div, .carousel_items .focus ~ * { border-radius: 0 !important; }
+.carousel_thumbs > div { background: var(--lc-surface) !important; height: 8px !important; }
+.carousel_thumbs > div.focus { background: var(--lc-gold) !important; }
+
+/* Main capsule info panel. */
+.store_main_capsule .info, .home_cluster_ctn .info { background: var(--lc-black) !important; box-shadow: inset 8px 0 0 var(--lc-lavender); }
+.store_main_capsule .app_name { color: var(--lc-gold) !important; text-transform: uppercase; letter-spacing: .04em; }
+.store_main_capsule .reason, .store_main_capsule .reason * { color: var(--lc-peach) !important; }
+.store_main_capsule .app_tag { background: var(--lc-surface) !important; color: var(--lc-ink) !important; border-radius: 0 !important; }
+
+/* Capsules: plain plates, the hovered one carries the gold marker. */
+.store_capsule, .tab_item, .sale_capsule, .special_tiny_cap, .store_main_capsule, .capsule {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+.store_capsule:hover, .sale_capsule:hover, .special_tiny_cap:hover {
+	box-shadow: 0 8px 0 var(--lc-gold) !important;
+}
+
+/* Main carousel: the capsules either side of the focused one are framed and dimmed,
+ * standby panels behind a lilac bracket, instead of bare art (user note 26). */
+/* Only in the narrow, scroll-snap carousel: the wide one positions its capsules itself
+ * (absolutely), and forcing relative there stacked them all into one 4000 px column. */
+#home_maincap_v7:not(.carousel_wide_mode) .carousel_container.maincap .store_main_capsule { position: relative; }
+#home_maincap_v7:not(.carousel_wide_mode) .carousel_container.maincap .store_main_capsule:not(.focus)::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	box-sizing: border-box;
+	border: solid var(--lc-lilac);
+	border-width: 10px 0 10px 10px;
+	border-radius: 30px 0 0 30px;
+	background: rgba(0, 0, 0, .5);
+	pointer-events: none;
+}
+#home_maincap_v7:not(.carousel_wide_mode) .carousel_container.maincap .store_main_capsule:not(.focus):hover::after { border-color: var(--lc-gold); background: rgba(0, 0, 0, .25); }
+
+/* Prices: gold discount ID block, light final price. */
+.discount_block, .discount_prices { background: var(--lc-black) !important; border-radius: 0 !important; }
+.discount_pct, .bundle_base_discount { background: var(--lc-gold) !important; color: var(--lc-black) !important; border-radius: 0 !important; font-weight: 600 !important; }
+.discount_final_price { color: var(--lc-ink) !important; }
+.discount_original_price { color: var(--lc-disabled) !important; }
+
+/* ----------------------------------------------- tab bank + register */
+
+.home_tabs_row_ctn { display: flex; gap: var(--lc-slice); }
+
+.home_tab_button, .home_tabs_row .tab_content {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	font-weight: 600 !important;
+}
+
+.home_tab_button {
+	display: flex !important;
+	align-items: flex-end !important;
+	padding: 12px 16px 4px !important;
+	height: auto !important;
+	margin: 0 !important;
+}
+
+.home_tab_button .tab_content {
+	background: transparent !important;
+	color: var(--lc-black) !important;
+	font-size: 18px !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+.tab_item_content, .tab_item_cap, .tab_item .tab_item_discount { background: transparent !important; }
+.home_tab_button:first-child { border-radius: 18px 0 0 18px !important; }
+.home_tab_button:hover { background: var(--lc-ink) !important; }
+
+/* Active tab: a plain gold fill. */
+.home_tab_button.active {
+	background: var(--lc-gold) !important;
+	box-shadow: none !important;
+	border: 0 !important;
+}
+
+.tab_item, .tab_row_item {
+	background: var(--lc-black) !important;
+	border-bottom: 2px solid var(--lc-surface) !important;
+}
+
+.tab_item:hover, .tab_item.focus, .tab_row_item:hover, .tab_row_item.focus {
+	background: var(--lc-surface) !important;
+	box-shadow: inset 12px 0 0 var(--lc-gold) !important;
+}
+
+.tab_item_name, .tab_item_title { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; }
+.tab_item.focus .tab_item_name, .tab_item:hover .tab_item_name, .tab_row_item:hover .tab_item_title, .tab_row_item.focus .tab_item_title { color: var(--lc-gold) !important; }
+.tab_item_details, .tab_item_top_tags { color: var(--lc-peach) !important; }
+
+.tab_preview_container, .tab_preview {
+	background: var(--lc-black) !important;
+	border-left: 11px solid var(--lc-lavender);
+	border-radius: 22px 0 0 0;
+}
+
+.tab_preview h2 { color: var(--lc-gold) !important; text-transform: uppercase; }
+
+/* Account blocks / Steam Deck / curators: black wells with rails. */
+.home_deck_section.ctn_background, .ctn_background, .home_account_ctn, .apps_recommended_by_curators,
+.home_page_gutter_block, .personal_calendar_ctn, .steam_curators_grid_ctn {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border-radius: 0 !important;
+}
+
+/* Footer: dim register text over a lavender base rail. */
+#footer { border-top: 10px solid var(--lc-lavender); color: var(--lc-disabled) !important; }
+#footer a { color: var(--lc-lavender) !important; text-transform: uppercase; }
+
+/* ------------------------------------------------ front page: full scroll */
+/* Steam-blue leftovers from the full-scroll scan. Scoped to the front page
+ * body (.home_page_body_ctn) because store.css also loads on the app page. */
+
+/* Capsule flags: wishlist lavender, owned peach. */
+.home_page_body_ctn .ds_flag.ds_wishlist_flag { background-color: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+.home_page_body_ctn .ds_flag.ds_owned_flag { background-color: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+
+/* Calendar "NEW" tag. */
+.home_page_body_ctn .x8jWPgfdVoI- { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+/* Gift card link and deal tags: flat command and tag fills, no blue gradient. */
+.home_page_body_ctn .home_gift_card_link { background: var(--lc-peach) !important; border-radius: 0 !important; }
+.home_page_body_ctn .home_gift_card_link * { color: var(--lc-black) !important; }
+.home_page_body_ctn .jxYpM-g5fRs- { background: var(--lc-gold) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+.home_page_body_ctn .jxYpM-g5fRs- * { color: var(--lc-black) !important; }
+
+/* Discounts and events slider scrim: a black field, not a navy one. */
+.home_page_body_ctn [class*="horizontalSlider___"] { background-image: none !important; }
+
+/* Wishlist and DLC wells. */
+.home_page_body_ctn .home_discount_games_ctn { background: var(--lc-surface) !important; background-image: none !important; }
+
+/* Calendar day cards: flat surface, keep the art tiles; today keeps its highlight. */
+.home_page_body_ctn .maxz19gKOQc-:not(._8XPG-IbvHHs-) { background: var(--lc-surface) !important; }
+
+/* "Explore Your Discovery Queue" banner: black well, lavender rail, art kept. */
+.home_page_body_ctn .XXXE46GLJ04- { background: var(--lc-black) !important; box-shadow: inset 10px 0 0 var(--lc-lavender); }
+.home_page_body_ctn .tyZYjXnErOU- { background-color: transparent !important; }
+
+/* Curator, recently-updated and developer cards: body text plates on surface. */
+.home_page_body_ctn .curator_capsule_ctn { background: var(--lc-surface) !important; }
+.home_page_body_ctn .recently_updated_desc { background: var(--lc-surface) !important; }
+.home_page_body_ctn .creator_capsule_ctn { background: var(--lc-surface) !important; }
+.home_page_body_ctn .deep_dive_key_tags { background: var(--lc-surface) !important; }
+
+/* Category tiles: a black scrim instead of a tinted one. */
+.home_page_body_ctn .content_hub_carousel .gradient { background-image: none !important; }
+
+/* Price blocks: peach discount, gold final price. */
+.home_page_body_ctn .discount_pct, .home_page_body_ctn .bundle_base_discount { background: var(--lc-peach) !important; color: var(--lc-black) !important; }
+.home_page_body_ctn .discount_final_price { color: var(--lc-gold) !important; }
+
+/* Carousel arrows: coral caps, gold on hover. */
+.home_page_body_ctn .arrow > div { background-color: var(--lc-coral) !important; }
+.home_page_body_ctn .arrow:hover > div { background-color: var(--lc-gold) !important; }
+
+/* Section subtitles and "see more" labels sit on a black plate so the rail
+ * does not show through their text. */
+.home_page_body_ctn .home_section_subtitle { background: var(--lc-black) !important; padding: 0 8px !important; }
+.home_page_body_ctn .see_more_link .see_more_text { background: var(--lc-black); padding: 0 6px; }
+
+/* Tab bank: segments join with a black seam, no gap. */
+.home_page_body_ctn .tabs_menu_ctn, .home_page_body_ctn .home_tabs_row_ctn { gap: 0 !important; }
+.home_page_body_ctn .home_tab_button + .home_tab_button { border-left: 3px solid var(--lc-black) !important; }
+
+/* Capsule art keeps its shape while lazy images load: no rail shift. */
+.home_page_body_ctn .capsule_image_ctn { aspect-ratio: 87 / 50; }
+
+/* Store header strip under the nav: black, not Steam slate. */
+.hjG2apu1gQc- { background: var(--lc-black) !important; }
+
+/* Footer copy: prose at 14 px (rule 7 minimum). */
+#footer p { font-size: 14px !important; line-height: 1.45 !important; }
+
+/* Discovery banner header wrapper: its own blue gradient. */
+.home_page_body_ctn .dycaOmod9zw- { background: var(--lc-black) !important; }
+
+/* See-more hover: Steam turns the label gold, which then sits on the gold fill. */
+.home_page_body_ctn .znS2DqGQQHM-:hover, .home_page_body_ctn .znS2DqGQQHM-:hover * { color: var(--lc-black) !important; }
+
+/* Review summaries: Steam's blue text becomes lavender. */
+.home_page_body_ctn .game_review_summary { color: var(--lc-lavender) !important; }
+
+/* ------------------------------------------------------- store nav menus */
+
+/* The store's loading placeholder (the bar's stand-in until its React loads): Steam's slate radial gradient. */
+.PlaceholderInner { background: var(--lc-black) !important; background-image: none !important; }
+
+.XLbP8xOkCYw- { box-shadow: none !important; }
+.vph-SVDaiKo- { background: var(--lc-black) !important; } /* Steam's blue underline on the open tab */
+.supernav_container a.menuitem { color: var(--lc-lavender) !important; }
+
+/* The menu slides in from the left, like the pages do. */
+/* The open menu is a panel of its own: bank down the left, sweeping into a closing rail
+ * (note 42). It wipes out to the right from the bank, in steps, the frame with it. */
+.RZQWX-64UNU- .zYCq2k90p58- {
+	box-sizing: border-box;
+	background: var(--lc-black) !important;
+	border: solid var(--lc-steel);
+	border-width: 0 0 10px 16px;
+	border-radius: 0 0 10px 34px !important;
+	animation: lc-nav-menu .22s steps(11, end) both;
+}
+@keyframes lc-nav-menu {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) { .zYCq2k90p58- { animation: none; } }
+
+/* While a menu is open the header stretches over the page with Steam's dim layer in it; only the bar itself is opaque. */
+._-6WU-qJBwUo-:has(.hjG2apu1gQc-) { background: transparent !important; }
+.hjG2apu1gQc- { background: rgba(0, 0, 0, .7) !important; }
+
+.RZQWX-64UNU- * { border-radius: 0 !important; }
+.dUvJZktS6bk- { background: var(--lc-black) !important; box-shadow: none !important; }
+/* Steam's two gradient art banners: plain command blocks. */
+.a-U-GT11cxQ- { background-image: none !important; background-color: var(--lc-lilac) !important; border-radius: 0 !important; }
+.a-U-GT11cxQ-:nth-of-type(2n) { background-color: var(--lc-steel) !important; }
+.a-U-GT11cxQ-:hover { background-color: var(--lc-gold) !important; }
+.a-U-GT11cxQ- > *:not(span) { display: none !important; }
+.RZQWX-64UNU- .Eo26qLDIMO0- { background: none !important; box-shadow: none !important; }
+.QHiQcR8jG10- { background: var(--lc-surface) !important; }
+.dt7BOP7ytNI- { background: var(--lc-surface) !important; }
+.MX-rRQsC3sw- { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .1em; }
+.dHREWQDYPkI-, .O4mC93OYTTQ-, .Cnw9IXSgr7I- { color: #c9bfae !important; }
+.JBijjejcvmo- { color: var(--lc-ink) !important; }
+.RZQWX-64UNU- a:hover, .SP5O0fmwX5g-:hover, .cYQ47CXd3vU-:hover { color: var(--lc-gold) !important; }
+
+/* Steam's white plates and call-to-action buttons. */
+.Eo26qLDIMO0-, .M6mNSwpY86U-, ._63UhqCkJDPs-, ._7LZ74DkC-IQ-, .D99kHv4fRj8- {
+	background: var(--lc-gold) !important;
+	color: var(--lc-black) !important;
+}
+.m07F-6-CvWk- { color: var(--lc-black) !important; }
+.G2kxyJoDZqw- { background: var(--lc-surface) !important; color: var(--lc-lavender) !important; }
+.JhiIqI-S0Js- { background: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+
+/* ------------------------------------------------- chips Steam draws in green and blue */
+
+.kjiBcsaqA8o-, .nw-DtQ670Sc-, .TSCZ-XXe31E- { background: var(--lc-gold) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+.kjiBcsaqA8o- *, .cCmCiA6FCMc- { color: var(--lc-black) !important; }
+.eNdjZ1XB-fk- { background: var(--lc-lavender) !important; color: var(--lc-black) !important; border-radius: 0 !important; }
+.bar > .value { background: var(--lc-gold) !important; }
+.tags > a, .tags > span, .deep_dive_tag { background: var(--lc-surface) !important; color: var(--lc-ink) !important; border-radius: 0 !important; }
+
+/* Capsule hover: the trailer plays flat, and the options flag is a gold plate. */
+.sale_capsule_video { box-shadow: none !important; border-radius: 0 !important; }
+.ds_options > div { background: var(--lc-gold) !important; color: var(--lc-black) !important; box-shadow: none !important; border-radius: 0 !important; }
+
+/* View > Update News (the "Special Offers" window's page). A popup, so it has no page
+ * rails or debug bar of its own: css/client-windows.css frames the window. Steam stacks a
+ * blurred copy of the art behind each message and a big centred heading. */
+html:has(.-ImanFHLAwA-) #lc-web-frame { display: none !important; }
+html:has(.-ImanFHLAwA-) #lc-debug-host { visibility: hidden !important; } /* its inline display wins */
+html:has(.-ImanFHLAwA-) body { padding: 0 !important; }
+.-ImanFHLAwA- { background: var(--lc-black) !important; background-image: none !important; width: 100% !important; }
+.JZpXsA-Xgmo- > .hoF4iyYjP-8- { display: none !important; } /* the blurred copy; the real art uses the same class deeper in */
+
+/* Every level fits the window, so nothing runs under the pager or scrolls. */
+.ZhQhX7pr9lA- { width: 100% !important; height: calc(100vh - 44px) !important; }
+.OUppgysE0Mk-, .yTfJh4717Do-, .GouFTCf51tc- { width: 100% !important; height: 100% !important; }
+.GouFTCf51tc- { overflow: hidden !important; }
+.JZpXsA-Xgmo-, .fCMJE9GFrl4-, .UDBCx7hHil8- { width: 100% !important; height: 100% !important; }
+.JZpXsA-Xgmo- { box-sizing: border-box; padding: 0 !important; justify-content: flex-start !important; }
+
+.IKG0vEoSOA8- { height: auto !important; padding: 0 0 6px !important; }
+.n4IOVFejo90- {
+	height: auto !important;
+	justify-content: flex-start !important;
+	background: none !important;
+	color: var(--lc-gold) !important;
+	-webkit-text-fill-color: var(--lc-gold) !important;
+	font-size: 28px !important;
+	font-weight: 500 !important;
+	line-height: 1.1 !important;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+}
+
+.JZpXsA-Xgmo- img { border-radius: 0 !important; max-height: calc(100vh - 118px); object-fit: contain; }
+._4av218OCtYs- { box-shadow: none !important; border-radius: 0 !important; }
+.ZvA83f32Rb8- { background: rgba(0, 0, 0, .55) !important; }
+.ZQJlDRLSD2I- { background: var(--lc-gold) !important; border-radius: 0 !important; }
+.ZQJlDRLSD2I- * { fill: var(--lc-black) !important; }
+
+.cwi8pT-5toI- { margin-top: 6px !important; }
+.nzSsIHRDj78- { margin-bottom: 0 !important; }
+.gxR5Tw6uJCI- { height: 36px !important; background: var(--lc-lavender) !important; color: var(--lc-black) !important; font-size: 16px !important; border-radius: 0 18px 18px 0 !important; }
+.gxR5Tw6uJCI-:hover { background: var(--lc-gold) !important; }
+.gxR5Tw6uJCI- * { color: var(--lc-black) !important; }
+.ZLlm68-AqhM- { height: 36px !important; }
+
+/* The pager: one short row. */
+._4fnvcJcUDX8- { height: 44px !important; margin: 0 !important; }
+.y0FnhcY7vxo- { width: 100% !important; height: 100% !important; padding: 0 !important; align-items: center !important; }
+._1xe7rr61Sxs- { color: var(--lc-lavender) !important; font-size: 13px !important; text-transform: uppercase; letter-spacing: .06em; }
+.S4heXFJ-jNg- { background: var(--lc-surface) !important; border-radius: 0 !important; width: 18px !important; height: 8px !important; }
+.S4heXFJ-jNg-.gHoA3r84Hvo- { background: var(--lc-gold) !important; }
+._5sB1JM0Iyds- { opacity: 1 !important; }
+._5sB1JM0Iyds- svg * { fill: var(--lc-lavender) !important; stroke: var(--lc-lavender) !important; }
+._5sB1JM0Iyds-:hover svg * { fill: var(--lc-gold) !important; stroke: var(--lc-gold) !important; }
+
+/* Discovery Queue: a command panel, not a black plate over its own art (user: "bare").
+ * Gold endcap on the left with the call to engage; the queue art shows through on the right. */
+.q6mo6TFfdDs-.mzAzU7-I6qg- { border-radius: 0 75px 75px 0 !important; overflow: hidden; }
+.q6mo6TFfdDs-.mzAzU7-I6qg- > .WidgetHeaderCtn {
+	background: linear-gradient(to right, var(--lc-black) 0 40%, transparent 85%) !important;
+	padding-left: 120px !important;
+	box-sizing: border-box;
+}
+.q6mo6TFfdDs-.mzAzU7-I6qg- > .WidgetHeaderCtn::before {
+	content: 'ENGAGE';
+	position: absolute;
+	left: 0; top: 0; bottom: 0;
+	width: 100px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 0 10px 8px 0;
+	box-sizing: border-box;
+	background: var(--lc-gold);
+	border-radius: 75px 0 0 75px;
+	color: var(--lc-black);
+	font-family: var(--lc-font);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .1em;
+}
+.q6mo6TFfdDs-.mzAzU7-I6qg-:hover > .WidgetHeaderCtn::before { background: var(--lc-ink); }
+
+/* ------------------------------------------------ endless recommendation feed
+ * (#content_more, below the footer: most of the front page). User: "bare minimum". */
+
+/* One recommendation: a titled record with a rail under its header. */
+.home_content.single .single_header_ctn {
+	position: relative;
+	padding-bottom: 10px !important;
+	margin-bottom: 10px !important;
+}
+.home_content.single .single_header_ctn::after { /* the rail: group colour, a slice, a gold end block */
+	content: '';
+	position: absolute;
+	left: 0; right: 0; bottom: 0;
+	height: 6px;
+	background: linear-gradient(to right, var(--lc-group, var(--lc-lavender)) 0 calc(100% - 66px), var(--lc-black) calc(100% - 66px) calc(100% - 60px), var(--lc-gold) calc(100% - 60px));
+	border-radius: 0 3px 3px 0;
+}
+.home_content.single .single_title {
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 28px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.home_content.single .home_content_reason { color: var(--lc-peach) !important; font-family: var(--lc-font) !important; font-size: 14px !important; letter-spacing: .08em; text-transform: uppercase; }
+.home_content.single .single_title_ctn { flex: 1 1 auto; min-width: 0; width: auto !important; }
+
+/* Its commands: one joined bank of segments, the last one capped. */
+.home_content.single .single_buttonbar { display: flex !important; gap: var(--lc-slice); align-items: flex-end; }
+.home_content.single .single_buttonbar .btn_small_tall { border-radius: 0 !important; margin: 0 !important; height: 28px; display: flex !important; align-items: flex-end; }
+.home_content.single .single_buttonbar .btn_small_tall > span { padding: 0 12px 4px !important; line-height: 1 !important; font-size: 13px !important; }
+.home_content.single .single_buttonbar .btn_small_tall:nth-child(1) { background: var(--lc-gold) !important; }
+.home_content.single .single_buttonbar .btn_small_tall:nth-child(2) { background: var(--lc-lilac) !important; }
+.home_content.single .single_buttonbar .btn_small_tall:nth-child(3) { background: var(--lc-lavender) !important; }
+.home_content.single .single_buttonbar .btn_small_tall:last-child { background: var(--lc-peach) !important; border-radius: 0 14px 14px 0 !important; }
+.home_content.single .single_buttonbar .btn_small_tall:hover { background: var(--lc-ink) !important; }
+
+/* Art and screenshots sit in black wells with a slice between them; hover marks gold. */
+.home_content.single .screenshots { display: grid !important; grid-template-columns: 1fr 1fr; gap: 6px; align-content: start; }
+.home_content.single .screenshot.thumbnail { width: 100% !important; height: auto !important; aspect-ratio: 264 / 136; object-fit: cover; margin: 0 !important; box-shadow: none !important; }
+.home_content.single .screenshot.thumbnail:hover, .home_content.single .capsule_image_ctn:hover { outline: 3px solid var(--lc-gold); outline-offset: -3px; }
+.home_content.single .discount_block_ctn { margin-top: 6px; }
+
+/* Genre rows ("Horror games: due to your recent playtime…"): titled like the sections. */
+#content_more .home_content h2:not(.single_title), .home_content.twowide h2 {
+	color: var(--lc-peach) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 14px !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	border-bottom: 6px solid var(--lc-group, var(--lc-lavender));
+	padding-bottom: 6px !important;
+	margin-bottom: 10px !important;
+}
+#content_more .home_content h2:not(.single_title) > a, .home_content.twowide h2 > a {
+	color: var(--lc-gold) !important;
+	font-size: 24px !important;
+	font-weight: 500;
+	letter-spacing: .05em;
+	margin-right: 10px;
+}
+#content_more .home_content h2:not(.single_title) .header_inline, .home_content.twowide h2 .header_inline { color: var(--lc-peach) !important; }
+
+/* ------------------------------------------------------------- footer */
+footer.bV2ueI7Mam8- {
+	background: var(--lc-black) !important;
+	border-top: 10px solid var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	color: var(--lc-disabled) !important;
+	font-family: var(--lc-font) !important;
+	letter-spacing: .04em;
+}
+footer.bV2ueI7Mam8- a { color: var(--lc-lavender) !important; text-transform: uppercase; letter-spacing: .08em; }
+footer.bV2ueI7Mam8- a:hover { color: var(--lc-gold) !important; }
+footer.bV2ueI7Mam8- svg, footer.bV2ueI7Mam8- svg * { fill: var(--lc-lavender) !important; }
+
+/* Wide main carousel: the neighbours peek out past the frame on both sides. Standby panels:
+ * greyed down behind a lilac bracket, so only the focused record reads as live. */
+#home_maincap_v7.carousel_wide_mode .store_main_capsule:not(.focus) > * { filter: grayscale(1) brightness(.4); } /* on its parts: the bracket keeps its colour */
+#home_maincap_v7.carousel_wide_mode .store_main_capsule:not(.focus)::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	box-sizing: border-box;
+	border: 10px solid var(--lc-lilac);
+	border-radius: 30px;
+	pointer-events: none;
+}
+
+/* ------------------------------------------------ annotation pass 2026-11-08 */
+
+/* Prices read at a glance: Steam's 11-14 px is too small under Antonio. */
+.discount_block .discount_final_price, .discount_prices .discount_final_price { font-size: 20px !important; line-height: 1 !important; }
+.discount_block .discount_original_price, .discount_prices .discount_original_price { font-size: 13px !important; line-height: 1 !important; }
+.discount_block .discount_pct { font-size: 19px !important; }
+.discount_block .discount_prices { display: flex; flex-direction: column; justify-content: center; align-items: flex-end; height: auto !important; min-height: 28px; }
+
+/* New releases / top sellers rows: the row is as tall as its capsule. */
+a.tab_row_item, .tab_item { height: auto !important; min-height: 0 !important; }
+.tab_item_header.capsule_image_ctn { height: 87px !important; aspect-ratio: auto !important; align-self: flex-start; }
+.tab_item_content { height: 87px !important; min-height: 0 !important; padding-bottom: 0 !important; }
+
+/* The capsule's options flag was orange on orange: the glyph needs a black plate. */
+.ds_options > div { /* Steam's glyph was an image the plate replaced: three gold bars, on black so it reads on a gold row */
+	background: linear-gradient(var(--lc-gold), var(--lc-gold)) center 3px / 16px 2px no-repeat, linear-gradient(var(--lc-gold), var(--lc-gold)) center 7px / 16px 2px no-repeat, linear-gradient(var(--lc-gold), var(--lc-gold)) center 11px / 16px 2px no-repeat, var(--lc-black) !important;
+	box-shadow: inset 0 0 0 1px var(--lc-gold) !important;
+}
+
+/* Feed records: no dead space under the art and price. */
+.home_content.single { padding-bottom: 6px !important; margin-bottom: 14px !important; min-height: 0 !important; }
+
+/* Carousel arrows sit outside the art in the side gutters, not on top of the tiles. */
+.home_page_body_ctn #featured_steam_deck_gamesv2 .arrow.left { left: -30px !important; }
+.home_page_body_ctn #featured_steam_deck_gamesv2 .arrow.right { right: -30px !important; }
+
+/* Steam's new React carousels: the same coral command arrows, and flat tiles. */
+[class*="carousel__back-button"], [class*="carousel__next-button"] { background: var(--lc-coral) !important; color: var(--lc-black) !important; border: 0 !important; opacity: 1 !important; filter: none !important; width: 26px !important; min-width: 26px !important; height: 64px !important; top: calc(50% - 32px) !important; bottom: auto !important; padding: 0 !important; }
+[class*="carousel__back-button"] { border-radius: 999px 0 0 999px !important; }
+[class*="carousel__next-button"] { border-radius: 0 999px 999px 0 !important; }
+[class*="carousel__back-button"]:hover, [class*="carousel__next-button"]:hover { background: var(--lc-gold) !important; }
+[class*="carousel__back-button"] svg *, [class*="carousel__next-button"] svg * { fill: var(--lc-black) !important; stroke: var(--lc-black) !important; }
+.carousel__slider-tray * { border-radius: 0 !important; box-shadow: none !important; }
+
+/* Discovery Queue is its own command panel: no group rail around it. */
+.main_content_ctn > .home_pagecontent_ctn:has(.WidgetHeaderCtn)::before,
+.main_content_ctn > .home_pagecontent_ctn:has(.WidgetHeaderCtn)::after { display: none !important; }
+
+/* Single-feature rows: two equal columns. The screenshots set the height; the art is taken
+ * out of flow so its own size can't grow the row, and it crops to fill. */
+.home_content.single .gamelink.home_content_items { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: stretch; height: auto !important; }
+.home_content.single .microtrailer_wrapper { position: relative; width: auto !important; height: auto !important; min-width: 0; overflow: hidden; }
+.home_content.single .capsule_image_ctn { position: absolute !important; inset: 0; width: auto !important; height: auto !important; }
+.home_content.single .capsule_image_ctn img, .home_content.single .microtrailer_wrapper video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.home_content.single .screenshots { display: grid !important; grid-template-columns: 1fr 1fr; grid-template-rows: none !important; gap: 6px; width: auto !important; height: auto !important; min-width: 0; }
+
+/* React carousels: the same arrow as the classic ones, and the left one off the bank (in the
+ * gap between it and the content). */
+.main_content_ctn [class*="carousel__back-button"] { left: -29px !important; }
+.main_content_ctn [class*="carousel__back-button"] svg, .main_content_ctn [class*="carousel__next-button"] svg { display: none !important; }
+.main_content_ctn [class*="carousel__back-button"]::after, .main_content_ctn [class*="carousel__next-button"]::after { content: ''; position: absolute; inset: 0; background: var(--lc-black); }
+.main_content_ctn [class*="carousel__back-button"]::after { clip-path: polygon(30% 50%, 68% 38%, 68% 62%); }
+.main_content_ctn [class*="carousel__next-button"]::after { clip-path: polygon(70% 50%, 32% 38%, 32% 62%); }
+
+/* React carousel pagers: the same blocks as .carousel_thumbs. */
+.carousel__dot { opacity: 1 !important; }
+.carousel__dot rect { fill: var(--lc-surface) !important; rx: 0; }
+.carousel__dot--selected rect { fill: var(--lc-peach) !important; }
+.carousel__dot:hover rect { fill: var(--lc-gold) !important; }
+
+/* Steam draws a translucent white border on the label inside the cap: the outline. */
+.btnv6_white_transparent > span { border: 0 !important; }
+
+/* Age check: a record panel, large readable date fields, command-block buttons. */
+.-BS81QkqCE4- {
+	background: var(--lc-black) !important;
+	border: solid var(--lc-steel) !important;
+	border-width: 14px 0 10px 18px !important;
+	border-radius: 40px 0 0 24px !important;
+	box-shadow: none !important;
+}
+.-BS81QkqCE4- h2 { color: var(--lc-gold) !important; font-size: 26px !important; font-weight: 500 !important; line-height: 32px !important; text-transform: uppercase; letter-spacing: .05em; }
+.UEx0MpggIp8- { color: var(--lc-peach) !important; font-size: 13px !important; text-transform: uppercase; letter-spacing: .06em; }
+.E-F5JVsCXEo- { color: var(--lc-ink) !important; font-size: 15px !important; }
+.wKqhKmTFfX0- { background: none !important; border-radius: 0 !important; box-shadow: none !important; }
+.LLpupFpyur0- { color: var(--lc-peach) !important; font-size: 15px !important; text-transform: uppercase; letter-spacing: .06em; }
+.GLhJR1fY-7E- { display: flex !important; justify-content: center; gap: var(--lc-slice); height: auto !important; }
+.wKqhKmTFfX0- .PwGZnF9BFA8-._0Yp9qPJ4rvQ- {
+	height: 38px !important;
+	display: flex !important;
+	align-items: center;
+	padding: 0 10px !important;
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	border-radius: 0 !important;
+}
+.wKqhKmTFfX0- .PwGZnF9BFA8-._0Yp9qPJ4rvQ-:hover { box-shadow: inset 0 0 0 2px var(--lc-gold) !important; }
+.wKqhKmTFfX0- ._1WHxiF6PoO0- { background: none !important; border-radius: 0 !important; height: auto !important; width: auto !important; }
+.wKqhKmTFfX0- .h9k0m4mdzeY- { color: var(--lc-ink) !important; font-size: 19px !important; line-height: 24px !important; letter-spacing: .04em; }
+.wKqhKmTFfX0- .wqHfbc-N9jI- svg { color: var(--lc-peach) !important; }
+.ECFvNEwp5uM- .inqz7Zdx9Xg- {
+	height: 38px !important;
+	padding: 0 22px !important;
+	border: 0 !important;
+	border-radius: 0 19px 19px 0 !important;
+	background: var(--lc-lilac) !important;
+	color: var(--lc-black) !important;
+	font-size: 17px !important;
+	font-weight: 600 !important;
+	line-height: 38px !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+	box-shadow: none !important;
+}
+.ECFvNEwp5uM- button.inqz7Zdx9Xg- { background: var(--lc-gold) !important; }
+.ECFvNEwp5uM- .inqz7Zdx9Xg-:hover { background: var(--lc-ink) !important; }
+.wKqhKmTFfX0- ._1WHxiF6PoO0- { box-shadow: none !important; padding: 0 !important; }
+/* Its open date list. */
+._-1PRvvg35hk- { background: var(--lc-black) !important; border-left: 6px solid var(--lc-lavender); border-radius: 0 !important; box-shadow: none !important; }
+.QFIvh9bCMN0- { background: var(--lc-black) !important; color: var(--lc-ink) !important; font-size: 16px !important; border-radius: 0 !important; }
+.QFIvh9bCMN0-:hover { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+body.r0DFA3TwTH8- .wKqhKmTFfX0- ._1WHxiF6PoO0- { background: none !important; box-shadow: none !important; border-radius: 0 !important; }

@@ -1,0 +1,285 @@
+@import url('tokens.css');
+@import url('scrollbars.css');
+
+/* LCARSv2 skin for Steam's other windows (js/popups.js adds it to any window with no
+ * theme of its own): Friends List, Recordings & Screenshots, Properties, Millennium's
+ * dialogs. A black well, a lavender rail with a coral control cap on top, LCARS type
+ * and flat buttons. Friends follows the personnel-file panels. */
+
+html, body, .fullheight, .popup_chat_frame, .chat_main, .chat_main_flex, .PopupFullWindow,
+.ModalPosition, .ModalPosition_Content, .DialogContent, .DialogContent_InnerWidth, ._21_rrXIoZ7yQbc0u7rhvkP,
+.friendlist, .friendListHeaderContainer, .FriendsListContent, .friendlistListContainer, .friendListFooter {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: none !important;
+}
+
+html.lc-window, html.lc-window body * {
+	font-family: var(--lc-font);
+	letter-spacing: .03em;
+	text-shadow: none !important;
+}
+
+html.lc-window body { color: var(--lc-ink); }
+
+/* ------------------------------------------------------------ title rail */
+
+.TitleBar.title-area {
+	height: 32px !important;
+	background: var(--lc-lavender) !important;
+	box-shadow: none !important;
+	border-radius: 16px 0 0 16px;
+	margin: 6px 6px 0;
+}
+
+.title-area-highlight, .statusHeaderGlow, ._1osHa9KHOmdCDNrA232z4N, ._162CJAH8jPwIYGGg5Q2YIc { display: none !important; }
+
+.title-bar-actions.window-controls {
+	height: 32px !important;
+	background: var(--lc-coral);
+	border-radius: 0 16px 16px 0;
+	padding-right: 8px;
+}
+
+.title-area-icon { background: transparent !important; }
+.title-area-icon:hover { background: var(--lc-gold) !important; }
+.title-area-icon svg * { stroke: var(--lc-black) !important; fill: none !important; }
+
+/* --------------------------------------------------------- common controls */
+
+.DialogButton {
+	background: var(--lc-lavender) !important;
+	background-image: none !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.DialogButton:hover:not(:disabled) { background: var(--lc-ink) !important; }
+.DialogButton:disabled { background: var(--lc-surface) !important; color: var(--lc-disabled) !important; }
+.DialogButton svg, .DialogButton svg * { fill: currentColor !important; }
+.DialogButton.Primary, button.Primary { background: var(--lc-gold) !important; border-radius: 0 16px 16px 0 !important; }
+
+.DialogDropDown {
+	background: var(--lc-steel) !important;
+	background-image: none !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-family: var(--lc-font) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.DialogDropDown:hover { background: var(--lc-gold) !important; }
+.DialogDropDown * { color: var(--lc-black) !important; }
+.DialogDropDown svg * { fill: var(--lc-black) !important; }
+
+input[type="text"], input[type="search"], textarea, .DialogInput {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 2px solid var(--lc-lavender) !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+input:focus, textarea:focus, .DialogInput:focus { border-color: var(--lc-gold) !important; }
+
+a { color: var(--lc-lavender) !important; }
+a:hover { color: var(--lc-gold) !important; }
+
+/* ------------------------------------------------- Recordings & Screenshots */
+
+/* The title rail floats over a dialog window: its content starts below it. */
+.PopupFullWindow > .ModalPosition { padding-top: 40px; box-sizing: border-box; }
+
+._28eIRmQ229ntDIyQXTn3Ub { /* media manager buttons */
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+	font-family: var(--lc-font) !important;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+._28eIRmQ229ntDIyQXTn3Ub:hover { background: var(--lc-ink) !important; }
+._28eIRmQ229ntDIyQXTn3Ub svg, ._28eIRmQ229ntDIyQXTn3Ub svg * { fill: currentColor !important; }
+._28eIRmQ229ntDIyQXTn3Ub._3JYigpIF46lZDATkhxHZmZ, ._28eIRmQ229ntDIyQXTn3Ub._2kVw_wgJd5TfnNePlpwmN { background: var(--lc-gold) !important; } /* selected, primary */
+._28eIRmQ229ntDIyQXTn3Ub._36CGU2t5Vavx0_9dwem6kb { background: var(--lc-surface) !important; color: var(--lc-disabled) !important; } /* disabled */
+.PNDAt1rt4GBfwzzelpFO0 { color: var(--lc-gold) !important; } /* NEW! */
+._2z545OkOmT3z-TvUBbkNl0 { background: var(--lc-surface) !important; } /* rule */
+
+.hXJt8CFzzitOG3moJEGg-, .DialogHeader { /* TopListTitle */
+	color: var(--lc-gold) !important;
+	font-family: var(--lc-font) !important;
+	font-size: 30px !important;
+	font-weight: 500 !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase;
+}
+
+.YzIcpcz4oFx-nndxro5jE { background: var(--lc-black) !important; background-image: none !important; box-shadow: none !important; } /* StickyHeader */
+.QFVXM_1rWs04OyJDUaCom { background: var(--lc-black) !important; background-image: none !important; } /* ExplainerBox */
+
+._1yTI8Tgt40Qr-TGHTgv2Pr { /* Explainer: a bracketed well */
+	padding: 18px 22px !important;
+	border: solid var(--lc-steel);
+	border-width: 6px 0 6px 14px;
+	border-radius: 22px 0 0 22px;
+	font-family: var(--lc-prose);
+	color: var(--lc-ink) !important;
+}
+
+._1yTI8Tgt40Qr-TGHTgv2Pr * { color: var(--lc-ink); border-color: var(--lc-surface) !important; }
+._1yTI8Tgt40Qr-TGHTgv2Pr span { color: var(--lc-gold); }
+
+/* ------------------------------------------------------------ Friends List */
+
+.friendListHeaderContainer { padding-bottom: 6px; }
+
+.currentUserContainer { /* the personnel file: picture in a bracket, name in gold */
+	margin: 8px 6px 6px;
+	padding: 4px 0;
+	background: var(--lc-black) !important;
+	border: solid var(--lc-lavender);
+	border-width: 6px 0 6px 14px;
+	border-radius: 22px 0 0 22px;
+}
+
+.currentUserContainer .nOdcT-MoOaXGePXLyPe0H {
+	color: var(--lc-gold) !important;
+	font-size: 22px !important;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+.currentUserContainer .ContextMenuButton svg * { fill: var(--lc-lavender) !important; }
+
+.quickAccessFriendsMessage { color: var(--lc-disabled) !important; }
+.dropTargetBox { border-color: var(--lc-surface) !important; border-radius: 0 !important; }
+
+.quickAccessFriendsMessageDismiss {
+	background: var(--lc-steel) !important;
+	color: var(--lc-black) !important;
+	border-radius: 0 !important;
+}
+
+/* Section heads: a rail interrupted by the title. */
+.socialTabContainer, .friendTab, .FriendsListChatSection, .friendsListSectionTitle, .groupHeaderContainer {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	border: 0 !important;
+}
+
+.friendTab { border-bottom: 6px solid var(--lc-peach) !important; border-radius: 0 0 0 10px; }
+
+.tabLabel, .groupChatSectionTitle, .friendsListSectionTitle {
+	color: var(--lc-gold) !important;
+	font-size: 17px !important;
+	font-weight: 500 !important;
+	letter-spacing: .1em !important;
+	text-transform: uppercase;
+}
+
+.groupName {
+	color: var(--lc-lavender) !important;
+	font-size: 15px !important;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.groupCount { color: var(--lc-black) !important; background: var(--lc-lavender); padding: 0 6px; }
+.groupName .horizontalLine, .groupName .verticalLine { background: var(--lc-lavender) !important; }
+
+.friendListButton { background: transparent !important; }
+.friendListButton svg *, .searchIconButton svg * { fill: var(--lc-peach) !important; }
+.friendListButton:hover svg *, .searchIconButton:hover svg * { fill: var(--lc-gold) !important; }
+
+/* Records. */
+.friend {
+	background: transparent !important;
+	box-shadow: inset 0 -2px 0 var(--lc-surface) !important;
+	border-radius: 0 !important;
+}
+
+.friend:hover { background: var(--lc-surface) !important; }
+.friend ._3h-QRJGxnVOIExtHD1R0f2, .currentUserAvatar ._3h-QRJGxnVOIExtHD1R0f2 { border-radius: 0 !important; box-shadow: none !important; }
+.friend .nOdcT-MoOaXGePXLyPe0H { color: var(--lc-lavender) !important; text-transform: uppercase; letter-spacing: .05em; font-size: 15px !important; }
+.friend.offline .nOdcT-MoOaXGePXLyPe0H { color: var(--lc-disabled) !important; }
+.friend.ingame .nOdcT-MoOaXGePXLyPe0H, .friend.online.ingame .nOdcT-MoOaXGePXLyPe0H { color: var(--lc-gold) !important; }
+.friend ._2Ri005Wg_uXDTa71kdRbcN { color: var(--lc-peach) !important; }
+
+.chatRoomListContainer, .ChatRoomList, .ChatRoomList_Empty { background: var(--lc-black) !important; background-image: none !important; }
+.ChatRoomList_Empty { color: var(--lc-disabled) !important; font-family: var(--lc-prose) !important; }
+.createChatRoomButton svg * { fill: var(--lc-peach) !important; }
+.ToggleGroupChatList svg * { fill: var(--lc-lavender) !important; }
+.friendListFooter { border-top: 6px solid var(--lc-steel); }
+
+/* Friends' tooltips and small boxes keep to the same two surfaces. */
+.DialogBody, .DialogContentTransition { background: var(--lc-black) !important; }
+
+/* ------------------------------------------------- Special Offers (View > Update News) */
+
+/* One bracket around the page: the title rail, a bar down the left, a rail along the
+ * bottom. The native web view sits in ._2JQwVCR2d_haTggP2MFPQ4 and follows its box. */
+html:has(._2JQwVCR2d_haTggP2MFPQ4) .TitleBar.title-area { border-radius: 18px 16px 0 0 !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) .title-area-children { display: flex !important; justify-content: flex-start !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) .title-area-children::before {
+	content: 'Special offers';
+	padding-left: 34px;
+	color: var(--lc-black);
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	line-height: 32px;
+}
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._DialogLayout { position: relative; padding: 0 !important; background: var(--lc-black) !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._DialogLayout::before {
+	content: '';
+	position: absolute;
+	left: 6px;
+	top: -2px;
+	bottom: 6px;
+	width: 14px;
+	background: var(--lc-lavender);
+	border-radius: 0 0 0 18px;
+}
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._DialogLayout::after {
+	content: '';
+	position: absolute;
+	left: 20px;
+	right: 6px;
+	bottom: 6px;
+	height: 6px;
+	background: var(--lc-lavender);
+	border-radius: 0 3px 3px 0;
+}
+html:has(._2JQwVCR2d_haTggP2MFPQ4) .DialogContent_InnerWidth {
+	box-sizing: border-box;
+	width: auto !important;
+	max-width: none !important;
+	height: 100% !important;
+	margin: 0 !important;
+	padding: 6px 12px 16px 30px !important;
+	display: flex !important;
+	flex-direction: column;
+}
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._2JQwVCR2d_haTggP2MFPQ4 { flex: 1 1 auto; width: 100% !important; height: auto !important; min-height: 0; background: var(--lc-black) !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._1dkScx4uNaRq0A1SAI6ai4 { flex: 0 0 auto; height: 34px !important; padding: 0 !important; align-items: center !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._1dkScx4uNaRq0A1SAI6ai4 .DialogButton { display: flex !important; align-items: center; justify-content: center; height: 26px !important; min-height: 0 !important; line-height: 1 !important; padding: 0 18px !important; background: var(--lc-lavender) !important; border-radius: 0 13px 13px 0 !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) #lc-debug-host { visibility: hidden !important; } /* its inline display wins */
+
+/* Steam's 1 px line under the title bar of every dialog. */
+.ModalPosition_TopBar { display: none !important; }
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._1dkScx4uNaRq0A1SAI6ai4 .DialogButton::before,
+html:has(._2JQwVCR2d_haTggP2MFPQ4) ._1dkScx4uNaRq0A1SAI6ai4 .DialogButton::after { display: none !important; }

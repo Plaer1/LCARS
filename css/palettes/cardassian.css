@@ -1,0 +1,17 @@
+/* LCARSv2 palette preset: Cardassian (Deep Space 9 station).
+ * Source hexes: trekcolors R package (leonawicz), lcars palettes; slot
+ * mapping and contrast lifts are LCARSv2's (black text on fills stays
+ * legible). Only slots change; geometry and fonts stay the design doc's. */
+
+/* :root:root: condition sheets load before library.css, whose tokens.css would win a tie. */
+:root:root {
+	--lc-palette-jingle: "local:3"; /* the cover of this era (js/boot.js) */
+	--lc-gold: #f9ab3c;
+	--lc-peach: #d98825;
+	--lc-lavender: #a1b3e2;
+	--lc-coral: #cd531c;
+	--lc-lilac: #8b799c;
+	--lc-steel: #3c999c;
+	--lc-surface: #1d1712;
+	--lc-disabled: #8c645b;
+}

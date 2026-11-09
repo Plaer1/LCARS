@@ -1,0 +1,261 @@
+/* LCARSv2 S06 game page leftovers. The store links become one joined bar
+ * with a peach left cap. The post-game summary takes the same lavender rail
+ * as the side sections. Steam-blue text moves to the lavender, peach and gold
+ * roles, and the grey panels (activity cards, achievement tiles, workshop
+ * band) move to black or surface. Prose stays Arial at 14 px or more. */
+
+/* ------------------------------------------------------ store links bar */
+
+._3-V8vjmrwuJM6Ws3tsjFJj ._7k4qmaN8SUMvv6u-L81uk ._1b6LYWVijW-9E4YV0keDWZ {
+	margin-right: 0 !important;
+	border-right: 3px solid var(--lc-black);
+}
+
+._3-V8vjmrwuJM6Ws3tsjFJj ._7k4qmaN8SUMvv6u-L81uk:last-child ._1b6LYWVijW-9E4YV0keDWZ {
+	border-right: 0;
+	border-radius: 0 18px 18px 0 !important;
+	padding-right: 20px !important;
+}
+
+._3-V8vjmrwuJM6Ws3tsjFJj ._7k4qmaN8SUMvv6u-L81uk:first-child ._1b6LYWVijW-9E4YV0keDWZ {
+	background: var(--lc-peach) !important;
+	border-radius: 18px 0 0 18px !important;
+	padding-left: 22px !important;
+}
+
+._3-V8vjmrwuJM6Ws3tsjFJj ._7k4qmaN8SUMvv6u-L81uk:first-child ._1b6LYWVijW-9E4YV0keDWZ:hover {
+	background: var(--lc-gold) !important;
+}
+
+/* ------------------------------------------------- post-game summary rail */
+
+._11kuVRYZvWXn-3rBJ_6yL8 .SMWMsB-gz3WbYRK2HOm7i {
+	background: var(--lc-black) !important;
+	border: solid var(--lc-lavender);
+	border-width: 0 0 7px 11px;
+	border-radius: 0 0 0 20px;
+	box-shadow: none !important;
+	box-sizing: border-box;
+	padding: 0 14px 14px 18px !important;
+}
+
+._11kuVRYZvWXn-3rBJ_6yL8 ._2o5c89vAnrXN8C60QTSMqO {
+	position: relative;
+	min-height: 26px;
+	margin: 0 0 14px;
+	margin-left: -18px;
+	margin-right: -14px;
+	padding: 0 14px 0 18px;
+	align-items: center;
+}
+
+._11kuVRYZvWXn-3rBJ_6yL8 ._2o5c89vAnrXN8C60QTSMqO::before { /* the rail behind the title */
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 7px;
+	height: 12px;
+	background: var(--lc-lavender);
+	z-index: 0;
+}
+
+._11kuVRYZvWXn-3rBJ_6yL8 .P_gQ8X-yCsgXeXpP68KS0 {
+	position: relative;
+	z-index: 1;
+	margin-left: 30px;
+	padding: 0 10px;
+	background: var(--lc-black);
+	color: var(--lc-gold);
+	font: 500 20px/26px var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+._11kuVRYZvWXn-3rBJ_6yL8 .bsNegRKT1Hbv4tqHrOk9- {
+	z-index: 1;
+	background: var(--lc-black) !important;
+}
+
+._3ugJ_KPVlOd9oeYm-fYC_w {
+	color: var(--lc-peach);
+	font: 500 15px/1.3 var(--lc-font);
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+/* ----------------------------------------------- activity feed and cards */
+
+.UVeN0kaD3zv1feMj_mMw5.Panel {
+	background: var(--lc-black) !important;
+	box-shadow: inset 6px 0 0 var(--lc-steel) !important;
+	border-radius: 0 !important;
+}
+
+.UVeN0kaD3zv1feMj_mMw5 > .Panel,
+.UVeN0kaD3zv1feMj_mMw5 > .QCKBqF2k_sRLcXJ5qQIEl {
+	background: transparent !important;
+}
+
+.UVeN0kaD3zv1feMj_mMw5 .NEMXhMlqXOCJwfgWlHXhT {
+	background: var(--lc-surface) !important;
+}
+
+.UVeN0kaD3zv1feMj_mMw5 .nOdcT-MoOaXGePXLyPe0H,
+.nOdcT-MoOaXGePXLyPe0H {
+	color: var(--lc-lavender) !important;
+	font-weight: 500;
+}
+
+/* Friend status in the game page's friends panel, as in the Friends window
+ * (css/client-windows.css): playing now in gold, what they play in peach, offline dim. */
+.ingame > ._4ZTzGZ5TTgFyfw1DcXLXS .nOdcT-MoOaXGePXLyPe0H { color: var(--lc-gold) !important; }
+.ingame ._2Ri005Wg_uXDTa71kdRbcN { color: var(--lc-peach) !important; }
+.offline > ._4ZTzGZ5TTgFyfw1DcXLXS .nOdcT-MoOaXGePXLyPe0H { color: var(--lc-disabled) !important; }
+
+._19LfMT7PFWg2xHOqNjR99q {
+	color: var(--lc-peach) !important;
+	font: 500 16px/1.2 var(--lc-font);
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+/* New content strip (DLC tiles, note 56): Steam's grey-blue gradient plate goes; a black
+ * well under a coral rail, like the other game page sections. */
+._2kqz-bSlDu-I49_cV_wicB, ._2kqz-bSlDu-I49_cV_wicB .SMWMsB-gz3WbYRK2HOm7i {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+	border: 0 !important;
+}
+._2kqz-bSlDu-I49_cV_wicB { border-top: 8px solid var(--lc-coral) !important; }
+._78Pwybe-fHVYEkQFFlpA5 { background: var(--lc-black) !important; border-radius: 0 !important; }
+
+/* Friends who play: the friend tiles are black plates with a lavender rail. */
+._1GCZAht_W2I3Elndk5cU0- {
+	background: var(--lc-black);
+	box-shadow: inset 4px 0 0 var(--lc-lavender);
+}
+
+._1xGH4bGLz6sI7erzB8VWff {
+	color: var(--lc-lavender) !important;
+	font-size: 14px !important;
+	letter-spacing: .04em;
+}
+
+/* Achievements: locked and unlocked tiles are black plates; the locked list
+ * gets a lavender label. */
+._2aVnDeExEHiUFX0zwr_BTO {
+	background: var(--lc-black) !important;
+	box-shadow: inset 0 -3px 0 var(--lc-lavender);
+}
+
+._2aVnDeExEHiUFX0zwr_BTO._3llpbyrXsfwsh1apqHhPfB {
+	background: var(--lc-surface) !important;
+	box-shadow: inset 0 -3px 0 var(--lc-disabled);
+}
+
+._2H1MiFt6wMYuJDB8kZElFs {
+	color: var(--lc-gold) !important;
+	font: 500 15px/1.3 var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.uoFNFZ7Hs5cF1IjP2fvPw {
+	color: var(--lc-lavender) !important;
+	font: 500 15px/1.2 var(--lc-font);
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+/* ---------------------------------------- trading cards, notes, workshop */
+
+._2PMlMbFfEmv1xThuy6Vgqv {
+	color: var(--lc-peach) !important;
+	font: 500 14px/1.3 var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+._14kZVEyaz7WX57N47z4Yr1 {
+	color: var(--lc-gold) !important;
+}
+
+._2L6IIbLCMWUJcOhliUVqKb.Panel {
+	background: var(--lc-black) !important;
+	box-shadow: inset 6px 0 0 var(--lc-steel) !important;
+	color: var(--lc-ink) !important;
+}
+
+._176QJCynkEUSdR_-9btdAW {
+	background: var(--lc-surface) !important;
+}
+
+._1jkfJdGTyndLlXdB9WkfL3 {
+	color: var(--lc-gold) !important;
+	font: 500 14px/1.3 var(--lc-font);
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+._3SzXrXnWa-W29h_4yF8Jwv {
+	color: var(--lc-ink) !important;
+	font: 15px/1.5 var(--lc-prose);
+}
+
+/* Reviews: prose on the surface card, labels in peach, counts in lavender. */
+.BDa6lbTAdR4RwtqgRNUnO {
+	color: var(--lc-lavender) !important;
+	font: 14px/1.4 var(--lc-prose);
+}
+
+._1jdWxpdZEMzN3naR75fLCY {
+	color: var(--lc-ink) !important;
+	font: 15px/1.5 var(--lc-prose);
+}
+
+._2EyEa4GxazAthx5c83AUGO {
+	color: var(--lc-peach) !important;
+	font: 500 14px/1.3 var(--lc-font);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+._2RkIcXHXACX4EdBluR3nAH,
+._3grvnr9zzkvx6NoBOdmTnf {
+	color: var(--lc-lavender) !important;
+}
+
+/* Steam-blue links in section bodies become lavender underlined links. */
+._2g3Gley034M1ZGhcq005s,
+._5uvIN6jXDXzzck59F-nhv a {
+	color: var(--lc-lavender) !important;
+	text-decoration: underline;
+	text-decoration-color: rgba(170, 160, 245, .4);
+}
+
+._2g3Gley034M1ZGhcq005s:hover {
+	color: var(--lc-gold) !important;
+}
+
+/* The filter button's holder (note 85) is Steam's grey plate behind the icon once its menu is open. */
+.Woh0kBQCmatzC1daBX9i6 { background: transparent !important; }
+
+/* Featured news plate (note 14): Steam's blue gradient header and border. A section rail in
+ * black caps over a plain black well, with the shelf-style left bar taken off. */
+.By7D93oEZkZtBeg23NDoR { background: var(--lc-black) !important; border: 0 !important; box-shadow: none !important; }
+._1WdC0YUP8FT0dYWZ-QIVZL {
+	background: var(--lc-steel) !important;
+	background-image: none !important;
+	color: var(--lc-black) !important;
+	font: 600 15px/24px var(--lc-font) !important;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	padding: 0 12px 0 18px !important;
+	border-radius: 12px 0 0 12px;
+}
+._1HZy7BvOZuPT8feUwadL4W { border: 0 !important; box-shadow: none !important; background: none !important; }
+
+/* The link strip (note 13): only as much room as its pills need. */
+._3-V8vjmrwuJM6Ws3tsjFJj { margin: 8px 0 10px !important; }
+._3-V8vjmrwuJM6Ws3tsjFJj ._31ptFGGMZrSQc5BCX1e5lm { padding: 2px 0 !important; }

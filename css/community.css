@@ -1,0 +1,459 @@
+@import url('tokens.css');
+@import url('scrollbars.css');
+
+/* LCARSv2 community front (Community Activity). The header becomes a
+ * console panel: a C-shaped bank down its left side, the page title
+ * interrupting the top rail, a base rail closing it. Shortcut lists are
+ * registers; content-type tabs are a joined bank; activity cards are small
+ * framed consoles. */
+
+html, body, .responsive_page_frame, .responsive_page_content, .responsive_page_template_content,
+#ModalContentContainer, .apphub_background, #footer, .footer_content {
+	background: var(--lc-black) !important;
+	background-image: none !important;
+}
+
+body, body * { font-family: var(--lc-font) !important; letter-spacing: .02em; }
+.apphub_CardContentTitle, .apphub_CardTextContent, .apphub_CardContentNewsDesc, .community_home_subtitle, #footerText {
+	font-family: var(--lc-prose) !important;
+	letter-spacing: 0 !important;
+}
+
+body { color: var(--lc-ink) !important; }
+a { color: var(--lc-lavender); }
+a:hover { color: var(--lc-gold) !important; }
+::selection { background: var(--lc-gold); color: var(--lc-black); }
+* { transition-duration: 0s !important; }
+
+/* ------------------------------------------------------------- header */
+
+.community_home_header {
+	position: relative;
+	padding: 18px 0 30px 150px !important;
+	margin-top: 14px;
+	box-sizing: border-box;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+/* C-bank: top elbow, vertical bar, bottom elbow. */
+.community_home_header::before {
+	content: 'COMMUNITY';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 128px;
+	background: var(--lc-lavender);
+	border-radius: 56px 0 0 40px;
+	color: var(--lc-black);
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: .08em;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	padding: 34px 10px 0 0;
+	box-sizing: border-box;
+}
+
+/* Top + base rails (one pseudo; two gradient bands), with square joins. */
+.community_home_header::after {
+	content: '';
+	position: absolute;
+	left: 128px;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background:
+		linear-gradient(var(--lc-lavender), var(--lc-lavender)) 0 0 / 100% 22px no-repeat,
+		linear-gradient(var(--lc-peach), var(--lc-peach)) 0 100% / 100% 12px no-repeat;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.community_home_header > * { position: relative; z-index: 1; }
+
+.community_home_title { /* title interruption in the top rail */
+	display: inline-block !important;
+	width: auto !important;
+	margin: -30px 0 6px 0 !important;
+	padding: 0 12px !important;
+	background: var(--lc-black) !important;
+	color: var(--lc-gold) !important;
+	font-size: 36px !important;
+	font-weight: 500 !important;
+	line-height: 40px !important;
+	letter-spacing: .05em !important;
+	text-transform: uppercase !important;
+}
+
+.community_home_subtitle { color: var(--lc-peach) !important; }
+
+/* Shortcut lists: registers. */
+.community_home_shortcut_content, .community_home_app_shortcuts, .community_home_search_box {
+	background: var(--lc-black) !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+
+.community_home_app_shortcuts_list_header, .community_home_search_title {
+	color: var(--lc-black) !important;
+	background: var(--lc-peach);
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	letter-spacing: .08em !important;
+	text-transform: uppercase !important;
+	padding: 4px 10px 2px !important;
+	margin-bottom: 6px;
+	border-radius: 0 12px 12px 0;
+}
+
+.community_home_search_title { background: var(--lc-lilac); }
+
+.appHubShortcut { border-bottom: 2px solid var(--lc-surface); }
+.appHubShortcut:hover { background: var(--lc-surface); box-shadow: inset 8px 0 0 var(--lc-gold); }
+
+.appHubShortcut_Title { color: var(--lc-ink) !important; text-transform: uppercase; letter-spacing: .04em; font-size: 15px !important; }
+.new_items_num, .new_items_num * { color: var(--lc-lavender) !important; text-transform: uppercase; }
+
+/* Search: flat field wells. */
+.community_home_search_apps input, .community_home_search_players input,
+.community_home_search_ctn input[type="text"], .community_home_search_ctn .searchbox,
+.community_home_search_apps, .community_home_search_players {
+	background: var(--lc-black) !important;
+	color: var(--lc-ink) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: inset 0 0 0 2px var(--lc-lavender) !important;
+	text-transform: uppercase;
+}
+
+/* ----------------------------------------------------- tab bank */
+
+.community_home_tabs, .apphub_sectionTabs { background: var(--lc-black) !important; border: 0 !important; }
+
+.apphub_sectionTabs { display: flex !important; gap: var(--lc-slice); align-items: stretch; }
+
+.apphub_sectionTab {
+	background: var(--lc-lavender) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	padding: 14px 14px 4px !important;
+	margin: 0 !important;
+	display: flex !important;
+	align-items: flex-end;
+}
+
+.apphub_sectionTab span {
+	color: var(--lc-black) !important;
+	font-size: 17px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.apphub_sectionTab:first-child { border-radius: 20px 0 0 20px !important; padding-left: 22px !important; }
+.apphub_sectionTab:last-child { border-radius: 0 20px 20px 0 !important; padding-right: 22px !important; }
+.apphub_sectionTab:hover { background: var(--lc-ink) !important; }
+
+.apphub_sectionTab.active {
+	background: var(--lc-gold) !important;
+	box-shadow: inset 0 -6px 0 var(--lc-black), 0 5px 0 var(--lc-gold);
+}
+
+/* Sort: peach/gold endcaps. */
+.community_home_sort_options { color: var(--lc-peach) !important; text-transform: uppercase; letter-spacing: .08em; }
+
+.community_home_sort_buttons a, .community_home_sort_buttons a > span {
+	background: var(--lc-peach) !important;
+	color: var(--lc-black) !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+
+.community_home_sort_buttons a:last-child, .community_home_sort_buttons a:last-child > span { border-radius: 0 14px 14px 0 !important; }
+.community_home_sort_buttons a.btn_darkblue_white_innerfade, .community_home_sort_buttons a.btn_darkblue_white_innerfade > span { background: var(--lc-gold) !important; }
+
+/* ------------------------------------------------------------- cards */
+
+/* Each card is a small console: the colour is the frame (--c), a black well with filleted
+ * left corners sits in it, and the bottom rail carries the game's name. Steam sizes the
+ * cards with inline styles from script, so everything inside is placed against those. */
+.apphub_Card {
+	--c: var(--lc-steel);
+	--bank: 14px;
+	--top: 12px;
+	--rail: 30px;
+	box-sizing: border-box !important;
+	background: var(--c) !important;
+	border: 0 !important;
+	border-radius: 32px 12px 12px 32px !important;
+	box-shadow: none !important;
+	overflow: hidden !important;
+	transform: none !important;
+}
+.apphub_Card::before { /* the well */
+	content: '';
+	position: absolute;
+	inset: var(--top) 0 var(--rail) var(--bank);
+	background: var(--lc-black);
+	border-radius: 20px 0 0 20px;
+}
+.apphub_CardRow:nth-child(odd) .apphub_Card:nth-child(2) { --c: var(--lc-lilac); }
+.apphub_CardRow:nth-child(odd) .apphub_Card:nth-child(3) { --c: var(--lc-peach); }
+.apphub_CardRow:nth-child(even) .apphub_Card:nth-child(1) { --c: var(--lc-lavender); }
+.apphub_CardRow:nth-child(even) .apphub_Card:nth-child(2) { --c: var(--lc-coral); }
+.apphub_CardRow:nth-child(even) .apphub_Card:nth-child(3) { --c: var(--lc-lilac); }
+.apphub_Card:hover { --c: var(--lc-gold); }
+
+/* Steam's overlays: type badges, the workshop mat, the fade over cut-off text. */
+.apphub_CardBG, .apphub_CardContentTypeContainer, .UserReviewCardContent_Footer, .apphub_CardContentType.guide { display: none !important; }
+
+/* Picture cards: the image fills the well; its title and controls sit under it. */
+.apphub_CardContentClickable {
+	position: absolute !important;
+	inset: var(--top) 0 calc(var(--rail) + 30px) var(--bank);
+	height: auto !important;
+}
+.apphub_CardContentPreviewImageBorder { height: 100% !important; padding: 0 !important; background: none !important; border: 0 !important; }
+.apphub_CardContentPreviewImageBorder > .apphub_CardContentMain {
+	width: 100% !important;
+	height: 100% !important;
+	overflow: hidden !important;
+	border-radius: 20px 0 0 0;
+}
+.apphub_CardContentPreviewImage { display: block; width: 100% !important; height: 100% !important; top: 0 !important; left: 0 !important; object-fit: cover; }
+/* One command pill in place of the red player icon. Colours are raw: a url() has no tokens. */
+.apphub_CardContentPlayVideoIcon {
+	content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='44'%3E%3Crect width='80' height='44' rx='22' fill='%23ffbd8f'/%3E%3Cpath d='M32 10 54 22 32 34z'/%3E%3C/svg%3E");
+	width: 80px !important;
+	height: 44px !important;
+	opacity: 1 !important;
+	z-index: 1;
+}
+.apphub_CardMetaData {
+	position: absolute !important;
+	left: var(--bank) !important;
+	right: 0 !important;
+	bottom: var(--rail) !important;
+	height: 30px !important;
+	padding: 0 12px !important;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	box-sizing: border-box;
+	background: none !important;
+	border: 0 !important;
+}
+.apphub_CardContentTitle { flex: 1 1 0; min-width: 0; padding: 0 !important; color: var(--lc-ink) !important; font-size: 13px !important; line-height: 30px !important; order: -1; }
+.apphub_CardControls { display: contents; }
+.apphub_CardControls:empty { display: none; }
+
+/* Review cards. */
+.apphub_Card > .apphub_CardContentMain {
+	position: absolute !important;
+	inset: var(--top) 0 var(--rail) var(--bank);
+	height: auto !important;
+	width: auto !important;
+	background: none !important;
+}
+.apphub_UserReviewCardContent {
+	box-sizing: border-box;
+	height: 100% !important;
+	padding: 10px 12px 8px 16px !important;
+	display: flex;
+	flex-direction: column;
+	background: none !important;
+	overflow: hidden;
+}
+.apphub_UserReviewCardContent .found_helpful { flex: none; color: var(--lc-lavender) !important; font-size: 12px !important; line-height: 16px; padding: 0 !important; }
+.apphub_UserReviewCardContent .vote_header { flex: none; margin: 6px 0 !important; padding: 0 !important; background: none !important; }
+.apphub_UserReviewCardContent .reviewInfo { background: none !important; padding: 0 !important; height: auto !important; }
+.apphub_UserReviewCardContent .thumb { margin-right: 10px !important; }
+.apphub_UserReviewCardContent .title { color: var(--lc-gold) !important; font-size: 19px !important; text-transform: uppercase; letter-spacing: .05em; }
+.apphub_UserReviewCardContent .hours { color: var(--lc-peach) !important; font-size: 13px !important; }
+.apphub_CardTextContent {
+	flex: 0 1 auto;
+	min-height: 0;
+	color: var(--lc-ink) !important;
+	font-size: 14px !important;
+	line-height: 20px !important;
+	display: -webkit-box !important;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 8; /* ends on a whole line; the fade over the cut went */
+	overflow: hidden !important;
+	padding: 0 !important;
+}
+.apphub_CardTextContent .date_posted { color: var(--lc-peach) !important; font-family: var(--lc-font) !important; font-size: 12px !important; text-transform: uppercase; letter-spacing: .05em; }
+.reward_btn_icon { filter: grayscale(1) brightness(1.8); }
+.review_award_aggregated { color: var(--lc-lavender) !important; background: none !important; }
+
+/* Steam's thumbs, as flat status blocks. Colours are raw: a url() has no tokens. */
+img[src*="icon_thumbsUp"] { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Crect width='44' height='44' rx='14' fill='%23aaa0f5'/%3E%3Cpath d='M22 10 36 32H8z'/%3E%3C/svg%3E"); }
+img[src*="icon_thumbsDown"] { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Crect width='44' height='44' rx='14' fill='%23d97880'/%3E%3Cpath d='M22 34 36 12H8z'/%3E%3C/svg%3E"); }
+
+/* Guides. */
+.apphub_CardContentGuideTitle {
+	background: none !important;
+	color: var(--lc-gold) !important;
+	font-size: 19px !important;
+	line-height: 24px !important;
+	text-transform: uppercase;
+	padding: 14px 12px 6px 16px !important;
+	height: auto !important;
+}
+.apphub_CardContentGuideImage { border: 0 !important; margin: 0 12px 0 0 !important; }
+.apphub_CardContentGuideDesc { color: var(--lc-ink) !important; font-family: var(--lc-prose) !important; letter-spacing: 0 !important; font-size: 13px !important; line-height: 18px !important; padding: 0 12px 0 16px !important; }
+/* Guide rating: Steam's star strip becomes five solid blocks, lit from the left, with the
+ * rating count beside them rather than on top of them. */
+.apphub_CardRating.starRating {
+	--pips: 0;
+	flex: none;
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	width: auto !important;
+	height: 12px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	color: var(--lc-lavender) !important;
+	font-size: 13px !important;
+	line-height: 12px !important;
+	white-space: nowrap;
+}
+.apphub_CardRating.starRating::before {
+	content: '';
+	flex: none;
+	width: 73px;
+	height: 12px;
+	background: linear-gradient(to right, var(--lc-gold) 0 calc(var(--pips) * 15px), var(--lc-surface) 0);
+	-webkit-mask: repeating-linear-gradient(to right, #000 0 13px, transparent 13px 15px);
+	mask: repeating-linear-gradient(to right, #000 0 13px, transparent 13px 15px);
+}
+.apphub_CardRating.oneStar { --pips: 1; }
+.apphub_CardRating.twoStar { --pips: 2; }
+.apphub_CardRating.threeStar { --pips: 3; }
+.apphub_CardRating.fourStar { --pips: 4; }
+.apphub_CardRating.fiveStar { --pips: 5; }
+.apphub_CardRightData { margin-left: auto; display: flex !important; align-items: center; gap: 8px; }
+
+/* The bottom rail: the game's name in black, and comments as a labelled black chip. */
+.apphub_CardContentAuthorBlock {
+	position: absolute !important;
+	left: 26px !important;
+	right: 8px !important;
+	bottom: 0 !important;
+	height: var(--rail) !important;
+	padding: 0 !important;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: none !important;
+	border: 0 !important;
+	overflow: hidden;
+}
+.apphub_CardContentAppName { flex: 1 1 0; min-width: 0; margin: 0 !important; padding: 0 !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.apphub_CardContentAppName, .apphub_CardContentAppName a, .apphub_CardContentAuthorName, .apphub_CardContentAuthorName a {
+	color: var(--lc-black) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	line-height: var(--rail) !important;
+	text-transform: uppercase;
+	letter-spacing: .06em;
+}
+.apphub_CardContentAppName a:hover, .apphub_CardContentAuthorName a:hover { color: var(--lc-black) !important; text-decoration: underline; }
+.apphub_UserReviewCardStats { position: static !important; flex: none; height: auto !important; width: auto !important; margin: 0 !important; padding: 0 !important; background: none !important; }
+.apphub_CardCommentCount {
+	position: static !important;
+	float: none !important;
+	width: auto !important;
+	height: 20px !important;
+	margin: 0 !important;
+	padding: 0 9px !important;
+	background: var(--lc-black) !important;
+	border-radius: 10px;
+	color: var(--c) !important;
+	font-size: 13px !important;
+	line-height: 20px !important;
+}
+/* A flat speech mark in the chip's own colour, in place of Steam's overlapping icon. */
+.apphub_CardCommentCount::before {
+	content: '';
+	display: inline-block;
+	width: 14px;
+	height: 12px;
+	margin-right: 5px;
+	vertical-align: -1px;
+	background: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12'%3E%3Cpath d='M0 0h14v8H6l-3 4V8H0z'/%3E%3C/svg%3E") no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12'%3E%3Cpath d='M0 0h14v8H6l-3 4V8H0z'/%3E%3C/svg%3E") no-repeat;
+}
+/* Hub cards name the author instead: a flat avatar in the rail. */
+.appHubIconHolder { flex: none; width: 24px !important; height: 24px !important; margin: 0 !important; padding: 0 !important; background: none !important; border: 0 !important; }
+.appHubIconHolder img { width: 24px !important; height: 24px !important; border: 0 !important; display: block; }
+.apphub_friend_block_container { flex: none; }
+
+.apphub_CardControls .btn_grey_grey, .apphub_CardControls .btn_grey_grey > span {
+	background: var(--lc-surface) !important;
+	color: var(--lc-ink) !important;
+	border-radius: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	text-transform: uppercase;
+}
+
+.apphub_CardControls .btn_grey_grey:hover, .apphub_CardControls .btn_grey_grey:hover > span { background: var(--lc-gold) !important; color: var(--lc-black) !important; }
+
+.apphub_CardRating:not(.starRating), .apphub_CardRating:not(.starRating) * { color: var(--lc-lavender) !important; }
+
+/* Footer. */
+#footer { position: static !important; border-top: 8px solid var(--lc-lavender); color: var(--lc-disabled) !important; } /* Steam makes it sticky: it hung over the cards */
+#footer a { color: var(--lc-lavender) !important; text-transform: uppercase; }
+#footer .btn_medium, #footer .btn_medium > span { background: var(--lc-peach) !important; color: var(--lc-black) !important; border-radius: 0 12px 12px 0 !important; }
+
+/* The narrow-page menu tab (opens the page's own side menu): Steam's glowing blue
+ * half-disc with a white icon (user: "very un-trek"). A flat lilac endcap with a black
+ * menu glyph, gold while its menu is open. */
+.responsive_local_menu_tab {
+	background: var(--lc-lilac) !important;
+	box-shadow: none !important;
+	border-radius: 15px 0 0 15px !important;
+	opacity: 1 !important;
+}
+/* Steam shows and hides the tab itself (display), only in narrow pages; the glyph centres on it. */
+.responsive_local_menu_tab::before {
+	content: '\2630';
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--lc-black);
+	font-size: 16px;
+}
+.responsive_local_menu_tab:hover, .responsive_local_menu_open .responsive_local_menu_tab { background: var(--lc-gold) !important; }
+
+/* Hub art as LCARS line art (js/web/transitions.js edgeArt): Steam's picture, edge-filtered
+ * to lavender outlines, faded into the black toward the bottom, behind the content. */
+.apphub_background { position: relative; isolation: isolate; }
+.apphub_background::before {
+	content: '';
+	position: absolute;
+	left: 0; right: 0; top: 0;
+	aspect-ratio: 16 / 9;
+	z-index: -1;
+	background: var(--lc-edge-src, none) center top / cover no-repeat;
+	filter: url(#lc-edges);
+	opacity: .45;
+	-webkit-mask-image: linear-gradient(to bottom, black 35%, transparent);
+	mask-image: linear-gradient(to bottom, black 35%, transparent);
+	pointer-events: none;
+}
