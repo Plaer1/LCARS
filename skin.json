@@ -3,11 +3,20 @@
 	"author": "Plaer1",
 	"description": "Steam as one LCARS console: a left command bank sweeping into top and bottom rails, title-interrupted section rails, gold selection and black reading wells. Built from the archived LCARS / Operations design spec.",
 	"version": "0.1.0",
+	"github": {
+		"owner": "Plaer1",
+		"repo_name": "LCARSv2"
+	},
+	"discord_support": {
+		"inviteCodeExcludingLink": "EHMjbeEf82"
+	},
 	"tags": [
 		"Dark",
 		"LCARS",
 		"Layout"
 	],
+	"header_image": "https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/ops.png",
+	"splash_image": "https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/record.png",
 	"Patches": [
 		{
 			"MatchRegexString": "^Steam$",
