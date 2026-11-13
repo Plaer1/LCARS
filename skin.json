@@ -15,8 +15,8 @@
 		"LCARS",
 		"Layout"
 	],
-	"header_image": "https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/ops.png",
-	"splash_image": "https://raw.githubusercontent.com/Plaer1/LCARSv2/main/docs/screens/record.png",
+	"header_image": "https://raw.githubusercontent.com/Plaer1/LCARS/main/docs/screens/ops.png",
+	"splash_image": "https://raw.githubusercontent.com/Plaer1/LCARS/main/docs/screens/record.png",
 	"Patches": [
 		{
 			"MatchRegexString": "^Steam$",
